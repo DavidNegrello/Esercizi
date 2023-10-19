@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
 
     //1) variabile puntatore a file 
     FILE *portaFile; //scrittura, lettura
-    portaFile=fopen
+    portaFile=fopen;
 
     return 0;
 }
