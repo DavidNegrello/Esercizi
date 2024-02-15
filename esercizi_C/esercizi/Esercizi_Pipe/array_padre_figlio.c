@@ -8,15 +8,15 @@ int main()
     int p;
     int fd[2];
 
-    if (pipe(fd) == -1)
+    if (pipe(fd) == -1) //chiude il programma se non si crea correttamente la pipe
     {
         printf("Errore creazione pipe");
         exit(-1);
     }
+    
+    p = fork(); 
 
-    p = fork();
-
-    if (p < 0)
+    if (p < 0)  //chiude il programma se non si crea correttamente il processo
     {
         close(fd[0]);
         close(fd[1]);
