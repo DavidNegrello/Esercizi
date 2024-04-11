@@ -29,8 +29,8 @@ int spawn(char program[], char *argument[])
    
     printf("Presenza di un errore nella exec");
     abort();
-    
 }
+
 int main(int argc, char *argv[])
 {
     int fifo;
@@ -44,7 +44,7 @@ int main(int argc, char *argv[])
     {
         return 0;
     }
-    arg[0] = (char *)malloc(strlen("./consumatore.exe") + 1);
+    arg[0] = (char *)malloc(strlen("./consumatore.exe") + 1);   
     strcpy(arg[0], "./consumatore.exe");
     arg[1] = (char *)malloc(strlen(argv[2]) + 1);
     strcpy(arg[1], argv[2]);

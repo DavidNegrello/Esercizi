@@ -15,12 +15,10 @@ int main(int argc, char *argv[])
     int fifo_r;
     char frase_scritta[1024];
     char frase_letta[1024];
-    fifo_w = open("polesella2", O_WRONLY);
-    printf("La fifo è stata aperta correttamente\n");
     fifo_r = open("polesella", O_RDONLY);
-    printf("La fifo è stata aperta correttamente\n");
-    printf("Persona 2, inserisci una frase: \n");
-    scanf("%s",frase_scritta);
+    fifo_w = open("polesella2", O_WRONLY);
+    //printf("Persona 2, inserisci una frase: \n");
+    //scanf("%s",frase_scritta);
     do
     {
         if (read(fifo_r, frase_letta, sizeof(frase_letta) == -1))

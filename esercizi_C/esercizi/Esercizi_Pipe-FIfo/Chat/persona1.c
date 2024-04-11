@@ -15,9 +15,7 @@ int main(int argc, char *argv[])
     char frase_scritta[1024];
     char frase_letta[1024];
     fifo_w = open("polesella", O_WRONLY);
-    printf("La fifo è stata aperta correttamente\n");
     fifo_r = open("polesella2", O_RDONLY);
-    printf("La fifo è stata aperta correttamente\n");
     
     printf("Persona 1, inserisci una frase: \n");
     scanf("%s",frase_scritta);
