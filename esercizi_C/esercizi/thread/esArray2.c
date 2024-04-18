@@ -9,15 +9,14 @@
 #include <pthread.h>
 #define SIZE 100
 #define META SIZE/2
-int vettore[SIZE] = {0, 1, 2, 3, 4, 5, 8, 6, 7, 9};
-
+int vettore[SIZE];
 void *Ricerca(void *par)
 {
-    int *indice = (int *)par;
+    int indice = *(int *)par;
 
     if (indice == 0)
     {
-        for (int i = 0; i < META; i++)
+        for (int i = indice; i < META; i++)
         {
             if (vettore[i] == 8)
             {
@@ -26,7 +25,7 @@ void *Ricerca(void *par)
         }
     }else
     {
-       for (int i = META; i < SIZE; i++)
+       for (int i = indice; i < SIZE; i++)
         {
             if (vettore[i] == 8)
             {
@@ -40,11 +39,11 @@ void *Ricerca(void *par)
 
 int main(int argc, char *argv[])
 {
+    
     for (int i = 0; i < SIZE; i++)
     {
         vettore[i] = rand() % 10;
     }
-    vettore[META] = 8;
 
     pthread_t prima, dopo;
     int indice = 0, indiceBello = META;
