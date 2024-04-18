@@ -61,8 +61,8 @@ int main() {
     scanf("%f", &studente.media);
 
     
-    pthread_create(&stampa, NULL, printStudentData, &studente);
-    pthread_create(&scrittura, NULL, ScritturaFile, &studente);
+    pthread_create(&stampa, NULL, &printStudentData, &studente);
+    pthread_create(&scrittura, NULL, &ScritturaFile, &studente);
 
     
     pthread_join(stampa, NULL);
