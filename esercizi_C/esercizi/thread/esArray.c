@@ -7,8 +7,8 @@
 #include <string.h>
 #include <fcntl.h>
 #include <pthread.h>
-
-int vettore[10] = {0, 1, 2, 3, 4, 5, 8, 6, 7, 9};
+#define SIZE 100
+int vettore[SIZE] = {0, 1, 2, 3, 4, 5, 8, 6, 7, 9};
 
 void *RicercaPrima(void *par)
 {
