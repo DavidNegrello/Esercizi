@@ -1,0 +1,375 @@
+/*Font*/
+@import url('https://fonts.googleapis.com/css2?family=Sedan+SC&display=swap');
+
+*{/*Per impostare il font personalizzato con grandezza e stili*/
+    font-family: "Sedan SC", serif;
+    font-weight: 400;
+    font-style: normal;
+    margin: 0;
+    padding: 0;
+    scroll-padding-top: 1rem;
+    scroll-behavior: smooth;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+:root{  /*Colori predefiniti (sono simili alle variabili)*/
+    --main-color:#0C719F;
+    --text-color:black;
+    --bg-color:white;
+    --background-body:rgb(118, 115, 111);
+    --footer:#3b3d3b;
+}
+img{
+    width: 100%;
+}
+body{
+    color: var(--text-color);
+    background-color: var(--background-body);
+}
+.Container{
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.spaziatura{
+    padding-top: 6rem;
+}
+#posizione{
+    text-align: center;
+    padding-top: 3rem;
+    font-size: 3rem;
+    color: var(--text-color);
+}
+header{
+    display: block;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+.nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 35px;
+    background: rgba(98, 97, 95, 0.623);
+}
+#menu-icona{
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--text-color);
+    display: none;
+}
+.logo{
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+.logo span{
+    color: var(--main-color);
+}
+.navbar{
+    display: flex;
+    column-gap: 2rem;
+}
+.navbar a{
+    color: var(--text-color);
+    font-size: 1rem;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+.navbar a:hover,.navbar .attivo{
+    color: var(--main-color);
+    border-bottom: 3px solid var(--main-color);
+}
+
+/*Login*/
+.login{
+    display: inline-block;
+    background: var(--background);
+    color: var(--bg-color);
+    font-weight: 100;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+.login:hover{
+    background: var(--main-color);
+}
+
+
+/*==========Home==========*/
+section{
+    padding: 4rem 0 2rem;
+}
+.home{
+    max-width: 1500px;
+    margin: auto;
+    width: 100%;
+    display: flex;
+    min-height: 900px;
+    align-items: center;
+    background: url(Immagini/Menu/rs7_mansoryjpeg.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center right;
+}
+.home-contenuto{
+    padding-left: 10rem;
+    padding-bottom: 20.5rem;
+}
+.home-contenuto h1{
+    font-size: 2.4rem;
+}
+.home-contenuto span{
+    color: var(--main-color);
+}
+.home-contenuto p{
+    font-size: 0.9rem;
+    font-weight: 300;
+    margin: 0.5rem 0 1.2rem;
+}
+
+/*===========Selezione marca===========*/
+.generale-container-card{
+    display: grid;
+    place-items: center;
+    margin-inline: 1.5rem;
+    padding-block: 4rem;
+    margin-left: 3%;
+    margin-right: auto;
+}
+.card-container{
+    display: flex;
+    row-gap: 3.5rem;
+}
+.card-article{
+    position: relative;
+}
+.card-immagine{
+    width: 350px;
+    margin-right: 5rem;
+    border-radius: 1.5rem;
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    min-height: 10%;
+    height: 17rem;
+}
+.card-dati{
+    width: 350px;
+    background-color: var(--bg-color);
+    padding: 1.5rem 2rem;
+    box-shadow: 0 8px 24px hsla(0, 0%, 0%, .15);
+    border-radius: 1rem;
+    position: absolute;
+    top: -9rem;  /* Cambiato da bottom a top */
+    left: 0;
+    right: 0;
+    margin-inline: auto;
+    opacity: 0;
+    transition: opacity 1s 1s;
+}
+.card-descrizione{
+    display: block;
+    font-size: larger;
+    margin-bottom: .25rem;
+}
+.card-bottone {
+    text-decoration: none;
+    font-weight: 500;
+    color: blue;
+}
+.card-bottone:hover{
+    text-decoration: underline;
+}
+
+.card-article:hover .card-dati {
+    animation: show-data 1s forwards;
+    opacity: 1;
+    transition: opacity .3s;
+}
+
+.card-article:hover {
+    animation: remove-overflow 2s forwards;
+}
+
+.card-article:not(:hover) {
+    animation: show-overflow 2s forwards;
+}
+
+.card-article:not(:hover) .card-dati {
+    animation: remove-data 1s forwards;
+}
+
+/* Animazioni delle card */
+@keyframes show-overflow {  /* Va a mostrare le card */
+    0% {
+        overflow: initial;
+        pointer-events: none;
+    }
+    50% { /* Deve aspettare i dati prima di "comparire" */
+        overflow: hidden;
+    }
+}
+
+@keyframes show-data {  /* Cambia la posizione verticale delle card quando compaiono */
+    50% {   /* Scende prima del 50% */
+        transform: translateY(10rem);
+    }
+    100% {  /* Scende dal 50% e si ferma al 100% */
+        transform: translateY(7rem);
+    }
+}
+
+@keyframes remove-data {    /* Va a togliere le scritte */
+    0% {    /* Quanto si sposta se la card è ferma/mostrata per lo 0% */
+        transform: translateY(7rem);
+    }
+    50% { /* Quanto si sposta se la card è ferma/mostrata per il 50% */
+        transform: translateY(10rem);
+    }
+    100% {  /* Quanto si sposta se la card è scomparsa con il 100% */
+        transform: translateY(0.5rem);
+    }
+}
+
+@keyframes remove-overflow {  /* Va a togliere le card */
+    to { /* Ritorna come all'inizio */
+        overflow: initial;
+    }
+}
+
+/*===========Mappa===========*/
+.box {
+    font-size: 1.7rem;
+    color: var(--text-color);
+    margin-bottom: 10px;
+    width: 100%;
+    text-align: center;
+}
+.contact .fila{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+.contact .fila form{
+    flex: 1 1 5rem;
+    padding: 2rem;
+    border: groove white;
+    border-radius: .5rem;
+    box-shadow: rgb(15, 54, 55 /10%);
+}
+
+/*===========Gruppo===========*/
+.Container-persone {
+    width: 100%;
+    min-height: 100vh;
+    background-color: var(--background-body);
+    padding: 20px; 
+    margin-top: 5%;
+}
+
+.Container-persone .row {
+    width: 85%;
+    margin: auto;
+}
+
+.Container-persone .row .persone-section {
+    width: 60%;
+    text-align: center;
+    margin: auto;
+}
+
+.Container-persone .row .persone-section h1 {
+    padding: 30px;
+    font-size: 42px;
+}
+
+.Container-persone .row .persone-section p {
+    margin-top: 0;
+    margin-bottom: 2rem;
+    color: var(--main-color);
+    line-height: 1.5;
+    font-size: 17px;
+    text-align: justify;
+}
+.contenuto-persone{
+    display: flex;
+}
+.persona {
+    width: 20%; 
+    max-width: 30%; 
+    margin: 10rem; 
+    padding: 20px; 
+    background-color: #fff; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+.persona img {
+    width: 100%; 
+    height: auto; 
+}
+
+.contenuto-persone .persona h4{
+    margin-top: 20px;
+}
+.contenuto-persone .persona p{
+    margin-top: 10px;
+    font-size: 15px;
+    color: var(--text-color);
+    line-height: 1.5;
+}
+
+/*===========Footer===========*/
+.footer{
+    background: var(--footer);
+}
+.footer .footer-container{
+    margin-left: 15rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(25rem,15rem));/*il repeat serve per ripetele la stessa funzione per tot-colonne*/
+    gap: 1.5rem;
+}
+.footer .footer-container .box-footer h3{
+    color: var(--bg-color);
+    font-size: 2rem;
+    padding: 1rem 0;
+}
+.footer .footer-container .box-footer a{
+    color: var(--main-color);
+    font-size: 1.4rem;
+    padding: 1rem 0;
+    display: block;
+}
+.footer .footer-container .box-footer i{
+    color: var(--bg-color);
+    padding-right: 10px;
+}
+.footer .footer-container .box-footer a i{
+    color: var(--bg-color);
+    padding-right: 20px;
+}
+.footer .footer-container .box-footer a:hover i{
+    padding-right: 10px;
+}
+.footer .footer-container .subscribe-form input{
+    margin-top: 6rem;
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+.footer .footer-container .subscribe-form button{
+    margin-top: 5rem;
+    font-size: 17px;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+.style-h1-footer{
+    text-align: center;
+    color: var(--bg-color);
+    font-size: 30px;
+    margin-bottom: 1rem;
+}

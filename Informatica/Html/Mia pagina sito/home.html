@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nome BEllo</title>
+    <!--Collegamento css-->
+    <link rel="stylesheet" href="style_home.css">
+    <!--Collegamento con icone-->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+
+    <link rel="icon" type="logo" href="/Immagini/Menu/logo_home.png">
+    
+</head>
+<body>
+    <!--Navbar-->
+    <header>
+        <!--Container della navbar-->
+        <div class="nav Container">
+
+            <!--Menu con icone-->
+            <i class='bx bx-menu' id="menu-icona"></i>
+
+            <!--Logo-->
+            <a href="" class="logo">Car <span>Dealer</span></a>
+
+            <!--Lista nella navbar-->
+            <ul class="navbar">
+                <li><a href="#home" class="attivo">Home</a></li>
+                <li><a href="#Cars">Cars</a></li>
+                <li><a href="#About">About</a></li>
+                <li><a href="#Gruppo">Gruppo</a></li>
+                <li><a href="#More info.">More info.</a></li>
+            </ul>
+
+            <!--Bottone di login-->
+            <div class="login-box">
+                <a href="login/login.html"><button class="login">Login</button></a>
+            </div>
+
+        </div>
+    </header>
+
+    <!--Home-->
+    <section class="home" id="home">
+        <div class="home-contenuto">
+            <h1 >Trova online <br> Scoprile vetture  <span>disponibili</span></h1>
+            <p>Trova la tua macchina ad un prezzo <strong>conveniente</strong></p>
+        </div>
+    </section>
+
+    <!--Selezione marche-->
+    <section id="Cars" class="spaziatura">
+        <h1 id="posizione" >Marchi disponibili</h1>
+        <div class="generale-container-card" >
+            <div class="card-container">
+                <!--Card 1-->
+                <article class="card-article">
+                    <img src="Immagini/Menu/mercedes_logo.jpeg" alt="" class="card-immagine">
+
+                    <div class="card-dati">
+                        <span class="card-descrizione">Mercedes</span>
+                        <a href="ProgettoFinale_Malaman/listinoMerc.html" class="card-bottone">Scopri ora</a>
+                    </div>
+                </article>
+                <!--Card 2-->
+                <article class="card-article">
+                    <img src="Immagini/Menu/bmw_logo.jpeg" alt="" class="card-immagine">
+
+                    <div class="card-dati">
+                        <span class="card-descrizione">BMW</span>
+                        <a href="ProgettoFinale_Malaman/listinoBmw.html" class="card-bottone">Scopri ora</a>
+                    </div>
+                </article>
+                <!--Card 3-->
+                <article class="card-article">
+                    <img src="Immagini/Menu/audi_logo.jpeg" alt="" class="card-immagine">
+
+                        <div class="card-dati">
+                            <span class="card-descrizione">Audi</span>
+                            <a href="ProgettoFinale_Malaman/listino.html" class="card-bottone">Scopri ora</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+    </section>
+
+    <!--About / maps-->
+    <section class="contact Container spaziatura" id="posizione">
+        <h1 style="margin-bottom: 35px;" id="About" class="maps"> Dove ci troviamo </h1>
+        <div class="fila">
+                <iframe id="map-iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2802.6814415337694!2d11.91075697626913!3d45.375422971072624!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477edb482a4cf2ff%3A0xc699d62aced72213!2sVia%20G.%20Rossa%2C%208%2C%2035020%20Ponte%20San%20Nicol%C3%B2%20PD!5e0!3m2!1sit!2sit!4v1716009672589!5m2!1sit!2sit" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <form>
+                <h3>Tutti i negozi</h3>
+                <button class="box" id="mappa1">Via G. Rossa</button>
+                <button class="box" id="mappa2">Via Fratelli Cervi</button>
+                <button class="box" id="mappa3">Via Chioggia</button>
+            </form>
+        </div>
+    </section>
+
+    <!--Gruppo-->
+    <section class="Container-persone" id="Gruppo">
+        <div class="row">
+            <div class="persone-section">
+                <h1>Gruppo di lavoro</h1>
+                <p style="font-size: 30px; color: black;">Questa sezione è dedicata per dire i membri del gruppo e quello che hanno fatto</p>
+            </div>
+            <div class="contenuto-persone">
+    
+                <!--Persona 1-->
+                <div class="persona">
+                    <img src="Immagini/Menu/icona_predefinita.jpg" alt="Persona 1">
+                    <h4>Negrello David</h4>
+                    <p>Lavoro svolto: Home e pagina di login</p>
+                </div>
+    
+                <!--Persona 2-->
+                <div class="persona">
+                    <img src="Immagini/Menu/icona_predefinita.jpg" alt="Persona 1">
+                    <h4>Malaman Nicolo</h4>
+                    <p>Lavoro svolto: 3 pagine per i marchi delle macchine (bmw, mercedes, audi)</p>
+                </div>
+    
+                <!--Persona 3-->
+                <div class="persona">
+                    <img src="Immagini/Menu/icona_predefinita.jpg" alt="Persona 1">
+                    <h4>Merlo Riccardo</h4>
+                    <p>Lavoro svolto: tutte le singole pagine per la descrizione di ogni macchina presente</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!--Footer-->
+    <footer id="More info." class="footer">
+        <h1 class="style-h1-footer">Maggiori informazioni</h1>
+        <div class="footer-container">
+             <!--Social-->
+            <div class="box-footer">
+                <h3>I nostri social</h3>
+                <a href=""><i class="uil uil-instagram"></i>Instagram</a>
+                <a href=""><i class="uil uil-facebook-f"></i>Facebook</a>
+                <a href=""><i class="uil uil-linkedin"></i>Linkedin</a>
+                <a href=""><i class="uil uil-twitter"></i>Twitter</a>
+            </div>
+            <!--Siti ufficiali-->
+            <div class="box-footer">
+                <h3>Siti ufficiali</h3>
+                <a href="https://www.audi.it/it/web/it.html"></i>Audi</a>
+                <a href="https://www.bmw.it/it/home.html"></i>BMW</a>
+                <a href="https://www.mercedes-benz.it/"></i>Mercedes</a>
+            </div>
+            <div class="box-footer">
+                <form class="subscribe-form ">
+                    <h3>Rimani aggiornato</h3>
+                    <input type="email" placeholder="Inserisci la tua email" required>
+                    <button type="submit">Iscriviti</button>
+                </form>
+            </div>
+        </div>
+    </footer>
+
+    <!--Collegamento a javascript-->
+    <script src="home_script.js"></script>
+</body>
+</html>

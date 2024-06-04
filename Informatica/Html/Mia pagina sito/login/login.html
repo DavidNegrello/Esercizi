@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <!--Collegamento con css-->
+    <link rel="stylesheet" href="login_style.css">
+
+    <!--Collegamento con icone-->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+
+</head>
+<body>
+    <div class="container">
+        <div class="forms">
+            <div class="form login">
+                <form id="form-login" action="#">
+                    <span class="title">Login</span>
+                    <div class="input-field">
+                        <input type="text" placeholder="Inserisci l'email" required>
+                        <i class="uil uil-envelope icon"></i>
+                    </div>
+                    <div class="input-field">
+                        <input type="password" class="password" placeholder="Inserisci la password" required>
+                        <i class="uil uil-lock icon"></i>
+                        <i class="uil uil-eye-slash mostraNascondi"></i>
+                    </div>
+                    <div class="checkbox-text">
+                        <div class="checkbox-content">
+                            <input type="checkbox" id="logCheck">
+                            <label for="logCheck" class="text">Rimani collegato</label>
+                        </div>
+                    </div>
+                    <div class="input-field button">
+                        <button onclick="gestisciLogin()"><input type="button" value="Accedi"></button>
+                    </div>
+                </form>
+                <form id="secondo-form" class="form-nascosto hidden">
+                    <h2 class="paginatura-form2">Accesso eseguito</h2>
+                    <a href="/home.html" class="back-link">
+                        <i class="uil uil-arrow-left posizione-freccia"></i>
+                        <span>Torna alla home</span>
+                    </a>
+                </form>
+            </div>
+        </div>
+    </div>
+      <!--Collegamento a javascript-->
+        <script src="login_script.js"></script>
+</body>
+</html>
