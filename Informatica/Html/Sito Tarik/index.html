@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Doner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <div class="popupBuy__wrapper_login">
+      <div class="popup-login">
+        <img
+          src="./assets/img/menu/close.svg"
+          alt="close"
+          class="popupBuy__close-btn"
+        />
+        <h2 class="popup-login__title">Login</h2>
+        <div class="popup-login__inputs">
+          <label>
+            username:
+            <input id="username" type="text" />
+          </label>
+          <label>
+            password:
+            <input id="password" type="password" />
+          </label>
+        </div>
+        <a href="#" class="popup-login__button">Enter</a>
+        <p class="popup-login__result"></p>
+      </div>
+    </div>
+    <div class="wrapper">
+      <header id="header" class="header">
+        <div class="header__container _container">
+          <div class="header__top">
+            <img
+              src="assets/img/logo.png"
+              alt="luxury kebab"
+              class="header__logo"
+            />
+            <div class="header__login-area">
+              <a href="#" class="header__login-link">
+                <img src="assets/img/user.svg" alt="user icon" />
+                <p>Login</p>
+              </a>
+            </div>
+          </div>
+          <div class="header__main">
+            <nav class="header__nav">
+              <ul class="header__list">
+                <li class="header__list-item">
+                  <a href="#header" class="header__list-link scroll-link"
+                    >home</a
+                  >
+                </li>
+                <li class="header__list-item">
+                  <a href="./pages/about.html" class="header__list-link"
+                    >about us</a
+                  >
+                </li>
+                <li class="header__list-item">
+                  <a href="#contacts" class="header__list-link scroll-link"
+                    >contacts</a
+                  >
+                </li>
+                <li class="header__list-item">
+                  <a href="./pages/menu.html" class="header__list-link">menu</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </header>
+      <main class="main">
+        <section class="intro">
+          <img
+            src="assets/img/intro/blur-circle.png"
+            alt=""
+            class="intro__circle intro__circle_left"
+          />
+          <img
+            src="assets/img/intro/blur-circle.png"
+            alt=""
+            class="intro__circle intro__circle_top"
+          />
+          <div class="intro__container _container">
+            <img
+              src="assets/img/intro/arrow.png"
+              alt="->"
+              class="intro__arrow"
+            />
+            <div class="intro__text">
+              <p class="intro__suptitle">est 1939</p>
+              <h1 class="intro__title">Luxury</h1>
+              <div class="intro__second-row">
+                <h1 class="intro__title">Kebab</h1>
+                <p class="intro__subtitle">
+                  have you already tasted the best luxury kebab in the whole
+                  world? what are you waiting for?
+                  <span> Via Alcide de Gasperi, 21, 45100 Rovigo RO </span>
+                </p>
+                <a href="./pages/menu.html" class="intro__btn">Try now</a>
+              </div>
+            </div>
+            <div class="intro__main-img">
+              <img src="assets/img/intro/kebab.png" alt="kebab" />
+            </div>
+          </div>
+        </section>
+      </main>
+      <footer id="contacts" class="footer">
+        <div class="footer__container _container">
+          <h3 class="footer__title">Contact us!</h3>
+          <div class="footer__right">
+            <ul class="footer__numbers">
+              <li class="footer__number">
+                <img src="assets/img/footer/phone.svg" alt="" />
+                <p>0569743128</p>
+              </li>
+              <li class="footer__number">
+                <img src="assets/img/footer/phone.svg" alt="" />
+                <p>0813467951</p>
+              </li>
+              <li class="footer__number">
+                <img src="assets/img/footer/phone.svg" alt="" />
+                <p>0457316984</p>
+              </li>
+            </ul>
+            <p class="footer__adress">
+              Via Alcide de Gasperi, 21, 45100 Rovigo RO
+            </p>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script src="js/script.js"></script>
+  </body>
+</html>
