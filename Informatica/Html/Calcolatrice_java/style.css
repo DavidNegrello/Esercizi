@@ -38,10 +38,10 @@
   }
   
   #colore-uguale {
-    background-color: #4CAF50;
+    background-color: rgb(53, 113, 203);
     color: #fff;
   }
   
   #colore-uguale:hover {
-    background-color: #3e8e41;
+    background-color: blue;
   }
