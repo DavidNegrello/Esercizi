@@ -6,8 +6,8 @@
 #include <errno.h>
 #include <string.h>
 #include <fcntl.h>
+#include <time.h>
 
-#define SIZE 1024
 /*
 Scrivere un programma in C che effettui, attraverso un menù, le seguenti operazione sugli array:
 1) Visualizzi a video gli elementi dell’array inseriti o generati casualmente;
@@ -22,10 +22,12 @@ penultimo e cosi via;
 vettore: 1,2,3,4 vettore alternato: 2,1,4,3 (attenzione se lungo dispari);
 9) Ordini il vettore (ordinamento a scelta).
 */
+
+#define DIM 30
 void Menu()
 {
-    printf("Menu\n");
-    printf("[1]Genera vettore e visualizza\n");
+    printf("\nMenu:\n");
+    printf("[1]visualizza\n");
     printf("[2]Vettore invertito\n");
     printf("[3]Somma e media\n");
     printf("[4]Numeri pari\n");
@@ -37,43 +39,120 @@ void Menu()
     printf("[10]Esci\n");
 }
 
-int Generazione(int dimensioneVettore)
+void Generazione(int array[], int dimensioneVettore)
 {
-    int *vettore[dimensioneVettore];
-    for (int i = 0; i <= dimensioneVettore; i++)
+    srand(time(NULL));
+    for (int i = 0; i < dimensioneVettore; i++)
     {
-        vettore[i] = rand() % 20;
+        array[i] = rand() % 20;
     }
-    for (int i = 0; i <=dimensioneVettore; i++)
-    {
-        printf("%d\n",vettore[i]);
-    }
-    return vettore;
 }
+void Visualizza(int array[], int dimensione)
+{
+    for (int i = 0; i < dimensione; i++)
+    {
+        printf("%d - ", array[i]);
+    }
+}
+void VisualizzaInvertito(int array[], int dimensione)
+{
+    int arrayInv[dimensione];
+    for (int i = 0; i < dimensione; i++)
+    {
+        arrayInv[i] = array[dimensione - i - 1];
+    }
 
+    for (int i = 0; i < dimensione; i++)
+    {
+        printf("%d ", arrayInv[i]);
+    }
+    printf("\n");
+}
+void SommaMedia(int array[], int dimensione, int somma, float media)
+{
+    for (int i = 0; i < dimensione; i++)
+    {
+        somma += array[i];          // somma
+        media = somma / dimensione; // media utilizzando la somma calcolata in precedenza e la dimensione dell'array per sapere quanti numeri ci sono nell'array
+    }
+    printf("Somma di tutti i numeri: %d \n", somma);
+    printf("Media di tutti i numeri: %.2f \n", media);
+}
+void NumeriPari(int array[], int dimensione){
+    printf("Numeri pari: ");
+    for (int i = 0; i < dimensione; i++) {
+        if (array[i] % 2 == 0) {
+            printf("%d - ", array[i]);
+        }
+    }
+}
+void NumeriDispari(int array[], int dimensione){
+    printf("Numeri dispari: ");
+    for (int i = 0; i < dimensione; i++) {
+        if (array[i] % 2 != 0) {
+            printf("%d - ", array[i]);
+        }
+    }
+}
+void Ricerca(int array[], int dimensione){
+    int numeroRicerca;
+    printf("Inserisci il numero che vuoi ricercare: ");
+    scanf("%d",&numeroRicerca);
+    for (int i = 0; i <dimensione; i++)
+    {
+        if (numeroRicerca==array[i])
+        {
+            printf("numero %d in posizione: %d",array[i],i);
+        }
+    }
+    
+}
 int main(int argc, char *argv[])
 {
     int scelta;
-    int dimensioneVettore=0;
+    int dimensioneVettore;
+    int somma = 0;
+    float media = 0;
+    printf("Inserisci la grandezza del vettore\n");
+    scanf("%d", &dimensioneVettore);
+    int vettore[dimensioneVettore];
+    Generazione(vettore, dimensioneVettore);
     do
     {
-        Menu(); //visualizza il menu
-        scanf("%d\n", &scelta);
-        
+        Menu(); // visualizza il menu
+        printf("Scegli cosa fare\n");
+        scanf("%d", &scelta);
         switch (scelta)
         {
         case 1:
-            printf("Inserisci la grandezza del vettore\n");
-            scanf("%d\n", &dimensioneVettore);
-            int *vettore=Generazione(dimensioneVettore);;
-            
+            Visualizza(vettore, dimensioneVettore);
             break;
-            case 2:
+        case 2:
+            VisualizzaInvertito(vettore, dimensioneVettore);
+            break;
+        case 3:
+            SommaMedia(vettore, dimensioneVettore, somma, media);
+            break;
+        case 4:
+            NumeriPari(vettore, dimensioneVettore);
+            break;
+        case 5:
+            NumeriDispari(vettore, dimensioneVettore);
+            break;
+        case 6:
+            Ricerca(vettore,dimensioneVettore);
+            break;
+        case 7:
+            break;
+        case 8:
+            break;
+        case 9:
+            break;
+        case 10:
             break;
         }
 
-
-    } while (scelta);
+    } while (scelta != 10);
 
     return 0;
 }
