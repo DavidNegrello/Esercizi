@@ -78,39 +78,64 @@ void SommaMedia(int array[], int dimensione, int somma, float media)
     printf("Somma di tutti i numeri: %d \n", somma);
     printf("Media di tutti i numeri: %.2f \n", media);
 }
-void NumeriPari(int array[], int dimensione){
+void NumeriPari(int array[], int dimensione)
+{
     printf("Numeri pari: ");
-    for (int i = 0; i < dimensione; i++) {
-        if (array[i] % 2 == 0) {
-            printf("%d - ", array[i]);
-        }
-    }
-}
-void NumeriDispari(int array[], int dimensione){
-    printf("Numeri dispari: ");
-    for (int i = 0; i < dimensione; i++) {
-        if (array[i] % 2 != 0) {
-            printf("%d - ", array[i]);
-        }
-    }
-}
-void Ricerca(int array[], int dimensione){
-    int numeroRicerca;
-    printf("Inserisci il numero che vuoi ricercare: ");
-    scanf("%d",&numeroRicerca);
-    for (int i = 0; i <dimensione; i++)
+    for (int i = 0; i < dimensione; i++)
     {
-        if (numeroRicerca==array[i])
+        if (array[i] % 2 == 0)
         {
-            printf("numero %d in posizione: %d",array[i],i);
+            printf("%d - ", array[i]);
         }
     }
+}
+void NumeriDispari(int array[], int dimensione)
+{
+    printf("Numeri dispari: ");
+    for (int i = 0; i < dimensione; i++)
+    {
+        if (array[i] % 2 != 0)
+        {
+            printf("%d - ", array[i]);
+        }
+    }
+}
+void Ricerca(int array[], int dimensione, int numeroScelto)
+{
+    printf("Numero da ricercare: ");
+    scanf("%d",&numeroScelto);
+    for (int i = 0; i < dimensione; i++)
+    {
+        if (numeroScelto == array[i])
+        {
+            printf("numero %d in posizione: %d", array[i], i);
+        }
+    }
+}
+void Elimina(int array[], int dimensione, int numeroScelto)
+{
+    Ricerca(array, dimensione, numeroScelto);
+    if (numeroScelto != -1)
+    {
+        for (int i = numeroScelto; i < dimensione - 1; i++)
+        {
+            array[i] = array[i + 1];
+        }
+        dimensione--;
+    }
+    Visualizza(array,dimensione);
+}
+void Alterna(int array[], int dimensione){
+
+}
+void Ordina(int array[], int dimensione){
     
 }
+
 int main(int argc, char *argv[])
 {
-    int scelta;
-    int dimensioneVettore;
+    int scelta, bool = 0;
+    int dimensioneVettore, numeroScelto;
     int somma = 0;
     float media = 0;
     printf("Inserisci la grandezza del vettore\n");
@@ -126,6 +151,7 @@ int main(int argc, char *argv[])
         {
         case 1:
             Visualizza(vettore, dimensioneVettore);
+            bool = 1; // per poter eliminare un numero
             break;
         case 2:
             VisualizzaInvertito(vettore, dimensioneVettore);
@@ -140,9 +166,21 @@ int main(int argc, char *argv[])
             NumeriDispari(vettore, dimensioneVettore);
             break;
         case 6:
-            Ricerca(vettore,dimensioneVettore);
+            printf("Numero da ricercare: ");
+            scanf("%d", &numeroScelto);
+            Ricerca(vettore, dimensioneVettore, numeroScelto);
             break;
         case 7:
+            if (bool == 1)
+            {
+                printf("Numero da eliminare: ");
+                scanf("%d", &numeroScelto);
+                Elimina(vettore, dimensioneVettore,numeroScelto);
+            }
+            else
+            {
+                printf("Prima visualizza i numeri all'interno dell'array");
+            }
             break;
         case 8:
             break;
