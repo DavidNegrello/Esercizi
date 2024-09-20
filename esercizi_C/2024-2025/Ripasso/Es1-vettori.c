@@ -126,10 +126,24 @@ void Elimina(int array[], int dimensione, int numeroScelto)
     Visualizza(array,dimensione);
 }
 void Alterna(int array[], int dimensione){
-
+    for (int i = 0; i < dimensione - 1; i += 2) {
+        int temp = array[i];
+        array[i] = array[i + 1];
+        array[i + 1] = temp;
+    }
+    Visualizza(array,dimensione);
 }
 void Ordina(int array[], int dimensione){
-    
+    for (int i = 0; i < dimensione - 1; i++) {
+        for (int j = i + 1; j < dimensione; j++) {
+            if (array[i] > array[j]) {
+                int swap = array[i];
+                array[i] = array[j];
+                array[j] = swap;
+            }
+        }
+    }
+    Visualizza(array,dimensione);
 }
 
 int main(int argc, char *argv[])
@@ -183,11 +197,15 @@ int main(int argc, char *argv[])
             }
             break;
         case 8:
+                Alterna(vettore, dimensioneVettore);
             break;
         case 9:
+                Ordina(vettore, dimensioneVettore);
             break;
         case 10:
-            break;
+                return 0;
+            default:
+                printf("Scelta non valida\n");
         }
 
     } while (scelta != 10);
