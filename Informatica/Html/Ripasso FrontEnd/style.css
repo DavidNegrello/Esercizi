@@ -1,24 +1,31 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
 *{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+  font-family: Arial;
+  font-size: 16px;
+  }
+  body {
+    padding-top: 0;
   }
   img{
-    position: absolute;
+    position: relative;
     margin: auto;
-    margin-top: 6rem;
+    margin-top: auto;
+    display: block;
   }
   nav{
     position: fixed;
     z-index: 100;
     width: 100%;
-    
-    background: #242526;
+    top: 0;
+    left: 0;
+    background: none;
+  }
+  .navbar{
+    background-color: black;
   }
   nav .stile{
     position: relative;
-    max-width: 1300px;
+    max-width: 60%;
     padding: 0px 30px;
     height: 70px;
     line-height: 70px;
@@ -51,6 +58,79 @@
     background: #3A3B3C;
   }
 
+/*===========Content=============*/
+.content{
+  align-items: center;
+  position: absolute;
+  text-align: center;
+  margin-left:28%;
+  margin-top: 8%;
+}
+.img-1 {
+  max-width: 100%;
+  width: 90rem;
+  margin-top: 0;
+  display: block;
+  margin: 0 auto;
+}
+table {
+  margin-top: 50%;
+  border-collapse: collapse;
+  width: 90rem;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f0f0f0;
+}
+
+/*===========Sidebar=============*/
+.sidebar {
+  position: fixed;
+  width: 25%;
+  height: 100%;
+  margin-top: auto;
+  background: #0f7acb;
+  font-size: 0.65em;
+  padding: 1rem;
+  left: 0;
+}
+.side-nav {
+  position: relative;
+  margin: 0 15%;
+  text-align: right;
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: bold;
+}
+
+.side-nav ul {
+  list-style: none;
+  background-color: none;
+  
+  li {
+    position: relative;
+    margin: 3.2rem 9rem;
+    border-bottom: 1px solid #ccc;
+    
+    a {
+      line-height: 5em;
+      text-transform: uppercase;
+      text-decoration: none;
+      letter-spacing: 0.4em;
+      display: block;
+    }
+    
+    a:hover {
+      color: white;
+    }
+  }
+}
 /*===========Footer=============*/
 .site-footer
 {
