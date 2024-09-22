@@ -12,6 +12,7 @@
     margin-top: auto;
     display: block;
   }
+  /*===========Navbar=============*/
   nav{
     position: fixed;
     z-index: 100;
@@ -57,7 +58,56 @@
   .nav-links li a:hover{
     background: #3A3B3C;
   }
+  .nav-links li button{
+    color: #080808;
+    text-decoration: none; /*per togliere la linea di link*/
+    font-size: 18px;
+    font-weight: 500;
+    padding: 9px 15px;
+    border-radius: 5px;
+  }
+  .nav-links li button:hover{
+    background: #3A3B3C;
+  }
+/*===========Login=============*/
+.login-form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  padding: 20px;
+  width: 300px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
 
+.login-header {
+  margin-top: 0;
+  font-weight: bold;
+  color: #333;
+}
+
+.login-form-field {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.login-form-submit {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.login-form-submit:hover {
+  background-color: #444;
+}
 /*===========Content=============*/
 .content{
   align-items: center;
