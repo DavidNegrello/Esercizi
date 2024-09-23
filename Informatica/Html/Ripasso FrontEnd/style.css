@@ -12,6 +12,9 @@
     margin-top: auto;
     display: block;
   }
+  .grid-posizione{
+    
+  }
   /*===========Navbar=============*/
   nav{
     position: fixed;
@@ -110,9 +113,8 @@
 }
 /*===========Content=============*/
 .content{
-  align-items: center;
   position: absolute;
-  text-align: center;
+  align-items: center;
   margin-left:28%;
   margin-top: 8%;
 }
@@ -126,7 +128,8 @@
 table {
   margin-top: 50%;
   border-collapse: collapse;
-  width: 90rem;
+  width: 40rem;
+  margin-left: 25%;
 }
 
 th, td {
@@ -182,17 +185,15 @@ th {
   }
 }
 /*===========Footer=============*/
-.site-footer
-{
-  background-color:#26272b;
-  padding:45px 0 20px;
-  font-size:15px;
-  line-height:24px;
-  color:#737373;
-}
-.site-footer .container{
-    background-color: gray;
-    position: absolute;
-    bottom: -1px;
-    display: grid;
+.site-footer {
+  background-color: gray; 
+  padding: 20px; 
+  text-align: center;
+  clear: both; 
+  position:fixed;
+  bottom: 0; 
+  width: 75%;
+} 
+.content {
+  margin-bottom: 50px; 
 }
