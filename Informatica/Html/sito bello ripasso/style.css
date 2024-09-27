@@ -1,0 +1,120 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Assicura che il body occupi tutta l'altezza della pagina */
+}
+
+/* Navbar */
+.navbar {
+    background-color: #333;
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+    width: 100%;
+}
+
+.navbar h1 {
+    margin-bottom: 1rem;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+}
+
+.navbar ul li {
+    margin: 0 1rem;
+}
+
+.navbar ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.1rem;
+}
+
+.navbar ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Container layout */
+.container {
+    display: flex;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    flex: 1; /* Il contenuto si espande per occupare lo spazio disponibile */
+    background-color: #fff;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 20%;
+    background-color: #333;
+    color: white;
+    padding: 20px;
+}
+
+.sidebar h2 {
+    margin-bottom: 1rem;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar ul li {
+    margin: 10px 0;
+}
+
+.sidebar ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.sidebar ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Main content */
+.content {
+    flex: 1;
+    background-color: white;
+    padding: 20px;
+    margin-left: 20px;
+}
+
+.content h2 {
+    margin-bottom: 1rem;
+}
+
+.content p {
+    line-height: 1.8;
+}
+
+/* Footer */
+.footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
