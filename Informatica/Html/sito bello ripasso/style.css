@@ -51,18 +51,56 @@ body {
 .navbar ul li a:hover {
     text-decoration: underline;
 }
-
-/* Container layout */
+/*===========Login=============*/
+.login-form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .login-header {
+    margin-top: 0;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .login-form-field {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .login-form-submit {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .login-form-submit:hover {
+    background-color: #444;
+  }
+/*===========Content=============*/
 .container {
     display: flex;
     max-width: 1200px;
     margin: 20px auto;
     padding: 20px;
-    flex: 1; /* Il contenuto si espande per occupare lo spazio disponibile */
+    flex: 1; 
     background-color: #fff;
 }
 
-/* Sidebar */
+/*===========Sidebar=============*/
 .sidebar {
     width: 20%;
     background-color: #333;
@@ -91,7 +129,7 @@ body {
     text-decoration: underline;
 }
 
-/* Main content */
+/*================ Main content================= */
 .content {
     flex: 1;
     background-color: white;
@@ -106,8 +144,88 @@ body {
 .content p {
     line-height: 1.8;
 }
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  
+  .card {
+    width: calc(50% - 10px); /* Due card per riga, con uno spazio tra di loro */
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: scale(1.02);
+  }
+  
+  .card-image img {
+    width: 95%;
+    height: auto;
+  }
 
-/* Footer */
+   .card-image .img-donna  {
+    width: 50%; /* Applicato solo alle immagini dentro .img-donna */
+  }
+  .card-image .img-bermuda  {
+    width: 75%; /* Applicato solo alle immagini dentro .img-bermuda */
+  }
+  .card-content {
+    padding: 16px;
+  }
+  
+  .product-name {
+    font-size: 1.5em;
+    margin: 0 0 10px;
+  }
+  
+  .product-description {
+    font-size: 0.9rem;
+    color: #555;
+  }
+  
+  .price-section {
+    margin: 10px 0;
+  }
+  
+  .price {
+    font-size: 1.2em;
+    color: #333;
+  }
+  
+  .discount-price {
+    font-size: 1em;
+    color: #d9534f;
+    text-decoration: line-through;
+    margin-left: 10px;
+  }
+  
+  .add-to-cart-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .add-to-cart-btn:hover {
+    background-color: #218838;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .card {
+      width: 100%; /* In dispositivi più piccoli, le card occupano tutta la larghezza */
+    }
+  }
+  
+/*===========Footer=============*/
 .footer {
     background-color: #333;
     color: white;
