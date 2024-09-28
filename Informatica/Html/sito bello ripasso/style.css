@@ -15,7 +15,7 @@ body {
     background-color: #f4f4f4;
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Assicura che il body occupi tutta l'altezza della pagina */
+    min-height: 100vh; 
 }
 
 /* Navbar */
@@ -152,12 +152,12 @@ body {
   }
   
   .card {
-    width: calc(50% - 10px); /* Due card per riga, con uno spazio tra di loro */
+    width: calc(50% - 10px); /*posiziona al 50% e toglie 10px rispetto al 50*/
     border: 1px solid #e0e0e0;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease; /*ease è un attributo specifico al transform e fa in modo che l'oggetto abbia una transizione più veloce e naturale*/
   }
   
   .card:hover {
@@ -219,9 +219,9 @@ body {
     background-color: #218838;
   }
   
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 768px) { /*Provato il responsive*/
     .card {
-      width: 100%; /* In dispositivi più piccoli, le card occupano tutta la larghezza */
+      width: 100%; 
     }
   }
   
