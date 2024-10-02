@@ -1,0 +1,81 @@
+Per la categoria il programma deve leggere prima tutti i libri e nel campo "categoria" inserisce un valore di default/vuoto.
+Successivamente sarà l'utente e/o programmatore a modificare la categoria.
+Array di struct con valori struct ovvero il "primo array" va a contenere le struct dei libri,
+dentro la categoria c'è un altro array di struct dove sono contenuti tutti i libri di quella categoria specifica con il titolo, l'autore, prezzo, anno
+
+Passaggi:
+1. Creazione dell'array di struct "Libreria" per i libri, con anche quello delle categorie perchè verrà inserito un valore di default e dopo verrà modificato dall'utente
+2. Lettura dei dati dal file e inserirli dentro le struct del punto 2
+3. Inserimento dall'utente delle categorie dentro i libri
+4. Smistamento dei libri dentro le loro categorie utilizzando un array a parte 
+
+FUNZIONI
+-
+-
+-
+-
+
+
+FILE
+-
+-
+-
+-
+
+Richiamo funzioni
+-
+-
+-
+-
+
+
+Categorie:
+Narrativa (Novels)
+
+Il nome della rosa by Umberto Eco
+I Promessi Sposi by Alessandro Manzoni
+La coscienza di Zeno by Italo Svevo
+Il Gattopardo by Giuseppe Tomasi di Lampedusa
+Se questo è un uomo by Primo Levi
+Il deserto dei tartari by Dino Buzzati
+La luna e i falò by Cesare Pavese
+Siddharta by Hermann Hesse
+Il piccolo principe by Antoine de Saint-Exupéry
+Il grande Gatsby by F. Scott Fitzgerald
+Moby Dick by Herman Melville
+Orgoglio e pregiudizio by Jane Austen
+Cime tempestose by Emily Brontë
+Jane Eyre by Charlotte Brontë
+Il conte di Montecristo by Alexandre Dumas
+Don Chisciotte della Mancia by Miguel de Cervantes
+Robinson Crusoe by Daniel Defoe
+Dracula by Bram Stoker
+Frankenstein by Mary Shelley
+L'amore ai tempi del colera by Gabriel Garcia Marquez
+Cent'anni di solitudine by Gabriel Garcia Marquez
+Lolita by Vladimir Nabokov
+
+
+Scienza (Science Fiction)
+
+Fahrenheit 451 by Ray Bradbury
+1984 by George Orwell
+Viaggio al centro della Terra by Jules Verne
+
+
+Filosofia (Philosophy)
+
+La nausea by Jean-Paul Sartre
+La peste by Albert Camus
+Il processo by Franz Kafka
+La metamorfosi by Franz Kafka
+
+
+Fantasy (Fantasy)
+
+Il maestro e Margherita by Michail Bulgakov
+
+
+Mistero (Mystery)
+
+Le avventure di Sherlock Holmes by Arthur Conan Doyle
