@@ -12,6 +12,7 @@ Passaggi:
 
 
 inzialmento volevo salvare le categorie dentro un array per dopo utilizzarlo nella ricerca/separazione alla fine ho creato un file nuovo inserendo l'attributo "categoria" con tutti i dati inerenti
+
 Per il punto 3 bisogna capire se uso il primo Visualizza o ne inserisco uno nuovo per le categorie
 FUNZIONI
 -
