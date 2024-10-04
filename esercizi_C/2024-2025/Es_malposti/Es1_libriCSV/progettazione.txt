@@ -10,6 +10,8 @@ Passaggi:
 4. Inserimento dall'utente delle categorie dentro i libri
 5. Smistamento dei libri dentro le loro categorie utilizzando un array a parte 
 
+
+Per il punto 3 bisogna capire se uso il primo Visualizza o ne inserisco uno nuovo per le categorie
 FUNZIONI
 -
 -
