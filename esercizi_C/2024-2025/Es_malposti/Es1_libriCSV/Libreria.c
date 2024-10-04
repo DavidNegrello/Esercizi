@@ -51,6 +51,9 @@ int main(int argc, char *argv[])
         exit(1);
     }
     contatore = SalvaLibri(listaLibri, contatore);
+
+    //==========Menu==========
+
     // Stampa i dati letti
     for (int i = 0; i < contatore; i++)
     {
