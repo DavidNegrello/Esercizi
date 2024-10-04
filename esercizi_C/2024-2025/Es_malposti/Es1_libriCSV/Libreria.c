@@ -37,6 +37,9 @@ int SalvaLibri(Libreria listaLibri[], int contatore)
     }
     return contatore;
 }
+void Menu(){
+    
+}
 
 //=================MAIN================
 int main(int argc, char *argv[])
@@ -53,7 +56,7 @@ int main(int argc, char *argv[])
     contatore = SalvaLibri(listaLibri, contatore);
 
     //==========Menu==========
-
+    Menu();
     // Stampa i dati letti
     for (int i = 0; i < contatore; i++)
     {
