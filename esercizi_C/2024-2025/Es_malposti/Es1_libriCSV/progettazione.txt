@@ -6,7 +6,7 @@ dentro la categoria c'è un altro array di struct dove sono contenuti tutti i li
 Passaggi:
 1. Creazione dell'array di struct "Libreria" per i libri, con anche quello delle categorie perchè verrà inserito un valore di default e dopo verrà modificato dall'utente
 2. Lettura dei dati dal file e inserirli dentro le struct del punto 2
-3. Menu per agevolare l'utilizzo
+3. Menu per agevolare l'utilizzo con: Visualizza lista, modifica lista (per le categorie), esci
 4. Inserimento dall'utente delle categorie dentro i libri
 5. Smistamento dei libri dentro le loro categorie utilizzando un array a parte 
 
