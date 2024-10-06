@@ -13,8 +13,8 @@
 #define buffer_dim 1024
 
 FILE *sorgente;
-FILE *destinazione;
 char buffer[buffer_dim];
+
 //=================STRUCT===============
 typedef struct
 {
@@ -38,6 +38,7 @@ int SalvaLibri(Libreria listaLibri[], int contatore)
     }
     return contatore;
 }
+
 void Menu()
 {
     printf("==========MENU==========\n");
@@ -46,26 +47,66 @@ void Menu()
     printf("3. Visualizza per categoria\n");
     printf("4. Esci\n");
 }
-// Funzione per salvare i dati aggiornati in un file
+
+// Funzione per ordinare la lista di libri in base alla categoria
+void OrdinaPerCategoria(Libreria listaLibri[], int contatore)
+{
+    Libreria scambio;
+    for (int i = 0; i < contatore - 1; i++)
+    {
+        for (int j = 0; j < contatore - i - 1; j++)
+        {
+            if (strcmp(listaLibri[j].categoria, listaLibri[j + 1].categoria) > 0)
+            {
+                // Scambio delle posizioni
+                scambio = listaLibri[j];
+                listaLibri[j] = listaLibri[j + 1];
+                listaLibri[j + 1] = scambio;
+            }
+        }
+    }
+}
+
+// Funzione per salvare i dati all'interno di un nuovo CSV con l'orninamento
 void ScriviSuFile(Libreria listaLibri[], int contatore)
 {
 
+    // Ordina la lista di libri per categoria prima di salvare su file
+    OrdinaPerCategoria(listaLibri, contatore);
+
+    // Apri il file di destinazione in modalità scrittura, per sovrascrivere il contenuto ogni passaggio fino alla fine del processo
+    FILE *destinazione = fopen("libreria_libri_modificata.csv", "w");
+    if (destinazione == NULL)
+    {
+        printf("Errore apertura file per scrittura.\n");
+        exit(1);
+    }
+
+    // Layout della tabella
+    fprintf(destinazione, "%-30s %-30s %-10s %-5s %-15s\n", "Titolo", "Autore", "Prezzo", "Anno", "Categoria");
+    fprintf(destinazione, "----------------------------------------------------------------------------------------\n");
+
+    // libro con le categorie aggiornate
     for (int i = 0; i < contatore; i++)
     {
-        // Scrivi ogni libro con le categorie aggiornate
-        fprintf(destinazione, "%s,%s,%.2f,%d,%s\n",
+        // righe con il layout della tabella
+        fprintf(destinazione, "%-30s %-30s %-10.2f %-5d %-15s\n",
                 listaLibri[i].titolo,
                 listaLibri[i].autore,
                 listaLibri[i].prezzo,
                 listaLibri[i].anno,
                 listaLibri[i].categoria);
     }
+
+    // Chiudi il file
+    fclose(destinazione);
 }
+
 int ControlloScelta(int scelta, int contatore, Libreria listaLibri[])
 {
-    // char Categorie[buffer_dim]; // per salvare i dati delle modifiche
     char categoriaModifica[DIM];
     char sceltaCategoria[DIM];
+
     switch (scelta)
     {
     case 1:
@@ -80,28 +121,33 @@ int ControlloScelta(int scelta, int contatore, Libreria listaLibri[])
                    listaLibri[i].categoria);
         }
         break;
-    case 2: // canbia categoria
+
+    case 2: // Modifica categoria
         for (int i = 0; i < contatore; i++)
         {
-            printf("Cambia la categoria del libro %s \n", listaLibri[i].titolo);
+            printf("Cambia la categoria del libro %s: ", listaLibri[i].titolo);
             scanf(" %s", categoriaModifica);
-            strcpy(listaLibri[i].categoria,categoriaModifica);
+            strcpy(listaLibri[i].categoria, categoriaModifica);
 
-            // strcat(categoriaModifica, "\n");         // Aggiungi una nuova riga alla fine
-            // strcpy(Categorie[i], categoriaModifica); // Copia la stringa con il newline nell'array
-            
-            // Dopo la modifica, salva su file
+            // Dopo ogni modifica, salva su file
             ScriviSuFile(listaLibri, contatore);
         }
         break;
-    case 3:
+
+    case 3: // Visualizza libri per categoria
         printf("Scegli una categoria:\n");
         scanf(" %s", sceltaCategoria);
         for (int i = 0; i < contatore; i++)
         {
             if (strcmp(sceltaCategoria, listaLibri[i].categoria) == 0)
             {
-                printf("%d %s\n", i + 1, listaLibri[i].categoria);
+                printf("%d. %s, %s, %.2f, %d, %s\n",
+                       i + 1,
+                       listaLibri[i].titolo,
+                       listaLibri[i].autore,
+                       listaLibri[i].prezzo,
+                       listaLibri[i].anno,
+                       listaLibri[i].categoria);
             }
         }
         break;
@@ -115,33 +161,28 @@ int main(int argc, char *argv[])
     Libreria listaLibri[Lista];
     int contatore = 0;
     int scelta;
+
     //==========FILE==========
     sorgente = fopen("libreria_libri.csv", "r");
     if (sorgente == NULL)
     {
-        printf("Errore apertura file");
+        printf("Errore apertura file sorgente\n");
         exit(1);
     }
-    destinazione = fopen("libreria_libri_modificata.csv", "w");
-    if (destinazione == NULL)
-    {
-        printf("Errore apertura file per scrittura.\n");
-        exit(1);
-    }
+
     contatore = SalvaLibri(listaLibri, contatore);
 
     //==========Menu==========
     do
     {
-
         Menu();
-        printf("Inserisci un numero come scelta\n");
+        printf("Inserisci un numero come scelta: ");
         scanf(" %d", &scelta);
         scelta = ControlloScelta(scelta, contatore, listaLibri);
     } while (scelta != 4);
 
     fclose(sorgente);
-    fclose(destinazione);
+
     return 0;
 }
 //==========FINE FILE==========

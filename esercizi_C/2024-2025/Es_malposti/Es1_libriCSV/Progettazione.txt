@@ -1,0 +1,56 @@
+1. Obiettivo del programma:
+Il programma ha l'obiettivo di gestire un catalogo di libri, leggendo i dati da un file CSV e permettendo all'utente di:
+
+Visualizzare la lista completa dei libri.
+Modificare le categorie associate a ogni libro.
+Visualizzare i libri in base alla categoria selezionata.
+Salvare i dati aggiornati in un nuovo file CSV.
+
+2. Struttura dei dati:
+    Il programma utilizza una struttura Libreria per rappresentare ogni libro con i seguenti attributi:
+    -categoria: Stringa che rappresenta la categoria del libro.
+    -titolo: Stringa che rappresenta il titolo del libro.
+    -autore: Stringa che rappresenta l'autore del libro.
+    -anno: Numero intero che rappresenta l'anno di pubblicazione.
+    -prezzo: Numero float che rappresenta il prezzo del libro.
+
+Firma funzione:
+typedef struct {
+    char categoria[DIM];
+    char titolo[DIM];
+    char autore[DIM];
+    int anno;
+    float prezzo;
+} Libreria;
+
+3. Funzionalità del programma:
+    Lettura dei dati:
+    I dati vengono letti da un file CSV chiamato libreria_libri.csv e salvati in un array di strutture Libreria. Ogni libro letto dal file ha inizialmente la categoria impostata come "default".
+
+Firma funzione:
+int SalvaLibri(Libreria listaLibri[], int contatore);ù
+
+    Menu:
+    Un menu interattivo permette all'utente di scegliere tra diverse opzioni:
+    1.Visualizzare la lista completa dei libri.
+    2.Modificare la categoria dei libri.
+    3.Visualizzare i libri appartenenti a una determinata categoria.
+    4.Uscire dal programma.
+
+
+    Modifica dei dati:
+    L'utente può modificare la categoria di ogni libro ed a ogni modifica i dati aggiornati vengono salvati in un nuovo file CSV chiamato libreria_libri_modificata.csv.
+
+Firma funzione:
+void ScriviSuFile(Libreria listaLibri[], int contatore);
+
+    Visualizzazione dei dati:
+    I dati dei libri possono essere visualizzati sia in modalità completa (tutti i libri) sia filtrati per categoria.
+
+Firma funzione:
+int ControlloScelta(int scelta, int contatore, Libreria listaLibri[]);
+
+4. Passaggi
+Il programma inizia con l'aprire il file csv fornito e ad ogni riga fa una scrittura dei dati dentro alla struct "Libreria", inserendo un valore base nominato "default" nell'attributo "categoria", fino alla fine del file.
+Dopo la lettura di tutti i dati viene fornito un menu all'utente con le varie opzioni disponibili per leggere i dati nella struct oppure modificare  la categoria dei libri.
+Se si sceglie di modificare la categoria viene creato un nuovo file dove si vanno a salvare tutti i libri con il nuovo attributo "categoria" e li va a mettere in ordine  alfabetico.
