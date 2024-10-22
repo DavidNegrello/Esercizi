@@ -22,29 +22,25 @@ e, dopo aver effettuato gli eventuali ed opportuni controlli (se necessari), ris
 è palindroma oppure non lo è.
 */
 
-void ControlloPalindromo(char *stringa, char *risultato)
-{
+
+void OrdinamentoAlfabetico(char *stringa, char *risultato) {
     int lunghezza = strlen(stringa);
-    char stringaInversa[lunghezza + 1];
-
-    // Primo ciclo for: creare la stringa invertita
-    int i;
-    for (i = 0; i < lunghezza; i++)
-    {
-        stringaInversa[i] = stringa[lunghezza - i - 1]; // Copia l'ultimo carattere presente nella stringa
-    }
-    stringaInversa[lunghezza] = '\0'; //terminatore
-
-    // Secondo ciclo for: confrontare la stringa originale con quella invertita
-    for (i = 0; i < lunghezza; i++)
-    {
-        if (stringa[i] != stringaInversa[i])
-        {
-            strcpy(risultato, "La stringa non è palindroma"); // Aggiorna il risultato
+    char scambio;
+    
+    strcpy(risultato, stringa);
+    
+    // Bubble sort per l'ordinamento 
+    int i, j;
+    for (i = 0; i < lunghezza - 1; i++) {
+        for (j = 0; j < lunghezza - i - 1; j++) {
+            if (tolower(risultato[j]) > tolower(risultato[j + 1])) {
+                // Scambio dei caratteri
+                scambio = risultato[j];
+                risultato[j] = risultato[j + 1];
+                risultato[j + 1] = scambio;
+            }
         }
     }
-
-    strcpy(risultato, "La stringa è palindroma"); // Se è un palindromo, aggiorna il risultato
 }
 
 int main()
@@ -102,7 +98,7 @@ int main()
 
         // Verifica se la stringa è palindroma e aggiorna il risultato
         
-        ControlloPalindromo(messaggio_client, risposta); // Passa il risultato come riferimento
+        OrdinamentoAlfabetico(messaggio_client, risposta); // Passa il risultato come riferimento
 
         // Invia la risposta al client
         send(client_sock, risposta, strlen(risposta), 0);
