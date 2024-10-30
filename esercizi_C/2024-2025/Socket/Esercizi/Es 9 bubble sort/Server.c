@@ -96,7 +96,7 @@ int main()
         ControlloVettore(vettore, lunghezza_vettore, ordinato);
 
         // Invia la risposta al client
-        send(client_sock, &max, sizeof(max), 0);
+        send(client_sock, vettore, sizeof(vettore), 0);
 
         close(client_sock);
         close(sock);
