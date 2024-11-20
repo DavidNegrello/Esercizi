@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testi</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <div id="timer">
+            <p>Tempo Rimanente: <span id="countdown">10:00</span></p>
+        </div>
+    </nav>
+
+    <!-- Sezione contenuto testi -->
+    <div id="content">
+        <!-- Contenuto dei testi verrà caricato qui -->
+    </div>
+
+    <script src="script.js"></script>
+
+    <script>
+        // Carica i dati per la pagina testi
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const id = parseInt(urlParams.get('id'), 10);
+
+            if (id) {
+                // Carica il JSON dei testi e trova l'elemento con l'ID specificato
+                loadData('data_testi.json').then(data => {
+                    const item = data.find(item => item.id === id);
+                    if (item) {
+                        document.getElementById('content').innerHTML = `
+                            <h2>${item.title}</h2>
+                            <p>${item.description}</p>
+                        `;
+                    } else {
+                        document.getElementById('content').innerHTML = '<p>Contenuto non trovato.</p>';
+                    }
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>

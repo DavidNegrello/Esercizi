@@ -1,16 +1,30 @@
-let timeLeft = 600; // 10 minuti in secondi
-const countdownElement = document.getElementById('countdown');
-
-function updateTimer() {
-    let minutes = Math.floor(timeLeft / 60);
-    let seconds = timeLeft % 60;
-    if (seconds < 10) {
-        seconds = '0' + seconds;
-    }
-    countdownElement.textContent = `${minutes}:${seconds}`;
-    if (timeLeft > 0) {
-        timeLeft--;
-    }
+// Funzione per caricare i dati dal file JSON
+function loadData(file) {
+    return fetch(file)
+        .then(response => response.json())
+        .catch(error => console.error("Errore nel caricare il file JSON:", error));
 }
 
-setInterval(updateTimer, 1000);
+// Funzione per avviare il timer
+function startTimer(duration, display) {
+    let timer = duration, minutes, seconds;
+    setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = minutes + ":" + seconds;
+
+        if (--timer < 0) {
+            timer = duration;
+        }
+    }, 1000);
+}
+
+// Timer iniziale
+document.addEventListener('DOMContentLoaded', function () {
+    let timeLimit = 10 * 60; // 10 minuti
+    let display = document.querySelector('#countdown');
+    startTimer(timeLimit, display);
+});

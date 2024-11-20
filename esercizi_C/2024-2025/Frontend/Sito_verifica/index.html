@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page con Timer e Box</title>
+    <title>Home Page con Timer e Bottoni</title>
 
     <!-- Includi il file layout per la griglia e la struttura -->
     <link rel="stylesheet" href="layout.css">
@@ -15,24 +15,38 @@
 
     <!-- Navbar -->
     <nav>
-        <a href="#">Home</a>
+        <a href="index.html">Home</a>
         <div id="timer">
             <p>Tempo Rimanente: <span id="countdown">10:00</span></p>
         </div>
     </nav>
 
-    <!-- Griglia di Box -->
+    <!-- Griglia di Bottoni -->
     <div class="container">
-        <div class="box">Box 1</div>
-        <div class="box">Box 2</div>
-        <div class="box">Box 3</div>
-        <div class="box">Box 4</div>
-        <div class="box">Box 5</div>
-        <div class="box consegna">Consegna</div>
+        <button class="box" onclick="navigateToPage(1, 'domande')">Domanda 1</button>
+        <button class="box" onclick="navigateToPage(2, 'testi')">Testo A</button>
+        <button class="box" onclick="navigateToPage(3, 'domande')">Domanda 2</button>
+        <button class="box" onclick="navigateToPage(4, 'testi')">Testo B</button>
+        <button class="box" onclick="navigateToPage(5, 'domande')">Domanda 3</button>
+        <button class="box consegna" onclick="navigateToPage(6, 'testi')">Consegna</button>
     </div>
 
-    <!-- Script per il Timer -->
+    <!-- Script per il Timer e la navigazione -->
     <script src="script.js"></script>
+
+    <script>
+        // Funzione per navigare alla pagina delle domande o dei testi
+        function navigateToPage(id, type) {
+            let url = '';
+            if (type === 'domande') {
+                url = `domande.html?id=${id}`;
+            } else if (type === 'testi') {
+                url = `testi.html?id=${id}`;
+            }
+            // Naviga alla pagina con i parametri
+            window.location.href = url;
+        }
+    </script>
 
 </body> 
 </html>
