@@ -1,0 +1,25 @@
+/* Posizionamento al centro dello schermo */
+.toast-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1055;
+}
+/* Stile per farlo sembrare un messaggio sui cookies */
+.toast {
+    background-color: #f8f9fa; /* Chiaro per sembrare un messaggio sui cookies */
+    border: 1px solid #dee2e6;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.toast-header {
+    background-color: #007bff;
+    color: white;
+    border-bottom: 1px solid #dee2e6;
+    border-top-left-radius: 0.75rem;
+    border-top-right-radius: 0.75rem;
+}
+.toast-body {
+    color: #495057;
+}

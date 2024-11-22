@@ -1,0 +1,103 @@
+/* Container principale per il layout */
+.container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    flex-wrap: wrap; /* Rende il layout responsive */
+    min-height: 80vh; /* Per assicurare che il contenuto occupi la maggior parte della pagina */
+}
+
+/* Sezione testo a sinistra */
+.text-section {
+    flex: 1;
+    margin-right: 20px;
+    min-width: 300px; /* Dimensione minima per il testo */
+}
+
+/* Sezione domanda a destra */
+.question-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    min-width: 300px;
+}
+
+/* Stili per il timer e la navbar */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 10px 20px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+#timer {
+    color: white;
+    font-size: 18px;
+}
+
+/* Domanda e opzioni */
+.question {
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.options {
+    list-style-type: none;
+    padding: 0;
+}
+
+.options li {
+    margin: 5px 0;
+}
+
+.options input {
+    margin-right: 10px;
+}
+
+.arrow-btn, .back-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.arrow-btn:hover, .back-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Responsività per schermi piccoli */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .text-section, .question-section {
+        width: 100%;
+        margin-right: 0;
+    }
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}

@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Testi</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Testi e Domande</title>
+    <link rel="stylesheet" href="stili_css/style_testi.css"> <!-- Collega il file CSS esterno -->
 </head>
 <body>
 
+    <!-- Barra di navigazione -->
     <nav>
         <a href="index.html">Home</a>
         <div id="timer">
@@ -15,35 +16,39 @@
         </div>
     </nav>
 
-    <!-- Sezione contenuto testi -->
-    <div id="content">
-        <!-- Contenuto dei testi verrà caricato qui -->
+    <!-- Contenitore principale con due sezioni -->
+    <div class="container">
+        <!-- Sezione del testo -->
+        <div class="text-section" id="content">
+            <!-- Il contenuto del testo verrà caricato qui -->
+            <h2>Testo a Caso</h2>
+            <p>
+                Questo è un testo di esempio che sarà visualizzato a sinistra. Può contenere qualsiasi tipo di contenuto. Per esempio, puoi scrivere una descrizione, informazioni aggiuntive o qualsiasi altro tipo di testo che desideri. Il layout si adatterà automaticamente al contenuto.
+            </p>
+        </div>
+
+        <!-- Sezione della domanda -->
+        <div class="question-section">
+            <div class="question" id="question">
+                <!-- La domanda verrà caricata qui -->
+            </div>
+            <ul class="options" id="options">
+                <!-- Le opzioni di risposta verranno caricate qui -->
+            </ul>
+            <div>
+                <button class="back-btn" id="prev-question" style="display:none;">← Torna indietro</button>
+                <button class="arrow-btn" id="next-question" style="display:none;">→ Prossima domanda</button>
+            </div>
+        </div>
     </div>
 
-    <script src="script.js"></script>
+    <footer>
+        <p>David Negrello 5^F</p>
+    </footer>
 
-    <script>
-        // Carica i dati per la pagina testi
-        document.addEventListener('DOMContentLoaded', function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const id = parseInt(urlParams.get('id'), 10);
+    <script src="script_js/script_testi.js"></script> <!-- Collega il file JavaScript esterno -->
+    <script src="script_js/script.js"></script> <!-- Collegamento allo script generale per il timer-->
 
-            if (id) {
-                // Carica il JSON dei testi e trova l'elemento con l'ID specificato
-                loadData('data_testi.json').then(data => {
-                    const item = data.find(item => item.id === id);
-                    if (item) {
-                        document.getElementById('content').innerHTML = `
-                            <h2>${item.title}</h2>
-                            <p>${item.description}</p>
-                        `;
-                    } else {
-                        document.getElementById('content').innerHTML = '<p>Contenuto non trovato.</p>';
-                    }
-                });
-            }
-        });
-    </script>
 
 </body>
 </html>
