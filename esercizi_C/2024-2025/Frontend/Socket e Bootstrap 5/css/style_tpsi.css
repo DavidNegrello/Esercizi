@@ -1,0 +1,26 @@
+.nav-link.disabled {
+    text-decoration: line-through; /* Linea sbarrata */
+    color: #ccc; /* Colore attenuato */
+}
+
+/* Stile per lo sfondo sotto la navbar */
+.hero-section {
+    background-image: url('/immagini/cliet-server.jpeg'); /* Percorso immagine di sfondo */
+    background-size: cover; /* Adatta l'immagine senza deformarla */
+    background-position: center; /* Centra l'immagine */
+    background-attachment: fixed; /* Fissa l'immagine durante lo scroll */
+    height: 650px; /* L'immagine copre l'intera altezza della viewport */
+    width: 100%; /* L'immagine copre l'intera larghezza della pagina */
+    overflow: hidden; /* Impedisce che l'immagine fuoriesca dai margini */
+    display: flex;
+    align-items: center; /* Centra verticalmente il contenuto */
+    justify-content: center; /* Centra orizzontalmente il contenuto */
+}
+.hero-section h1 {
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Ombra per migliorare la leggibilità */
+}
+/* Stile per il contenuto che segue la sezione di immagine */
+.container {
+    margin-top: -50px; /* Aggiusta il contenuto per non sovrapporsi all'immagine */
+}

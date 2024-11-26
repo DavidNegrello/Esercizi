@@ -1,3 +1,33 @@
+:root{  /*Colori predefiniti (sono simili alle variabili)*/
+    --main-color:#f8f9fa;
+    --text-color:black;
+    --bg-color:white;
+    --background-body:rgb(118, 115, 111);
+    --footer:#3b3d3b;
+}
+
+body {
+    background-color: var(--main-color); /* Sfondo per un migliore contrasto */
+}
+/*==================================Navbar===========================*/
+.navbar {
+    border-radius: 20px; /* Angoli arrotondati */
+    margin: 20px auto; /* Margine sopra e sotto */
+    max-width: 1200px; /* Limita la larghezza della navbar */
+}
+.navbar-nav .nav-item {
+    margin-right: 20px; /* Aggiunge spazio tra gli elementi */
+}
+.navbar-nav .nav-item:last-child {
+    margin-right: 0; /* Rimuove spazio dall'ultimo elemento */
+}
+/*==================================Conenuto===========================*/
+.justified-text {
+    text-align: justify;
+}
+
+
+/*==================================Cookies (toast)===========================*/
 /* Posizionamento al centro dello schermo */
 .toast-container {
     position: fixed;
@@ -6,9 +36,9 @@
     transform: translate(-50%, -50%);
     z-index: 1055;
 }
-/* Stile per farlo sembrare un messaggio sui cookies */
+
 .toast {
-    background-color: #f8f9fa; /* Chiaro per sembrare un messaggio sui cookies */
+    background-color: #f8f9fa; 
     border: 1px solid #dee2e6;
     border-radius: 0.75rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
