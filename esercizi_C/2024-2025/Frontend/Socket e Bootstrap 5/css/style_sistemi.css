@@ -1,0 +1,210 @@
+.nav-link.disabled {
+    text-decoration: line-through; /* Linea sbarrata */
+    color: #ccc; /* Colore attenuato */
+}
+
+/*==========================Contenuto======================*/
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+}
+/*==========================Introduzione==========================*/
+.intro-box {
+    background-color: #e9ecef;  /* Colore di sfondo grigio chiaro */
+    padding: 30px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Testo giustificato per migliorare la leggibilità */
+.lead {
+    text-align: justify;
+    line-height: 1.6;
+    color: #555;
+}
+
+/* Titolo principale */
+.section-title {
+    color: #007bff; /* Azzurro per il titolo */
+    font-weight: bold;
+    font-size: 2rem;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+/* Miglioramento della visualizzazione dei paragrafi */
+p {
+    font-size: 1.1rem;
+    text-align: justify;
+    margin-bottom: 15px;
+}
+
+h2 {
+    color: #343a40;
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin-top: 25px;
+}
+
+.slider {
+    margin-top: 40px;
+}
+
+/*==========================SLIDER==========================*/
+.slider {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slider .controllo {
+    position: absolute;
+    top: 80%; /* Posizionamento al centro verticalmente */
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centro esatto tra il paragrafo e l'immagine */
+    width: 100px;
+    height: 100px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column; /* Disposizione verticale dei tasti */
+    justify-content: space-between; /* Distribuisce uniformemente i tasti */
+    align-items: center; /* Centra orizzontalmente i tasti */
+    padding: 10px;
+}
+
+.slider .controllo > div {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    font-size: 25px;
+    cursor: pointer;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slider .controllo > .up {
+    background: gray;
+    color: #fff;
+    margin-bottom: 10px; /* Distanza tra il tasto su e il tasto giù */
+}
+
+.slider .controllo > .down {
+    background: #111;
+    color: #fff;
+}
+
+.slider .wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row; /* Rilevato come riga di default */
+}
+
+.slider .wrapper .left,
+.slider .wrapper .right {
+    width: 50%;
+    overflow: hidden;
+}
+
+.slider .wrapper .left > div,
+.slider .wrapper .right > div {
+    width: 100%;
+    height: 100%;
+}
+
+.slider .wrapper .left > div {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0px 100px 0px 50px;
+}
+
+.slider .wrapper .left > div h2 {
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+.slider .wrapper .left > div p {
+    color: #555;
+    font-size: 18px;
+}
+
+.slider .wrapper .right > div img {
+    margin-top: 7%;
+    width: 100%;
+    height: 70%;
+    object-fit: cover;
+}
+
+.slider .wrapper .right div:nth-child(1) {
+    margin-top: -400vh;
+}
+
+/*===========================Responsive====================*/
+@media (max-width: 1200px) {
+    .slider .wrapper .left,
+    .slider .wrapper .right {
+        width: 50%;
+        padding: 10px; /* Riduce il padding per schermi più piccoli */
+    }
+
+    .slider .wrapper .left > div h2 {
+        font-size: 40px; /* Riduce la dimensione del titolo per schermi più piccoli */
+    }
+
+    .slider .wrapper .left > div p {
+        font-size: 16px; /* Riduce la dimensione del testo per migliorare la leggibilità */
+    }
+
+    .slider .wrapper .right > div img {
+        height: auto; /* Mantiene l'aspetto corretto per immagini su schermi più piccoli */
+        max-height: 60vh; /* Limita l'altezza dell'immagine su schermi più piccoli */
+    }
+}
+
+/* Responsività per dispositivi più piccoli (tablet e mobile) */
+@media (max-width: 768px) {
+    .slider .wrapper {
+        flex-direction: column; /* Dispone il contenuto in colonna per schermi piccoli */
+    }
+
+    .slider .wrapper .left {
+        width: 100%; /* La sezione del testo prende tutta la larghezza */
+        order: 1; /* Il testo rimane sopra */
+        padding: 15px; /* Aggiustiamo il padding */
+    }
+
+    .slider .wrapper .right {
+        width: 100%; /* Le immagini prendono tutta la larghezza */
+        order: 2; /* Le immagini vanno sotto */
+        padding: 15px; /* Aggiustiamo il padding */
+    }
+
+    .slider .wrapper .left > div h2 {
+        font-size: 30px; /* Ancora più piccolo per schermi mobili */
+    }
+
+    .slider .wrapper .left > div p {
+        font-size: 14px; /* Riduce la dimensione del testo */
+    }
+
+    .slider .wrapper .right > div img {
+        width: 100%; /* Le immagini prendono tutta la larghezza */
+        max-height: 40vh; /* Limita l'altezza per schermi piccoli */
+    }
+}

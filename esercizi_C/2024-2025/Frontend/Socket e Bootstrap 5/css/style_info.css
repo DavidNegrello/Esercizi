@@ -1,0 +1,135 @@
+.nav-link.disabled {
+    text-decoration: line-through; /* Linea sbarrata */
+    color: #ccc; /* Colore attenuato */
+}
+.section-title {
+    color: #007bff; 
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.content-section {
+    background-color: #f8f9fa; 
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.content-section h2 {
+    color: #343a40;
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.content-section p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #555;
+}
+
+.content-section ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.content-section ul li {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.image-container {
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.image-container img {
+    width: 100%;
+    max-width: 100%; /* Limita la larghezza dell'immagine alla larghezza della navbar */
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Box per l'indice con "Indice" e "Visualizza" separati */
+.indice-box {
+    background-color: #f8f9fa;
+    padding: 15px;
+    margin-top: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+/* Contenuto dell'indice inizialmente nascosto */
+.indice-box-content {
+    display: block;
+    overflow: hidden;
+    max-height: 0;
+    margin-top: 15px;
+    transition: max-height 0.3s ease-out; /* Transizione per l'animazione fluida */
+}
+
+/* Quando il box è espanso */
+.indice-box-expanded .indice-box-content {
+    max-height: 500px; /* Valore alto per far espandere il box */
+}
+
+/* Miglioramenti sui collegamenti */
+.indice-box ul li a {
+    color: #007bff;
+    text-decoration: none;
+    transition: all 0.1s ;
+}
+
+.indice-box ul li a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+.indice-box .d-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-indice {
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn-indice:hover {
+    background-color: #0056b3;
+    text-decoration: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .content-section h2 {
+        font-size: 1.5rem;
+    }
+
+    .content-section p {
+        font-size: 1rem;
+    }
+
+    .content-section ul li {
+        font-size: 1rem;
+    }
+
+    .image-container img {
+        max-width: 100%;
+        height: auto;
+    }
+}

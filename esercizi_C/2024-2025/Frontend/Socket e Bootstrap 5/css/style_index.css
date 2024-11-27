@@ -53,3 +53,15 @@ body {
 .toast-body {
     color: #495057;
 }
+
+.site-footer {
+    background-color: black; /* Sfondo nero */
+    color: white; /* Testo bianco */
+    text-align: center; /* Centra il testo */
+    padding: 20px 0; /* Spaziatura interna */
+    font-family: Arial, sans-serif; /* Font leggibile */
+    font-size: 16px; /* Dimensione del testo */
+    position: relative; /* Posizionamento normale */
+    bottom: 0; /* Aggancia al fondo (se necessario) */
+    width: 100%; /* Larghezza completa */
+}

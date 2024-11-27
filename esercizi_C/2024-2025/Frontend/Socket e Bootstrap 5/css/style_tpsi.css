@@ -9,7 +9,7 @@
     background-size: cover; /* Adatta l'immagine senza deformarla */
     background-position: center; /* Centra l'immagine */
     background-attachment: fixed; /* Fissa l'immagine durante lo scroll */
-    height: 650px; /* L'immagine copre l'intera altezza della viewport */
+    height: 65vh; /* L'altezza è relativa alla viewport per una migliore reattività */
     width: 100%; /* L'immagine copre l'intera larghezza della pagina */
     overflow: hidden; /* Impedisce che l'immagine fuoriesca dai margini */
     display: flex;
@@ -19,8 +19,28 @@
 .hero-section h1 {
     color: white;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Ombra per migliorare la leggibilità */
+    font-size: 2rem; /* Dimensione del testo adattabile */
+    text-align: center; /* Centrare il testo per una migliore reattività */
 }
-/* Stile per il contenuto che segue la sezione di immagine */
-.container {
-    margin-top: -50px; /* Aggiusta il contenuto per non sovrapporsi all'immagine */
+
+/* Regole per una migliore reattività */
+@media (max-width: 768px) {
+    .hero-section {
+        background-attachment: scroll; /* Rimuove l'effetto "fixed" per schermi piccoli */
+        height: 50vh; /* Riduce l'altezza su dispositivi più piccoli */
+    }
+    .hero-section h1 {
+        font-size: 1.5rem; /* Riduce la dimensione del testo per schermi piccoli */
+        padding: 0 10px; /* Aggiunge spazio ai lati per evitare il taglio del testo */
+    }
 }
+
+@media (max-width: 480px) {
+    .hero-section {
+        height: 40vh; /* Riduce ulteriormente l'altezza per schermi molto piccoli */
+    }
+    .hero-section h1 {
+        font-size: 1.2rem; /* Ancora più piccola per smartphone */
+    }
+}
+
