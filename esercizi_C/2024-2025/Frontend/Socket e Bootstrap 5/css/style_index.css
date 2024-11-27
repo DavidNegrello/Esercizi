@@ -1,14 +1,13 @@
-:root{  /*Colori predefiniti (sono simili alle variabili)*/
-    --main-color:#f8f9fa;
-    --text-color:black;
-    --bg-color:white;
-    --background-body:rgb(118, 115, 111);
-    --footer:#3b3d3b;
-}
-
+/* Stile per il footer */
 body {
-    background-color: var(--main-color); /* Sfondo per un migliore contrasto */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
+   /* Disabilita la selezione del testo */
+   .no-select {
+    user-select: none; /* Impedisce la selezione del testo */
+}  
 /*==================================Navbar===========================*/
 .navbar {
     border-radius: 20px; /* Angoli arrotondati */
@@ -16,7 +15,7 @@ body {
     max-width: 1200px; /* Limita la larghezza della navbar */
 }
 .navbar-nav .nav-item {
-    margin-right: 20px; /* Aggiunge spazio tra gli elementi */
+    margin-right: 30px; /* Aggiunge spazio tra gli elementi */
 }
 .navbar-nav .nav-item:last-child {
     margin-right: 0; /* Rimuove spazio dall'ultimo elemento */
@@ -25,7 +24,77 @@ body {
 .justified-text {
     text-align: justify;
 }
+.intro-section {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
 
+.intro-section p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: black;
+}
+
+/* Stile per il carousel */
+.carousel {
+    max-width: 900px; /* Limita la larghezza dello slider */
+    margin: 0 auto; /* Centro dello slider */
+    height: 400px; /* Altezza fissa per il carousel */
+}
+
+.carousel-item img {
+    height: 100%; /* Occupa tutta l'altezza del carousel */
+    width: 100%; /* Occupa tutta la larghezza */
+    object-fit: cover; /* Copre lo spazio mantenendo le proporzioni */
+    border-radius: 15px;
+    position: relative;
+}
+
+/* Overlay per anteprima */
+.carousel-item .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Sfondo semi-trasparente */
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    border-radius: 15px;
+    text-align: center;
+}
+
+/* Mostra l'overlay al passaggio del mouse */
+.carousel-item:hover .overlay {
+    opacity: 1;
+}
+
+/* Controlli del carousel (frecce nere) */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    filter: invert(1); /* Inverte il colore rendendolo nero */
+}
+
+.carousel-caption h5 {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.carousel-caption a {
+    text-decoration: none;
+    color: white;
+}
+
+.carousel-caption a:hover {
+    color: #ffdd57;
+}
 
 /*==================================Cookies (toast)===========================*/
 /* Posizionamento al centro dello schermo */
@@ -61,7 +130,8 @@ body {
     padding: 20px 0; /* Spaziatura interna */
     font-family: Arial, sans-serif; /* Font leggibile */
     font-size: 16px; /* Dimensione del testo */
-    position: relative; /* Posizionamento normale */
-    bottom: 0; /* Aggancia al fondo (se necessario) */
+    margin-top: auto; /* Spinge il footer verso il basso */
     width: 100%; /* Larghezza completa */
 }
+
+   
