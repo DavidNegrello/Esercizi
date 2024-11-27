@@ -71,7 +71,7 @@ h2 {
 .slider .controllo {
     position: absolute;
     top: 80%; /* Posizionamento al centro verticalmente */
-    left: 50%;
+    left: 47%;
     transform: translate(-50%, -50%); /* Centro esatto tra il paragrafo e l'immagine */
     width: 100px;
     height: 100px;
