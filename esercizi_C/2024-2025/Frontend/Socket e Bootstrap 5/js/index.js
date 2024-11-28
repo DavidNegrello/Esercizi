@@ -6,7 +6,7 @@ window.onload = function () {
     const userDropdownContainer = document.getElementById("userDropdownContainer");
     const body = document.body;
 
-    // Se l'utente è loggato, mostra il nome utente e abilita le azioni
+    // Se l'utente è loggato, mostra il nome utente e abilita i permessi
     if (username) {
         // Mostra il nome utente al posto del link "Login"
         userDropdown.innerText = username;
@@ -18,7 +18,7 @@ window.onload = function () {
         document.removeEventListener("contextmenu", disableRightClick);  // Abilita il click destro
         document.removeEventListener("keydown", disableCopy);  // Abilita la copia
     } else {
-        // Se non c'è nome utente salvato, mantieni il link di login
+        // Se non c'è nome utente salvato, mantiene il link di login
         userDropdown.innerText = "Login";
         // Rimuovi l'opzione "Esci" se l'utente non è loggato
         dropdownMenu.innerHTML = `<li><a class="dropdown-item" href="/pagine/login.html">Login</a></li>`;

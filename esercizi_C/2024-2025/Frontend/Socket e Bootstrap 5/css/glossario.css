@@ -1,0 +1,11 @@
+/* Stile per i termini del glossario */
+.glossary-link {
+    color: #007bff; /* Colore del link */
+    text-decoration: underline; /* Sottolinea il termine */
+    font-weight: bold; /* Rende il termine più visibile */
+}
+
+.glossary-link:hover {
+    color: #0056b3; /* Colore più scuro al passaggio del mouse */
+    cursor: pointer; /* Cambia il cursore quando ci si passa sopra */
+}
