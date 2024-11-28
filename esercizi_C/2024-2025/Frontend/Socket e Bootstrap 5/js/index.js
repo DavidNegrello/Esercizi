@@ -21,7 +21,7 @@ window.onload = function () {
         // Se non c'è nome utente salvato, mantiene il link di login
         userDropdown.innerText = "Login";
         // Rimuovi l'opzione "Esci" se l'utente non è loggato
-        dropdownMenu.innerHTML = `<li><a class="dropdown-item" href="/pagine/login.html">Login</a></li>`;
+        dropdownMenu.innerHTML = `<li><a class="dropdown-item" href="./pagine/login.html">Login</a></li>`;
 
         // Disabilita la selezione del testo, click destro e copia
         body.classList.add("no-select"); // Disabilita la selezione del testo
@@ -42,10 +42,10 @@ function disableCopy(event) {
     }
 }
 
-// Funzione per il logout
+        // Funzione per il logout
 function handleLogout() {
     // Rimuovi l'utente dal localStorage
     localStorage.removeItem("username");
     // Reindirizza alla pagina di login
-    window.location.href = "/pagine/login.html";
+    window.location.href = "./pagine/login.html";
 }

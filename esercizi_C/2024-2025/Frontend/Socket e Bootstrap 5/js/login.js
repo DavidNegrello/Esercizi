@@ -6,7 +6,7 @@ function handleLogin(event) {
     // Salva il nome utente nel localStorage per mantenerlo disponibile anche dopo il riavvio della pagina
     localStorage.setItem("username", username);
     // Reindirizza l'utente alla pagina principale (home) dopo che il login è stato eseguito
-    window.location.href = "../index.html"; 
+    window.location.href = "index.html"; 
 }
 
 
@@ -15,6 +15,6 @@ function handleGuestAccess() {
     const guestName = prompt("Inserisci un nome per accedere come ospite:", "Ospite");
     if (guestName) {
         localStorage.setItem("username", guestName);
-        window.location.href = "../index.html"; // Reindirizza alla home
+        window.location.href = "index.html"; // Reindirizza alla home
     }
 }
