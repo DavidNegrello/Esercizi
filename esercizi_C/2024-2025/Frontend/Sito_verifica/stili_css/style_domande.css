@@ -1,0 +1,83 @@
+/* Reset delle impostazioni di base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* Navbar */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    color: white;
+    padding: 10px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+#timer p {
+    font-size: 14px;
+}
+
+/* Contenitore principale per la domanda */
+#question-container {
+    width: 60%;
+    margin: 20px auto;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Contenuto della domanda */
+#content h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+#content p {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+/* Campo per la risposta dell'utente */
+#response-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Bottone per inviare la risposta */
+#submit-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#submit-button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#submit-button:hover {
+    background-color: #45a049;
+}

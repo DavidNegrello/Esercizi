@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (id) {
         // Carica i dati per il testo e la domanda
-        loadData('data_testi.json').then(data => {
+        loadData('testi.json').then(data => {
             const item = data.find(item => item.id === id);
             if (item) {
                 document.getElementById('content').innerHTML = `

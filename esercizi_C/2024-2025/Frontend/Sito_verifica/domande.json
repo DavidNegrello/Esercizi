@@ -1,5 +1,20 @@
 [
-    { "id": 1, "title": "Domanda 1", "description": "Descrizione della prima domanda." },
-    { "id": 3, "title": "Domanda 2", "description": "Descrizione della seconda domanda." },
-    { "id": 5, "title": "Domanda 3", "description": "Descrizione della terza domanda." }
+    {
+        "id": 1,
+        "domanda": "Qual è la capitale d'Italia?",
+        "descrizione": "Scrivi la risposta corretta.",
+        "opzioni": []  
+    },
+    {
+        "id": 3,
+        "domanda": "In che anno è stata fondata Roma?",
+        "descrizione": "Scrivi l'anno corretto.",
+        "opzioni": []  
+    },
+    {
+        "id": 5,
+        "domanda": "JEJEJEJEJEJ3?",
+        "descrizione": "Scrivi l'anno corretto.",
+        "opzioni": []  
+    }
 ]

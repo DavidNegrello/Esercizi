@@ -96,40 +96,14 @@ body {
     color: #ffdd57;
 }
 
-/*==================================Cookies (toast)===========================*/
-/* Posizionamento al centro dello schermo */
-.toast-container {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1055;
-}
-
-.toast {
-    background-color: #f8f9fa; 
-    border: 1px solid #dee2e6;
-    border-radius: 0.75rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-.toast-header {
-    background-color: #007bff;
-    color: white;
-    border-bottom: 1px solid #dee2e6;
-    border-top-left-radius: 0.75rem;
-    border-top-right-radius: 0.75rem;
-}
-.toast-body {
-    color: #495057;
-}
 
 .site-footer {
     background-color: black; /* Sfondo nero */
     color: white; /* Testo bianco */
     text-align: center; /* Centra il testo */
-    padding: 20px 0; /* Spaziatura interna */
+    padding: 10px 0; /* Spaziatura interna */
     font-family: Arial, sans-serif; /* Font leggibile */
-    font-size: 16px; /* Dimensione del testo */
+    font-size: 13px; /* Dimensione del testo */
     margin-top: auto; /* Spinge il footer verso il basso */
     width: 100%; /* Larghezza completa */
 }

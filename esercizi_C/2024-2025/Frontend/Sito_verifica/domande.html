@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Domande</title>
-    <link rel="stylesheet" href="stili_css/style_domande.css">
+    <title>Domanda</title>
+    <link rel="stylesheet" href="stili_css/style_domande.css"> <!-- Link al CSS -->
 </head>
+
 <body>
 
+    <!-- Navbar -->
     <nav>
         <a href="index.html">Home</a>
         <div id="timer">
@@ -15,35 +18,23 @@
         </div>
     </nav>
 
-    <!-- Sezione contenuto domande -->
-    <div id="content">
-        <!-- Contenuto delle domande verrà caricato qui -->
+    <!-- Contenuto Domanda -->
+    <div id="question-container">
+        <!-- Qui verrà caricata la domanda e lo spazio per rispondere -->
+        <div id="content">
+            <!-- La domanda verrà caricata qui dal file JSON -->
+        </div>
     </div>
 
-    <script src="script_js/script.js"></script>
+    <!-- Pulsante per inviare la risposta -->
+    <div id="submit-container">
+        <button id="submit-button" onclick="submitAnswer()">Invia Risposta</button>
+    </div>
 
-    <script>
-        // Carica i dati per la pagina domande
-        document.addEventListener('DOMContentLoaded', function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const id = parseInt(urlParams.get('id'), 10);
-
-            if (id) {
-                // Carica il JSON delle domande e trova l'elemento con l'ID specificato
-                loadData('data_domande.json').then(data => {
-                    const item = data.find(item => item.id === id);
-                    if (item) {
-                        document.getElementById('content').innerHTML = `
-                            <h2>${item.title}</h2>
-                            <p>${item.description}</p>
-                        `;
-                    } else {
-                        document.getElementById('content').innerHTML = '<p>Contenuto non trovato.</p>';
-                    }
-                });
-            }
-        });
-    </script>
+    <!-- Script per la gestione della domanda e timer -->
+    <script src="./script_js/script.js"></script>
+    <script src="./script_js/script_domande.js"></script>
 
 </body>
+
 </html>
