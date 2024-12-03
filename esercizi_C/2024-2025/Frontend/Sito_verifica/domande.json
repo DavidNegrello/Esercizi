@@ -2,19 +2,16 @@
     {
         "id": 1,
         "domanda": "Qual è la capitale d'Italia?",
-        "descrizione": "Scrivi la risposta corretta.",
-        "opzioni": []  
+        "descrizione": "Scrivi la risposta corretta."
     },
     {
         "id": 3,
-        "domanda": "In che anno è stata fondata Roma?",
-        "descrizione": "Scrivi l'anno corretto.",
-        "opzioni": []  
+        "domanda": "Qual è la differenza tra software e hardware?",
+        "descrizione": "Spiega con un esempio pratico la differenza tra software e hardware."
     },
     {
         "id": 5,
-        "domanda": "JEJEJEJEJEJ3?",
-        "descrizione": "Scrivi l'anno corretto.",
-        "opzioni": []  
+         "domanda": "Cosa significa programmare?",
+        "descrizione": "Definisci il concetto di programmazione e il suo scopo principale."
     }
 ]

@@ -21,15 +21,21 @@
         </div>
     </nav>
 
-    <!-- Griglia di Bottoni -->
+    <!-- Griglia dei Bottoni -->
     <div class="container">
-        <button class="box" onclick="navigateToPage(1, 'domande')">Domanda 1</button>
-        <button class="box" onclick="navigateToPage(2, 'testi')">Testo A</button>
-        <button class="box" onclick="navigateToPage(3, 'domande')">Domanda 2</button>
-        <button class="box" onclick="navigateToPage(4, 'testi')">Testo B</button>
-        <button class="box" onclick="navigateToPage(5, 'domande')">Domanda 3</button>
-        <button class="box consegna" onclick="navigateToPage(6, 'consegna')">Consegna</button>
+        <!-- Bottoni per le domande -->
+        <button class="box" onclick="window.location.href='domande.html?id=1'">Domanda 1</button>
+        <button class="box" onclick="window.location.href='domande.html?id=2'">Domanda 2</button>
+        <button class="box" onclick="window.location.href='domande.html?id=3'">Domanda 3</button>
+
+        <!-- Bottoni per i testi -->
+        <button class="box" onclick="window.location.href='testi.html?id=1'">Testo A</button>
+        <button class="box" onclick="window.location.href='testi.html?id=2'">Testo B</button>
+
+        <!-- Bottone per la consegna -->
+        <button class="box consegna" onclick="window.location.href='consegna.html'">Consegna</button>
     </div>
+    
 
     <!-- Script per il Timer e la navigazione -->
     <script src="script_js/script.js"></script>

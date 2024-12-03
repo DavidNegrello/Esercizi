@@ -18,22 +18,21 @@
         </div>
     </nav>
 
-    <!-- Contenuto Domanda -->
-    <div id="question-container">
-        <!-- Qui verrà caricata la domanda e lo spazio per rispondere -->
+     <!-- Contenitore della Domanda -->
+     <div id="question-container">
         <div id="content">
-            <!-- La domanda verrà caricata qui dal file JSON -->
+            <!-- La domanda verrà caricata qui -->
+        </div>
+        <textarea id="response-input" rows="5" placeholder="Scrivi la tua risposta qui..."></textarea>
+        <div id="submit-container">
+            <button id="submit-button" onclick="submitAnswer()">Invia Risposta</button>
         </div>
     </div>
-
-    <!-- Pulsante per inviare la risposta -->
-    <div id="submit-container">
-        <button id="submit-button" onclick="submitAnswer()">Invia Risposta</button>
-    </div>
+    
 
     <!-- Script per la gestione della domanda e timer -->
-    <script src="./script_js/script.js"></script>
-    <script src="./script_js/script_domande.js"></script>
+    <script src="script_js/script.js"></script>
+    <script src="script_js/script_domande.js"></script>
 
 </body>
 

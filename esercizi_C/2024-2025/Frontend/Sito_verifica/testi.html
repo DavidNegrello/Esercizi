@@ -46,6 +46,41 @@
         <p>David Negrello 5^F</p>
     </footer>
 
+    <!-- Script -->
+    <script>
+        async function loadData(file) {
+            try {
+                const response = await fetch(file);
+                if (!response.ok) throw new Error('Errore nel caricamento del file JSON');
+                return await response.json();
+            } catch (error) {
+                console.error('Errore:', error);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', async function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const id = parseInt(urlParams.get('id'), 10);
+
+            if (!id) {
+                document.getElementById('content').innerHTML = '<p>Testo non trovato.</p>';
+                return;
+            }
+
+            const data = await loadData('testi.json');
+            if (!data) return;
+
+            const item = data.find(t => t.id === id);
+            if (item) {
+                document.getElementById('content').innerHTML = `
+                    <h2>${item.titolo}</h2>
+                    <p>${item.contenuto}</p>
+                `;
+            } else {
+                document.getElementById('content').innerHTML = '<p>Testo non trovato.</p>';
+            }
+        });
+    </script>
     <script src="script_js/script_testi.js"></script> <!-- Collega il file JavaScript esterno -->
     <script src="script_js/script.js"></script> <!-- Collegamento allo script generale per il timer-->
 

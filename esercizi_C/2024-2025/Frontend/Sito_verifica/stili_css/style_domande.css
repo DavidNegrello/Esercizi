@@ -31,7 +31,7 @@ nav a {
     font-size: 14px;
 }
 
-/* Contenitore principale per la domanda */
+/* Contenitore principale centrato */
 #question-container {
     width: 60%;
     margin: 20px auto;
@@ -39,33 +39,30 @@ nav a {
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
+    text-align: center;
 }
 
-/* Contenuto della domanda */
-#content h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
+/* Testo della domanda centrato */
+#content h2, #content p {
+    text-align: center;
 }
 
-#content p {
-    font-size: 16px;
-    margin-bottom: 20px;
-}
-
-/* Campo per la risposta dell'utente */
+/* Campo di testo per la risposta */
 #response-input {
     width: 100%;
     padding: 10px;
     font-size: 16px;
-    margin-bottom: 20px;
+    margin: 20px 0;
     border: 1px solid #ddd;
     border-radius: 5px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-/* Bottone per inviare la risposta */
+/* Bottone di invio centrato */
 #submit-container {
     text-align: center;
-    margin-top: 20px;
 }
 
 #submit-button {
