@@ -5,10 +5,13 @@
     box-sizing: border-box;
 }
 
+/* Impostazioni globali */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7fc;
+    color: #333;
+    line-height: 1.6;
     padding: 0;
-    background-color: #f4f4f4;
 }
 
 /* Navbar */
@@ -16,15 +19,17 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #333;
+    background-color: #4CAF50;
     color: white;
-    padding: 10px;
+    padding: 15px 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 nav a {
     color: white;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 18px;
+    margin-right: 20px;
 }
 
 #timer p {
@@ -33,31 +38,39 @@ nav a {
 
 /* Contenitore principale centrato */
 #question-container {
-    width: 60%;
-    margin: 20px auto;
-    background-color: white;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    width: 80%;
+    max-width: 900px;
+    margin: 40px auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(145deg, #f9f9f9, #f1f1f1);
     text-align: center;
 }
 
 /* Testo della domanda centrato */
 #content h2, #content p {
-    text-align: center;
+    font-size: 1.8em;
+    color: #333;
+    margin-bottom: 20px;
+    line-height: 1.4;
 }
 
 /* Campo di testo per la risposta */
 #response-input {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     font-size: 16px;
     margin: 20px 0;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    transition: border-color 0.3s ease;
+}
+
+#response-input:focus {
+    outline: none;
+    border-color: #4CAF50;
 }
 
 /* Bottone di invio centrato */
@@ -66,15 +79,32 @@ nav a {
 }
 
 #submit-button {
-    padding: 10px 20px;
+    padding: 12px 25px;
     background-color: #4CAF50;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 18px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 #submit-button:hover {
     background-color: #45a049;
+    transform: translateY(-3px);
+}
+
+#submit-button:active {
+    transform: translateY(1px);
+}
+
+/* Timer */
+#timer p {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    padding: 8px 16px;
+    background-color: #fff;
+    border-radius: 25px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }

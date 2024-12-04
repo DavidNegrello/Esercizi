@@ -1,9 +1,4 @@
-// Funzione per caricare i dati dal file JSON
-function loadData(file) {
-    return fetch(file)
-        .then(response => response.json())
-        .catch(error => console.error("Errore nel caricare il file JSON:", error));
-}
+
 
 // Funzione per avviare il timer
 function startTimer(duration, display) {

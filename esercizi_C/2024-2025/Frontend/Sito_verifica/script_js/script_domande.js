@@ -1,59 +1,62 @@
-// Funzione per caricare i dati dal file JSON
-async function loadData(file) {
-    try {
-        const response = await fetch(file); // Carica il file JSON
-        if (!response.ok) throw new Error('Errore nel caricamento del file JSON');
-        return await response.json(); // Restituisce il contenuto del file come oggetto JSON
-    } catch (error) {
-        console.error('Errore:', error); // In caso di errore, stampa un messaggio di errore
-        return null; // Restituisce null in caso di errore
-    }
-}
-
-// Al caricamento della pagina
-document.addEventListener('DOMContentLoaded', async function () {
-    // Recupera il parametro 'id' dalla URL
+// Funzione per recuperare il parametro 'id' dalla query string
+function getQueryParam(param) {
     const urlParams = new URLSearchParams(window.location.search);
-    const id = parseInt(urlParams.get('id'), 10);
-
-    // Se non c'è un id valido, mostra un messaggio di errore
-    if (!id) {
-        document.getElementById('content').innerHTML = '<p>Domanda non trovata.</p>';
-        return;
-    }
-
-    // Carica il file JSON e mostra la domanda
-    const data = await loadData('domande.json'); // Percorso relativo al file JSON
-    if (!data) {
-        document.getElementById('content').innerHTML = '<p>Errore nel caricamento delle domande.</p>';
-        return;
-    }
-
-    // Trova la domanda in base all'id
-    const item = data.find(q => q.id === id);
-    if (item) {
-        // Se la domanda è trovata, la mostra nella pagina
-        document.getElementById('content').innerHTML = `
-            <h2>${item.domanda}</h2>
-            <p>${item.descrizione}</p>
-        `;
-    } else {
-        // Se non è trovata, mostra un messaggio di errore
-        document.getElementById('content').innerHTML = '<p>Domanda non trovata.</p>';
-    }
-});
-
-// Funzione per inviare la risposta dell'utente
-function submitAnswer() {
-    const userAnswer = document.getElementById('response-input').value.trim(); // Ottieni la risposta dell'utente
-
-    // Verifica se la risposta è vuota
-    if (!userAnswer) {
-        alert('Scrivi una risposta prima di inviarla!');
-        return;
-    }
-
-    // Mostra un messaggio con la risposta dell'utente
-    alert(`Risposta inviata: ${userAnswer}`);
-    // Qui potresti inviare la risposta a un server o salvarla in un database
+    return urlParams.get(param); // Ottieni il parametro 'id' dalla query string
 }
+
+// Funzione per caricare le domande dal file JSON
+async function loadQuestions() {
+    try {
+        // Carica il file domande.json
+        const response = await fetch("domande.json"); 
+        
+        // Verifica che la risposta sia ok
+        if (!response.ok) {
+            throw new Error(`Errore nel caricamento del file JSON: ${response.statusText}`);
+        }
+
+        // Ottieni i dati JSON
+        const questions = await response.json(); 
+        
+        // Recupera l'ID dalla query string dell'URL
+        const questionId = getQueryParam('id'); 
+        
+        if (questionId === null) {
+            throw new Error("Nessun ID trovato nella query string.");
+        }
+
+        // Carica la domanda corrispondente all'ID
+        loadQuestion(questionId, questions);
+
+    } catch (error) {
+        console.error("Errore:", error);
+        document.getElementById('content').innerText = `Errore nel caricamento delle domande: ${error.message}`;
+    }
+}
+
+// Funzione per caricare la domanda basata sull'ID
+function loadQuestion(questionId, questions) {
+    // Trova la domanda corrispondente all'ID
+    const question = questions.find(q => q.id == questionId); 
+
+    // Se la domanda è trovata, visualizzala, altrimenti mostra un errore
+    if (question) {
+        document.getElementById('content').innerText = question.domanda;
+    } else {
+        document.getElementById('content').innerText = "Domanda non trovata.";
+    }
+}
+
+// Funzione per inviare la risposta
+function submitAnswer() {
+    const response = document.getElementById("response-input").value;
+    if (response.trim() === "") {
+        alert("Per favore, scrivi una risposta prima di inviare.");
+    } else {
+        // Puoi aggiungere qui la logica per inviare la risposta, ad esempio inviarla al server
+        console.log("Risposta inviata:", response);
+    }
+}
+
+// Carica le domande quando la pagina è pronta
+document.addEventListener('DOMContentLoaded', loadQuestions);

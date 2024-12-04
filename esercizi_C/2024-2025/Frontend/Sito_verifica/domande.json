@@ -1,17 +1,15 @@
 [
     {
-        "id": 1,
-        "domanda": "Qual è la capitale d'Italia?",
-        "descrizione": "Scrivi la risposta corretta."
+      "id": 1,
+      "domanda": "Qual è il capitale dell'Italia?"
     },
     {
-        "id": 3,
-        "domanda": "Qual è la differenza tra software e hardware?",
-        "descrizione": "Spiega con un esempio pratico la differenza tra software e hardware."
+      "id": 2,
+      "domanda": "Qual è il risultato di 5 + 7?"
     },
     {
-        "id": 5,
-         "domanda": "Cosa significa programmare?",
-        "descrizione": "Definisci il concetto di programmazione e il suo scopo principale."
+      "id": 3,
+      "domanda": "Che cos'è la fotosintesi?"
     }
-]
+  ]
+  
