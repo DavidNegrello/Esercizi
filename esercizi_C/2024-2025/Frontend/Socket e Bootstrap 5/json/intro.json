@@ -1,0 +1,30 @@
+{
+    "intro": {
+      "title": "Benvenuto su Socket e Bootstrap 5",
+      "description": "Questo sito è dedicato a spiegare i concetti fondamentali relativi ai Socket, ai protocolli HTTP/HTTPS, e al modello di rete ISO/OSI. Attraverso questa piattaforma, potrai comprendere meglio come funziona la comunicazione tra dispositivi e i concetti essenziali delle reti."
+    },
+    "gallery": [
+      {
+        "src": "./immagini/datagram-sockets.jpg",
+        "alt": "Socket",
+        "title": "Scopri il mondo dei Socket",
+        "description": "Scopri come funzionano i Socket e la comunicazione tra dispositivi!",
+        "link": "./pagine/tpsi.html"
+      },
+      {
+        "src": "./immagini/http-https.jpg",
+        "alt": "HTTP/HTTPS",
+        "title": "Comprendi HTTP e HTTPS",
+        "description": "Comprendi le differenze tra HTTP e HTTPS e scopri l'importanza della sicurezza!",
+        "link": "./pagine/informatica.html"
+      },
+      {
+        "src": "./immagini/layer 3.jpg",
+        "alt": "ISO/OSI",
+        "title": "Esplora il modello ISO/OSI",
+        "description": "Esplora il modello ISO/OSI e il funzionamento delle reti informatiche!",
+        "link": "./pagine/sistemi.html"
+      }
+    ]
+  }
+  

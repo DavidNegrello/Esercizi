@@ -1,0 +1,69 @@
+{
+    "intro": {
+      "title": "Cos'è un Socket?",
+      "image": "../immagini/stream-socket-connessione.png",
+      "imageAlt": "Esempio socket",
+      "text": [
+        "Un socket è un oggetto software che permette l'invio e la ricezione di dati, tra host remoti (tramite una rete) o tra processi locali (Inter-Process Communication).",
+        "Più precisamente, il concetto di socket si basa sul modello Input/Output su file di Unix, quindi sulle operazioni di open, read, write e close; l'utilizzo, infatti, avviene secondo le stesse modalità, aggiungendo i parametri utili alla comunicazione, quali indirizzi, numeri di porta e protocolli.",
+        "Socket locali e remoti in comunicazione formano una coppia (pair), composta da indirizzo e porta di client e server; tra di loro c'è una connessione logica.",
+        "Solitamente i sistemi operativi forniscono delle API per permettere alle applicazioni di controllare e utilizzare i socket di rete.",
+        "Possiamo vedere i socket come degli intermediari tra il livello applicazione e di trasporto nello stack TCP/IP. Infatti la funzione dei socket è quella di indirizzamento dei processi."
+      ]
+    },
+    "socketFamilies": {
+      "title": "Famiglie di Socket",
+      "text": "I tipi di protocolli utilizzati dal socket ne definiscono la famiglia (o dominio). Possiamo distinguere, ad esempio, due importanti famiglie:",
+      "families": [
+        {
+          "name": "AF_INET",
+          "description": "Comunicazione tra host remoti, tramite Internet.",
+          "link": "../pagine/glossario.html#term3"
+        },
+        {
+          "name": "AF_UNIX",
+          "description": "Comunicazione tra processi locali, su macchine Unix. Questa famiglia è anche chiamata Unix Domain Socket.",
+          "link": "../pagine/glossario.html#term4"
+        }
+      ]
+    },
+    "socketTypes": {
+      "title": "Tipi di Socket",
+      "types": [
+        {
+          "name": "Stream Socket",
+          "image": "../immagini/stream.jpg",
+          "imageAlt": "Stream Socket",
+          "description": [
+            "Orientati alla connessione (connection-oriented), basati su protocolli affidabili come TCP o SCTP.",
+            "Un stream socket è utilizzato per le comunicazioni basate su TCP (Transmission Control Protocol), che è un protocollo di trasporto orientato alla connessione.",
+            "Questo tipo di socket stabilisce una connessione tra due endpoint (host) prima che i dati possano essere inviati.",
+            "Tipico esempio di utilizzo: il protocollo HTTP (per navigare sul web) o FTP (per il trasferimento di file)."
+          ]
+        },
+        {
+          "name": "Datagram Socket",
+          "image": "../immagini/datagram-sockets.jpg",
+          "imageAlt": "Datagram Socket",
+          "description": [
+            "Non orientati alla connessione (connectionless), basati sul protocollo veloce ma inaffidabile UDP.",
+            "Un datagram socket è usato per le comunicazioni basate su UDP (User Datagram Protocol), che è un protocollo di trasporto senza connessione.",
+            "Con i datagram, non c'è bisogno di stabilire una connessione prima di inviare i dati. I dati vengono inviati sotto forma di pacchetti chiamati datagrammi.",
+            "Tipico esempio di utilizzo: giochi online, streaming video/audio, o DNS (Domain Name System)."
+          ]
+        },
+        {
+          "name": "Raw Socket",
+          "image": "../immagini/raw.jpg",
+          "imageAlt": "Raw Socket",
+          "description": [
+            "Il livello di trasporto viene bypassato, e l'header è accessibile al livello applicativo.",
+            "Un raw socket fornisce accesso diretto al livello di rete (livello IP) del modello OSI, permettendo di inviare e ricevere pacchetti senza l'uso di protocolli di trasporto come TCP o UDP.",
+            "Con i raw socket, è possibile manipolare direttamente l'intestazione del pacchetto, il che è utile per applicazioni come l'analisi dei pacchetti (packet sniffing) o l'invio di pacchetti personalizzati.",
+            "Viene generalmente utilizzato da software di basso livello come strumenti di diagnostica o firewall."
+          ]
+        }
+      ]
+    }
+  }
+  
