@@ -1,0 +1,85 @@
+{
+    "title": "Modello OSI (Open Systems Interconnection)",
+    "image": "",
+    "sections": [
+      {
+        "id": "intro",
+        "title": "Introduzione",
+        "content": [
+          {
+            "type": "paragraph",
+            "text": "Il modello <a href='../pagine/glossario.html#term5' class='glossary-link'>OSI (Open Systems Interconnection)</a> è un framework concettuale sviluppato per standardizzare e semplificare la comunicazione tra dispositivi su una rete. Creato dall'<strong>International Organization for Standardization (ISO)</strong> negli anni '80, divide il processo di comunicazione in <strong>7 livelli</strong>, ciascuno responsabile di un aspetto specifico della trasmissione dei dati."
+          },
+          {
+            "type": "paragraph",
+            "text": "L'obiettivo principale del modello OSI è garantire che dispositivi e protocolli sviluppati da produttori diversi possano <a href='../pagine/glossario.html#term6' class='glossary-link'>interoperare</a> senza problemi, facilitando lo sviluppo e l'espansione delle reti globali come Internet. Questa suddivisione a livelli aiuta anche a identificare e risolvere problemi di rete in modo sistematico."
+          }
+        ]
+      },
+      {
+        "id": "why_created",
+        "title": "Perché è stato creato?",
+        "content": [
+          {
+            "type": "paragraph",
+            "text": "Il modello OSI è stato sviluppato per affrontare il problema della <strong>incompatibilità tra protocolli e dispositivi</strong> prodotti da aziende diverse. Prima della sua introduzione, le comunicazioni erano frammentate e non standardizzate, rendendo difficile lo sviluppo di reti su larga scala."
+          }
+        ]
+      },
+      {
+        "id": "practical_examples",
+        "title": "Esempi di utilizzo pratico",
+        "content": [
+          {
+            "type": "list",
+            "items": [
+              "<strong>Livello Applicativo <a href='../pagine/glossario.html#term7' class='glossary-link'>(Layer 7)</a>:</strong> navigazione web tramite <a href='../pagine/informatica.html'>HTTP/HTTPS</a>, invio di email tramite <a href='../pagine/glossario.html#SMTP' class='text-decoration-none'>SMTP</a>, o trasferimenti di file con <a href='../pagine/glossario.html#FTP' class='text-decoration-none'>FTP</a>.",
+              "<strong>Livello Trasporto (Layer 4):</strong> affidabilità delle connessioni tramite <a href='../pagine/glossario.html#TCP' class='text-decoration-none'>TCP</a> o velocità di trasmissione tramite <a href='../pagine/glossario.html#UDP' class='text-decoration-none'>UDP</a> (ad esempio, per streaming video).",
+              "<strong>Livello Rete (Layer 3):</strong> instradamento dei pacchetti dati attraverso indirizzi <a href='../pagine/glossario.html#IP' class='text-decoration-none'>IP</a> per garantire che raggiungano la destinazione corretta."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "current_use",
+        "title": "A cosa serve oggi?",
+        "content": [
+          {
+            "type": "paragraph",
+            "text": "Sebbene non sia direttamente implementato nella maggior parte dei sistemi moderni, il modello OSI rimane uno strumento essenziale per comprendere le architetture di rete e per lo sviluppo di protocolli come <a href='../pagine/glossario.html#TCP/IP' class='text-decoration-none'>TCP/IP</a>."
+          },
+          {
+            "type": "list",
+            "items": [
+              "Progettazione di reti aziendali e infrastrutture <a href='../pagine/glossario.html#Cloud' class='text-decoration-none'>cloud</a>.",
+              "Formazione e certificazioni in ambito networking (ad esempio <a href='../pagine/glossario.html#CCNA' class='text-decoration-none'>CCNA</a>, <a href='../pagine/glossario.html#CompTIA_Network' class='text-decoration-none'>CompTIA Network+</a>).",
+              "Diagnostica e risoluzione dei problemi di rete grazie alla suddivisione logica dei <a href='../pagine/glossario.html#Layer' class='text-decoration-none'>livelli</a>."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "further_reading",
+        "title": "Approfondimenti",
+        "content": [
+          {
+            "type": "paragraph",
+            "text": "Se desideri un approfondimento più dettagliato sul modello OSI, puoi leggere l'articolo completo su <a href='https://it.wikipedia.org/wiki/Modello_OSI' target='_blank' class='text-decoration-none'>CIO - The OSI Model and Why It Matters</a>."
+          }
+        ]
+      },
+      {
+        "id": "button",
+        "title": "Bottone di Approfondimento",
+        "content": [
+          {
+            "type": "button",
+            "text": "Approfondisci sul Modello OSI",
+            "link": "https://it.wikipedia.org/wiki/Modello_OSI",
+            "class": "btn btn-outline-primary btn-lg"
+          }
+        ]
+      }
+    ]
+  }
+  

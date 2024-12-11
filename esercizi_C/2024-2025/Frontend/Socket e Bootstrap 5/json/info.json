@@ -1,0 +1,56 @@
+{
+    "title": "Il Protocollo HTTP e HTTPS",
+    "image": "../immagini/http-https.jpg",
+    "sections": [
+      {
+        "id": "cose-http",
+        "title": "Cos'è HTTP?",
+        "content": [
+          "HTTP (Hypertext Transfer Protocol) è un protocollo di comunicazione utilizzato per trasferire dati tra un client (come un browser) e un server web. È il protocollo principale utilizzato per navigare nel web.",
+          "Quando si accede a una pagina web, il browser invia una richiesta HTTP al server e riceve la risposta sotto forma di una pagina web. HTTP è un protocollo senza stato, il che significa che ogni richiesta è indipendente e non tiene traccia di altre richieste fatte precedentemente.",
+          "HTTP, tuttavia, non fornisce alcuna sicurezza nella trasmissione dei dati, quindi le informazioni, come le credenziali di accesso o i dati sensibili, possono essere facilmente intercettate da terzi."
+        ]
+      },
+      {
+        "id": "cose-https",
+        "title": "Cos'è HTTPS?",
+        "content": [
+          "HTTPS (Hypertext Transfer Protocol Secure) è una versione sicura di HTTP. HTTPS utilizza un protocollo di crittografia, solitamente <a href='../pagine/glossario.html#term8' class='glossary-link'>TLS (Transport Layer Security)</a> o <a href='../pagine/glossario.html#term9' class='glossary-link'>SSL (Secure Socket Layer)</a>, per proteggere i dati trasmessi tra il browser dell'utente e il server web.",
+          "Quando una connessione è HTTPS, i dati inviati e ricevuti sono criptati, rendendo impossibile per i malintenzionati intercettare o alterare le informazioni. HTTPS è quindi essenziale per proteggere la <a href='../pagine/glossario.html#term10' class='glossary-link'>privacy</a> dell'utente, in particolare quando si trattano dati sensibili come password, numeri di carta di credito o informazioni bancarie.",
+          "Un'altra differenza fondamentale è che HTTPS autentica il server con il quale si sta comunicando, riducendo il rischio di attacchi come il <em><a href='../pagine/glossario.html#term11' class='glossary-link'>man-in-the-middle</a></em>, in cui un attaccante può intercettare e manipolare le comunicazioni tra il client e il server."
+        ]
+      },
+      {
+        "id": "sicurezza",
+        "title": "Sicurezza",
+        "content": [
+          "<img src='../immagini/sito-non-sicuro.jpg' alt='Sito non sicuro' class='img-fluid mt-3' />",
+          "Avere forti misure di sicurezza e fornire un’esperienza di navigazione sicura sul tuo sito web è fondamentale. Un sondaggio di GlobalSign ha rilevato che il 77% dei visitatori teme che parti non autorizzate utilizzino in modo improprio o intercettino i dati degli utenti.",
+          "Per quanto riguarda HTTP vs HTTPS, quest’ultimo supera in termini di sicurezza.",
+          "Un protocollo HTTP standard non crittografa le connessioni. Ciò significa che le righe di testo in una richiesta o risposta HTTP sono visibili a chiunque monitori la connessione, inclusi hacker e criminali informatici.",
+          "L’utilizzo di HTTP standard generalmente pone problemi minimi se il testo contiene solo informazioni generali, ad esempio per caricare una pagina web pubblica.",
+          "Tuttavia, se contiene dati sensibili come nomi utente, password o dettagli di carte di credito, l’utilizzo di HTTP non crittografato può comportare gravi rischi per la sicurezza. Poiché queste informazioni sono visibili a chiunque, violazioni dei dati, hack e furto di identità diventano problemi seri.",
+          "Gli utenti possono vedere se stanno navigando in siti HTTP controllando due elementi. Innanzitutto, l’icona prima dell’URL di un sito web potrebbe mostrare un simbolo '!' o citare 'Non sicuro'.",
+          "L’avviso può anche consigliare agli utenti di non inserire informazioni sensibili o riservate sul sito web. In secondo luogo, l’URL del sito inizierà con http://."
+        ]
+      },
+      {
+        "id": "differenze-http-https",
+        "title": "Le Differenze Principali tra HTTP e HTTPS",
+        "content": [
+          "Sicurezza: HTTPS è sicuro grazie alla crittografia, mentre HTTP non lo è.",
+          "Autenticazione: HTTPS verifica l'identità del server, mentre HTTP no.",
+          "Porta: HTTP usa la porta 80, mentre HTTPS usa la porta 443.",
+          "Indicazione nel browser: I siti HTTPS mostrano un lucchetto accanto all'URL, mentre HTTP non lo fa."
+        ]
+      },
+      {
+        "id": "perche-https",
+        "title": "Perché HTTPS è Importante?",
+        "content": [
+          "HTTPS è particolarmente importante per tutti i siti che trattano informazioni sensibili o che richiedono l'accesso dell'utente, come i siti di e-commerce, le banche online e le piattaforme di social media. La crittografia di HTTPS garantisce che i dati dell'utente non vengano letti o alterati durante il loro trasferimento.",
+          "Inoltre, i motori di ricerca come Google considerano HTTPS come un fattore di ranking, quindi avere un sito HTTPS potrebbe anche migliorare la visibilità nelle ricerche online."
+        ]
+      }
+    ]
+}
