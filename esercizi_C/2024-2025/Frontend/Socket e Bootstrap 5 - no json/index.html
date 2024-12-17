@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socket e Bootstrap 5</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style_index.css">
+</head>
+<body>
+<!--=====================David Negrello 5^F==========================-->
+<!--=====================Navbar==========================-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Socket e Bootstrap 5</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item active">    
+                        <a class="nav-link"  href="./pagine/tpsi.html">Socket </a> 
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./pagine/informatica.html">HTTP/HTTPS </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./pagine/sistemi.html">Iso/osi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./pagine/glossario.html">Glossario</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <!-- Menu a tendina per il login e l'utente -->
+                    <li class="nav-item dropdown" id="userDropdownContainer">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Login
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="userDropdown" id="dropdownMenu">
+                            <li><a class="dropdown-item" href="./pagine/login.html">Login</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+      <!--=====================Introduzione del sito==========================-->
+    <div class="container intro-section">
+        <h1>Benvenuto su Socket e Bootstrap 5</h1>
+        <p>
+            Questo sito è dedicato a spiegare i concetti fondamentali relativi ai Socket, 
+            ai protocolli HTTP/HTTPS, e al modello di rete ISO/OSI. Attraverso questa piattaforma, potrai comprendere 
+            meglio come funziona la comunicazione tra dispositivi e i concetti essenziali delle reti.
+        </p>
+    </div>
+
+     <!--=====================Slider==========================-->
+    <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <!-- Slide 1 -->
+            <div class="carousel-item active">
+                <img src="./immagini/datagram-sockets.jpg" class="d-block w-100" alt="Socket">
+                <div class="overlay">
+                    <p>Scopri come funzionano i Socket e la comunicazione tra dispositivi!</p>
+                </div>
+                <div class="carousel-caption">
+                    <h5>Scopri il mondo dei Socket</h5>
+                    <a href="./pagine/tpsi.html" class="btn btn-primary">Vai alla pagina Socket</a>
+                </div>
+            </div>
+            <!-- Slide 2 -->
+            <div class="carousel-item">
+                <img src="./immagini/http-https.jpg" class="d-block w-100" alt="HTTP/HTTPS">
+                <div class="overlay">
+                    <p>Comprendi le differenze tra HTTP e HTTPS e scopri l'importanza della sicurezza!</p>
+                </div>
+                <div class="carousel-caption">
+                    <h5>Comprendi HTTP e HTTPS</h5>
+                    <a href="./pagine/informatica.html" class="btn btn-primary">Vai alla pagina HTTP/HTTPS</a>
+                </div>
+            </div>
+            <!-- Slide 3 -->
+            <div class="carousel-item">
+                <img src="./immagini/layer 3.jpg" class="d-block w-100" alt="ISO/OSI">
+                <div class="overlay">
+                    <p>Esplora il modello ISO/OSI e il funzionamento delle reti informatiche!</p>
+                </div>
+                <div class="carousel-caption">
+                    <h5>Esplora il modello ISO/OSI</h5>
+                    <a href="./pagine/sistemi.html" class="btn btn-primary">Vai alla pagina ISO/OSI</a>
+                </div>
+            </div>
+        </div>
+        <!-- Controlli dello slider -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Precedente</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Successivo</span>
+        </button>
+    </div>
+
+     <!--=====================FOOTER==========================-->
+    <footer class="site-footer">
+        <p>David Negrello 5F</p>
+    </footer>
+
+ 
+    <script src="./js/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

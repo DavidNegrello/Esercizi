@@ -1,0 +1,38 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f8f9fa;
+}
+
+.login-container {
+    background-color: white;
+    padding: 40px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 100%;
+}
+
+.login-container h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: bold;
+    color: #007bff;
+}
+
+.login-container .form-control {
+    border-radius: 8px;
+}
+
+.login-container .btn-primary, .btn-secondary {
+    border-radius: 8px;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.login-container .guest-access {
+    text-align: center;
+    margin-top: 20px;
+}

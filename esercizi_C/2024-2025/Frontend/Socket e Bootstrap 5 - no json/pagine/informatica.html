@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socket e Bootstrap 5</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style_index.css">
+    <link rel="stylesheet" href="../css/style_info.css">
+    <link rel="stylesheet" href="../css/glossario.css"><!--per i link con uno stile diverso-->
+</head>
+<body>
+    <!--=====================Navbar==========================-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Socket e Bootstrap 5</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">Home</a>
+                    </li>
+                    <li class="nav-item active">    
+                        <a class="nav-link" href="../pagine/tpsi.html">Socket</a> 
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" aria-current="page" >HTTP/HTTPS </a> <!--per sbarrare il collegamento-->
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../pagine/sistemi.html">Iso/osi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../pagine/glossario.html">Glossario</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <!-- Menu a tendina per il login e l'utente -->
+                    <li class="nav-item dropdown" id="userDropdownContainer">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Login
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="userDropdown" id="dropdownMenu">
+                            <li><a class="dropdown-item" href="login.html">Login</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+   <!--===================== Contenuto HTTP/HTTPS ==========================-->
+<div class="container mt-5">
+    <h1 class="text-center section-title">Il Protocollo HTTP e HTTPS</h1>
+
+    <!-- Image Space -->
+    <div class="image-container">
+        <img src="../immagini/http-https.jpg" alt="HTTP vs HTTPS">    <!--presa da amire.com-->
+    </div>
+    <br>
+    <!-- Indice Section -->
+    <div class="d-flex justify-content-between mt-4">
+        <span class="section-title">Indice</span>
+        <button class="btn-indice" onclick="toggleIndice()">Visualizza</button>
+    </div>
+    
+    <!-- Indice Box, inizialmente nascosto -->
+    <div id="indice-box" class="indice-box" style="display: none;">
+        <ul>
+            <li><a href="#cose-http">Cos'è HTTP?</a></li>
+            <li><a href="#cose-https">Cos'è HTTPS?</a></li>
+            <li><a href="#differenze-http-https">Le Differenze Principali tra HTTP e HTTPS</a></li>
+            <li><a href="#perche-https">Perché HTTPS è Importante?</a></li>
+            <li><a href="#sicurezza">Sicurezza</a></li> 
+        </ul>
+    </div>
+
+    <section id="cose-http" class="content-section">
+        <h2>Cos'è HTTP?</h2>
+        <p>HTTP (Hypertext Transfer Protocol) è un protocollo di comunicazione utilizzato per trasferire dati tra un client (come un browser) e un server web. È il protocollo principale utilizzato per navigare nel web.</p>
+        <p>Quando si accede a una pagina web, il browser invia una richiesta HTTP al server e riceve la risposta sotto forma di una pagina web. HTTP è un protocollo <strong>senza stato</strong>, il che significa che ogni richiesta è indipendente e non tiene traccia di altre richieste fatte precedentemente.</p>
+        <p>HTTP, tuttavia, non fornisce alcuna sicurezza nella trasmissione dei dati, quindi le informazioni, come le credenziali di accesso o i dati sensibili, possono essere facilmente intercettate da terzi.</p>
+    </section>
+    
+    <section id="cose-https" class="content-section">
+        <h2>Cos'è HTTPS?</h2>
+        <p>HTTPS (Hypertext Transfer Protocol Secure) è una versione sicura di HTTP. HTTPS utilizza un protocollo di crittografia, solitamente <a href="../pagine/glossario.html#term8" class="glossary-link">TLS (Transport Layer Security)</a> o <a href="../pagine/glossario.html#term9" class="glossary-link">SSL (Secure Socket Layer)</a>, per proteggere i dati trasmessi tra il browser dell'utente e il server web.</p>
+        <p>Quando una connessione è HTTPS, i dati inviati e ricevuti sono criptati, rendendo impossibile per i malintenzionati intercettare o alterare le informazioni. HTTPS è quindi essenziale per proteggere la <a href="../pagine/glossario.html#term10" class="glossary-link">privacy</a> dell'utente, in particolare quando si trattano dati sensibili come password, numeri di carta di credito o informazioni bancarie.</p>
+        <p>Un'altra differenza fondamentale è che HTTPS autentica il server con il quale si sta comunicando, riducendo il rischio di attacchi come il <em><a href="../pagine/glossario.html#term11" class="glossary-link">man-in-the-middle</a></em>, in cui un attaccante può intercettare e manipolare le comunicazioni tra il client e il server.</p>
+    </section>
+    
+    <!-- Nuova sezione per la sicurezza -->
+    <section id="sicurezza" class="content-section">
+        <h2>Sicurezza</h2>
+        <img src="../immagini/sito-non-sicuro.jpg" alt="Sito non sicuro" class="img-fluid mt-3" />
+        <p>Avere forti misure di sicurezza e fornire un’esperienza di navigazione sicura sul tuo sito web è fondamentale. Un sondaggio di GlobalSign ha rilevato che il 77% dei visitatori teme che parti non autorizzate utilizzino in modo improprio o intercettino i dati degli utenti.</p>
+        <p>Per quanto riguarda HTTP vs HTTPS, quest’ultimo supera in termini di sicurezza.</p>
+        <p>Un protocollo HTTP standard non crittografa le connessioni. Ciò significa che le righe di testo in una richiesta o risposta HTTP sono visibili a chiunque monitori la connessione, inclusi hacker e criminali informatici.</p>
+        <p>L’utilizzo di HTTP standard generalmente pone problemi minimi se il testo contiene solo informazioni generali, ad esempio per caricare una pagina web pubblica.</p>
+        <p>Tuttavia, se contiene dati sensibili come nomi utente, password o dettagli di carte di credito, l’utilizzo di HTTP non crittografato può comportare gravi rischi per la sicurezza. Poiché queste informazioni sono visibili a chiunque, violazioni dei dati, hack e furto di identità diventano problemi seri.</p>
+        <p>Gli utenti possono vedere se stanno navigando in siti HTTP controllando due elementi. Innanzitutto, l’icona prima dell’URL di un sito web (Uniform Resource Locator) potrebbe mostrare un simbolo "!" o citare "Non sicuro".</p>
+        <p>L’avviso può anche consigliare agli utenti di non inserire informazioni sensibili o riservate sul sito web. In secondo luogo, l’URL del sito inizierà con <strong>http://</strong>.</p>
+    </section>
+    
+    <section id="differenze-http-https" class="content-section">
+        <h2>Le Differenze Principali tra HTTP e HTTPS</h2>
+        <ul>
+            <li><strong>Sicurezza:</strong> HTTPS è sicuro grazie alla crittografia, mentre HTTP non lo è.</li>
+            <li><strong>Autenticazione:</strong> HTTPSverifica l'identità del server, mentre HTTP no.</li>
+            <li><strong>Porta:</strong> HTTP usa la porta 80, mentreHTTPS usa la porta 443.</li>
+            <li><strong>Indicazione nel browser:</strong> I siti HTTPS mostrano un lucchetto accanto all'URL, mentre HTTP non lo fa.</li>
+        </ul>
+    </section>
+    
+    <section id="perche-https" class="content-section">
+        <h2>Perché HTTPS è Importante?</h2>
+        <p>HTTPSè particolarmente importante per tutti i siti che trattano informazioni sensibili o che richiedono l'accesso dell'utente, come i siti di e-commerce, le banche online e le piattaforme di social media. La crittografia di HTTPS garantisce che i dati dell'utente non vengano letti o alterati durante il loro trasferimento.</p>
+        <p>Inoltre, i motori di ricerca come Google considerano HTTPS come un fattore di ranking, quindi avere un sito HTTPS potrebbe anche migliorare la visibilità nelle ricerche online.</p>
+    </section>
+    
+    
+    <!--=====================FOOTER==========================-->
+    <footer class="site-footer">
+        <p>David Negrello 5F</p>
+    </footer>
+
+
+    <script src="../js/index.js"></script>
+    <script src="../js/info.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

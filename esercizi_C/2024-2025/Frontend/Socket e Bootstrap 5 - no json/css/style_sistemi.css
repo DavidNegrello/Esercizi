@@ -1,0 +1,145 @@
+.nav-link.disabled {
+    text-decoration: line-through; /* Linea sbarrata */
+    color: #ccc; /* Colore attenuato */
+}
+
+/*==========================Contenuto======================*/
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+}
+/*==========================Introduzione==========================*/
+/* Linee di separazione per i paragrafi */
+.intro-box h3 {
+    border-bottom: 2px solid #007bff; /* Linea blu */
+    padding-bottom: 10px; /* Spaziatura sotto il titolo */
+    margin-bottom: 20px; /* Spaziatura dal contenuto successivo */
+    font-weight: bold;
+}
+
+.intro-box p {
+    margin-bottom: 20px; /* Spaziatura tra i paragrafi */
+}
+
+.intro-box ul {
+    margin-top: 20px; /* Spazio sopra la lista */
+    margin-bottom: 20px; /* Spazio sotto la lista */
+    padding-left: 20px; /* Margine interno della lista */
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid #ddd; /* Linea grigia sottile */
+    margin: 20px 0; /* Spaziatura sopra e sotto */
+}
+
+/*==========================SLIDER==========================*/
+.slider {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    position: relative; /* Necessario per posizionare i controlli */
+}
+
+.slider .controllo {
+    position: absolute;
+    top: 50%; /* Posizionamento fisso: centro tra paragrafo e immagine */
+    left: 47%; /* Allinea leggermente a sinistra per centratura */
+    transform: translate(-50%, -50%); /* Centro esatto */
+    width: 100px;
+    height: auto; /* Permette l'adattamento verticale */
+    z-index: 2; /* Assicura che i controlli siano sopra gli altri elementi */
+    display: flex;
+    flex-direction: column; /* Disposizione verticale dei tasti */
+    justify-content: space-between; /* Distribuisce i tasti verticalmente */
+    align-items: center; /* Centra orizzontalmente i tasti */
+    gap: 15px; /* Spaziatura uniforme tra i tasti */
+}
+
+.slider .controllo > div {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    font-size: 25px;
+    cursor: pointer;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Aggiunge un'ombra leggera */
+}
+
+.slider .controllo > .up {
+    background: gray;
+    color: #fff;
+}
+
+.slider .controllo > .down {
+    background: #111;
+    color: #fff;
+}
+
+.slider .wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.slider .wrapper .left,
+.slider .wrapper .right {
+    width: 50%;
+    overflow: hidden;
+}
+
+.slider .wrapper .left > div,
+.slider .wrapper .right > div {
+    width: 100%;
+    height: 100%;
+}
+
+.slider .wrapper .left > div {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0px 100px 0px 50px;
+}
+
+.slider .wrapper .left > div h2 {
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+.slider .wrapper .left > div p {
+    color: #555;
+    font-size: 18px;
+}
+
+.slider .wrapper .right > div img {
+    margin-top: 7%;
+    width: 100%;
+    height: 70%;
+    object-fit: cover;
+}
+
+.slider .wrapper .right div:nth-child(1) {  /*nth-child(1) indica il primo elemento "figlio". Se ci sono più <div> figli nella .right, questa regola si applicherà solo al primo.*/
+    margin-top: -400vh;
+}
+
+/*===========================Responsive====================*/
+@media (min-width: 768px) {
+    .slider .wrapper .left,
+    .slider .wrapper .right {
+        width: 48%; /* Dividi lo spazio in due colonne sui tablet e superiori */
+    }
+}

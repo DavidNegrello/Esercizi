@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socket e Bootstrap 5</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style_index.css">
+    <link rel="stylesheet" href="../css/style_sistemi.css">
+    <link rel="stylesheet" href="../css/glossario.css"> <!--per i link con uno stile diverso-->
+</head>
+<body>
+    <!--=====================Navbar==========================-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Socket e Bootstrap 5</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">Home</a>
+                    </li>
+                    <li class="nav-item active">    
+                        <a class="nav-link"  href="../pagine/tpsi.html">Socket</a> 
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../pagine/informatica.html">HTTP/HTTPS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" aria-current="page">Iso/osi</a> <!--per sbarrare il collegamento-->
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../pagine/glossario.html">Glossario</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <!-- Menu a tendina per il login e l'utente -->
+                    <li class="nav-item dropdown" id="userDropdownContainer">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Login
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="userDropdown" id="dropdownMenu">
+                            <li><a class="dropdown-item" href="login.html">Login</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+<!--===================== Titolo e Definizione Modello OSI ==========================-->
+<h1 class="text-center section-title mt-5">Modello OSI (Open Systems Interconnection)</h1>
+<div class="container text-center">
+    <div class="intro-box">
+        <p class="lead">
+            Il modello <a href="../pagine/glossario.html#term5" class="glossary-link">OSI (Open Systems Interconnection)</a> è un framework concettuale sviluppato per standardizzare e semplificare la comunicazione tra dispositivi su una rete. 
+            Creato dall'<strong>International Organization for Standardization (ISO)</strong> negli anni '80, divide il processo di comunicazione in <strong>7 livelli</strong>, ciascuno responsabile di un aspetto specifico della trasmissione dei dati.
+        </p>
+        <p class="lead">
+            L'obiettivo principale del modello OSI è garantire che dispositivi e protocolli sviluppati da produttori diversi possano <a href="../pagine/glossario.html#term6" class="glossary-link">interoperare</a> senza problemi, facilitando lo sviluppo e l'espansione delle reti globali come Internet. 
+            Questa suddivisione a livelli aiuta anche a identificare e risolvere problemi di rete in modo sistematico.
+        </p>
+        <h3 class="mt-4">Perché è stato creato?</h3>
+        <p class="lead">
+            Il modello OSI è stato sviluppato per affrontare il problema della <strong>incompatibilità tra protocolli e dispositivi</strong> prodotti da aziende diverse. 
+            Prima della sua introduzione, le comunicazioni erano frammentate e non standardizzate, rendendo difficile lo sviluppo di reti su larga scala.
+        </p>
+        <h3 class="mt-4">Esempi di utilizzo pratico</h3>
+        <p class="lead">
+            Oggi, il modello OSI viene utilizzato come riferimento per progettare, implementare e comprendere sistemi di rete. 
+            Esempi pratici includono:
+            <ul class="text-start">
+                <li><strong>Livello Applicativo <a href="../pagine/glossario.html#term7" class="glossary-link">(Layer 7)</a>:</strong> navigazione web tramite <a href="../pagine/informatica.html">HTTP/HTTPS</a>, invio di email tramite <a href="../pagine/glossario.html#SMTP" class="text-decoration-none">SMTP</a>, o trasferimenti di file con <a href="../pagine/glossario.html#FTP" class="text-decoration-none">FTP</a>.</li>
+                <li><strong>Livello Trasporto (Layer 4):</strong> affidabilità delle connessioni tramite <a href="../pagine/glossario.html#TCP" class="text-decoration-none">TCP</a> o velocità di trasmissione tramite <a href="../pagine/glossario.html#UDP" class="text-decoration-none">UDP</a> (ad esempio, per streaming video).</li>
+                <li><strong>Livello Rete (Layer 3):</strong> instradamento dei pacchetti dati attraverso indirizzi <a href="../pagine/glossario.html#IP" class="text-decoration-none">IP</a> per garantire che raggiungano la destinazione corretta.</li>
+            </ul>
+        </p>
+        <h3 class="mt-4">A cosa serve oggi?</h3>
+        <p class="lead">
+            Sebbene non sia direttamente implementato nella maggior parte dei sistemi moderni, il modello OSI rimane uno strumento essenziale per comprendere le architetture di rete e per lo sviluppo di protocolli come <a href="../pagine/glossario.html#TCP/IP" class="text-decoration-none">TCP/IP</a>.
+            È particolarmente utile in ambiti come:
+            <ul class="text-start">
+                <li>Progettazione di reti aziendali e infrastrutture <a href="../pagine/glossario.html#Cloud" class="text-decoration-none">cloud</a>.</li>
+                <li>Formazione e certificazioni in ambito networking (ad esempio <a href="../pagine/glossario.html#CCNA" class="text-decoration-none">CCNA</a>, <a href="../pagine/glossario.html#CompTIA_Network" class="text-decoration-none">CompTIA Network+</a>).</li>
+                <li>Diagnostica e risoluzione dei problemi di rete grazie alla suddivisione logica dei <a href="../pagine/glossario.html#Layer" class="text-decoration-none">livelli</a>.</li>
+            </ul>
+        </p>
+        <h3 class="mt-4">Approfondimenti</h3>
+        <p class="lead">
+            Se desideri un approfondimento più dettagliato sul modello OSI, puoi leggere l'articolo completo su <a href="https://it.wikipedia.org/wiki/Modello_OSI" target="_blank" class="text-decoration-none">CIO - The OSI Model and Why It Matters</a>.
+        </p>
+    </div>
+</div>
+<!--=====================SLIDER==========================-->
+<div class="slider">
+    <div class="controllo">
+        <div class="up">
+            <i class="orientato orientato-up"><span>&#8593;</span></i>  <!--https://www.toptal.com/designers/htmlarrows/arrows/down-arrow/-->
+        </div>
+        <div class="down">
+            <i class="orientato orientato-down"><span>&#8595;</span></i>    <!--https://www.toptal.com/designers/htmlarrows/arrows/down-arrow/-->
+        </div>
+    </div>
+    <div class="wrapper">
+        <div class="left">
+            <div>
+                <h2>Applicazione</h2>
+                <p>Il Layer 7 (Livello Applicativo) è il livello più vicino all'utente e gestisce i servizi di rete direttamente con le applicazioni. 
+                    Consente la comunicazione tra applicazioni su dispositivi diversi tramite protocolli di rete come HTTP, FTP, SMTP, DNS, e altri.
+                     Si occupa di elaborare i dati applicativi e di garantire che le applicazioni possano accedere ai servizi di rete in modo corretto, interagendo direttamente con gli utenti finali.
+
+                    Un esempio di protocolli nel Layer 7 è:
+                    <a href="../pagine/informatica.html">HTTP/HTTPS (navigazione web)</a>
+                </p>
+            </div>
+            <div>
+                <h2>Presentazione</h2>
+                <p>Il Layer 6 (Livello di Presentazione) si occupa della formattazione, codifica e compressione dei dati per la trasmissione.
+                    Garantisce che i dati siano presentati in un formato comprensibile per le applicazioni, indipendentemente dalle differenze nei formati e nei sistemi. 
+                    Inoltre, si occupa della crittografia e della decodifica dei dati per garantire la sicurezza della comunicazione e per la compressione dei dati per ottimizzare la larghezza di banda.</p>
+            </div>
+            <div>
+                <h2>Sessione</h2>
+                <p>Il Layer 5 (Livello di Sessione) gestisce la creazione, il mantenimento e la terminazione delle sessioni di comunicazione tra due dispositivi. 
+                    Si occupa della sincronizzazione dei dati e del controllo del dialogo, gestendo anche eventuali interruzioni nella connessione. 
+                    Inoltre, è responsabile della gestione delle comunicazioni di lunga durata e per la gestione della sessione stessa durante l'interazione tra le applicazioni.</p>
+            </div>
+            <div>
+                <h2>Trasporto</h2>
+                <p>Il Layer 4 (Livello di Trasporto) gestisce la comunicazione end-to-end tra dispositivi, garantendo che i dati vengano trasmessi in modo affidabile, ordinato e senza errori. 
+                    Si occupa della segmentazione dei dati, del controllo del flusso e della gestione degli errori. 
+                    Il livello 4 assicura che i segmenti di dati vengano ricevuti correttamente e nell'ordine giusto, utilizzando protocolli come TCP e UDP.</p>
+            </div>
+            <div>
+                <h2>Rete</h2>
+                <p>Il Layer 3 (Livello di Rete) è responsabile del routing dei dati tra reti differenti. Utilizza indirizzi logici come gli indirizzi IP per instradare i pacchetti verso la destinazione corretta attraverso la rete. 
+                    Il livello 3 gestisce anche la segmentazione dei dati in pacchetti, l'instradamento tra reti, la gestione della congestione e la frammentazione dei pacchetti quando necessario.</p>
+            </div>
+            <div>
+                <h2>Data link</h2>
+                <p>
+                    Il Layer 2 (Livello di Data Link) gestisce la comunicazione tra due dispositivi direttamente connessi attraverso un mezzo fisico. 
+                    Si occupa di indirizzare i dati usando gli indirizzi MAC (Media Access Control), e di garantire l'affidabilità della trasmissione rilevando e correggendo errori. 
+                    Il livello 2 divide i dati in frame e gestisce l'accesso al mezzo di trasmissione.
+                    Include anche il controllo del flusso, che regola la quantità di dati inviati tra dispositivi.</p>
+            </div>
+            <div>
+                <h2>Fisico </h2>
+                <p>Il Layer 1 (Livello Fisico) del modello OSI è il primo strato e si occupa della trasmissione dei dati grezzi attraverso il mezzo fisico, come cavi, fibre ottiche o onde radio. 
+                    Gestisce la codifica dei dati in segnali elettrici, ottici o radio, la sincronizzazione del segnale e le caratteristiche fisiche dei dispositivi, come connettori e cavi. 
+                    Non tratta il contenuto dei dati, ma solo il loro trasporto fisico tra dispositivi.</p>
+            </div>
+        </div>
+        <div class="right">
+            <div>
+                <img src="../immagini/layer 1.jpg" alt="">
+            </div>
+            <div>
+                <img src="../immagini/layer2.jpg" alt="">
+            </div>
+            <div>
+                <img src="../immagini/layer 3.jpg" alt="">
+            </div>
+            <div>
+                <img src="../immagini/layer4.jpg" alt="">
+            </div>
+            <div>
+                <img src="../immagini/layer5.jpg" alt="">
+            </div>
+            <div>
+                <img src="../immagini/layer6.jpg" alt="">
+            </div>
+            <div>
+                <img src="../immagini/layer7.jpg" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <!--=====================FOOTER==========================-->
+    <footer class="site-footer">
+        <p>David Negrello 5F</p>
+    </footer>
+
+    <script src="../js/index.js"></script>
+    <script src="../js/sistemi.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
