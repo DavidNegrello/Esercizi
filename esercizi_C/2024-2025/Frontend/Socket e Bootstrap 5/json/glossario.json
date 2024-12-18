@@ -1,0 +1,62 @@
+{
+    "title": "Glossario",
+    "description": "Benvenuto nel glossario. Qui troverai una raccolta di termini con le relative definizioni.",
+    "terms": [
+      {
+        "id": "term1",
+        "title": "Inter-Process Communication (IPC)",
+        "definition": "<strong>Inter-Process Communication (IPC)</strong>: è la comunicazione tra processi di un sistema operativo. I processi possono essere separati (su macchine diverse) o locali (nello stesso sistema)."
+      },
+      {
+        "id": "term2",
+        "title": "TCP (Transmission Control Protocol)",
+        "definition": "<strong>TCP</strong>: Un protocollo di trasporto orientato alla connessione che garantisce la consegna dei pacchetti di dati in modo affidabile, in ordine e senza duplicazioni. Utilizzato per applicazioni dove è necessaria l'affidabilità, come il web (HTTP/HTTPS)."
+      },
+      {
+        "id": "term3",
+        "title": "AF_INET",
+        "definition": "<strong>AF_INET</strong>: Una famiglia di socket che consente la comunicazione tra dispositivi remoti tramite Internet, utilizzando indirizzi IP. È la famiglia più comune per la comunicazione su reti TCP/IP."
+      },
+      {
+        "id": "term4",
+        "title": "AF_UNIX",
+        "definition": "<strong>AF_UNIX</strong>: Una famiglia di socket che consente la comunicazione tra processi locali su sistemi Unix. Anche conosciuti come \"Unix Domain Sockets\", sono usati per la comunicazione tra applicazioni sulla stessa macchina."
+      },
+      {
+        "id": "term5",
+        "title": "ISO",
+        "definition": "<strong>ISO (International Organization for Standardization)</strong>: È l'organizzazione che sviluppa e pubblica standard internazionali, tra cui quelli relativi alla comunicazione di rete."
+      },
+      {
+        "id": "term6",
+        "title": "Interoperabilità",
+        "definition": "<strong>Interoperabilità</strong>: La capacità di dispositivi o sistemi diversi di lavorare insieme, comunicando senza problemi nonostante possano appartenere a tecnologie o piattaforme diverse."
+      },
+      {
+        "id": "term7",
+        "title": "Layer",
+        "definition": "<strong>Layer</strong>: Un \"layer\" o \"livello\" è una divisione del processo di comunicazione in una rete, con ciascun livello che gestisce un aspetto specifico della comunicazione."
+      },
+      {
+        "id": "term8",
+        "title": "TLS",
+        "definition": "<strong>TLS (Transport Layer Security)</strong>: è un protocollo di crittografia utilizzato per garantire la sicurezza delle comunicazioni su una rete, proteggendo i dati da intercettazioni e manomissioni. È l'evoluzione del protocollo SSL."
+      },
+      {
+        "id": "term9",
+        "title": "SSL",
+        "definition": "<strong>SSL (Secure Socket Layer)</strong>: è un protocollo di crittografia che garantisce la sicurezza della comunicazione tra client e server. È stato ampiamente utilizzato per proteggere la privacy dei dati durante il trasferimento su Internet. È stato sostituito da TLS per motivi di sicurezza."
+      },
+      {
+        "id": "term10",
+        "title": "Privacy",
+        "definition": "<strong>Privacy</strong>: La privacy si riferisce alla protezione delle informazioni personali degli utenti, garantendo che i dati siano raccolti, conservati e utilizzati in modo sicuro e solo per scopi specifici, evitando accessi non autorizzati."
+      },
+      {
+        "id": "term11",
+        "title": "Man-in-the-Middle (MitM)",
+        "definition": "<strong>Man-in-the-Middle (MitM)</strong>: Un attacco \"man-in-the-middle\" si verifica quando un attaccante intercetta e manipola la comunicazione tra due parti senza che esse ne siano consapevoli, mettendo a rischio la confidenzialità e l'integrità dei dati trasmessi."
+      }
+    ]
+  }
+  
