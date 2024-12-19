@@ -1,15 +1,15 @@
 [
-    {
-      "id": 1,
-      "domanda": "Qual è il capitale dell'Italia?"
-    },
-    {
-      "id": 2,
-      "domanda": "Qual è il risultato di 5 + 7?"
-    },
-    {
-      "id": 3,
-      "domanda": "Che cos'è la fotosintesi?"
-    }
-  ]
+  {
+    "id": 1,
+    "domanda": "Cos'è una ACL (Access Control List) e a cosa serve?"
+  },
+  {
+    "id": 2,
+    "domanda": "Qual è la differenza tra una ACL 'allow' e una 'deny'?"
+  },
+  {
+    "id": 3,
+    "domanda": "Come funzionano le ACL nelle reti IP per filtrare il traffico?"
+  }
+]
   

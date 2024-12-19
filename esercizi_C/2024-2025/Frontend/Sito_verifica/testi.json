@@ -1,5 +1,37 @@
 [
-    { "id": 2, "title": "Testo A", "description": "Testo che appare quando si clicca sul secondo bottone." },
-    { "id": 4, "title": "Testo B", "description": "Testo che appare quando si clicca sul quarto bottone." },
-    { "id": 6, "title": "Consegna", "description": "Consegna della tua risposta." }
+    {
+        "id": 1,
+        "titolo": "La nascita di Roma",
+        "contenuto": "Secondo la leggenda, Roma fu fondata nel 753 a.C. dai fratelli Romolo e Remo, allevati da una lupa. Situata lungo le rive del Tevere, la città crebbe rapidamente grazie alla sua posizione strategica e alle sue fertili terre. Nei secoli successivi, Roma si trasformò da un piccolo villaggio in un vasto impero che dominava gran parte del mondo conosciuto. La sua cultura, il suo diritto e la sua architettura influenzano ancora oggi la civiltà moderna.",
+        "domande": [
+            {
+                "domanda": "In che anno è stata fondata Roma?",
+                "opzioni": ["753 a.C.", "476 d.C.", "1492", "1000"],
+                "rispostaCorretta": "753 a.C."
+            },
+            {
+                "domanda": "Chi erano i fondatori di Roma secondo la leggenda?",
+                "opzioni": ["Romolo e Remo", "Cesare e Augusto", "Marco Aurelio e Traiano", "Pietro e Paolo"],
+                "rispostaCorretta": "Romolo e Remo"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "titolo": "La Divina Commedia di Dante",
+        "contenuto": "La Divina Commedia, scritta da Dante Alighieri tra il 1308 e il 1321, è considerata una delle opere più grandi della letteratura mondiale. Divisa in tre cantiche: Inferno, Purgatorio e Paradiso, rappresenta un viaggio allegorico attraverso i regni dell'aldilà. Dante esplora temi di peccato, redenzione e salvezza, offrendo una profonda riflessione sulla condizione umana e il rapporto con il divino. Con personaggi indimenticabili e una struttura narrativa complessa, l'opera ha influenzato profondamente la cultura occidentale.",
+        "domande": [
+            {
+                "domanda": "Chi ha scritto la Divina Commedia?",
+                "opzioni": ["Dante Alighieri", "Petrarca", "Boccaccio", "Manzoni"],
+                "rispostaCorretta": "Dante Alighieri"
+            },
+            {
+                "domanda": "Quali sono le tre cantiche della Divina Commedia?",
+                "opzioni": ["Inferno, Purgatorio, Paradiso", "Terra, Cielo, Inferno", "Vita, Morte, Aldilà", "Passato, Presente, Futuro"],
+                "rispostaCorretta": "Inferno, Purgatorio, Paradiso"
+            }
+        ]
+    }
 ]
+

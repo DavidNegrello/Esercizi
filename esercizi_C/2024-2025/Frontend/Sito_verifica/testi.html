@@ -8,11 +8,23 @@
 </head>
 <body>
 
-    <!-- Barra di navigazione -->
-    <nav>
-        <a href="index.html">Home</a>
-        <div id="timer">
-            <p>Tempo Rimanente: <span id="countdown">10:00</span></p>
+<!-- Contenitore principale -->
+<div class="main-container">
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-links">
+            <a href="index.html">Home</a>
+            <a class="box" onclick="window.location.href='domande.html?id=1'">Domanda 1</a>
+            <a class="box" onclick="window.location.href='domande.html?id=2'">Domanda 2</a>
+            <a class="box" onclick="window.location.href='domande.html?id=3'">Domanda 3</a>
+            <a class="box" onclick="window.location.href='testi.html?id=1'">Testo A</a>
+            <a class="box" onclick="window.location.href='testi.html?id=2'">Testo B</a>
+        </div>
+        <div class="navbar-right">
+            <button class="box consegna" id="submit-answers" onclick="saveAnswers()">Consegna</button>
+            <div id="timer">
+                <p>Tempo Rimanente: <span id="countdown">10:00</span></p>
+            </div>
         </div>
     </nav>
 
@@ -35,55 +47,21 @@
             <ul class="options" id="options">
                 <!-- Le opzioni di risposta verranno caricate qui -->
             </ul>
-            <div>
-                <button class="back-btn" id="prev-question" style="display:none;">← Torna indietro</button>
-                <button class="arrow-btn" id="next-question" style="display:none;">→ Prossima domanda</button>
+            <div class="navigation-buttons">
+                <button class="back-btn" id="prev-question">← Domanda precedente</button>
+                <button class="arrow-btn" id="next-question">→ Domanda successiva</button>
             </div>
-        </div>
+        </div>            
     </div>
 
     <footer>
         <p>David Negrello 5^F</p>
     </footer>
+</div>
 
-    <!-- Script -->
-    <script>
-        async function loadData(file) {
-            try {
-                const response = await fetch(file);
-                if (!response.ok) throw new Error('Errore nel caricamento del file JSON');
-                return await response.json();
-            } catch (error) {
-                console.error('Errore:', error);
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', async function () {
-            const urlParams = new URLSearchParams(window.location.search);
-            const id = parseInt(urlParams.get('id'), 10);
-
-            if (!id) {
-                document.getElementById('content').innerHTML = '<p>Testo non trovato.</p>';
-                return;
-            }
-
-            const data = await loadData('testi.json');
-            if (!data) return;
-
-            const item = data.find(t => t.id === id);
-            if (item) {
-                document.getElementById('content').innerHTML = `
-                    <h2>${item.titolo}</h2>
-                    <p>${item.contenuto}</p>
-                `;
-            } else {
-                document.getElementById('content').innerHTML = '<p>Testo non trovato.</p>';
-            }
-        });
-    </script>
-    <script src="script_js/script_testi.js"></script> <!-- Collega il file JavaScript esterno -->
-    <script src="script_js/script.js"></script> <!-- Collegamento allo script generale per il timer-->
-
+<!-- Script -->
+<script src="script_js/script_testi.js"></script> <!-- Collega il file JavaScript esterno -->
+<script src="script_js/script.js"></script> <!-- Collegamento allo script generale per il timer-->
 
 </body>
 </html>

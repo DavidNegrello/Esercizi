@@ -8,26 +8,52 @@
 </head>
 <body>
 
+<!-- Contenitore principale -->
+<div class="main-container">
     <!-- Navbar -->
-    <nav>
-        <a href="index.html">Home</a>
-        <div id="timer">
-            <p>Tempo Rimanente: <span id="countdown">10:00</span></p>
+    <nav class="navbar">
+        <div class="navbar-links">
+            <a href="index.html">Home</a>
+            <a class="box" onclick="window.location.href='domande.html?id=1'">Domanda 1</a>
+            <a class="box" onclick="window.location.href='domande.html?id=2'">Domanda 2</a>
+            <a class="box" onclick="window.location.href='domande.html?id=3'">Domanda 3</a>
+            <a class="box" onclick="window.location.href='testi.html?id=1'">Testo A</a>
+            <a class="box" onclick="window.location.href='testi.html?id=2'">Testo B</a>
+        </div>
+        <div class="navbar-right">
+            <button class="box consegna" id="submit-answers" onclick="saveAnswers()">Consegna</button>
+            <div id="timer">
+                <p>Tempo Rimanente: <span id="countdown">10:00</span></p>
+            </div>
         </div>
     </nav>
 
-    <!-- Contenitore della Domanda -->
-    <div id="question-container">
-        <div id="content">
+    <!-- Contenitore principale con la domanda e il form di risposta -->
+    <div class="container">
+        <div class="text-section" id="content">
             <!-- La domanda verrà caricata qui -->
+            <h2>Domanda Esempio</h2>
+            <p>
+                Questa è una domanda di esempio. Rispondi alla domanda inserendo la tua risposta nel campo sottostante.
+            </p>
         </div>
-        <textarea id="response-input" rows="5" placeholder="Scrivi la tua risposta qui..."></textarea>
-        <div id="submit-container">
-            <button id="submit-button" onclick="submitAnswer()">Invia Risposta</button>
+
+        <!-- Sezione per rispondere alla domanda -->
+        <div class="response-section">
+            <textarea id="response-input" rows="5" placeholder="Scrivi la tua risposta qui..."></textarea>
+            <div id="submit-container">
+                <button id="submit-button" onclick="submitAnswer()">Invia Risposta</button>
+            </div>
         </div>
     </div>
 
-    <script src="script_js/script_domande.js"></script>
-    <script src="script_js/script.js"></script> <!-- Collegamento allo script generale per il timer-->
+    <footer>
+        <p>David Negrello 5^F</p>
+    </footer>
+</div>
+
+<script src="script_js/script_domande.js"></script>
+<script src="script_js/script.js"></script> <!-- Collegamento allo script generale per il timer-->
+
 </body>
 </html>

@@ -1,85 +1,111 @@
-/* Container principale per il layout */
-.container {
+/* Impostazioni generali */
+body {
+    background-color: #f8f9fa;
+    font-family: Arial, sans-serif;
+    margin: 0;
     display: flex;
-    justify-content: space-between;
-    padding: 20px;
-    flex-wrap: wrap; /* Rende il layout responsive */
-    min-height: 80vh; /* Per assicurare che il contenuto occupi la maggior parte della pagina */
-}
-
-/* Sezione testo a sinistra */
-.text-section {
-    flex: 1;
-    margin-right: 20px;
-    min-width: 300px; /* Dimensione minima per il testo */
-}
-
-/* Sezione domanda a destra */
-.question-section {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
-    min-width: 300px;
+    align-items: center;
+    min-height: 80vh;
 }
 
-/* Stili per il timer e la navbar */
-nav {
+/* Contenitore principale che racchiude tutta la pagina */
+.main-container {
+    max-width: 1200px; /* Imposta la larghezza massima */
+    width: 100%; /* Imposta la larghezza al 100% dello schermo fino al max-width */
+    padding: 20px;
+}
+
+/* Contenitore del contenuto */
+.container {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Navbar */
+.navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #333;
+    background-color: #343a40;
     padding: 10px 20px;
 }
 
-nav a {
+.navbar-links {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.navbar-links a {
     color: white;
     text-decoration: none;
-    font-size: 18px;
+    margin-right: 15px;
+    font-weight: bold;
+    padding: 5px 10px; /* Aggiungi spazio interno ai link */
+    transition: all 0.3s ease; /* Aggiungi una transizione per l'effetto hover */
+}
+
+.navbar-links a:hover {
+    color: #f1c40f; /* Colore dorato quando ci passi sopra */
+    text-decoration: underline;
+    background-color: rgba(255, 255, 255, 0.2); /* Colore di sfondo semitrasparente */
+    border-radius: 5px; /* Angoli arrotondati per l'hover */
+    transform: scale(1.05); /* Aggiungi un effetto di ingrandimento */
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-right button {
+    margin-right: 20px;
+    padding: 8px 16px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.navbar-right button:hover {
+    background-color: #2980b9; /* Cambia il colore al passaggio del mouse */
 }
 
 #timer {
     color: white;
-    font-size: 18px;
+    font-weight: bold;
 }
 
-/* Domanda e opzioni */
-.question {
+/* Sezione del testo e della domanda */
+.container .text-section,
+.container .question-section {
     margin-bottom: 20px;
-    font-size: 18px;
 }
 
-.options {
-    list-style-type: none;
-    padding: 0;
-}
-
-.options li {
-    margin: 5px 0;
-}
-
-.options input {
-    margin-right: 10px;
-}
-
-.arrow-btn, .back-btn {
+/* Footer */
+footer {
+    text-align: center;
     margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #007bff;
+    padding: 10px 0;
+    background-color: #343a40;
     color: white;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    margin-right: 10px;
+    border-radius: 0 0 8px 8px;
 }
 
-.arrow-btn:hover, .back-btn:hover {
-    background-color: #0056b3;
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 /* Responsività per schermi piccoli */
-@media (max-width: 768px) {
+@media (max-width: 750px) {
     .container {
         flex-direction: column;
         align-items: center;
@@ -89,15 +115,20 @@ nav a {
         width: 100%;
         margin-right: 0;
     }
-}
 
-/* Footer */
-footer {
-    text-align: center;
-    padding: 10px;
-    background-color: #333;
-    color: white;
-    position: absolute;
-    width: 100%;
-    bottom: 0;
+    .navbar-links {
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 10px; /* Aggiungi margine tra i link */
+    }
+
+    .navbar-right {
+        margin-top: 10px;
+        justify-content: center;
+    }
+
+    .navbar-links a {
+        margin-right: 0; /* Rimuovi il margine destro per evitare spazi inutili */
+        margin-bottom: 10px; /* Aggiungi margine tra i link */
+    }
 }

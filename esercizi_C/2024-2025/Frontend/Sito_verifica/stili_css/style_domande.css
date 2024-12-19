@@ -1,110 +1,159 @@
-/* Reset delle impostazioni di base */
-* {
+/* Impostazioni generali */
+body {
+    background-color: #f8f9fa;
+    font-family: Arial, sans-serif;
     margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
 }
 
-/* Impostazioni globali */
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f7fc;
-    color: #333;
-    line-height: 1.6;
-    padding: 0;
+/* Contenitore principale che racchiude tutta la pagina */
+.main-container {
+    max-width: 1200px; /* Imposta la larghezza massima */
+    width: 100%; /* Imposta la larghezza al 100% dello schermo fino al max-width */
+    padding: 20px;
+}
+
+/* Contenitore del contenuto */
+.container {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
 }
 
 /* Navbar */
-nav {
+.navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #4CAF50;
-    color: white;
-    padding: 15px 30px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #343a40;
+    padding: 10px 20px;
 }
 
-nav a {
+.navbar-links {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.navbar-links a {
     color: white;
     text-decoration: none;
-    font-size: 18px;
+    margin-right: 15px;
+    font-weight: bold;
+    padding: 5px 10px;
+    transition: all 0.3s ease;
+}
+
+.navbar-links a:hover {
+    color: #f1c40f;
+    text-decoration: underline;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    transform: scale(1.05);
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-right button {
     margin-right: 20px;
+    padding: 8px 16px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-#timer p {
-    font-size: 14px;
+.navbar-right button:hover {
+    background-color: #2980b9;
 }
 
-/* Contenitore principale centrato */
-#question-container {
-    width: 80%;
-    max-width: 900px;
-    margin: 40px auto;
-    background: #ffffff;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-    background: linear-gradient(145deg, #f9f9f9, #f1f1f1);
-    text-align: center;
+#timer {
+    color: white;
+    font-weight: bold;
 }
 
-/* Testo della domanda centrato */
-#content h2, #content p {
-    font-size: 1.8em;
-    color: #333;
-    margin-bottom: 20px;
-    line-height: 1.4;
+/* Sezione per la risposta */
+.response-section {
+    margin-top: 20px;
 }
 
-/* Campo di testo per la risposta */
-#response-input {
+textarea {
     width: 100%;
-    padding: 12px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
     font-size: 16px;
-    margin: 20px 0;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    transition: border-color 0.3s ease;
+    resize: vertical;
 }
 
-#response-input:focus {
-    outline: none;
-    border-color: #4CAF50;
-}
-
-/* Bottone di invio centrato */
 #submit-container {
-    text-align: center;
+    margin-top: 10px;
 }
 
 #submit-button {
-    padding: 12px 25px;
-    background-color: #4CAF50;
+    background-color: #28a745;
     color: white;
+    padding: 10px 20px;
     border: none;
-    border-radius: 8px;
+    border-radius: 5px;
     cursor: pointer;
-    font-size: 18px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    transition: background-color 0.3s ease;
 }
 
 #submit-button:hover {
-    background-color: #45a049;
-    transform: translateY(-3px);
+    background-color: #218838;
 }
 
-#submit-button:active {
-    transform: translateY(1px);
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px 0;
+    background-color: #343a40;
+    color: white;
+    border-radius: 0 0 8px 8px;
 }
 
-/* Timer */
-#timer p {
-    font-size: 16px;
-    font-weight: bold;
-    color: #333;
-    padding: 8px 16px;
-    background-color: #fff;
-    border-radius: 25px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Responsività per schermi piccoli */
+@media (max-width: 750px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .text-section, .response-section {
+        width: 100%;
+    }
+
+    .navbar-links {
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .navbar-right {
+        margin-top: 10px;
+        justify-content: center;
+    }
+
+    .navbar-links a {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
 }
