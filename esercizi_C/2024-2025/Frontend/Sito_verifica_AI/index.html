@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page con Timer e Bottoni</title>
+
+    <!-- Includi il file layout per la griglia e la struttura -->
+    <!-- <link rel="stylesheet" href="stili_css/layout.css">-->
+
+    <!-- Includi il file styles per gli stili -->
+    <link rel="stylesheet" href="stili_css/style.css">
+</head>
+<body>
+
+<!-- Contenitore principale -->
+<div class="main-container">
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-links">
+            <a href="index.html">Home</a>
+        </div>
+        <div class="navbar-right">
+            <button class="box consegna" onclick="window.location.href='consegna.html'">Consegna</button>
+            <div id="timer">
+                <p>Tempo Rimanente: <span id="countdown">10:00</span></p>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Griglia dei Bottoni -->
+    <div class="container">
+        <!-- Colonna di sinistra (Testi e Consegna) -->
+        <button class="box" onclick="window.location.href='domande.html?id=1'">Domanda 1</button>
+        <button class="box" onclick="window.location.href='testi.html?id=1'">Testo A</button>
+        <button class="box" onclick="window.location.href='domande.html?id=2'">Domanda 2</button>
+        <button class="box" onclick="window.location.href='testi.html?id=2'">Testo B</button>
+        <button class="box" onclick="window.location.href='domande.html?id=3'">Domanda 3</button>
+        <button class="box consegna" id="submit-answers" onclick="saveAnswers()">Consegna</button>
+    </div>
+    <!-- Footer -->
+<footer>
+    <p>David Negrello 5^F</p>
+</footer>
+</div>
+
+
+
+<!-- Script per il Timer e la navigazione -->
+<script src="script_js/script.js"></script>
+
+<script>
+    // Funzione per navigare alla pagina delle domande o dei testi
+    function navigateToPage(id, type) {
+        let url = '';
+        if (type === 'domande') {
+            url = `domande.html?id=${id}`;
+        } else if (type === 'testi') {
+            url = `testi.html?id=${id}`;
+        }
+        // Naviga alla pagina con i parametri
+        window.location.href = url;
+    }
+</script>
+
+</body> 
+</html>
