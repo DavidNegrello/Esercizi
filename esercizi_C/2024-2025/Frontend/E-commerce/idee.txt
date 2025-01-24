@@ -1,0 +1,27 @@
+Dividere tutto a fasce
+Es componenti del sito: testo-foto, foto-testo, foto con sotto il testo.
+Le varianti delle caratteristiche: una maglietta = tessuto, colore, taglia
+I singoli prodotti se hanno varianti hanno il prodotto generale con al suo interno le varianti come taglia-colore
+Sito internet esempio: YOOX
+
+il carrello si può salvare nel browser o nel database, ma se siamo non loggati e prima di farlo abbiamo aggiunto gli oggetti, bisogna spostare la lista all'utente loggato
+
+
+Consegna:
+Preparare bozza di un sito html di un e-commerce con:
+1) pagina singolo prodotto;
+2) pagina di archivio prodotti;
+3) carrello.
+Ogni singola pagina dovrà essere gestita da un JSon e non dovrà essere presente, all'interno dell'HTML, 
+alcun riferimento testuale (solo struttura). 
+Il JSon conterrà tutti i contenuti testuali che verranno riversati all'interno  dell'HTML.
+
+
+
+Sito di gadget gaming
+Home page:
+- navbar con immagine di sfondo nella navbar
+- la home page carica i prodotti con più richiesta
+- nelle singole pagine mettere un'immagine a sinistra con tutto il testo a destra (es amazon)
+- in base al prodotto ci saranno varie caratteristiche diverse (es. tastiera 60%, 100%, ecc.)
+- 
