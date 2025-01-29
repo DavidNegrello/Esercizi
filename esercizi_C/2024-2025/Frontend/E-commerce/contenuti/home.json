@@ -1,0 +1,19 @@
+{
+    "navbar": [
+        {"name": "Home", "link": "#"},
+        {"name": "Servizi", "link": "#servizi"},
+        {"name": "Contatti", "link": "#contatti"},
+        {"name": "Contatti", "link": "#contatti"}
+    ],
+    "content": [
+        {
+            "title": "Benvenuto nella nostra Home Page!",
+            "text": "Questa è una homepage dinamica che carica i contenuti da un file JSON."
+        },
+        {
+            "title": "I nostri Servizi",
+            "text": "Offriamo soluzioni su misura per ogni esigenza."
+        }
+    ],
+    "footer": "© 2025 Tutti i diritti riservati - Nome Azienda"
+}
