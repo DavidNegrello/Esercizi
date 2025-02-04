@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Componenti - PC Componenti</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../stili/home.css">
+    <link rel="icon" type="image/png" href="../immagini/favicon_io/favicon.ico">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="../index.html">
+            <img src="../immagini/favicon_io/favicon.ico" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
+            PC Componenti
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="../pagine/preassemblati.html">Preassemblati</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="componentiDropdown" role="button">
+                        Componenti
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="componentiDropdown">
+                        <li><a class="dropdown-item" href="prodotti.html?categoria=CPU">CPU</a></li>
+                        <li><a class="dropdown-item" href="prodotti.html?categoria=GPU">GPU</a></li>
+                        <li><a class="dropdown-item" href="prodotti.html?categoria=RAM">RAM</a></li>
+                        <li><a class="dropdown-item" href="prodotti.html?categoria=PSU">Alimentatori (PSU)</a></li>
+                        <li><a class="dropdown-item" href="prodotti.html?categoria=Storage">Storage (SSD/HDD)</a></li>
+                        <li><a class="dropdown-item" href="prodotti.html?categoria=Case">Case PC</a></li>
+                        <li><a class="dropdown-item" href="prodotti.html?categoria=Raffreddamento">Sistemi di raffreddamento</a></li>
+                        <li><a class="dropdown-item" href="prodotti.html?categoria=SchedaMadre">Schede Madri</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <h2 class="text-center">Componenti più acquistate</h2>
+    <div id="prodotti-popolari" class="row"></div>
+</div>
+
+<script src="../jsscript.js"></script>
+<script src="../js/function.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

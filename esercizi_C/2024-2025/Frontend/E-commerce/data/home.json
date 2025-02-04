@@ -1,0 +1,34 @@
+{
+    "hero": {
+      "titolo": "Tutto per il tuo PC da Gaming e Lavoro",
+      "descrizione": "Trova le migliori componenti per assemblare il tuo PC perfetto.",
+      "bottone": {
+        "testo": "Scopri i prodotti",
+        "link": "../pagine/componenti.html"
+      }
+    },
+    "prodotti_piu_acquistati": [
+      {
+        "id": 1,
+        "nome": "Intel Core i9-13900K",
+        "categoria": "CPU",
+        "prezzo": 649.99,
+        "immagine": "img/cpu1.jpg"
+      },
+      {
+        "id": 2,
+        "nome": "NVIDIA RTX 4090",
+        "categoria": "GPU",
+        "prezzo": 1699.99,
+        "immagine": "img/gpu1.jpg"
+      },
+      {
+        "id": 3,
+        "nome": "Corsair Vengeance 32GB DDR5",
+        "categoria": "RAM",
+        "prezzo": 149.99,
+        "immagine": "img/ram1.jpg"
+      }
+    ]
+  }
+  
