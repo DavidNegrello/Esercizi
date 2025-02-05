@@ -61,3 +61,87 @@ document.addEventListener("DOMContentLoaded", function() {
         })
         .catch(error => console.error("Errore nel caricamento del JSON:", error));
 });
+
+
+//====================CATALOGO=====================
+document.addEventListener("DOMContentLoaded", function () {
+    fetch("../data/catalogo.json")
+        .then(response => response.json())
+        .then(data => {
+            // Caricamento Sidebar
+            let sidebarHtml = `<h5>${data.sidebar.titolo}</h5>`;
+
+            // Barra di ricerca
+            sidebarHtml += `<input type="text" id="search-bar" class="form-control mb-3" placeholder="${data.sidebar.filtri.ricerca}">`;
+
+            // Categorie
+            sidebarHtml += `<h6>Categorie</h6><ul id="category-list" class="list-unstyled">`;
+            data.sidebar.filtri.categorie.forEach(cat => {
+                sidebarHtml += `<li><input type="checkbox" class="category-filter" value="${cat}"> ${cat}</li>`;
+            });
+            sidebarHtml += `</ul>`;
+
+            // Filtro Prezzo
+            sidebarHtml += `
+                <h6>Prezzo</h6>
+                <input type="range" id="price-filter" class="form-range" min="${data.sidebar.filtri.prezzo.min}" max="${data.sidebar.filtri.prezzo.max}" step="${data.sidebar.filtri.prezzo.step}">
+                <span id="price-label">${data.sidebar.filtri.prezzo.min} - ${data.sidebar.filtri.prezzo.max}€</span>
+            `;
+
+            // Filtri per Marca
+            sidebarHtml += `<h6>Marca</h6><ul id="brand-list" class="list-unstyled">`;
+            data.sidebar.filtri.marche.forEach(marca => {
+                sidebarHtml += `<li><input type="checkbox" class="brand-filter" value="${marca}"> ${marca}</li>`;
+            });
+            sidebarHtml += `</ul>`;
+
+            document.getElementById("sidebar").innerHTML = sidebarHtml;
+
+            // Caricamento Prodotti
+            let prodottiHtml = "";
+            data.prodotti.forEach(prodotto => {
+                prodottiHtml += `
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100">
+                            <img src="${prodotto.immagine}" class="card-img-top" alt="${prodotto.nome}">
+                            <div class="card-body">
+                                <h5 class="card-title">${prodotto.nome}</h5>
+                                <p class="card-text">${prodotto.categoria} - ${prodotto.marca}</p>
+                                <p class="card-text fw-bold">${prodotto.prezzo}€</p>
+                                <a href="#" class="btn btn-primary">Aggiungi al carrello</a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            document.getElementById("catalogo-prodotti").innerHTML = prodottiHtml;
+        })
+        .catch(error => console.error("Errore nel caricamento del catalogo:", error));
+});
+
+
+
+
+
+//====================FOOTER======================
+document.addEventListener("DOMContentLoaded", function () {
+    fetch("../data/footer.json")
+        .then(response => response.json())
+        .then(data => {
+            // Social media
+            let socialHtml = "";
+            data.social.forEach(social => {
+                socialHtml += `<a href="${social.link}" class="text-light me-3"><i class="${social.icon} fa-lg"></i></a>`;
+            });
+            document.getElementById("footer-social").innerHTML = socialHtml;
+
+            // Email
+            document.getElementById("footer-email").textContent = data.email;
+            document.getElementById("footer-email").href = `mailto:${data.email}`;
+
+            // Copyright
+            document.getElementById("footer-copyright").innerHTML = data.copyright;
+        })
+        .catch(error => console.error("Errore nel caricamento del footer:", error));
+});
+

@@ -1,3 +1,9 @@
+/* Navbar dropdown effetto al passaggio del mouse */
+.nav-item.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+
 /* Hero section */
 .hero {
     position: relative;
@@ -27,15 +33,52 @@
 
 
 /* Stile per le card dei prodotti */
-.card {
-    transition: transform 0.2s ease-in-out;
-}
 
 .card:hover {
     transform: scale(1.05);
 }
 
-/* Navbar dropdown effetto al passaggio del mouse */
-.nav-item.dropdown:hover .dropdown-menu {
-    display: block;
+.card {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Tutte le card avranno la stessa altezza */
+    transition: transform 0.2s ease-in-out;
 }
+
+.card-img-top {
+    width: 100%;
+    height: 200px; /* Mantieni un'altezza fissa */
+    object-fit: contain; /* L'immagine si ridimensiona senza essere tagliata */
+    background-color: #f8f9fa; /* Aggiunge uno sfondo neutro per immagini trasparenti */
+    padding: 10px; /* Opzionale: aggiunge spazio intorno all'immagine */
+}
+
+
+.card-body {
+    flex-grow: 1; /* Il contenuto della card si espande in modo uniforme */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Distribuisce gli elementi */
+}
+
+footer {
+    background-color: #222;
+    padding: 20px 0;
+}
+
+footer h5 {
+    font-weight: bold;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    footer {
+        text-align: center;
+    }
+}
+
+

@@ -25,3 +25,7 @@ Home page:
 - in base al prodotto ci saranno varie caratteristiche diverse (es. tastiera 60%, 100%, ecc.)
 - La navbar deve essere completa con liste, categorie.
 - Navbar: Saldi, Preassemblati, accessori,
+
+Catalogo:
+-barra di ricerca
+-filtri di ricerca (come il prezzo massimo)

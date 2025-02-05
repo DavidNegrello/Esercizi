@@ -1,0 +1,30 @@
+{
+    "sidebar": {
+        "titolo": "Filtri",
+        "filtri": {
+          "ricerca": "Cerca un prodotto...",
+          "categorie": ["CPU", "GPU", "RAM", "PSU", "Storage", "Case", "Scheda Madre", "Raffreddamento"],
+          "prezzo": { "min": 0, "max": 2000, "step": 10 },
+          "marche": ["Intel", "AMD", "NVIDIA", "Corsair", "MSI", "ASUS"]
+        }
+      },
+    "prodotti": [
+      {
+        "id": 1,
+        "nome": "Intel Core i9-14900K",
+        "categoria": "CPU",
+        "prezzo": 649.99,
+        "marca": "Intel",
+        "immagine": "../immagini/CPU/i9_14.jpeg"
+      },
+      {
+        "id": 2,
+        "nome": "ASUS ROG RTX 4090",
+        "categoria": "GPU",
+        "prezzo": 1799.99,
+        "marca": "Asus",
+        "immagine": "../immagini/GPU/4090_asus.jpeg"
+      }
+    ]
+  }
+  
