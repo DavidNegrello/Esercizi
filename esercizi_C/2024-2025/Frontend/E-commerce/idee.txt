@@ -29,3 +29,7 @@ Home page:
 Catalogo:
 -barra di ricerca
 -filtri di ricerca (come il prezzo massimo)
+
+Carrello:
+-visualizzare tutti i prodotti
+-mettere un tasto come cestino per cancellare i prodotti

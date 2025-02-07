@@ -2,6 +2,10 @@
 .nav-item.dropdown:hover .dropdown-menu {
     display: block;
 }
+.navbar .nav-link i {
+    margin-right: 8px;
+    font-size: 1.2em;
+}
 
 
 /* Hero section */

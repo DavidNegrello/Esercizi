@@ -5,7 +5,7 @@
           "ricerca": "Cerca un prodotto...",
           "categorie": ["CPU", "GPU", "RAM", "PSU", "Storage", "Case", "Scheda Madre", "Raffreddamento"],
           "prezzo": { "min": 0, "max": 2000, "step": 10 },
-          "marche": ["Intel", "AMD", "NVIDIA", "Corsair", "MSI", "ASUS"]
+          "marche": ["Intel", "AMD", "NVIDIA", "Corsair", "MSI", "ASUS","NZXT"]
         }
       },
     "prodotti": [
@@ -24,6 +24,30 @@
         "prezzo": 1799.99,
         "marca": "Asus",
         "immagine": "../immagini/GPU/4090_asus.jpeg"
+      },
+      {
+        "id": 3,
+        "nome": "Radeon RX 7900 XT",
+        "categoria": "GPU",
+        "prezzo": 799.99,
+        "marca": "AMD",
+        "immagine": "../immagini/GPU/7900xt.jpeg"
+      },
+      {
+        "id": 4,
+        "nome": "Trident-Z Royal 32GB DDR5",
+        "categoria": "RAM",
+        "prezzo": 249.99,
+        "marca": "Trident",
+        "immagine": "../immagini/RAM/tridentZ_royal.jpeg"
+      },
+      {
+        "id": 5,
+        "nome": "NZXT H9 Elite",
+        "categoria": "Case",
+        "prezzo": 249.99,
+        "marca": "NZXT",
+        "immagine": "../immagini/CASE/H9.jpeg"
       }
     ]
   }
