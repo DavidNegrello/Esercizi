@@ -6,6 +6,7 @@ Sito internet esempio: YOOX
 
 il carrello si può salvare nel browser o nel database, ma se siamo non loggati e prima di farlo abbiamo aggiunto gli oggetti, bisogna spostare la lista all'utente loggato
 
+Siti utili: Freep!k
 
 Consegna:
 Preparare bozza di un sito html di un e-commerce con:
