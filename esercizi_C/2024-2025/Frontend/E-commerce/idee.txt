@@ -8,6 +8,12 @@ il carrello si può salvare nel browser o nel database, ma se siamo non loggati 
 
 Siti utili: Freep!k
 
+Requisiti:
+-tabella  con le varianti di prodotto (almeno 2), e cambia la foto in base alla selezione
+-carrello con gestione del BUNDLE = viene visualizzato il prezzo del BUNDLE dove vengono mostrati i prezzi a 0 (nel mio caso è applicabile nei preassemblati)
+-personalizzazione = quando i prodotti sono soggetti a visualizzazione, nel carrello non vengono sommati (nel mio caso metto una textbox nella pagina di un preassemblato)
+-codice sconto = tabella con: id,tipologia,codice, usato/non usato. Nel totale va a cambiare il prezzo di una sola cosa o tutto il prezzo generale
+
 Consegna:
 Preparare bozza di un sito html di un e-commerce con:
 1) pagina singolo prodotto;

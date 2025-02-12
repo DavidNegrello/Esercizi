@@ -1,34 +1,36 @@
 
 //========================LOGIN=====================
-
-
-//===================PRODOTTI=======================
 document.addEventListener("DOMContentLoaded", function () {
-    fetch("../data/prodotti.json")
-        .then(response => response.json())
-        .then(data => {
-            let prodottiContainer = document.getElementById("prodotti-popolari");
-            
-            if (prodottiContainer) {
-                let prodottiPopolari = data.prodotti.sort((a, b) => b.vendite - a.vendite).slice(0, 6); // Prende i 6 più venduti
-                
-                prodottiContainer.innerHTML = prodottiPopolari.map(prodotto => `
-                    <div class="col-md-4">
-                        <div class="card mb-4">
-                            <img src="${prodotto.immagine}" class="card-img-top" alt="${prodotto.nome}">
-                            <div class="card-body">
-                                <h5 class="card-title">${prodotto.nome}</h5>
-                                <p class="card-text">${prodotto.descrizione}</p>
-                                <p class="fw-bold">€${prodotto.prezzo.toFixed(2)}</p>
-                                <a href="dettagli.html?id=${prodotto.id}" class="btn btn-primary">Dettagli</a>
-                            </div>
-                        </div>
-                    </div>
-                `).join("");
-            }
-        })
-        .catch(error => console.error("Errore nel caricamento dei dati:", error));
+    const username = localStorage.getItem("username");
+    const userDropdown = document.getElementById("userDropdown");
+    const dropdownMenu = document.getElementById("dropdownMenu");
+    const body = document.body;
+
+    console.log("Username in localStorage:", username); // Debug
+
+    if (username) {
+        console.log("Utente loggato:", username); // Debug
+        userDropdown.innerText = username;
+        dropdownMenu.innerHTML = `<li><a class="dropdown-item" href="#" onclick="handleLogout()">Esci</a></li>`;
+
+        body.classList.remove("no-select");
+        document.removeEventListener("contextmenu", disableRightClick);
+        document.removeEventListener("keydown", disableCopy);
+    } else {
+        console.log("Utente non loggato, mostro login."); // Debug
+        userDropdown.innerText = "Login";
+        dropdownMenu.innerHTML = `<li><a class="dropdown-item" href="pagine/login.html">Login</a></li>`;
+
+    }
 });
+
+function handleLogout() {
+    console.log("Logout in corso...");
+    localStorage.removeItem("username");
+    window.location.href = "pagine/login.html"; // O alla pagina che preferisci
+}
+
+
 
 //====================FOOTER======================
 document.addEventListener("DOMContentLoaded", function () {

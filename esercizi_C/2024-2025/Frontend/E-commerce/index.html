@@ -25,26 +25,15 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="pagine/preassemblati.html">Preassemblati</a></li>
                     <li class="nav-item"><a class="nav-link" href="pagine/catalogo.html">Catalogo</a></li>
-                    <!-- Dropdown Componenti -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="pagine/componenti.html" id="componentiDropdown" role="button">
-                            Componenti
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="componentiDropdown">
-                            <li><a class="dropdown-item" href="prodotti.html?categoria=CPU">CPU</a></li>
-                            <li><a class="dropdown-item" href="prodotti.html?categoria=GPU">GPU</a></li>
-                            <li><a class="dropdown-item" href="prodotti.html?categoria=RAM">RAM</a></li>
-                            <li><a class="dropdown-item" href="prodotti.html?categoria=PSU">Alimentatori (PSU)</a></li>
-                            <li><a class="dropdown-item" href="prodotti.html?categoria=Storage">Storage (SSD/HDD)</a></li>
-                            <li><a class="dropdown-item" href="prodotti.html?categoria=Case">Case PC</a></li>
-                            <li><a class="dropdown-item" href="prodotti.html?categoria=Raffreddamento">Sistemi di raffreddamento</a></li>
-                            <li><a class="dropdown-item" href="prodotti.html?categoria=SchedaMadre">Schede Madri</a></li>
-                        </ul>
-                    </li>
-                  <!-- Icona Login -->
-                <li class="nav-item">
-                    <a class="nav-link" href="pagine/login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
-                </li>
+                <!-- Icona Login o Nome utente -->
+                <li class="nav-item dropdown" id="userDropdownContainer">
+                    <a class="nav-link dropdown-toggle" href="pagine/login.html" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-user"></i> Login
+                    </a>
+                    <ul class="dropdown-menu" id="dropdownMenu">
+                        <!-- L'opzione "Esci" sarà inserita dinamicamente -->
+                    </ul>
+                </li>               
                 <!-- Icona Carrello -->
                 <li class="nav-item">
                     <a class="nav-link" href="pagine/carrello.html"><i class="fas fa-shopping-cart"></i> Carrello</a>
