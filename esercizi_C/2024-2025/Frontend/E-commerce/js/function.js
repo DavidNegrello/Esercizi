@@ -1,37 +1,4 @@
 
-//========================LOGIN=====================
-document.addEventListener("DOMContentLoaded", function () {
-    const username = localStorage.getItem("username");
-    const userDropdown = document.getElementById("userDropdown");
-    const dropdownMenu = document.getElementById("dropdownMenu");
-    const body = document.body;
-
-    console.log("Username in localStorage:", username); // Debug
-
-    if (username) {
-        console.log("Utente loggato:", username); // Debug
-        userDropdown.innerText = username;
-        dropdownMenu.innerHTML = `<li><a class="dropdown-item" href="#" onclick="handleLogout()">Esci</a></li>`;
-
-        body.classList.remove("no-select");
-        document.removeEventListener("contextmenu", disableRightClick);
-        document.removeEventListener("keydown", disableCopy);
-    } else {
-        console.log("Utente non loggato, mostro login."); // Debug
-        userDropdown.innerText = "Login";
-        dropdownMenu.innerHTML = `<li><a class="dropdown-item" href="pagine/login.html">Login</a></li>`;
-
-    }
-});
-
-function handleLogout() {
-    console.log("Logout in corso...");
-    localStorage.removeItem("username");
-    window.location.href = "pagine/login.html"; // O alla pagina che preferisci
-}
-
-
-
 //====================FOOTER======================
 document.addEventListener("DOMContentLoaded", function () {
     fetch("../data/footer.json")
@@ -54,8 +21,8 @@ document.addEventListener("DOMContentLoaded", function () {
         .catch(error => console.error("Errore nel caricamento del footer:", error));
 });
 
-//================INDEX==================
-document.addEventListener("DOMContentLoaded", function() {
+//================ INDEX ==================
+document.addEventListener("DOMContentLoaded", function () {
     fetch("../data/home.json")
         .then(response => response.json())
         .then(data => {
@@ -67,28 +34,98 @@ document.addEventListener("DOMContentLoaded", function() {
             heroBtn.href = data.hero.bottone.link;
 
             // Carica i prodotti più acquistati
-            let prodottiContainer = document.getElementById("prodotti-popolari");
-            data.prodotti_piu_acquistati.forEach(prodotto => {
-                let col = document.createElement("div");
-                col.className = "col-md-4";
+            caricaProdottiPopolari(data.prodotti_piu_acquistati);
 
-                col.innerHTML = `
-                    <div class="card">
-                        <img src="${prodotto.immagine}" class="card-img-top" alt="${prodotto.nome}">
-                        <div class="card-body">
-                            <h5 class="card-title">${prodotto.nome}</h5>
-                            <p class="card-text"><strong>Categoria:</strong> ${prodotto.categoria}</p>
-                            <p class="card-text"><strong>Prezzo:</strong> €${prodotto.prezzo.toFixed(2)}</p>
-                            <a href="prodotti.html?categoria=${prodotto.categoria}" class="btn btn-primary">Vedi</a>
-                        </div>
-                    </div>
-                `;
-
-                prodottiContainer.appendChild(col);
-            });
+            // Carica le offerte speciali
+            caricaOfferteSpeciali(data.offerte_speciali);
         })
         .catch(error => console.error("Errore nel caricamento del JSON:", error));
+
+    function caricaProdottiPopolari(prodotti) {
+        let container = document.getElementById("prodotti-popolari");
+        container.innerHTML = "";
+
+        prodotti.forEach(prodotto => {
+            let col = document.createElement("div");
+            col.className = "col-md-4";
+
+            col.innerHTML = `
+                <div class="card">
+                    <img src="${prodotto.immagine}" class="card-img-top" alt="${prodotto.nome}">
+                    <div class="card-body">
+                        <h5 class="card-title">${prodotto.nome}</h5>
+                        <p class="card-text"><strong>Categoria:</strong> ${prodotto.categoria}</p>
+                        <p class="card-text"><strong>Prezzo:</strong> €${prodotto.prezzo.toFixed(2)}</p>
+                        <a href="prodotti.html?categoria=${prodotto.categoria}" class="btn btn-primary">Vedi</a>
+                    </div>
+                </div>
+            `;
+
+            container.appendChild(col);
+        });
+    }
+
+    function caricaOfferteSpeciali(offerte) {
+        let container = document.getElementById("offerte-speciali");
+        let titoloOfferte = document.getElementById("titolo-offerte");
+
+        titoloOfferte.textContent = offerte.titolo;
+        container.innerHTML = "";
+
+        offerte.bundle.forEach(bundle => {
+            let prodottiHTML = bundle.prodotti.map(p => `<li>${p.nome} (${p.categoria})</li>`).join("");
+
+            let card = document.createElement("div");
+            card.classList.add("col-md-6", "mb-4");
+
+            card.innerHTML = `
+                <div class="card shadow-lg border-0">
+                    <img src="${bundle.immagine}" class="card-img-top" alt="${bundle.nome}">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">${bundle.nome}</h5>
+                        <ul class="list-unstyled">${prodottiHTML}</ul>
+                        <p class="text-danger fw-bold fs-4">€${bundle.prezzo_scontato.toFixed(2)}
+                            <span class="text-muted text-decoration-line-through fs-6">€${bundle.prezzo_originale.toFixed(2)}</span>
+                        </p>
+                        <p class="text-warning fs-6">${offerte.timer_testo} <span class="timer" data-scadenza="${bundle.scadenza}"></span></p>
+                        <a href="../pagine/catalogo.html" class="btn btn-primary">${offerte.bottone}</a>
+                    </div>
+                </div>
+            `;
+
+            container.appendChild(card);
+        });
+
+        avviaTimer();
+    }
+
+    function avviaTimer() {
+        let timerElements = document.querySelectorAll(".timer");
+
+        function aggiornaTimer() {
+            let now = new Date().getTime();
+
+            timerElements.forEach(element => {
+                let scadenza = new Date(element.getAttribute("data-scadenza")).getTime();
+                let diff = scadenza - now;
+
+                if (diff > 0) {
+                    let giorni = Math.floor(diff / (1000 * 60 * 60 * 24));
+                    let ore = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    let minuti = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                    let secondi = Math.floor((diff % (1000 * 60)) / 1000);
+                    element.textContent = `${giorni}g ${ore}h ${minuti}m ${secondi}s`;
+                } else {
+                    element.textContent = "Offerta scaduta";
+                }
+            });
+        }
+
+        aggiornaTimer();
+        setInterval(aggiornaTimer, 1000);
+    }
 });
+
 
 
 //====================CATALOGO=====================

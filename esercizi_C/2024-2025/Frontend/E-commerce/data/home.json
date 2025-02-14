@@ -1,34 +1,67 @@
 {
-    "hero": {
-      "titolo": "Tutto per il tuo PC da Gaming e Lavoro",
-      "descrizione": "Trova le migliori componenti per assemblare il tuo PC perfetto.",
-      "bottone": {
-        "testo": "Scopri i prodotti",
-        "link": "../pagine/componenti.html"
-      }
+  "hero": {
+    "titolo": "Tutto per il tuo PC da Gaming e Lavoro",
+    "descrizione": "Trova le migliori componenti per assemblare il tuo PC perfetto.",
+    "bottone": {
+      "testo": "Scopri i prodotti",
+      "link": "../pagine/catalogo.html"
+    }
+  },
+  
+  "prodotti_piu_acquistati": [
+    {
+      "id": 1,
+      "nome": "Intel Core i9-14900K",
+      "categoria": "CPU",
+      "prezzo": 649.99,
+      "immagine": "../immagini/CPU/i9_14.jpeg"
     },
-    "prodotti_piu_acquistati": [
+    {
+      "id": 2,
+      "nome": "ASUS ROG RTX 4090",
+      "categoria": "GPU",
+      "prezzo": 1799.99,
+      "immagine": "../immagini/GPU/4090_asus.jpeg"
+    },
+    {
+      "id": 3,
+      "nome": "Trident-Z Royal 32GB DDR5",
+      "categoria": "RAM",
+      "prezzo": 249.99,
+      "immagine": "../immagini/RAM/tridentZ_royal.jpeg"
+    }
+  ],
+  "offerte_speciali": {
+    "titolo": "🔥 Offerte Speciali: Bundle 🔥",
+    "bottone": "Approfitta ora",
+    "timer_testo": "Offerta termina tra:",
+    "bundle": [
       {
         "id": 1,
-        "nome": "Intel Core i9-14900K",
-        "categoria": "CPU",
-        "prezzo": 649.99,
-        "immagine": "../immagini/CPU/i9_14.jpeg"
+        "nome": "Bundle Gaming Essenziale",
+        "prodotti": [
+          { "nome": "Intel Core i7-13700K", "categoria": "CPU" },
+          { "nome": "ASUS TUF RTX 4070", "categoria": "GPU" },
+          { "nome": "Corsair Vengeance 32GB DDR5", "categoria": "RAM" }
+        ],
+        "prezzo_originale": 1799.99,
+        "prezzo_scontato": 1499.99,
+        "immagine": "../immagini/bundle/bundle1.png",
+        "scadenza": "2025-02-20T23:59:59"
       },
       {
         "id": 2,
-        "nome": "ASUS ROG RTX 4090",
-        "categoria": "GPU",
-        "prezzo": 1799.99,
-        "immagine": "../immagini/GPU/4090_asus.jpeg"
-      },
-      {
-        "id": 3,
-        "nome": "Trident-Z Royal 32GB DDR5",
-        "categoria": "RAM",
-        "prezzo": 249.99,
-        "immagine": "../immagini/RAM/tridentZ_royal.jpeg"
+        "nome": "Bundle Workstation Pro",
+        "prodotti": [
+          { "nome": "AMD Ryzen 9 7950X", "categoria": "CPU" },
+          { "nome": "NVIDIA RTX 4080", "categoria": "GPU" },
+          { "nome": "64GB Kingston Fury DDR5", "categoria": "RAM" }
+        ],
+        "prezzo_originale": 2499.99,
+        "prezzo_scontato": 2199.99,
+        "immagine": "../immagini/bundle/bundle2.jpeg",
+        "scadenza": "2025-02-22T23:59:59"
       }
     ]
   }
-  
+}

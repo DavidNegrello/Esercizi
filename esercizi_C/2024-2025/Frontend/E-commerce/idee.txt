@@ -29,7 +29,7 @@ Sito di componenti pc
 Home page:
 - la home page carica i prodotti con più richiesta
 - nelle singole pagine mettere un'immagine a sinistra con tutto il testo a destra (es amazon)
-- in base al prodotto ci saranno varie caratteristiche diverse (es. tastiera 60%, 100%, ecc.)
+- in base al prodotto ci saranno varie caratteristiche diverse
 - La navbar deve essere completa con liste, categorie.
 - Navbar: Saldi, Preassemblati, accessori,
 
