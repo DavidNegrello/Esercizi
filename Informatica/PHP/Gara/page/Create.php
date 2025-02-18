@@ -76,7 +76,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <a href="#">Create</a>
     <a href="../page/Read.php">View Results</a>
     <a href="../page/Update.php">Update Result</a>
-    <a href="../page/Delete.php">Remove Result</a>
 </nav>
 
 <!-- Sezione principale con i form di inserimento -->

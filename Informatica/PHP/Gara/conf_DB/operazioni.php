@@ -96,17 +96,16 @@ function getClassificaPiloti() {
 function getPilotaByID($id) {
     global $db;
 
-    $query = "SELECT P.ID_Pilota, P.Nome, P.Cognome, C.Nome AS Nome_Casa, SUM(R.Punti) AS Punti_Totali
+    $query = "SELECT P.ID_Pilota, P.Nome, P.Cognome, C.Nome AS Nome_Casa, 
+                     (SELECT SUM(R.Punti) FROM Risultati_gara R WHERE R.ID_Pilota = P.ID_Pilota) AS Punti_Totali
               FROM Pilota P
-              JOIN Risultati_gara R ON P.ID_Pilota = R.ID_Pilota
               JOIN Casa_Automobilistica C ON P.ID_Casa = C.ID_Casa
               WHERE P.ID_Pilota = :id
-              GROUP BY P.ID_Pilota
               LIMIT 1";
 
     try {
         $stm = $db->prepare($query);
-        $stm->bindParam(':id', $id);
+        $stm->bindParam(':id', $id, PDO::PARAM_INT);
         $stm->execute();
         $pilota = $stm->fetch(PDO::FETCH_OBJ);
         $stm->closeCursor();
@@ -116,6 +115,7 @@ function getPilotaByID($id) {
         return null;
     }
 }
+
 
 
 
@@ -242,12 +242,12 @@ function insertRisultato($id_gara, $id_pilota, $posizione, $punti) {
 function updatePunteggioPilota($id, $punteggio) {
     global $db;
 
-    $query = "UPDATE Pilota SET Punti_Totali = :punteggio WHERE ID_Pilota = :id";
+    $query = "UPDATE Risultati_gara SET Punti = :punteggio WHERE ID_Pilota = :id";
 
     try {
         $stm = $db->prepare($query);
-        $stm->bindParam(':punteggio', $punteggio);
-        $stm->bindParam(':id', $id);
+        $stm->bindParam(':punteggio', $punteggio, PDO::PARAM_INT);
+        $stm->bindParam(':id', $id, PDO::PARAM_INT);
         $stm->execute();
         $stm->closeCursor();
         return true;
@@ -258,33 +258,6 @@ function updatePunteggioPilota($id, $punteggio) {
 }
 
 
-
-
-
-
-//=======================DELETE=========================
-function deleteBook($titolo, $autore) {
-    // Query di eliminazione che usa titolo e autore
-    $query = "DELETE FROM libri WHERE titolo = :titolo AND autore = :autore";
-    global $db;
-
-    try {
-        $stm = $db->prepare($query);
-        // Bind dei valori titolo e autore
-        $stm->bindValue(":titolo", $titolo);
-        $stm->bindValue(":autore", $autore);
-
-        // Esegui la query
-        if ($stm->execute()) {
-            return true; // Successo
-        } else {
-            throw new PDOException("Errore nell'esecuzione della query.");
-        }
-    } catch (Exception $e) {
-        logError($e);
-        return false; // Errore
-    }
-}
 
 //=============FUNZIONE LOG===============
 function logError(Exception $exception): void

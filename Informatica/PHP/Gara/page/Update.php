@@ -8,6 +8,9 @@ $message = '';
 if (isset($_GET['pilota_id'])) {
     $pilota_id = $_GET['pilota_id'];
 
+    // Debug: verifica se l'ID è passato correttamente
+    // var_dump($pilota_id);
+
     // Ottieni i dati del pilota
     $pilota = getPilotaByID($pilota_id);
 
@@ -20,10 +23,17 @@ if (isset($_GET['pilota_id'])) {
             // Funzione per aggiornare il punteggio
             if (updatePunteggioPilota($pilota_id, $nuovo_punteggio)) {
                 $message = "Punteggio aggiornato con successo!";
+
+                // Forza il refresh della pagina per mostrare il valore aggiornato
+                header("Location: Update.php?pilota_id=" . $pilota_id);     //ID recuperato ma la modifica non viene eseguita correttamente
+                exit();
             } else {
                 $message = "Errore nell'aggiornamento del punteggio. Verifica se il pilota esiste.";
             }
         }
+
+        // Dopo il submit, recuperiamo di nuovo i dati aggiornati
+        $pilota = getPilotaByID($pilota_id);
     } else {
         $message = "Pilota non trovato.";
     }
@@ -37,7 +47,6 @@ if (isset($_GET['pilota_id'])) {
     <a href="../Crud.php">Home</a>
     <a href="../page/Create.php">Aggiungi Pilota</a>
     <a href="../page/Update.php">Aggiorna Punteggio</a>
-    <a href="../page/Delete.php">Rimuovi Pilota</a>
 </nav>
 
 <!-- Sezione principale con la lista dei piloti -->
@@ -63,7 +72,7 @@ if (isset($_GET['pilota_id'])) {
                     <td>{$pilota->Nome} {$pilota->Cognome}</td>
                     <td>{$pilota->Nome_Casa}</td>
                     <td>{$pilota->Punti_Totali}</td>
-                    <td><a href='Update.php?pilota_id={$pilota->ID_Pilota}'>Modifica</a></td>
+                    <td><a href='Update.php?pilota_id={$pilota->ID_Pilota}'>✏️</a></td>
                   </tr>";
         }
         echo "</table>";
@@ -73,11 +82,11 @@ if (isset($_GET['pilota_id'])) {
     ?>
 
     <!-- Se il pilota è stato selezionato per la modifica, mostra il modulo di aggiornamento -->
-    <?php if (isset($pilota)): ?>
+    <?php if (isset($pilota) && $pilota): ?>
         <h2>Aggiorna Punteggio per <?php echo "{$pilota->Nome} {$pilota->Cognome}"; ?></h2>
         <form action="Update.php?pilota_id=<?php echo $pilota->ID_Pilota; ?>" method="POST">
             <div class="form-group">
-                <label for="punteggio">Punteggio Attuale</label>
+                <label for="punteggio">Nuovo Punteggio</label>
                 <input type="number" id="punteggio" name="punteggio" value="<?php echo $pilota->Punti_Totali; ?>" required>
             </div>
 

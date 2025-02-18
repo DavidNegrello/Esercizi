@@ -13,7 +13,6 @@ $scelta = isset($_GET['scelta']) ? $_GET['scelta'] : 'piloti'; // Default è pil
     <a href="../page/Create.php">Aggiungi Libro</a>
     <a href="../page/Read.php">Visualizza Libri</a>
     <a href="../page/Update.php">Aggiorna Prezzo</a>
-    <a href="../page/Delete.php">Rimuovi Libro</a>
 </nav>
 <div class="container">
     <h1>Visualizza Dati del Campionato</h1>

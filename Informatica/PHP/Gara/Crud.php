@@ -8,7 +8,6 @@ include 'header.php';
     <a href="page/Create.php">Aggiungi Gara</a>
     <a href="page/Read.php">Visualizza Risultati</a>
     <a href="page/Update.php">Aggiorna Classifica</a>
-    <a href="page/Delete.php">Rimuovi Gara</a>
 </nav>
 
 <!--===========CONTAINER==========-->
