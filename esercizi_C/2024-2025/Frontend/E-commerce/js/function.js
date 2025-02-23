@@ -235,14 +235,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 //========================PREASSEMBLATI==================
-// Funzione per caricare i prodotti nel catalogo
 document.addEventListener("DOMContentLoaded", function () {
     fetch("../data/preassemblati.json")
         .then(response => response.json())
         .then(data => {
             const catalogo = document.getElementById("catalogo");
-
-            // Oggetto per raggruppare i prodotti per categoria
             const categorie = {};
 
             data.forEach(prodotto => {
@@ -252,16 +249,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 categorie[prodotto.categoria].push(prodotto);
             });
 
-            // Genera dinamicamente le sezioni per ogni categoria
             Object.keys(categorie).forEach(categoria => {
                 const section = document.createElement("div");
                 section.classList.add("mb-5");
-
                 section.innerHTML = `
                     <h2 class="text-center">${categoria}</h2>
                     <div class="row" id="sezione-${categoria.replace(/\s+/g, '-')}"></div>
                 `;
-
                 catalogo.appendChild(section);
 
                 const sezioneProdotti = document.getElementById(`sezione-${categoria.replace(/\s+/g, '-')}`);
@@ -276,8 +270,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             <div class="card-body">
                                 <h5 class="card-title">${prodotto.nome}</h5>
                                 <p class="card-text">${prodotto.descrizione}</p>
-                                <h6 class="text-primary">${prodotto.prezzo}€</h6>
-                                <!-- Link per visualizzare il prodotto -->
+                                <h6 class="text-primary">${prodotto.prezzo} €</h6>
                                 <a href="dettaglio.html?id=${prodotto.id}" class="btn btn-dark w-100">Visualizza</a>
                             </div>
                         </div>
@@ -294,49 +287,58 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //=========================Dettaglio.html=======================
 document.addEventListener("DOMContentLoaded", function () {
-    // Ottieni l'ID prodotto dall'URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const prodottoId = urlParams.get('id');
+    const params = new URLSearchParams(window.location.search);
+    const prodottoId = params.get("id");
 
-    // Caricamento dei dati del prodotto
-    fetch('../data/contenuti_pc.json')
+    if (!prodottoId) {
+        document.getElementById("dettaglio-prodotto").innerHTML = "<p>Prodotto non trovato.</p>";
+        return;
+    }
+
+    fetch("../data/contenuti_pc.json")
         .then(response => response.json())
         .then(data => {
-            const prodotto = data.prodotti.find(item => item.id === prodottoId);
+            const prodotto = data.prodotti.find(p => p.id === prodottoId);
 
             if (!prodotto) {
-                console.error('Errore: Prodotto non trovato.');
+                document.getElementById("dettaglio-prodotto").innerHTML = "<p>Prodotto non trovato.</p>";
                 return;
             }
 
-            // Popolare il contenuto della pagina solo se il prodotto esiste
-            document.getElementById('prodotto-nome').textContent = prodotto.nome;
-            document.getElementById('nome-prodotto').textContent = prodotto.nome;
-            document.getElementById('descrizione-prodotto').textContent = prodotto.descrizione;
-            document.getElementById('prezzo-prodotto').textContent = prodotto.prezzo;
-            document.getElementById('img-prodotto').src = prodotto.immagini[0];
-            document.getElementById('img-thumb1').src = prodotto.immagini[0];
-            document.getElementById('img-thumb2').src = prodotto.immagini[1] || prodotto.immagini[0];
-
-            // Specifiche del prodotto
-            const specTable = document.getElementById('specifiche-prodotto');
-            for (let key in prodotto.specifiche) {
-                const row = document.createElement('tr');
-                row.innerHTML = `<td><strong>${key}</strong></td><td>${prodotto.specifiche[key]}</td>`;
-                specTable.appendChild(row);
+            let specificheHTML = "";
+            for (const [chiave, valore] of Object.entries(prodotto.specifiche)) {
+                specificheHTML += `<li><strong>${chiave}:</strong> ${valore}</li>`;
             }
 
-            // Gestione selezione immagini per la gallery
-            document.querySelectorAll('.img-thumbnail').forEach((thumb, index) => {
-                thumb.addEventListener('click', function() {
-                    document.getElementById('img-prodotto').src = prodotto.immagini[index];
-                });
-            });
+            document.getElementById("dettaglio-prodotto").innerHTML = `
+                <div class="col-md-6">
+                    <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            ${prodotto.immagini.map((img, index) => `
+                                <div class="carousel-item ${index === 0 ? 'active' : ''}">
+                                    <img src="${img}" class="d-block w-100" alt="${prodotto.nome}">
+                                </div>
+                            `).join('')}
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Precedente</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Successivo</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h2>${prodotto.nome}</h2>
+                    <p>${prodotto.descrizione}</p>
+                    <h4 class="text-primary">${prodotto.prezzo}</h4>
+                    <ul>${specificheHTML}</ul>
+                    <button class="btn btn-success w-100">Aggiungi al Carrello</button>
+                </div>
+            `;
         })
-        .catch(error => {
-            console.error("Errore nel caricamento dei dati:", error);
-        });
+        .catch(error => console.error("Errore nel caricamento del prodotto:", error));
 });
-
-
 
