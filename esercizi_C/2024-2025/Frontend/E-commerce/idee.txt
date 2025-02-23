@@ -40,3 +40,6 @@ Catalogo:
 Carrello:
 -visualizzare tutti i prodotti
 -mettere un tasto come cestino per cancellare i prodotti
+
+Preassemblati:
+-metto i pc e quando si va nella pagina del prodotto sotto deve esserci una tabella con la personalizzazione per cambiare i pezzi

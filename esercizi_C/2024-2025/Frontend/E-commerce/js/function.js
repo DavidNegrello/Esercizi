@@ -135,7 +135,7 @@ document.addEventListener("DOMContentLoaded", function () {
     fetch("../data/catalogo.json")
         .then(response => response.json())
         .then(data => {
-            prodottiOriginali = data.prodotti; // ✅ Corretto: prodottiOriginali ora è globale
+            prodottiOriginali = data.prodotti; 
             console.log("Dati caricati:", prodottiOriginali);
 
             // Carica Sidebar
@@ -194,7 +194,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             <h5 class="card-title">${prodotto.nome}</h5>
                             <p class="card-text">${prodotto.categoria} - ${prodotto.marca}</p>
                             <p class="card-text fw-bold">${prodotto.prezzo}€</p>
-                            <a href="#" class="btn btn-primary">Aggiungi al carrello</a>
+                            <a href="#" class="btn btn-primary">Visualizza</a>
                         </div>
                     </div>
                 </div>
@@ -234,9 +234,109 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+//========================PREASSEMBLATI==================
+// Funzione per caricare i prodotti nel catalogo
+document.addEventListener("DOMContentLoaded", function () {
+    fetch("../data/preassemblati.json")
+        .then(response => response.json())
+        .then(data => {
+            const catalogo = document.getElementById("catalogo");
+
+            // Oggetto per raggruppare i prodotti per categoria
+            const categorie = {};
+
+            data.forEach(prodotto => {
+                if (!categorie[prodotto.categoria]) {
+                    categorie[prodotto.categoria] = [];
+                }
+                categorie[prodotto.categoria].push(prodotto);
+            });
+
+            // Genera dinamicamente le sezioni per ogni categoria
+            Object.keys(categorie).forEach(categoria => {
+                const section = document.createElement("div");
+                section.classList.add("mb-5");
+
+                section.innerHTML = `
+                    <h2 class="text-center">${categoria}</h2>
+                    <div class="row" id="sezione-${categoria.replace(/\s+/g, '-')}"></div>
+                `;
+
+                catalogo.appendChild(section);
+
+                const sezioneProdotti = document.getElementById(`sezione-${categoria.replace(/\s+/g, '-')}`);
+
+                categorie[categoria].forEach(prodotto => {
+                    const card = document.createElement("div");
+                    card.classList.add("col-md-4", "mb-4");
+
+                    card.innerHTML = `
+                        <div class="card shadow-sm">
+                            <img src="${prodotto.immagine}" class="card-img-top" alt="${prodotto.nome}">
+                            <div class="card-body">
+                                <h5 class="card-title">${prodotto.nome}</h5>
+                                <p class="card-text">${prodotto.descrizione}</p>
+                                <h6 class="text-primary">${prodotto.prezzo}€</h6>
+                                <!-- Link per visualizzare il prodotto -->
+                                <a href="dettaglio.html?id=${prodotto.id}" class="btn btn-dark w-100">Visualizza</a>
+                            </div>
+                        </div>
+                    `;
+
+                    sezioneProdotti.appendChild(card);
+                });
+            });
+        })
+        .catch(error => console.error("Errore nel caricamento dei dati:", error));
+});
 
 
 
+//=========================Dettaglio.html=======================
+document.addEventListener("DOMContentLoaded", function () {
+    // Ottieni l'ID prodotto dall'URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const prodottoId = urlParams.get('id');
+
+    // Caricamento dei dati del prodotto
+    fetch('../data/contenuti_pc.json')
+        .then(response => response.json())
+        .then(data => {
+            const prodotto = data.prodotti.find(item => item.id === prodottoId);
+
+            if (!prodotto) {
+                console.error('Errore: Prodotto non trovato.');
+                return;
+            }
+
+            // Popolare il contenuto della pagina solo se il prodotto esiste
+            document.getElementById('prodotto-nome').textContent = prodotto.nome;
+            document.getElementById('nome-prodotto').textContent = prodotto.nome;
+            document.getElementById('descrizione-prodotto').textContent = prodotto.descrizione;
+            document.getElementById('prezzo-prodotto').textContent = prodotto.prezzo;
+            document.getElementById('img-prodotto').src = prodotto.immagini[0];
+            document.getElementById('img-thumb1').src = prodotto.immagini[0];
+            document.getElementById('img-thumb2').src = prodotto.immagini[1] || prodotto.immagini[0];
+
+            // Specifiche del prodotto
+            const specTable = document.getElementById('specifiche-prodotto');
+            for (let key in prodotto.specifiche) {
+                const row = document.createElement('tr');
+                row.innerHTML = `<td><strong>${key}</strong></td><td>${prodotto.specifiche[key]}</td>`;
+                specTable.appendChild(row);
+            }
+
+            // Gestione selezione immagini per la gallery
+            document.querySelectorAll('.img-thumbnail').forEach((thumb, index) => {
+                thumb.addEventListener('click', function() {
+                    document.getElementById('img-prodotto').src = prodotto.immagini[index];
+                });
+            });
+        })
+        .catch(error => {
+            console.error("Errore nel caricamento dei dati:", error);
+        });
+});
 
 
 
