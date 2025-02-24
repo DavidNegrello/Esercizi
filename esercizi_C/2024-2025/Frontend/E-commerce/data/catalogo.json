@@ -5,7 +5,7 @@
       "ricerca": "Cerca un prodotto...",
       "categorie": ["CPU", "GPU", "RAM", "PSU", "Storage", "Case", "Scheda Madre", "Raffreddamento"],
       "prezzo": { "min": 0, "max": 2000, "step": 10 },
-      "marche": ["Intel", "AMD", "NVIDIA", "Corsair", "MSI", "ASUS", "NZXT", "GIGABYTE", "THERMALTAKE", "Trident"]
+      "marche": ["Intel", "AMD", "NVIDIA", "Corsair", "MSI", "ASUS", "NZXT", "Gigabyte", "Thermaltake", "Samsung", "SK hynix"]
     }
   },
   "prodotti": [
@@ -127,15 +127,15 @@
       "categoria": "Storage",
       "prezzo": 129.99,
       "marca": "Samsung",
-      "immagine": "../immagini/Storage/samsung_970_evo_plus.jpeg"
+      "immagine": "../immagini/SSD/1/1.png"
     },
     {
       "id": 16,
       "nome": "SK hynix Platinum P41 NVMe SSD",
       "categoria": "Storage",
-      "prezzo": 139.99,
+      "prezzo": 399.99,
       "marca": "SK hynix",
-      "immagine": "../immagini/Storage/skhynix_platinum_p41.jpeg"
+      "immagine": "../immagini/SSD/2/1.png"
     }
   ]
 }

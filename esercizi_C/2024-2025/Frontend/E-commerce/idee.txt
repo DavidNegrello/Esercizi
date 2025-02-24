@@ -68,33 +68,4 @@ Corsair Vengeance DDR5 32GB (2x16GB) 5200MHz    ///questo ha il colore e le tagl
 -Dischi SSD/HDD:
 Samsung 970 EVO Plus 1TB NVMe M.2       //dimensioni (non cambiano le immagini)
 SK hynix Platinum P41 NVMe SSD 2TB      //dimensioni (non cambiano le immagini)
--Case per PC:
-NZXT H510 Elite Mid Tower
-Fractal Design Meshify C
-Corsair iCUE 4000X RGB
-Lian Li PC-O11 Dynamic
-Cooler Master MasterBox Q300L
--Monitor:
-LG 27GN950-B 27" 4K UHD 144Hz IPS Monitor
-ASUS ROG Swift PG259QN 24.5" 360Hz
-Acer Predator XB273U GX 27" 1440p 170Hz IPS
-Samsung Odyssey G7 32" 240Hz 1440p Curved
-Dell S2721DGF 27" 165Hz QHD IPS Monitor
--Tastiere e Mouse:
-Logitech G Pro X Mechanical Keyboard
-Corsair K95 RGB Platinum XT
-Razer Huntsman V2 Analog
-SteelSeries Apex Pro TKL
-Logitech G502 Hero RGB Gaming Mouse
--Altoparlanti e Cuffie:
-SteelSeries Arctis Pro Wireless
-Corsair HS80 RGB Wireless Headset
-Razer Kraken Ultimate
-HyperX Cloud II Gaming Headset
-Creative Pebble 2.0 Desktop Speakers
--Accessori:
-Corsair MM300 Pro Extended Mouse Pad
-Logitech G Powerplay Wireless Charging System
-Corsair Dark Core RGB/SE Wireless Gaming Mouse
-Xiaomi Mi Smart Band 6
-Elgato Stream Deck XL
+
