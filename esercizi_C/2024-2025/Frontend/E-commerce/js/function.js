@@ -305,11 +305,47 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
+            // Carica le specifiche base
             let specificheHTML = "";
             for (const [chiave, valore] of Object.entries(prodotto.specifiche)) {
                 specificheHTML += `<li><strong>${chiave}:</strong> ${valore}</li>`;
             }
 
+            // Carica le specifiche dettagliate
+            let specificheDettagliateHTML = "";
+            if (prodotto.specifiche_dettagliate) {
+                specificheDettagliateHTML = Object.entries(prodotto.specifiche_dettagliate).map(([chiave, valore]) => `
+                    <div class="specifica-dettagliata">
+                        <div class="specifica-titolo">${chiave}</div>
+                        <div class="specifica-valore">${valore}</div>
+                    </div>
+                `).join('');
+            }
+
+            // Carica le miniature delle immagini
+            let miniatureHTML = prodotto.immagini.map((img, index) => `
+                <img src="${img}" class="miniatura ${index === 0 ? 'active' : ''}" data-index="${index}" alt="Miniatura ${index + 1}" style="width: 50px; cursor: pointer; margin-right: 5px;">
+            `).join('');
+
+            // Carica i colori disponibili
+            let coloriDisponibili = prodotto.colori ? prodotto.colori.map(colore => `
+                <button class="btn btn-outline-dark colore-btn" data-colore="${colore}">${colore}</button>
+            `).join('') : "<p>Nessuna opzione colore disponibile.</p>";
+
+            // Carica le informazioni aggiuntive
+            let informazioniAggiuntiveHTML = prodotto.informazioniAggiuntive ? prodotto.informazioniAggiuntive.map(img => `
+                <img src="${img}" class="img-fluid mb-2" alt="Informazione Aggiuntiva">
+            `).join('') : "<p>Nessuna informazione aggiuntiva disponibile.</p>";
+
+            // Carica le personalizzazioni
+            let personalizzazioniHTML = prodotto.personalizzazioni ? prodotto.personalizzazioni.map(opzione => `
+                <li>
+                    ${opzione.nome} - +${opzione.prezzo}€
+                    <button class="btn btn-outline-success btn-sm aggiungi-personalizzazione" data-prezzo="${opzione.prezzo}" data-nome="${opzione.nome}">+</button>
+                </li>
+            `).join('') : "<p>Nessuna opzione di personalizzazione disponibile.</p>";
+
+            // Composizione finale dell'HTML
             document.getElementById("dettaglio-prodotto").innerHTML = `
                 <div class="col-md-6">
                     <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
@@ -321,24 +357,79 @@ document.addEventListener("DOMContentLoaded", function () {
                             `).join('')}
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="carousel-control-prev-icon" aria-hidden="true" style="filter: invert(1);"></span>
                             <span class="visually-hidden">Precedente</span>
                         </button>
                         <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="carousel-control-next-icon" aria-hidden="true" style="filter: invert(1);"></span>
                             <span class="visually-hidden">Successivo</span>
                         </button>
                     </div>
+                    <div class="mt-2 d-flex">${miniatureHTML}</div>
                 </div>
                 <div class="col-md-6">
                     <h2>${prodotto.nome}</h2>
                     <p>${prodotto.descrizione}</p>
-                    <h4 class="text-primary">${prodotto.prezzo}</h4>
-                    <ul>${specificheHTML}</ul>
+                    <h4 class="text-primary" id="prezzo">${prodotto.prezzo}</h4>
                     <button class="btn btn-success w-100">Aggiungi al Carrello</button>
+                    <div class="mt-3">
+                        <h5>Colori disponibili:</h5>
+                        <div>${coloriDisponibili}</div>
+                    </div>
+                    <div class="mt-3">
+                        <h5>Personalizzazione:</h5>
+                        <ul>${personalizzazioniHTML}</ul>
+                    </div>
+                </div>
+                <div class="col-md-12 mt-4">
+                    <h3>Informazioni Aggiuntive</h3>
+                    ${informazioniAggiuntiveHTML}
+                </div>
+                <div class="col-md-12 mt-4 specifiche-dettagliate">
+                    <h3>Specifiche Dettagliate</h3>
+                    ${specificheDettagliateHTML}
                 </div>
             `;
+
+            // Gestione delle miniature
+            document.querySelectorAll(".miniatura").forEach(img => {
+                img.addEventListener("click", function () {
+                    let index = this.getAttribute("data-index");
+                    document.querySelector(".carousel-inner .active").classList.remove("active");
+                    document.querySelectorAll(".carousel-item")[index].classList.add("active");
+                    document.querySelectorAll(".miniatura").forEach(mini => mini.classList.remove("active"));
+                    this.classList.add("active");
+                });
+            });
+
+            // Gestione del cambio di colore
+            document.querySelectorAll(".colore-btn").forEach(btn => {
+                btn.addEventListener("click", function () {
+                    const coloreSelezionato = this.getAttribute("data-colore");
+                    const immaginiColore = prodotto.varianti[coloreSelezionato] || prodotto.immagini;
+                    document.querySelector(".carousel-inner").innerHTML = immaginiColore.map((img, index) => `
+                        <div class="carousel-item ${index === 0 ? 'active' : ''}">
+                            <img src="${img}" class="d-block w-100" alt="${prodotto.nome}">
+                        </div>
+                    `).join('');
+                    document.querySelector(".mt-2").innerHTML = immaginiColore.map((img, index) => `
+                        <img src="${img}" class="miniatura ${index === 0 ? 'active' : ''}" data-index="${index}" alt="Miniatura ${index + 1}" style="width: 50px; cursor: pointer; margin-right: 5px;">
+                    `).join('');
+                });
+            });
+
+            // Gestione del tasto + per aggiungere una personalizzazione
+            let prezzoBase = parseFloat(prodotto.prezzo.replace('€', '').replace(',', '.'));
+            document.querySelectorAll(".aggiungi-personalizzazione").forEach(btn => {
+                btn.addEventListener("click", function () {
+                    const prezzoAggiuntivo = parseFloat(this.getAttribute("data-prezzo"));
+                    const nomePersonalizzazione = this.getAttribute("data-nome");
+                    prezzoBase += prezzoAggiuntivo;
+                    document.getElementById("prezzo").innerText = `${prezzoBase.toFixed(2)}€`;
+                    this.disabled = true; // Disabilita il tasto dopo che è stato aggiunto
+                    this.innerText = `Aggiunto - ${nomePersonalizzazione}`;
+                });
+            });
         })
         .catch(error => console.error("Errore nel caricamento del prodotto:", error));
 });
-
