@@ -1,457 +1,416 @@
 {
     "prodotti": [
-      {
-        "id": 1,
-        "nome": "Intel Core i9-14900K",
-        "descrizione": "Processore Intel Core i9-14900K, per prestazioni di alto livello in gaming e applicazioni professionali.",
-        "prezzo": "649.99",
-        "immagini": [
-          "../immagini/CPU/i9_14.jpeg",
-          "../immagini/CPU/i9_14_2.jpeg"
-        ],
-        "specifiche": {
-          "numero_core": 8,
-          "frequenza_base": "3.0 GHz",
-          "frequenza_turbo": "5.2 GHz",
-          "cache": "30MB"
-        },
-        "colori": ["Nero", "Argento"],
-        "varianti": {
-          "Nero": [
-            {"taglia": "L", "prezzo": "649.99"},
-            {"taglia": "M", "prezzo": "629.99"}
-          ],
-          "Argento": [
-            {"taglia": "L", "prezzo": "659.99"}
-          ]
-        },
-        "specifiche_dettagliate": {
-          "architettura": "Alder Lake",
-          "supporto_memoria": "DDR5",
-          "TDP": "125W"
-        },
-        "personalizzazioni": [
-          {"tipo": "Overclock", "opzione": "Sì"}
-        ]
+    {
+      "id": 1,
+      "nome": "Intel Core i9-14900K",
+      "categoria": "CPU",
+      "prezzo": 649.99,
+      "marca": "Intel",
+      "immagine": "../immagini/CPU/i9_14.jpeg",
+      "descrizione": "",
+      "specifiche": {}
+    },
+    {
+      "id": 2,
+      "nome": "ASUS ROG RTX 4090",
+      "categoria": "GPU",
+      "prezzo": 1799.99,
+      "marca": "Asus",
+      "immagine": "../immagini/GPU/4090_asus.jpeg",
+      "descrizione": "",
+      "specifiche": {}
+    },
+    {
+      "id": 3,
+      "nome": "Radeon RX 7900 XT",
+      "categoria": "GPU",
+      "prezzo": 799.99,
+      "marca": "AMD",
+      "immagine": "../immagini/GPU/7900xt.jpeg",
+      "descrizione": "",
+      "specifiche": {}
+    },
+    {
+      "id": 4,
+      "nome": "Trident-Z Royal 32GB DDR5",
+      "categoria": "RAM",
+      "prezzo": 249.99,
+      "marca": "Trident",
+      "immagine": "../immagini/RAM/1/tridentZ_royal.jpeg",
+      "descrizione": "",
+      "specifiche": {}
+    },
+    {
+      "id": 5,
+      "nome": "NZXT H9 Elite",
+      "categoria": "Case",
+      "prezzo": 249.99,
+      "marca": "NZXT",
+      "immagine": "../immagini/CASE/H9.jpeg",
+      "descrizione": "",
+      "specifiche": {}
+    },
+    {
+      "id": 6,
+      "nome": "ASUS ROG Strix Z690-E Gaming WiFi",
+      "descrizione": "ASUS ROG Strix Z690-E Gaming WiFi Scheda Madre ATX, Intel Z690, LGA1700, DDR5, PCI 5.0, WiFi 6E (802.11ax), Intel 2.5Gb Ethernet, ROG SupremeFX 7.1, 4xM.2, 6xSATA 6GB/s, Aura Sync RGB, Nero",
+      "prezzo": "379.99€",
+      "immagini": [
+          "../immagini/motherboard/z690/1/1.png",
+          "../immagini/motherboard/z690/1/2.png",
+          "../immagini/motherboard/z690/1/3.png"
+      ],
+      "specifiche": {
+          "Processore supportato": "LGA 1700",
+          "Tecnologia di memoria": "DDR5",
+          "Memoria massima supportata": "128 GB",
+          "Clock di Memoria": "2133 MHz",
+          "Interfaccia scheda grafica": "PCI Express",
+          "Tipo wireless": "802.11a/b/g/n/ac, Bluetooth, 802.11ax",
+          "Numero di porte USB 2.0": "9",
+          "Numero di porte HDMI": "1",
+          "Numero di porte Ethernet": "1"
       },
-      {
-        "id": 2,
-        "nome": "ASUS ROG RTX 4090",
-        "descrizione": "Scheda grafica ASUS ROG RTX 4090, per gaming e rendering 4K ultra dettagliato.",
-        "prezzo": "1799.99",
-        "immagini": [
-          "../immagini/GPU/4090_asus.jpeg",
-          "../immagini/GPU/4090_asus_2.jpeg"
-        ],
-        "specifiche": {
-          "memoria": "24GB GDDR6X",
-          "velocità_memoria": "21 Gbps",
-          "interfaccia_memoria": "384-bit"
-        },
-        "colori": ["Nero", "Rosso"],
-        "varianti": {
-          "Nero": [
-            {"taglia": "L", "prezzo": "1799.99"},
-            {"taglia": "M", "prezzo": "1699.99"}
-          ],
-          "Rosso": [
-            {"taglia": "L", "prezzo": "1849.99"}
-          ]
-        },
-        "specifiche_dettagliate": {
-          "supporto_ray_tracing": "Sì",
-          "tecnologia_dlss": "Sì",
-          "connettori": "3x DisplayPort, 1x HDMI"
-        },
-        "personalizzazioni": [
-          {"tipo": "LED RGB", "opzione": "Sì"}
-        ]
-      },
-      {
-        "id": 3,
-        "nome": "Radeon RX 7900 XT",
-        "descrizione": "Scheda grafica Radeon RX 7900 XT, per prestazioni eccezionali in 4K gaming.",
-        "prezzo": "799.99",
-        "immagini": [
-          "../immagini/GPU/7900xt.jpeg",
-          "../immagini/GPU/7900xt_2.jpeg"
-        ],
-        "specifiche": {
-          "memoria": "20GB GDDR6",
-          "velocità_memoria": "18 Gbps",
-          "interfaccia_memoria": "320-bit"
-        },
-        "colori": ["Nero", "Grigio"],
-        "varianti": {
-          "Nero": [
-            {"taglia": "L", "prezzo": "799.99"}
-          ],
-          "Grigio": [
-            {"taglia": "L", "prezzo": "829.99"}
-          ]
-        },
-        "specifiche_dettagliate": {
-          "supporto_ray_tracing": "Sì",
-          "connettori": "3x DisplayPort, 1x HDMI"
-        },
-        "personalizzazioni": [
-          {"tipo": "Ventola personalizzata", "opzione": "Sì"}
-        ]
-      },
-      {
-        "id": 4,
-        "nome": "Trident-Z Royal 32GB DDR5",
-        "descrizione": "Memoria RAM Trident-Z Royal 32GB DDR5 per prestazioni estreme.",
-        "prezzo": "249.99",
-        "immagini": [
-          "../immagini/RAM/1/tridentZ_royal.jpeg"
-        ],
-        "specifiche": {
-          "capacità": "32GB",
-          "tipologia": "DDR5",
-          "velocità": "5200MHz"
-        },
-        "colori": ["Nero", "Bianco"],
-        "varianti": {
-          "Nero": [
-            {"taglia": "32GB", "prezzo": "249.99"}
-          ],
-          "Bianco": [
-            {"taglia": "32GB", "prezzo": "259.99"}
-          ]
-        },
-        "specifiche_dettagliate": {
-          "timing": "CL36",
-          "tensione": "1.1V"
-        },
-        "personalizzazioni": []
-      },
-      {
-        "id": 5,
-        "nome": "NZXT H9 Elite",
-        "descrizione": "Case NZXT H9 Elite, perfetto per costruire un PC di alta qualità.",
-        "prezzo": "249.99",
-        "immagini": [
-          "../immagini/CASE/H9.jpeg"
-        ],
-        "specifiche": {
-          "tipo": "Mid Tower",
-          "ventole": "3x 120mm",
-          "compatibilità": "ATX, Micro ATX"
-        },
-        "colori": ["Nero", "Bianco"],
-        "varianti": {
-          "Nero": [
-            {"taglia": "L", "prezzo": "249.99"}
-          ],
-          "Bianco": [
-            {"taglia": "L", "prezzo": "259.99"}
-          ]
-        },
-        "specifiche_dettagliate": {
-          "materiale": "Acciaio, Vetro temperato",
-          "porte": "USB 3.0, USB-C"
-        },
-        "personalizzazioni": [
-          {"tipo": "LED RGB", "opzione": "Sì"}
-        ]
-      },
-      {
-        "id": 6,
-        "nome": "ASUS ROG Strix Z690-E Gaming WiFi",
-        "descrizione": "Scheda madre ASUS ROG Strix Z690-E Gaming WiFi, per un'esperienza gaming senza pari.",
-        "prezzo": "379.99",
-        "immagini": [
-          "../immagini/motherboard/z690/1/1.png"
-        ],
-        "specifiche": {
-          "chipset": "Intel Z690",
-          "supporto_memoria": "DDR5",
-          "slot_PCIe": "3x PCIe 5.0"
-        },
-        "colori": ["Nero", "Argento"],
-        "varianti": {
-          "Nero": [
-            {"taglia": "ATX", "prezzo": "379.99"}
-          ],
-          "Argento": [
-            {"taglia": "ATX", "prezzo": "389.99"}
-          ]
-        },
-        "specifiche_dettagliate": {
-          "porte_USB": "10x USB",
-          "WiFi": "WiFi 6E"
-        },
-        "personalizzazioni": []
-      },
-      {
-        "id": 7,
-        "nome": "ASUS ROG Strix Z690-A Gaming WiFi",
-        "descrizione": "Scheda madre ASUS ROG Strix Z690-A Gaming WiFi, per gamers e overclockers.",
-        "prezzo": "349.99",
-        "immagini": [
-          "../immagini/motherboard/z690/2/1.png"
-        ],
-        "specifiche": {
-          "chipset": "Intel Z690",
-          "supporto_memoria": "DDR5",
-          "slot_PCIe": "2x PCIe 5.0"
-        },
-        "colori": ["Bianco", "Nero"],
-        "varianti": {
-          "Bianco": [
-            {"taglia": "ATX", "prezzo": "349.99"}
-          ],
-          "Nero": [
-            {"taglia": "ATX", "prezzo": "359.99"}
-          ]
-        },
-        "specifiche_dettagliate": {
-          "porte_USB": "8x USB",
-          "WiFi": "WiFi 6"
-        },
-        "personalizzazioni": []
-      },
-      {
-        "id": 8,
-        "nome": "GIGABYTE Z490 AORUS MASTER",
-        "descrizione": "Scheda madre GIGABYTE Z490 AORUS MASTER, progettata per massime prestazioni.",
-        "prezzo": "449.99",
-        "immagini": [
-          "../immagini/motherboard/gigabyte/1/1.png"
-        ],
-        "specifiche": {
-          "chipset": "Intel Z490",
-          "supporto_memoria": "DDR4",
-          "slot_PCIe": "3x PCIe 3.0"
-        },
-        "colori": ["Nero", "Grigio"],
-        "varianti": {
-          "Nero": [
-            {"taglia": "ATX", "prezzo": "449.99"}
-          ],
-          "Grigio": [
-            {"taglia": "ATX", "prezzo": "459.99"}
-          ]
-        },
-        "specifiche_dettagliate": {
-          "porte_USB": "10x USB",
-          "WiFi": "WiFi 6"
-        },
-        "personalizzazioni": []
-      },
-      {
-        "id": 9,
-        "nome": "GIGABYTE Z490 AORUS Elite AC",
-        "descrizione": "Scheda madre GIGABYTE Z490 AORUS Elite AC, ideale per PC da gaming e produttività.",
-        "prezzo": "229.99",
-        "immagini": [
-          "../immagini/motherboard/gigabyte/2/1.png"
-        ],
-        "specifiche": {
-          "chipset": "Intel Z490",
-          "supporto_memoria": "DDR4",
-          "slot_PCIe": "2x PCIe 3.0"
-        },
-        "colori": ["Nero"],
-        "varianti": {
-          "Nero": [
-            {"taglia": "ATX", "prezzo": "229.99"}
-          ]
-        },
-        "specifiche_dettagliate": {
-          "porte_USB": "8x USB",
-          "WiFi": "WiFi 5"
-        },
-        "personalizzazioni": []
-      },
-      {
-        "id": 10,
-        "nome": "MSI GeForce RTX 4080 16Go",
-        "descrizione": "Scheda grafica MSI GeForce RTX 4080 con 16GB di memoria per performance superiori.",
-        "prezzo": "1599.99",
-        "immagini": [
-          "../immagini/GPU/4080/1/1.png"
-        ],
-        "specifiche": {
-          "memoria": "16GB GDDR6X",
-          "velocità_memoria": "22 Gbps",
-          "interfaccia_memoria": "256-bit"
-        },
-        "colori": ["Nero", "Argento"],
-        "varianti": {
-          "Nero": [
-            {"taglia": "L", "prezzo": "1599.99"}
-          ],
-          "Argento": [
-            {"taglia": "L", "prezzo": "1649.99"}
-          ]
-        },
-        "specifiche_dettagliate": {
-          "supporto_ray_tracing": "Sì",
-          "connettori": "3x DisplayPort, 1x HDMI"
-        },
-        "personalizzazioni": []
-      },
-      {
-        "id": 11,
-        "nome": "MSI GeForce RTX 4080 16GB SUPRIM",
-        "descrizione": "Scheda grafica MSI GeForce RTX 4080 16GB SUPRIM con prestazioni supreme.",
-        "prezzo": "1799.99",
-        "immagini": [
-          "../immagini/GPU/4080/2/1.png"
-        ],
-        "specifiche": {
-          "memoria": "16GB GDDR6X",
-          "velocità_memoria": "22 Gbps",
-          "interfaccia_memoria": "256-bit"
-        },
-        "colori": ["Nero", "Argento"],
-        "varianti": {
-          "Nero": [
-            {"taglia": "L", "prezzo": "1799.99"}
-          ],
-          "Argento": [
-            {"taglia": "L", "prezzo": "1899.99"}
-          ]
-        },
-        "specifiche_dettagliate": {
-          "supporto_ray_tracing": "Sì",
-          "connettori": "3x DisplayPort, 1x HDMI"
-        },
-        "personalizzazioni": []
-      },
-      {
-        "id": 12,
-        "nome": "Corsair RM850X 80 Plus Gold",
-        "descrizione": "Alimentatore Corsair RM850X 80 Plus Gold con efficienza e affidabilità.",
-        "prezzo": "139.99",
-        "immagini": [
-          "../immagini/PSU/1/1/1.png"
-        ],
-        "specifiche": {
-          "potenza": "850W",
-          "certificazione": "80 Plus Gold",
-          "modularità": "Full Modular"
-        },
-        "colori": ["Nero"],
-        "varianti": {
-          "Nero": [
-            {"taglia": "850W", "prezzo": "139.99"}
-          ]
-        },
-        "specifiche_dettagliate": {
-          "efficienza": "92%",
-          "protezione": "Overvoltage, Overcurrent"
-        },
-        "personalizzazioni": []
-      },
-      {
-        "id": 13,
-        "nome": "THERMALTAKE ALIM. TOUGHPOWER GF1 750W ARGB FULL MODULAR 80 PLUS GOLD",
-        "descrizione": "Alimentatore Thermaltake TOUGHPOWER GF1 da 750W con illuminazione ARGB.",
-        "prezzo": "119.99",
-        "immagini": [
-          "../immagini/PSU/2/1.png"
-        ],
-        "specifiche": {
-          "potenza": "750W",
-          "certificazione": "80 Plus Gold",
-          "modularità": "Full Modular"
-        },
-        "colori": ["Nero"],
-        "varianti": {
-          "Nero": [
-            {"taglia": "750W", "prezzo": "119.99"}
-          ]
-        },
-        "specifiche_dettagliate": {
-          "efficienza": "91%",
-          "protezione": "Overvoltage, Overcurrent"
-        },
-        "personalizzazioni": []
-      },
-      {
-        "id": 14,
-        "nome": "CORSAIR VENGEANCE RGB DDR5 RAM 32GB (2x16GB) 5200MHz",
-        "descrizione": "Memoria RAM Corsair Vengeance RGB DDR5 32GB per prestazioni e stile.",
-        "prezzo": "199.99",
-        "immagini": [
-          "../immagini/RAM/2/bianco/1.png"
-        ],
-        "specifiche": {
-          "capacità": "32GB",
-          "tipologia": "DDR5",
-          "velocità": "5200MHz"
-        },
-        "colori": ["Bianco", "Nero"],
-        "varianti": {
-          "Bianco": [
-            {"taglia": "32GB", "prezzo": "199.99"}
-          ],
-          "Nero": [
-            {"taglia": "32GB", "prezzo": "209.99"}
-          ]
-        },
-        "specifiche_dettagliate": {
-          "timing": "CL40",
-          "tensione": "1.25V"
-        },
-        "personalizzazioni": [
-          {"tipo": "Illuminazione RGB", "opzione": "Sì"}
-        ]
-      },
-      {
-        "id": 15,
-        "nome": "Samsung 970 EVO Plus PCIe NVMe M.2",
-        "descrizione": "SSD Samsung 970 EVO Plus PCIe NVMe M.2, per velocità e affidabilità.",
-        "prezzo": "129.99",
-        "immagini": [
-          "../immagini/SSD/1/1.png"
-        ],
-        "specifiche": {
-          "capacità": "500GB",
-          "interfaccia": "M.2 NVMe",
-          "velocità": "3500 MB/s"
-        },
-        "colori": ["Nero"],
-        "varianti": {
-          "Nero": [
-            {"taglia": "500GB", "prezzo": "129.99"},
-            {"taglia": "1TB", "prezzo": "249.99"}
-          ]
-        },
-        "specifiche_dettagliate": {
-          "tipo_memoria": "V-NAND",
-          "garanzia": "5 anni"
-        },
-        "personalizzazioni": []
-      },
-      {
-        "id": 16,
-        "nome": "SK hynix Platinum P41 NVMe SSD",
-        "descrizione": "SSD SK hynix Platinum P41 NVMe, per prestazioni di lettura e scrittura elevate.",
-        "prezzo": "399.99",
-        "immagini": [
-          "../immagini/SSD/2/1.png"
-        ],
-        "specifiche": {
-          "capacità": "1TB",
-          "interfaccia": "M.2 NVMe",
-          "velocità": "7000 MB/s"
-        },
-        "colori": ["Nero"],
-        "varianti": {
-          "Nero": [
-            {"taglia": "1TB", "prezzo": "399.99"}
-          ]
-        },
-        "specifiche_dettagliate": {
-          "tipo_memoria": "3D NAND",
-          "garanzia": "5 anni"
-        },
-        "personalizzazioni": []
+      "colori": ["Nero", "Bianco"],
+            "varianti": {
+                "Nero": [
+                    "../immagini/motherboard/z690/1/1.png",
+                    "../immagini/motherboard/z690/1/2.png",
+                    "../immagini/motherboard/z690/1/3.png"
+                ],
+                "Bianco": [
+                    "../immagini/motherboard/z690/2/1.png",
+                    "../immagini/motherboard/z690/2/2.png",
+                    "../immagini/motherboard/z690/2/3.png"
+                ]
+            },
+      "specifiche_dettagliate": {
+          "Marca": "ASUS",
+          "Produttore": "ASUS EUROPE B.V.",
+          "Serie": "ROG Strix Z690-A Gaming WiFi",
+          "Colore": "Bianco",
+          "Dimensioni prodotto": "33,8 x 6,8 x 27,3 cm; 1,7 kg",
+          "Pile": "1 Ioni di litio (Tipo di pila necessaria)",
+          "Numero modello articolo": "90MB1AP0-M0EAY0",
+          "Wattaggio": "3600W",
+          "Le batterie sono incluse": "No",
+          "Capacità della batteria al litio": "2 Kilowattora",
+          "Confezione della batteria al litio": "Batterie imballate con l'apparecchiatura",
+          "Peso della batteria al litio": "2 Grammi",
+          "Numero delle celle agli ioni di litio": "5",
+          "Numero delle celle ai metalli di litio": "5",
+          "Peso articolo": "1,7 Kilograms",
+          "Aggiornamenti software garantiti fino a": "sconosciuto"
       }
-    ]
-  }
+  },
   
+  {
+    "id": 7,
+    "nome": "ASUS ROG Strix Z690-E Gaming WiFi",
+    "descrizione": "ASUS ROG Strix Z690-E Gaming WiFi Scheda Madre ATX, Intel Z690, LGA1700, DDR5, PCI 5.0, WiFi 6E (802.11ax), Intel 2.5Gb Ethernet, ROG SupremeFX 7.1, 4xM.2, 6xSATA 6GB/s, Aura Sync RGB, Nero",
+    "prezzo": "379.99€",
+    "immagini": [
+        "../immagini/motherboard/z690/2/1.png",
+        "../immagini/motherboard/z690/2/2.png",
+        "../immagini/motherboard/z690/2/3.png"
+    ],
+    "specifiche": {
+        "Processore supportato": "LGA 1700",
+        "Tecnologia di memoria": "DDR5",
+        "Memoria massima supportata": "128 GB",
+        "Clock di Memoria": "2133 MHz",
+        "Interfaccia scheda grafica": "PCI Express",
+        "Tipo wireless": "802.11a/b/g/n/ac, Bluetooth, 802.11ax",
+        "Numero di porte USB 2.0": "9",
+        "Numero di porte HDMI": "1",
+        "Numero di porte Ethernet": "1"
+    },
+    "colori": ["Nero", "Bianco"],
+          "varianti": {
+              "Nero": [
+                  "../immagini/motherboard/z690/1/1.png",
+                  "../immagini/motherboard/z690/1/2.png",
+                  "../immagini/motherboard/z690/1/3.png"
+              ],
+              "Bianco": [
+                  "../immagini/motherboard/z690/2/1.png",
+                  "../immagini/motherboard/z690/2/2.png",
+                  "../immagini/motherboard/z690/2/3.png"
+              ]
+          },
+    "specifiche_dettagliate": {
+        "Marca": "ASUS",
+        "Produttore": "ASUS EUROPE B.V.",
+        "Serie": "ROG Strix Z690-A Gaming WiFi",
+        "Colore": "Bianco",
+        "Dimensioni prodotto": "33,8 x 6,8 x 27,3 cm; 1,7 kg",
+        "Pile": "1 Ioni di litio (Tipo di pila necessaria)",
+        "Numero modello articolo": "90MB1AP0-M0EAY0",
+        "Wattaggio": "3600W",
+        "Le batterie sono incluse": "No",
+        "Capacità della batteria al litio": "2 Kilowattora",
+        "Confezione della batteria al litio": "Batterie imballate con l'apparecchiatura",
+        "Peso della batteria al litio": "2 Grammi",
+        "Numero delle celle agli ioni di litio": "5",
+        "Numero delle celle ai metalli di litio": "5",
+        "Peso articolo": "1,7 Kilograms",
+        "Aggiornamenti software garantiti fino a": "sconosciuto"
+    }
+},
+{
+  "id": 8,
+  "nome": "GIGABYTE Z490 AORUS MASTER",
+  "descrizione": "GIGABYTE Z490 AORUS MASTER Intel LGA1200 ATX Motherboard (14+1 Phases, NanoCarbon Baseplate, Intel 2.5GbE LAN, AQUANTIA 10GbE LAN, HDMI, USB 3.2 Gen2, USB Type-C, RGB Fusion 2.0)",
+  "prezzo": "449.99€",
+  "immagini": [
+      "../immagini/motherboard/gigabyte/1/1.png",
+      "../immagini/motherboard/gigabyte/1/2.png",
+      "../immagini/motherboard/gigabyte/1/3.png"
+  ],
+  "specifiche": {
+      "Processore supportato": "LGA 1200",
+      "Tecnologia di memoria": "DDR4",
+      "Memoria massima supportata": "128 GB",
+      "Clock di Memoria": "5000 MHz",
+      "Interfaccia scheda grafica": "PCI Express"
+  },
+  "colori": ["Nero"],
+  "varianti": {
+      "Nero": [
+      "../immagini/motherboard/gigabyte/1/1.png",
+      "../immagini/motherboard/gigabyte/1/2.png",
+      "../immagini/motherboard/gigabyte/1/3.png"  
+      ]
+  },
+  "specifiche_dettagliate": {
+      "Marca": "Gigabyte",
+      "Produttore": "Gigabyte",
+      "Serie": "Z490 AORUS Master",
+      "Dimensioni prodotto": "8,6 x 30,1 x 36,9 cm; 1,83 kg",
+      "Numero modello articolo": "Z490 AORUS MASTER",
+      "Fattore di forma": "ATX",
+      "Tipo processore": "AMD Ryzen 7",
+      "Supporto processore": "LGA 1200",
+      "Tecnologia di memoria": "DDR4",
+      "Memoria massima supportata": "128 GB",
+      "Clock di Memoria": "5000 MHz",
+      "Interfaccia scheda grafica": "PCI Express",
+      "Tipo wireless": "Bluetooth",
+      "Numero di porte USB 2.0": "4",
+      "Numero di porte HDMI": "1",
+      "Numero di porte Ethernet": "2",
+      "Wattaggio": "3600",
+      "Le batterie sono incluse": "No",
+      "Peso articolo": "1,83 Kilograms",
+      "Aggiornamenti software garantiti fino a": "sconosciuto"
+  }
+},
+
+{
+  "id": 9,
+  "nome": "GIGABYTE Z490 AORUS Elite AC",
+  "descrizione": "GIGABYTE Z490 AORUS Elite AC Intel LGA 1200 ATX Motherboard (12+1 Phases, Intel 2.5GbE LAN, HDMI, USB 3.2 Gen2, USB Type-C, RGB Fusion 2.0)",
+  "prezzo": "229.99€",
+  "immagini": [
+      "../immagini/motherboard/gigabyte/2/1.png",
+      "../immagini/motherboard/gigabyte/2/2.png",
+      "../immagini/motherboard/gigabyte/2/3.png"
+  ],
+  "specifiche": {
+      "Processore supportato": "LGA 1200",
+      "Tecnologia di memoria": "DDR4",
+      "Clock di Memoria": "5000 MHz",
+      "Interfaccia scheda grafica": "PCI Express",
+      "Tipo di connettività": "Wi-Fi",
+      "Tipo wireless": "Bluetooth",
+      "Numero di porte USB 2.0": "4",
+      "Numero di porte HDMI": "1",
+      "Piattaforma Hardware": "Non specifico per macchina",
+      "Le batterie sono incluse": "No"
+  },
+  "colori": ["Nero"],
+  "varianti": {
+      "Nero": [
+          "../immagini/motherboard/gigabyte/2/1.png",
+          "../immagini/motherboard/gigabyte/2/2.png",
+          "../immagini/motherboard/gigabyte/2/3.png"
+      ]
+  },
+  "specifiche_dettagliate": {
+      "Marca": "Gigabyte",
+      "Produttore": "Gigabyte",
+      "Serie": "Z490 AORUS ELITE AC",
+      "Colore": "Nero",
+      "Dimensioni prodotto": "8 x 24 x 30 cm; 1,2 kg",
+      "Numero modello articolo": "Z490 AORUS ELITE AC",
+      "Fattore di forma": "ATX",
+      "Tipo processore": "AMD Ryzen 7",
+      "Supporto processore": "LGA 1200",
+      "Tecnologia di memoria": "DDR4",
+      "Clock di Memoria": "5000 MHz",
+      "Interfaccia scheda grafica": "PCI Express",
+      "Tipo di connettività": "Wi-Fi",
+      "Tipo wireless": "Bluetooth",
+      "Numero di porte USB 2.0": "4",
+      "Numero di porte HDMI": "1",
+      "Piattaforma Hardware": "Non specifico per macchina",
+      "Le batterie sono incluse": "No",
+      "Peso articolo": "1,2 Kilograms",
+      "Aggiornamenti software garantiti fino a": "sconosciuto"
+  }
+},
+
+{
+  "id": 10,
+  "nome": "MSI GeForce RTX 4080 16Go",
+  "descrizione": "MSI GeForce RTX 4080 16GB SUPRIM Scheda Video Gaming - NVIDIA RTX 4080, 16 GB GDDR6X",
+  "prezzo": "1599.99€",
+  "immagini": [
+      "../immagini/GPU/4080/1/1.png",
+      "../immagini/GPU/4080/1/2.png"
+  ],
+  "specifiche": {
+      "Risoluzione": "5120x2880 (5K) at 60Hz",
+      "Clock di Memoria": "1700 Modificatore sconosciuto",
+      "Coprocessore grafico": "NVIDIA GeForce RTX 4080",
+      "Grafica Chipset Brand": "NVIDIA",
+      "Descrizione scheda grafica": "Dedicato",
+      "Tipo memoria scheda grafica": "GDDR6X",
+      "Dimensioni memoria scheda grafica": "16 GB",
+      "Interfaccia scheda grafica": "PCI-Express x16",
+      "Le batterie sono incluse": "No"
+  },
+  "colori": ["Nero", "Argento"],
+  "varianti": {
+      "Nero": [
+          "../immagini/GPU/4080/1/1.png",
+          "../immagini/GPU/4080/1/2.png"
+      ],
+      "Argento": [
+          "../immagini/GPU/4080/2/1.png",
+          "../immagini/GPU/4080/2/2.png"
+      ]
+  },
+  "specifiche_dettagliate": {
+      "Marca": "MSI",
+      "Produttore": "MSI",
+      "Serie": "GeForce RTX 4080 16GB SUPRIM",
+      "Dimensioni prodotto": "50 x 50 x 28 cm; 3,5 kg",
+      "Numero modello articolo": "V511-015R",
+      "Risoluzione": "5120x2880 (5K) at 60Hz",
+      "Clock di Memoria": "1700 Modificatore sconosciuto",
+      "Coprocessore grafico": "NVIDIA GeForce RTX 4080",
+      "Grafica Chipset Brand": "NVIDIA",
+      "Descrizione scheda grafica": "Dedicato",
+      "Tipo memoria scheda grafica": "GDDR6X",
+      "Dimensioni memoria scheda grafica": "16 GB",
+      "Interfaccia scheda grafica": "PCI-Express x16",
+      "Le batterie sono incluse": "No",
+      "Peso articolo": "3,5 Kilograms",
+      "Aggiornamenti software garantiti fino a": "sconosciuto"
+  }
+},
+
+{
+  "id": 11,
+  "nome": "MSI GeForce RTX 4080 16Go Suprim",
+  "descrizione": "MSI GeForce RTX 4080 16GB SUPRIM Scheda Video Gaming - NVIDIA RTX 4080, 16 GB GDDR6X",
+  "prezzo": "1599.99€",
+  "immagini": [
+      "../immagini/GPU/4080/1/1.png",
+      "../immagini/GPU/4080/1/2.png"
+  ],
+  "specifiche": {
+      "Risoluzione": "5120x2880 (5K) at 60Hz",
+      "Clock di Memoria": "1700 Modificatore sconosciuto",
+      "Coprocessore grafico": "NVIDIA GeForce RTX 4080",
+      "Grafica Chipset Brand": "NVIDIA",
+      "Descrizione scheda grafica": "Dedicato",
+      "Tipo memoria scheda grafica": "GDDR6X",
+      "Dimensioni memoria scheda grafica": "16 GB",
+      "Interfaccia scheda grafica": "PCI-Express x16",
+      "Le batterie sono incluse": "No"
+  },
+  "colori": ["Nero", "Argento"],
+  "varianti": {
+      "Nero": [
+          "../immagini/GPU/4080/1/1.png",
+          "../immagini/GPU/4080/1/2.png"
+      ],
+      "Argento": [
+          "../immagini/GPU/4080/2/1.png",
+          "../immagini/GPU/4080/2/2.png"
+      ]
+  },
+  "specifiche_dettagliate": {
+      "Marca": "MSI",
+      "Produttore": "MSI",
+      "Serie": "GeForce RTX 4080 16GB SUPRIM",
+      "Dimensioni prodotto": "50 x 50 x 28 cm; 3,5 kg",
+      "Numero modello articolo": "V511-015R",
+      "Risoluzione": "5120x2880 (5K) at 60Hz",
+      "Clock di Memoria": "1700 Modificatore sconosciuto",
+      "Coprocessore grafico": "NVIDIA GeForce RTX 4080",
+      "Grafica Chipset Brand": "NVIDIA",
+      "Descrizione scheda grafica": "Dedicato",
+      "Tipo memoria scheda grafica": "GDDR6X",
+      "Dimensioni memoria scheda grafica": "16 GB",
+      "Interfaccia scheda grafica": "PCI-Express x16",
+      "Le batterie sono incluse": "No",
+      "Peso articolo": "3,5 Kilograms",
+      "Aggiornamenti software garantiti fino a": "sconosciuto"
+  }
+},
+    {
+      "id": 12,
+      "nome": "Corsair RM850X 80 Plus Gold",
+      "descrizione": "",
+      "categoria": "PSU",
+      "prezzo": 139.99,
+      "marca": "Corsair",
+      "immagine": "../immagini/PSU/1/1/1.png",
+      "specifiche": {}
+    },
+    {
+      "id": 13,
+      "nome": "THERMALTAKE ALIM. TOUGHPOWER GF1 750W ARGB FULL MODULAR 80 PLUS GOLD",
+      "descrizione": "",
+      "categoria": "PSU",
+      "prezzo": 119.99,
+      "marca": "THERMALTAKE",
+      "immagine": "../immagini/PSU/2/1.png",
+      "specifiche": {}
+    },
+    {
+      "id": 14,
+      "nome": "CORSAIR VENGEANCE RGB DDR5 RAM 32GB (2x16GB) 5200MHz",
+      "descrizione": "",
+      "categoria": "RAM",
+      "prezzo": 199.99,
+      "marca": "Corsair",
+      "immagine": "../immagini/RAM/2/bianco/1.png",
+      "specifiche": {}
+    },
+    {
+      "id": 15,
+      "nome": "Samsung 970 EVO Plus PCIe NVMe M.2",
+      "descrizione": "",
+      "categoria": "Storage",
+      "prezzo": 129.99,
+      "marca": "Samsung",
+      "immagine": "../immagini/SSD/1/1.png",
+      "specifiche": {}
+    },
+    {
+      "id": 16,
+      "nome": "SK hynix Platinum P41 NVMe SSD",
+      "descrizione": "",
+      "categoria": "Storage",
+      "prezzo": 399.99,
+      "marca": "SK hynix",
+      "immagine": "../immagini/SSD/2/1.png",
+      "specifiche": {}
+    }
+  ]
+}
+
