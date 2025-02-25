@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded", function () {
     fetch("../data/contenuti_catalogo.json")
         .then(response => response.json())
         .then(data => {
-            const prodotto = data.prodotti.find(p => p.id === parseInt(prodottoId));
+            const prodotto = data.prodotti.find(p => p.id === parseInt(prodottoId)); // Assicurati che l'ID sia un intero
 
             if (!prodotto) {
                 document.getElementById("dettaglio-prodotto").innerHTML = "<p>Prodotto non trovato.</p>";
@@ -131,16 +131,16 @@ document.addEventListener("DOMContentLoaded", function () {
             for (const [chiave, valore] of Object.entries(prodotto.specifiche || {})) {
                 specificheHTML += `
                     <li class="specifica-item">
-                        <span class="specifica-titolo">${chiave}:</span> 
+                        <span class="specifica-titolo">${chiave}:</span>
                         <span class="specifica-valore">${valore}</span>
                     </li>
                 `;
             }
 
-            // Carica tutte le specifiche dettagliate (nuove specifiche)
+            // Carica tutte le specifiche dettagliate
             let specificheDettagliateHTML = "";
             for (const [chiave, valore] of Object.entries(prodotto.specifiche_dettagliate || {})) {
-                specificheDettagliateHTML += `
+                specificheDettagliateHTML += ` 
                     <li class="specifica-item">
                         <span class="specifica-titolo">${chiave}:</span> 
                         <span class="specifica-valore">${valore || "Non disponibile"}</span>
@@ -149,14 +149,44 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             // Carica le miniature delle immagini
-            let miniatureHTML = prodotto.immagini.map((img, index) => `
+            let miniatureHTML = prodotto.immagini.map((img, index) => ` 
                 <img src="${img}" class="miniatura ${index === 0 ? 'active' : ''}" data-index="${index}" alt="Miniatura ${index + 1}" style="width: 50px; cursor: pointer; margin-right: 5px;">
             `).join('');
 
-            // Carica i colori disponibili
-            let coloriDisponibili = prodotto.colori ? prodotto.colori.map(colore => `
-                <button class="btn btn-outline-dark colore-btn" data-colore="${colore}">${colore}</button>
-            `).join('') : "<p>Nessuna opzione colore disponibile.</p>";
+            // Gestione delle varianti per PSU (750W, 850W, 1000W)
+            let variantiDisponibili = "";
+            let prezzoBase = prodotto.prezzo_base;
+            if (prodotto.categoria === "PSU" && prodotto.varianti) {
+                variantiDisponibili = `
+                    <div class="mt-3">
+                        <h5>Seleziona la potenza:</h5>
+                        ${Object.keys(prodotto.varianti).map(potenza => `
+                            <button class="btn btn-outline-primary potenza-btn" data-potenza="${potenza}">${potenza}</button>
+                        `).join('')}
+                    </div>
+                `;
+            }
+
+            // Gestione delle varianti per RAM (colore e taglia)
+            let variantiRAM = "";
+            if (prodotto.categoria === "RAM") {
+                variantiRAM = `
+                    <div class="mt-3">
+                        ${prodotto.colori ? `
+                            <h5>Seleziona il colore:</h5>
+                            ${prodotto.colori.map(colore => `
+                                <button class="btn btn-outline-primary colore-btn" data-colore="${colore}">${colore}</button>
+                            `).join('')}
+                        ` : ""}
+                        ${prodotto.taglie ? `
+                            <h5>Seleziona la taglia:</h5>
+                            ${Object.keys(prodotto.taglie).map(taglia => `
+                                <button class="btn btn-outline-primary taglia-btn" data-taglia="${taglia}" data-prezzo="${prodotto.taglie[taglia].prezzo}">${taglia}</button>
+                            `).join('')}
+                        ` : ""}
+                    </div>
+                `;
+            }
 
             // Composizione finale dell'HTML
             document.getElementById("dettaglio-prodotto").innerHTML = `
@@ -183,17 +213,18 @@ document.addEventListener("DOMContentLoaded", function () {
                 <div class="col-md-6">
                     <h2>${prodotto.nome}</h2>
                     <p>${prodotto.descrizione}</p>
-                    <h4 class="text-primary" id="prezzo">${prodotto.prezzo}</h4>
+                    <h4 class="text-primary" id="prezzo">${prodotto.prezzo_base}€</h4>
                     <button class="btn btn-success w-100">Aggiungi al Carrello</button>
-                    <div class="mt-3">
-                        <h5>Colori disponibili:</h5>
-                        <div>${coloriDisponibili}</div>
-                    </div>
+                    ${variantiDisponibili}
+                    ${variantiRAM}
                 </div>
                 <div class="col-md-12 mt-4 specifiche-dettagliate">
                     <h3>Specifiche Dettagliate</h3>
                     <ul class="specifiche-lista">
                         ${specificheDettagliateHTML}
+                    </ul>
+                    <ul class="specifiche-lista">
+                        ${specificheHTML}
                     </ul>
                 </div>
             `;
@@ -209,7 +240,27 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
             });
 
-            // Gestione del cambio di colore
+            // Gestione del cambio di potenza (PSU)
+            let prezzoCorrente = prodotto.prezzo_base;
+            document.querySelectorAll(".potenza-btn").forEach(btn => {
+                btn.addEventListener("click", function () {
+                    const potenzaSelezionata = this.getAttribute("data-potenza");
+                    const immaginiPotenza = prodotto.varianti[potenzaSelezionata] || prodotto.immagini;
+                    document.querySelector(".carousel-inner").innerHTML = immaginiPotenza.map((img, index) => `
+                        <div class="carousel-item ${index === 0 ? 'active' : ''}">
+                            <img src="${img}" class="d-block w-100" alt="${prodotto.nome}" style="object-fit: contain;">
+                        </div>
+                    `).join('');
+                    document.querySelector(".mt-2").innerHTML = immaginiPotenza.map((img, index) => `
+                        <img src="${img}" class="miniatura ${index === 0 ? 'active' : ''}" data-index="${index}" alt="Miniatura ${index + 1}" style="width: 50px; cursor: pointer; margin-right: 5px;">
+                    `).join('');
+                    // Aggiorna il prezzo solo se è una selezione di potenza
+                    prezzoCorrente = prodotto.prezzo_base + (potenzaSelezionata === '850W' ? 20 : potenzaSelezionata === '1000W' ? 40 : 0);
+                    document.getElementById("prezzo").textContent = prezzoCorrente + "€";
+                });
+            });
+
+            // Gestione del cambio di colore (RAM)
             document.querySelectorAll(".colore-btn").forEach(btn => {
                 btn.addEventListener("click", function () {
                     const coloreSelezionato = this.getAttribute("data-colore");
@@ -219,14 +270,32 @@ document.addEventListener("DOMContentLoaded", function () {
                             <img src="${img}" class="d-block w-100" alt="${prodotto.nome}" style="object-fit: contain;">
                         </div>
                     `).join('');
-                    document.querySelector(".mt-2").innerHTML = immaginiColore.map((img, index) => `
-                        <img src="${img}" class="miniatura ${index === 0 ? 'active' : ''}" data-index="${index}" alt="Miniatura ${index + 1}" style="width: 50px; cursor: pointer; margin-right: 5px;">
-                    `).join('');
+                });
+            });
+
+            // Gestione del cambio di taglia (RAM)
+            document.querySelectorAll(".taglia-btn").forEach(btn => {
+                btn.addEventListener("click", function () {
+                    const tagliaSelezionata = this.getAttribute("data-taglia");
+                    const prezzoTaglia = parseFloat(this.getAttribute("data-prezzo"));
+                    // Aggiorna il prezzo solo quando si cambia la taglia
+                    prezzoCorrente = prezzoTaglia;
+                    document.getElementById("prezzo").textContent = prezzoCorrente + "€";
                 });
             });
         })
-        .catch(error => console.error("Errore nel caricamento del prodotto:", error));
+        .catch(error => {
+            console.error('Errore nel caricamento del prodotto:', error);
+        });
 });
+
+
+
+
+
+
+
+
 
 
 

@@ -11,46 +11,6 @@
   "prodotti": [
     {
       "id": 1,
-      "nome": "Intel Core i9-14900K",
-      "categoria": "CPU",
-      "prezzo": 649.99,
-      "marca": "Intel",
-      "immagine": "../immagini/CPU/i9_14.jpeg"
-    },
-    {
-      "id": 2,
-      "nome": "ASUS ROG RTX 4090",
-      "categoria": "GPU",
-      "prezzo": 1799.99,
-      "marca": "Asus",
-      "immagine": "../immagini/GPU/4090_asus.jpeg"
-    },
-    {
-      "id": 3,
-      "nome": "Radeon RX 7900 XT",
-      "categoria": "GPU",
-      "prezzo": 799.99,
-      "marca": "AMD",
-      "immagine": "../immagini/GPU/7900xt.jpeg"
-    },
-    {
-      "id": 4,
-      "nome": "Trident-Z Royal 32GB DDR5",
-      "categoria": "RAM",
-      "prezzo": 249.99,
-      "marca": "Trident",
-      "immagine": "../immagini/RAM/1/tridentZ_royal.jpeg"
-    },
-    {
-      "id": 5,
-      "nome": "NZXT H9 Elite",
-      "categoria": "Case",
-      "prezzo": 249.99,
-      "marca": "NZXT",
-      "immagine": "../immagini/CASE/H9.jpeg"
-    },
-    {
-      "id": 6,
       "nome": "ASUS ROG Strix Z690-E Gaming WiFi",
       "categoria": "Scheda Madre",
       "prezzo": 379.99,
@@ -58,7 +18,7 @@
       "immagine": "../immagini/motherboard/z690/1/1.png"
     },
     {
-      "id": 7,
+      "id": 2,
       "nome": "ASUS ROG Strix Z690-A Gaming WiFi",
       "categoria": "Scheda Madre",
       "prezzo": 349.99,
@@ -66,7 +26,7 @@
       "immagine": "../immagini/motherboard/z690/2/1.png"
     },
     {
-      "id": 8,
+      "id": 3,
       "nome": "GIGABYTE Z490 AORUS MASTER",
       "categoria": "Scheda Madre",
       "prezzo": 449.99,
@@ -74,7 +34,7 @@
       "immagine": "../immagini/motherboard/gigabyte/1/1.png"
     },
     {
-      "id": 9,
+      "id": 4,
       "nome": "GIGABYTE Z490 AORUS Elite AC",
       "categoria": "Scheda Madre",
       "prezzo": 229.99,
@@ -82,7 +42,7 @@
       "immagine": "../immagini/motherboard/gigabyte/2/1.png"
     },
     {
-      "id": 10,
+      "id": 5,
       "nome": "MSI GeForce RTX 4080 16Go",
       "categoria": "GPU",
       "prezzo": 1599.99,
@@ -90,7 +50,7 @@
       "immagine": "../immagini/GPU/4080/1/1.png"
     },
     {
-      "id": 11,
+      "id": 6,
       "nome": "MSI GeForce RTX 4080 16GB SUPRIM",
       "categoria": "GPU",
       "prezzo": 1799.99,
@@ -98,7 +58,7 @@
       "immagine": "../immagini/GPU/4080/2/1.png"
     },
     {
-      "id": 12,
+      "id": 7,
       "nome": "Corsair RM850X 80 Plus Gold",
       "categoria": "PSU",
       "prezzo": 139.99,
@@ -106,7 +66,7 @@
       "immagine": "../immagini/PSU/1/1/1.png"
     },
     {
-      "id": 13,
+      "id": 8,
       "nome": "THERMALTAKE ALIM. TOUGHPOWER GF1 750W ARGB FULL MODULAR 80 PLUS GOLD",
       "categoria": "PSU",
       "prezzo": 119.99,
@@ -114,7 +74,7 @@
       "immagine": "../immagini/PSU/2/1.png"
     },
     {
-      "id": 14,
+      "id": 9,
       "nome": "CORSAIR VENGEANCE RGB DDR5 RAM 32GB (2x16GB) 5200MHz",
       "categoria": "RAM",
       "prezzo": 199.99,
@@ -122,7 +82,7 @@
       "immagine": "../immagini/RAM/2/bianco/1.png"
     },
     {
-      "id": 15,
+      "id": 10,
       "nome": "Samsung 970 EVO Plus PCIe NVMe M.2",
       "categoria": "Storage",
       "prezzo": 129.99,
@@ -130,7 +90,7 @@
       "immagine": "../immagini/SSD/1/1.png"
     },
     {
-      "id": 16,
+      "id": 11,
       "nome": "SK hynix Platinum P41 NVMe SSD",
       "categoria": "Storage",
       "prezzo": 399.99,

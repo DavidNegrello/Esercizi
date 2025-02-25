@@ -62,7 +62,7 @@ Thermaltake Toughpower GF1 650W 80+ Gold
 
 -Memorie RAM:
 
-Corsair Vengeance DDR5 32GB (2x16GB) 5200MHz    ///questo ha il colore e le taglie (non cambia immagine oltre al colore)
+Corsair Vengeance DDR5 32GB (2x16GB) 5200MHz    ///questo ha il colore 
 
 
 -Dischi SSD/HDD:
