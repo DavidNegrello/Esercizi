@@ -129,7 +129,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // Carica le specifiche base
             let specificheHTML = "";
             for (const [chiave, valore] of Object.entries(prodotto.specifiche || {})) {
-                specificheHTML += `
+                specificheHTML += ` 
                     <li class="specifica-item">
                         <span class="specifica-titolo">${chiave}:</span>
                         <span class="specifica-valore">${valore}</span>
@@ -167,6 +167,19 @@ document.addEventListener("DOMContentLoaded", function () {
                 `;
             }
 
+            // Gestione delle varianti per SSD (capacità)
+            let variantiSSD = "";
+            if (prodotto.categoria === "Storage" && prodotto.capacita) {
+                variantiSSD = `
+                    <div class="mt-3">
+                        <h5>Seleziona la capacità:</h5>
+                        ${prodotto.capacita.map(capacita => `
+                            <button class="btn btn-outline-primary capacita-btn" data-capacita="${capacita}">${capacita}</button>
+                        `).join('')}
+                    </div>
+                `;
+            }
+
             // Gestione delle varianti per RAM (colore e taglia)
             let variantiRAM = "";
             if (prodotto.categoria === "RAM") {
@@ -188,7 +201,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 `;
             }
 
-            // Composizione finale dell'HTML
+            // Composizione finale dell'HTML con tutte le varianti
             document.getElementById("dettaglio-prodotto").innerHTML = `
                 <div class="col-md-6">
                     <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
@@ -217,6 +230,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     <button class="btn btn-success w-100">Aggiungi al Carrello</button>
                     ${variantiDisponibili}
                     ${variantiRAM}
+                    ${variantiSSD}
                 </div>
                 <div class="col-md-12 mt-4 specifiche-dettagliate">
                     <h3>Specifiche Dettagliate</h3>
@@ -283,11 +297,32 @@ document.addEventListener("DOMContentLoaded", function () {
                     document.getElementById("prezzo").textContent = prezzoCorrente + "€";
                 });
             });
+
+            // Gestione del cambio di capacità (SSD)
+            document.querySelectorAll(".capacita-btn").forEach(btn => {
+                btn.addEventListener("click", function () {
+                    const capacitaSelezionata = this.getAttribute("data-capacita");
+                    const variantiCapacita = prodotto.varianti[capacitaSelezionata] || prodotto.immagini;
+                    document.querySelector(".carousel-inner").innerHTML = variantiCapacita.immagini.map((img, index) => `
+                        <div class="carousel-item ${index === 0 ? 'active' : ''}">
+                            <img src="${img}" class="d-block w-100" alt="${prodotto.nome}" style="object-fit: contain;">
+                        </div>
+                    `).join('');
+                    document.querySelector(".mt-2").innerHTML = variantiCapacita.immagini.map((img, index) => `
+                        <img src="${img}" class="miniatura ${index === 0 ? 'active' : ''}" data-index="${index}" alt="Miniatura ${index + 1}" style="width: 50px; cursor: pointer; margin-right: 5px;">
+                    `).join('');
+                    // Aggiorna il prezzo per la selezione della capacità
+                    const prezzoCapacita = prodotto.varianti[capacitaSelezionata].prezzo;
+                    document.getElementById("prezzo").textContent = prezzoCapacita + "€";
+                });
+            });
         })
-        .catch(error => {
-            console.error('Errore nel caricamento del prodotto:', error);
+        .catch(err => {
+            console.error("Errore nel caricamento dei dati:", err);
+            document.getElementById("dettaglio-prodotto").innerHTML = "<p>Errore nel caricamento del prodotto.</p>";
         });
 });
+
 
 
 
