@@ -49,6 +49,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
+
+//=========================Dettaglio.html=======================
 //=========================Dettaglio.html=======================
 document.addEventListener("DOMContentLoaded", function () {
     const params = new URLSearchParams(window.location.search);
@@ -135,7 +137,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     <h2>${prodotto.nome}</h2>
                     <p>${prodotto.descrizione}</p>
                     <h4 class="text-primary" id="prezzo">${prodotto.prezzo}</h4>
-                    <button class="btn btn-success w-100">Aggiungi al Carrello</button>
+                    <button class="btn btn-success w-100" id="aggiungi-carrello">Aggiungi al Carrello</button>
                     <div class="mt-3">
                         <h5>Colori disponibili:</h5>
                         <div>${coloriDisponibili}</div>
@@ -167,9 +169,10 @@ document.addEventListener("DOMContentLoaded", function () {
             });
 
             // Gestione del cambio di colore
+            let coloreSelezionato = null;
             document.querySelectorAll(".colore-btn").forEach(btn => {
                 btn.addEventListener("click", function () {
-                    const coloreSelezionato = this.getAttribute("data-colore");
+                    coloreSelezionato = this.getAttribute("data-colore");
                     const immaginiColore = prodotto.varianti[coloreSelezionato] || prodotto.immagini;
                     document.querySelector(".carousel-inner").innerHTML = immaginiColore.map((img, index) => `
                         <div class="carousel-item ${index === 0 ? 'active' : ''}">
@@ -183,17 +186,55 @@ document.addEventListener("DOMContentLoaded", function () {
             });
 
             // Gestione del tasto + per aggiungere una personalizzazione
-            let prezzoBase = parseFloat(prodotto.prezzo.replace('€', '').replace(',', '.'));
-            document.querySelectorAll(".aggiungi-personalizzazione").forEach(btn => {
-                btn.addEventListener("click", function () {
-                    const prezzoAggiuntivo = parseFloat(this.getAttribute("data-prezzo"));
-                    const nomePersonalizzazione = this.getAttribute("data-nome");
-                    prezzoBase += prezzoAggiuntivo;
-                    document.getElementById("prezzo").innerText = `${prezzoBase.toFixed(2)}€`;
-                    this.disabled = true; // Disabilita il tasto dopo che è stato aggiunto
-                    this.innerText = `Aggiunto - ${nomePersonalizzazione}`;
-                });
-            });
+let prezzoBase = parseFloat(prodotto.prezzo.replace('€', '').replace(',', '.'));
+document.querySelectorAll(".aggiungi-personalizzazione").forEach(btn => {
+    btn.addEventListener("click", function () {
+        const prezzoAggiuntivo = parseFloat(this.getAttribute("data-prezzo"));
+        const nomePersonalizzazione = this.getAttribute("data-nome");
+        prezzoBase += prezzoAggiuntivo;
+        document.getElementById("prezzo").innerText = `${prezzoBase.toFixed(2)}€`;
+        this.disabled = true; // Disabilita il tasto dopo che è stato aggiunto
+        this.innerText = `Aggiunto - ${nomePersonalizzazione}`;
+    });
+});
+
+// Gestione del click per aggiungere il prodotto al carrello
+document.getElementById("aggiungi-carrello").addEventListener("click", function () {
+    const prodottoCarrello = {
+        id: prodottoId,
+        nome: prodotto.nome,
+        prezzo: prodotto.prezzo,
+        colore: coloreSelezionato || "Base",
+        personalizzazioni: [],
+        immagine: prodotto.immagini[0] // Assumiamo che la prima immagine sia quella principale
+    };
+
+    // Aggiungi le personalizzazioni selezionate
+    document.querySelectorAll(".aggiungi-personalizzazione:disabled").forEach(btn => {
+        const nomePersonalizzazione = btn.getAttribute("data-nome");
+        const prezzoPersonalizzazione = parseFloat(btn.getAttribute("data-prezzo"));
+        prodottoCarrello.personalizzazioni.push({
+            nome: nomePersonalizzazione,
+            prezzo: prezzoPersonalizzazione
+        });
+    });
+
+    // Aggiungi il prodotto al carrello
+    const carrello = JSON.parse(localStorage.getItem("carrello")) || { prodotti: [] };
+    carrello.prodotti.push(prodottoCarrello);
+    localStorage.setItem("carrello", JSON.stringify(carrello));
+
+    // Debugging
+    console.log("Carrello aggiornato:", carrello);
+
+    alert("Prodotto aggiunto al carrello!");
+});
+
+
         })
         .catch(error => console.error("Errore nel caricamento del prodotto:", error));
 });
+
+
+
+

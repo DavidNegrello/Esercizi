@@ -1,7 +1,7 @@
 {
   "prodotti": [
       {
-          "id": "1",
+          "id": "20",
             "nome": "PC Gaming Entry Level",
             "descrizione": "Intel Core i5-12400F / 32 GB / 1 TB SSD / RTX4060",
             "prezzo": "899.99€",
@@ -75,7 +75,7 @@
 
       },
       {
-        "id": "2",
+        "id": "21",
         "nome": "PC Gaming Mid Range",
         "descrizione": "Intel Core i5-14600KF/32GB/2TB SSD/RTX 4070 Super",
         "prezzo": "1699.99€",
@@ -130,7 +130,7 @@
     },
     
     {
-      "id": "3",
+      "id": "22",
       "nome": "PC Gaming High End",
       "descrizione": "AMD Ryzen 7 7800X3D/32GB/2TB SSD/RTX 4070 Ti SUPER",
       "prezzo": "2569.99€",
@@ -186,7 +186,7 @@
   },
   
   {
-    "id": "4",
+    "id": "23",
     "nome": "PC Workstation",
     "descrizione": "Intel Core Ultra 9 285K / 64 GB RAM / 2 TB SSD / RTX 5080 + Windows 11 Pro",
     "prezzo": "3599.99€",
@@ -243,7 +243,7 @@
 },
 
 {
-  "id": "5",
+  "id": "24",
   "nome": "Laptop Gaming Entry Level",
   "descrizione": "ASUS TUF Gaming A15 2023 FA507NV-LP041 AMD Ryzen 7 7735HS/16GB/1TB SSD/RTX 4060/15.6",
   "prezzo": "1056.99€",
@@ -290,7 +290,7 @@
 },
 
 {
-  "id": "6",
+  "id": "25",
   "nome": "Laptop Gaming Mid Range",
   "descrizione": "Intel® Core™ i7 i7-13620H 32 GB DDR5-SDRAM 1 TB SSD NVIDIA GeForce RTX 4070",
   "prezzo": "1699.99€",
@@ -341,7 +341,7 @@
 },
 
 {
-  "id": "7",
+  "id": "26",
   "nome": "Laptop Gaming High End",
   "descrizione": "Gigabyte AORUS 17H BXF-74ES554SH Intel Core i7-13700H/16GB/1TB SSD/RTX 4080/17.3",
   "prezzo": "2269.00€",
@@ -392,7 +392,7 @@
 },
 
       {
-          "id": "8",
+          "id": "27",
           "nome": "Laptop Workstation",
           "descrizione": "ROG Zephyrus M16 GU604",
           "prezzo": "2999.99€",

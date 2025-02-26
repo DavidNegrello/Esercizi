@@ -1,3 +1,17 @@
+//===================CARRELLO_NAVBAR====================
+// Funzione per aggiornare il contatore del carrello nella navbar
+function aggiornaContatoreCarrello() {
+    const carrello = JSON.parse(localStorage.getItem("carrello")) || [];
+    const numeroProdotti = carrello.length;
+    const counterElement = document.getElementById("carrello-counter");
+    console.log("Numero prodotti carrello:", numeroProdotti); // Debug: mostra il numero di prodotti
+
+    if (counterElement) {
+        counterElement.textContent = numeroProdotti > 0 ? numeroProdotti : ""; // Mostra il numero o nulla se il carrello è vuoto
+    }
+}
+
+
 
 //====================FOOTER======================
 document.addEventListener("DOMContentLoaded", function () {
@@ -22,6 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 //================ INDEX ==================
+/*
 document.addEventListener("DOMContentLoaded", function () {
     fetch("../data/home.json")
         .then(response => response.json())
@@ -125,7 +140,7 @@ document.addEventListener("DOMContentLoaded", function () {
         setInterval(aggiornaTimer, 1000);
     }
 });
-
+*/
 
 
 
