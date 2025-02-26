@@ -1,29 +1,61 @@
-document.addEventListener("DOMContentLoaded", function() {
-    // Carica il carrello dal localStorage
-    const carrello = JSON.parse(localStorage.getItem("carrello")) || { prodotti: [] };
+document.addEventListener("DOMContentLoaded", function () {
+    // Carica i carrelli dal localStorage
+    const carrelloPreassemblato = JSON.parse(localStorage.getItem("carrelloPreassemblato")) || { prodotti: [] };
+    const carrelloCatalogo = JSON.parse(localStorage.getItem("carrelloCatalogo")) || { prodotti: [] };
 
     const carrelloContainer = document.getElementById("carrello-container");
     const totalePrezzoElement = document.getElementById("totale-prezzo");
 
+    // Unisci i prodotti dei due carrelli
+    const carrello = [...carrelloPreassemblato.prodotti, ...carrelloCatalogo.prodotti];
+
     // Se il carrello è vuoto
-    if (carrello.prodotti.length === 0) {
+    if (carrello.length === 0) {
         carrelloContainer.innerHTML = "<p>Il carrello è vuoto.</p>";
     } else {
+        let totale = 0; // Variabile per calcolare il totale del carrello
+
         // Aggiungi ogni prodotto al carrello
-        carrello.prodotti.forEach((prodotto, index) => {
+        carrello.forEach((prodotto, index) => {
+            // Assicurati che prezzo sia una stringa, altrimenti converti in stringa
+            let prezzoProdotto = (typeof prodotto.prezzo === "string") 
+                ? prodotto.prezzo.replace('€', '').replace(',', '.') 
+                : prodotto.prezzo.toString().replace('€', '').replace(',', '.');
+            prezzoProdotto = parseFloat(prezzoProdotto);
+
+            let variantiHTML = '';
+
+            // Mostra varianti (se presenti) per i prodotti del catalogo
+            if (prodotto.varianti) {
+                for (const [variantiKey, variantiValue] of Object.entries(prodotto.varianti)) {
+                    variantiHTML += `<p><strong>${variantiKey.charAt(0).toUpperCase() + variantiKey.slice(1)}:</strong> ${variantiValue}</p>`;
+                }
+            }
+
+            // Aggiungi le personalizzazioni per i prodotti preassemblati
+            let personalizzazioniHTML = '';
+            if (prodotto.personalizzazioni && prodotto.personalizzazioni.length > 0) {
+                prodotto.personalizzazioni.forEach(p => {
+                    prezzoProdotto += p.prezzo;
+                    personalizzazioniHTML += `<li>${p.nome}: +${p.prezzo}€</li>`;
+                });
+            }
+
+            // Calcola il totale
+            totale += prezzoProdotto;
+
+            // HTML per ogni prodotto nel carrello
             const prodottoHTML = `
-                <div class="prodotto-carrello d-flex align-items-center mb-3">
+                <div class="prodotto-carrello d-flex align-items-center mb-3" data-index="${index}">
                     <img src="${prodotto.immagine}" alt="${prodotto.nome}" class="img-thumbnail" style="width: 100px; height: 100px; object-fit: cover; margin-right: 15px;">
                     <div>
                         <h4>${prodotto.nome}</h4>
-                        <p>Prezzo: ${prodotto.prezzo}</p>
-                        <p>Colore: ${prodotto.colore}</p>
-                        <ul>
-                            ${prodotto.personalizzazioni.map(p => `<li>${p.nome}: +${p.prezzo}€</li>`).join('')}
-                        </ul>
+                        <p>Prezzo: ${prezzoProdotto.toFixed(2)}€</p>
+                        ${variantiHTML}
+                        ${personalizzazioniHTML ? `<ul>${personalizzazioniHTML}</ul>` : ''}
                         <hr>
                     </div>
-                    <button class="btn btn-danger btn-sm elimina-prodotto" data-index="${index}">
+                    <button class="btn btn-danger btn-sm elimina-prodotto">
                         <i class="fas fa-trash"></i> Elimina
                     </button>
                 </div>
@@ -31,50 +63,48 @@ document.addEventListener("DOMContentLoaded", function() {
             carrelloContainer.innerHTML += prodottoHTML;
         });
 
-        // Calcola e mostra il totale
-        const totale = carrello.prodotti.reduce((totale, prodotto) => {
-            let prezzoProdotto = parseFloat(prodotto.prezzo.replace('€', '').replace(',', '.'));
-            prodotto.personalizzazioni.forEach(p => {
-                prezzoProdotto += p.prezzo;
-            });
-            return totale + prezzoProdotto;
-        }, 0);
-
+        // Mostra il totale del carrello
         totalePrezzoElement.innerText = `${totale.toFixed(2)}€`;
     }
 
-    // Funzione per svuotare il carrello
-    document.getElementById("svuota-carrello").addEventListener("click", function() {
-        localStorage.removeItem("carrello"); // Rimuove il carrello dal localStorage
-        location.reload(); // Ricarica la pagina
-    });
+    // Gestione dell'eliminazione dei prodotti dal carrello (delegazione)
+    carrelloContainer.addEventListener("click", function (event) {
+        if (event.target.classList.contains("elimina-prodotto")) {
+            const prodottoIndex = event.target.closest(".prodotto-carrello").getAttribute("data-index");
 
-    // Funzione per procedere all'acquisto
-    document.getElementById("procedi-acquisto").addEventListener("click", function() {
-        if (carrello.prodotti.length === 0) {
-            alert("Il carrello è vuoto!");
-            return;
-        }
-        // Qui puoi implementare la logica per il pagamento o il checkout
-        alert("Procedi all'acquisto!");
-    });
+            // Verifica se il prodotto appartiene al carrello preassemblato o catalogo
+            let carrelloPreassemblato = JSON.parse(localStorage.getItem("carrelloPreassemblato")) || { prodotti: [] };
+            let carrelloCatalogo = JSON.parse(localStorage.getItem("carrelloCatalogo")) || { prodotti: [] };
 
-    // Gestione del click per eliminare un prodotto dal carrello
-    document.querySelectorAll(".elimina-prodotto").forEach(btn => {
-        btn.addEventListener("click", function() {
-            const index = this.getAttribute("data-index");
-
-            // Carica il carrello dal localStorage
-            const carrello = JSON.parse(localStorage.getItem("carrello")) || { prodotti: [] };
-
-            // Rimuovi il prodotto dal carrello
-            carrello.prodotti.splice(index, 1);
-
-            // Salva di nuovo il carrello nel localStorage
-            localStorage.setItem("carrello", JSON.stringify(carrello));
+            // Rimuovi il prodotto dal carrello preassemblato o catalogo
+            if (prodottoIndex < carrelloPreassemblato.prodotti.length) {
+                carrelloPreassemblato.prodotti.splice(prodottoIndex, 1);
+                localStorage.setItem("carrelloPreassemblato", JSON.stringify(carrelloPreassemblato));
+            } else {
+                let updatedIndex = prodottoIndex - carrelloPreassemblato.prodotti.length; // Correggi l'indice per il carrelloCatalogo
+                carrelloCatalogo.prodotti.splice(updatedIndex, 1);
+                localStorage.setItem("carrelloCatalogo", JSON.stringify(carrelloCatalogo));
+            }
 
             // Ricarica la pagina per aggiornare il carrello
             location.reload();
-        });
+        }
+    });
+
+    // Gestione dello svuotamento del carrello
+    document.getElementById("svuota-carrello").addEventListener("click", function () {
+        localStorage.removeItem("carrelloPreassemblato");
+        localStorage.removeItem("carrelloCatalogo");
+        location.reload(); // Ricarica la pagina per svuotare il carrello
+    });
+
+    // Funzione per procedere all'acquisto (puoi aggiungere una logica di pagamento qui)
+    document.getElementById("procedi-acquisto").addEventListener("click", function () {
+        const carrello = [...carrelloPreassemblato.prodotti, ...carrelloCatalogo.prodotti];
+        if (carrello.length === 0) {
+            alert("Il carrello è vuoto!");
+            return;
+        }
+        alert("Procedi all'acquisto!");
     });
 });

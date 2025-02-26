@@ -49,8 +49,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-
-//=========================Dettaglio.html=======================
 //=========================Dettaglio.html=======================
 document.addEventListener("DOMContentLoaded", function () {
     const params = new URLSearchParams(window.location.search);
@@ -198,7 +196,7 @@ document.querySelectorAll(".aggiungi-personalizzazione").forEach(btn => {
     });
 });
 
-// Gestione del click per aggiungere il prodotto al carrello
+// Gestione del click per aggiungere il prodotto preassemblato al carrello
 document.getElementById("aggiungi-carrello").addEventListener("click", function () {
     const prodottoCarrello = {
         id: prodottoId,
@@ -206,7 +204,8 @@ document.getElementById("aggiungi-carrello").addEventListener("click", function 
         prezzo: prodotto.prezzo,
         colore: coloreSelezionato || "Base",
         personalizzazioni: [],
-        immagine: prodotto.immagini[0] // Assumiamo che la prima immagine sia quella principale
+        immagine: prodotto.immagini[0], // Assumiamo che la prima immagine sia quella principale
+        tipo: "preassemblato" // Aggiungi il tipo di prodotto
     };
 
     // Aggiungi le personalizzazioni selezionate
@@ -219,16 +218,20 @@ document.getElementById("aggiungi-carrello").addEventListener("click", function 
         });
     });
 
-    // Aggiungi il prodotto al carrello
-    const carrello = JSON.parse(localStorage.getItem("carrello")) || { prodotti: [] };
-    carrello.prodotti.push(prodottoCarrello);
-    localStorage.setItem("carrello", JSON.stringify(carrello));
+    // Recupera il carrello preassemblato dal localStorage
+    const carrelloPreassemblato = JSON.parse(localStorage.getItem("carrelloPreassemblato")) || { prodotti: [] };
+    carrelloPreassemblato.prodotti.push(prodottoCarrello);
+
+    // Salva il carrello aggiornato nel localStorage
+    localStorage.setItem("carrelloPreassemblato", JSON.stringify(carrelloPreassemblato));
 
     // Debugging
-    console.log("Carrello aggiornato:", carrello);
+    console.log("Carrello Preassemblato aggiornato:", carrelloPreassemblato);
 
-    alert("Prodotto aggiunto al carrello!");
+    alert("Prodotto preassemblato aggiunto al carrello!");
 });
+
+
 
 
         })

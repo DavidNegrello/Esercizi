@@ -107,6 +107,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 //=========================Dettaglio_catalogo.html=======================
+
 document.addEventListener("DOMContentLoaded", function () {
     const params = new URLSearchParams(window.location.search);
     const prodottoId = params.get("id");
@@ -157,10 +158,10 @@ document.addEventListener("DOMContentLoaded", function () {
             let variantiDisponibili = "";
             let prezzoBase = prodotto.prezzo_base;
             if (prodotto.categoria === "PSU" && prodotto.varianti) {
-                variantiDisponibili = `
+                variantiDisponibili = ` 
                     <div class="mt-3">
                         <h5>Seleziona la potenza:</h5>
-                        ${Object.keys(prodotto.varianti).map(potenza => `
+                        ${Object.keys(prodotto.varianti).map(potenza => ` 
                             <button class="btn btn-outline-primary potenza-btn" data-potenza="${potenza}">${potenza}</button>
                         `).join('')}
                     </div>
@@ -170,10 +171,10 @@ document.addEventListener("DOMContentLoaded", function () {
             // Gestione delle varianti per SSD (capacità)
             let variantiSSD = "";
             if (prodotto.categoria === "Storage" && prodotto.capacita) {
-                variantiSSD = `
+                variantiSSD = ` 
                     <div class="mt-3">
                         <h5>Seleziona la capacità:</h5>
-                        ${prodotto.capacita.map(capacita => `
+                        ${prodotto.capacita.map(capacita => ` 
                             <button class="btn btn-outline-primary capacita-btn" data-capacita="${capacita}">${capacita}</button>
                         `).join('')}
                     </div>
@@ -183,17 +184,17 @@ document.addEventListener("DOMContentLoaded", function () {
             // Gestione delle varianti per RAM (colore e taglia)
             let variantiRAM = "";
             if (prodotto.categoria === "RAM") {
-                variantiRAM = `
+                variantiRAM = ` 
                     <div class="mt-3">
-                        ${prodotto.colori ? `
+                        ${prodotto.colori ? ` 
                             <h5>Seleziona il colore:</h5>
-                            ${prodotto.colori.map(colore => `
+                            ${prodotto.colori.map(colore => ` 
                                 <button class="btn btn-outline-primary colore-btn" data-colore="${colore}">${colore}</button>
                             `).join('')}
                         ` : ""}
-                        ${prodotto.taglie ? `
+                        ${prodotto.taglie ? ` 
                             <h5>Seleziona la taglia:</h5>
-                            ${Object.keys(prodotto.taglie).map(taglia => `
+                            ${Object.keys(prodotto.taglie).map(taglia => ` 
                                 <button class="btn btn-outline-primary taglia-btn" data-taglia="${taglia}" data-prezzo="${prodotto.taglie[taglia].prezzo}">${taglia}</button>
                             `).join('')}
                         ` : ""}
@@ -202,11 +203,11 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             // Composizione finale dell'HTML con tutte le varianti
-            document.getElementById("dettaglio-prodotto").innerHTML = `
+            document.getElementById("dettaglio-prodotto").innerHTML = ` 
                 <div class="col-md-6">
                     <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
-                            ${prodotto.immagini.map((img, index) => `
+                            ${prodotto.immagini.map((img, index) => ` 
                                 <div class="carousel-item ${index === 0 ? 'active' : ''}">
                                     <img src="${img}" class="d-block w-100" alt="${prodotto.nome}" style="object-fit: contain;">
                                 </div>
@@ -243,32 +244,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 </div>
             `;
 
-            // Gestione delle miniature
-            document.querySelectorAll(".miniatura").forEach(img => {
-                img.addEventListener("click", function () {
-                    let index = this.getAttribute("data-index");
-                    document.querySelector(".carousel-inner .active").classList.remove("active");
-                    document.querySelectorAll(".carousel-item")[index].classList.add("active");
-                    document.querySelectorAll(".miniatura").forEach(mini => mini.classList.remove("active"));
-                    this.classList.add("active");
-                });
-            });
+            // Variabile per tracciare il prezzo corrente
+            let prezzoCorrente = prodotto.prezzo_base;
 
             // Gestione del cambio di potenza (PSU)
-            let prezzoCorrente = prodotto.prezzo_base;
             document.querySelectorAll(".potenza-btn").forEach(btn => {
                 btn.addEventListener("click", function () {
+                    document.querySelectorAll(".potenza-btn").forEach(button => button.classList.remove("active"));
+                    this.classList.add("active");
                     const potenzaSelezionata = this.getAttribute("data-potenza");
-                    const immaginiPotenza = prodotto.varianti[potenzaSelezionata] || prodotto.immagini;
-                    document.querySelector(".carousel-inner").innerHTML = immaginiPotenza.map((img, index) => `
-                        <div class="carousel-item ${index === 0 ? 'active' : ''}">
-                            <img src="${img}" class="d-block w-100" alt="${prodotto.nome}" style="object-fit: contain;">
-                        </div>
-                    `).join('');
-                    document.querySelector(".mt-2").innerHTML = immaginiPotenza.map((img, index) => `
-                        <img src="${img}" class="miniatura ${index === 0 ? 'active' : ''}" data-index="${index}" alt="Miniatura ${index + 1}" style="width: 50px; cursor: pointer; margin-right: 5px;">
-                    `).join('');
-                    // Aggiorna il prezzo solo se è una selezione di potenza
+                    // Aggiorna il prezzo
                     prezzoCorrente = prodotto.prezzo_base + (potenzaSelezionata === '850W' ? 20 : potenzaSelezionata === '1000W' ? 40 : 0);
                     document.getElementById("prezzo").textContent = prezzoCorrente + "€";
                 });
@@ -277,23 +262,19 @@ document.addEventListener("DOMContentLoaded", function () {
             // Gestione del cambio di colore (RAM)
             document.querySelectorAll(".colore-btn").forEach(btn => {
                 btn.addEventListener("click", function () {
-                    const coloreSelezionato = this.getAttribute("data-colore");
-                    const immaginiColore = prodotto.varianti[coloreSelezionato] || prodotto.immagini;
-                    document.querySelector(".carousel-inner").innerHTML = immaginiColore.map((img, index) => `
-                        <div class="carousel-item ${index === 0 ? 'active' : ''}">
-                            <img src="${img}" class="d-block w-100" alt="${prodotto.nome}" style="object-fit: contain;">
-                        </div>
-                    `).join('');
+                    document.querySelectorAll(".colore-btn").forEach(button => button.classList.remove("active"));
+                    this.classList.add("active");
+                    document.getElementById("prezzo").textContent = prezzoCorrente + "€";
                 });
             });
 
             // Gestione del cambio di taglia (RAM)
             document.querySelectorAll(".taglia-btn").forEach(btn => {
                 btn.addEventListener("click", function () {
+                    document.querySelectorAll(".taglia-btn").forEach(button => button.classList.remove("active"));
+                    this.classList.add("active");
                     const tagliaSelezionata = this.getAttribute("data-taglia");
-                    const prezzoTaglia = parseFloat(this.getAttribute("data-prezzo"));
-                    // Aggiorna il prezzo solo quando si cambia la taglia
-                    prezzoCorrente = prezzoTaglia;
+                    prezzoCorrente = parseFloat(this.getAttribute("data-prezzo"));
                     document.getElementById("prezzo").textContent = prezzoCorrente + "€";
                 });
             });
@@ -301,27 +282,78 @@ document.addEventListener("DOMContentLoaded", function () {
             // Gestione del cambio di capacità (SSD)
             document.querySelectorAll(".capacita-btn").forEach(btn => {
                 btn.addEventListener("click", function () {
+                    document.querySelectorAll(".capacita-btn").forEach(button => button.classList.remove("active"));
+                    this.classList.add("active");
                     const capacitaSelezionata = this.getAttribute("data-capacita");
-                    const variantiCapacita = prodotto.varianti[capacitaSelezionata] || prodotto.immagini;
-                    document.querySelector(".carousel-inner").innerHTML = variantiCapacita.immagini.map((img, index) => `
-                        <div class="carousel-item ${index === 0 ? 'active' : ''}">
-                            <img src="${img}" class="d-block w-100" alt="${prodotto.nome}" style="object-fit: contain;">
-                        </div>
-                    `).join('');
-                    document.querySelector(".mt-2").innerHTML = variantiCapacita.immagini.map((img, index) => `
-                        <img src="${img}" class="miniatura ${index === 0 ? 'active' : ''}" data-index="${index}" alt="Miniatura ${index + 1}" style="width: 50px; cursor: pointer; margin-right: 5px;">
-                    `).join('');
-                    // Aggiorna il prezzo per la selezione della capacità
-                    const prezzoCapacita = prodotto.varianti[capacitaSelezionata].prezzo;
-                    document.getElementById("prezzo").textContent = prezzoCapacita + "€";
+                    prezzoCorrente = prodotto.varianti[capacitaSelezionata]?.prezzo || prodotto.prezzo_base;
+                    document.getElementById("prezzo").textContent = prezzoCorrente + "€";
                 });
             });
+
+// Gestione dell'aggiunta al carrello per i prodotti del catalogo
+document.querySelector(".btn-success").addEventListener("click", function () {
+    const prodottoNelCarrello = {
+        id: prodotto.id,
+        nome: prodotto.nome,
+        prezzo: prezzoCorrente,
+        immagine: prodotto.immagini[0], // Assumiamo che la prima immagine sia quella principale
+        varianti: {},
+        tipo: "catalogo" // Aggiungi il tipo di prodotto
+    };
+
+    // Aggiungi le varianti selezionate (potenza, colore, taglia, capacità)
+    
+    // Varianti per PSU (potenza)
+    if (prodotto.categoria === "PSU") {
+        const potenzaSelezionata = document.querySelector(".potenza-btn.active");
+        if (potenzaSelezionata) {
+            prodottoNelCarrello.varianti.potenza = potenzaSelezionata.getAttribute("data-potenza");
+        }
+    }
+
+    // Varianti per RAM (colore e taglia)
+    if (prodotto.categoria === "RAM") {
+        const coloreSelezionato = document.querySelector(".colore-btn.active");
+        if (coloreSelezionato) {
+            prodottoNelCarrello.varianti.colore = coloreSelezionato.getAttribute("data-colore");
+        }
+
+        const tagliaSelezionata = document.querySelector(".taglia-btn.active");
+        if (tagliaSelezionata) {
+            prodottoNelCarrello.varianti.taglia = tagliaSelezionata.getAttribute("data-taglia");
+        }
+    }
+
+    // Varianti per Storage (capacità)
+    if (prodotto.categoria === "Storage") {
+        const capacitaSelezionata = document.querySelector(".capacita-btn.active");
+        if (capacitaSelezionata) {
+            prodottoNelCarrello.varianti.capacita = capacitaSelezionata.getAttribute("data-capacita");
+        }
+    }
+
+    // Recupera il carrello del catalogo dal localStorage
+    let carrelloCatalogo = JSON.parse(localStorage.getItem("carrelloCatalogo")) || { prodotti: [] };
+
+    // Aggiungi il prodotto al carrello
+    carrelloCatalogo.prodotti.push(prodottoNelCarrello);
+
+    // Salva il carrello aggiornato nel localStorage
+    localStorage.setItem("carrelloCatalogo", JSON.stringify(carrelloCatalogo));
+
+    // Mostra un messaggio di conferma
+    alert("Prodotto del catalogo aggiunto al carrello!");
+});
+
+
         })
         .catch(err => {
             console.error("Errore nel caricamento dei dati:", err);
             document.getElementById("dettaglio-prodotto").innerHTML = "<p>Errore nel caricamento del prodotto.</p>";
         });
 });
+
+
 
 
 
