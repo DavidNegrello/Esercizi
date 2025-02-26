@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function() {
         carrelloContainer.innerHTML = "<p>Il carrello è vuoto.</p>";
     } else {
         // Aggiungi ogni prodotto al carrello
-        carrello.prodotti.forEach(prodotto => {
+        carrello.prodotti.forEach((prodotto, index) => {
             const prodottoHTML = `
                 <div class="prodotto-carrello d-flex align-items-center mb-3">
                     <img src="${prodotto.immagine}" alt="${prodotto.nome}" class="img-thumbnail" style="width: 100px; height: 100px; object-fit: cover; margin-right: 15px;">
@@ -23,6 +23,9 @@ document.addEventListener("DOMContentLoaded", function() {
                         </ul>
                         <hr>
                     </div>
+                    <button class="btn btn-danger btn-sm elimina-prodotto" data-index="${index}">
+                        <i class="fas fa-trash"></i> Elimina
+                    </button>
                 </div>
             `;
             carrelloContainer.innerHTML += prodottoHTML;
@@ -54,5 +57,24 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         // Qui puoi implementare la logica per il pagamento o il checkout
         alert("Procedi all'acquisto!");
+    });
+
+    // Gestione del click per eliminare un prodotto dal carrello
+    document.querySelectorAll(".elimina-prodotto").forEach(btn => {
+        btn.addEventListener("click", function() {
+            const index = this.getAttribute("data-index");
+
+            // Carica il carrello dal localStorage
+            const carrello = JSON.parse(localStorage.getItem("carrello")) || { prodotti: [] };
+
+            // Rimuovi il prodotto dal carrello
+            carrello.prodotti.splice(index, 1);
+
+            // Salva di nuovo il carrello nel localStorage
+            localStorage.setItem("carrello", JSON.stringify(carrello));
+
+            // Ricarica la pagina per aggiornare il carrello
+            location.reload();
+        });
     });
 });
