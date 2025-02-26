@@ -101,10 +101,17 @@ document.addEventListener("DOMContentLoaded", function () {
     // Funzione per procedere all'acquisto (puoi aggiungere una logica di pagamento qui)
     document.getElementById("procedi-acquisto").addEventListener("click", function () {
         const carrello = [...carrelloPreassemblato.prodotti, ...carrelloCatalogo.prodotti];
+        
         if (carrello.length === 0) {
             alert("Il carrello è vuoto!");
             return;
         }
-        alert("Procedi all'acquisto!");
+    
+        // Salva il carrello nel localStorage prima del reindirizzamento
+        localStorage.setItem("carrelloAcquisto", JSON.stringify(carrello));
+    
+        // Reindirizza alla pagina di checkout
+        window.location.href = "checkout.html"; // Cambia l'URL con il percorso della tua pagina di checkout
     });
+    
 });

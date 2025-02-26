@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 //================ INDEX ==================
-/*
+
 document.addEventListener("DOMContentLoaded", function () {
     fetch("../data/home.json")
         .then(response => response.json())
@@ -140,7 +140,7 @@ document.addEventListener("DOMContentLoaded", function () {
         setInterval(aggiornaTimer, 1000);
     }
 });
-*/
+
 
 
 
