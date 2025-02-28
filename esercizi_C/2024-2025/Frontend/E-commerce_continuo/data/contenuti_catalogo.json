@@ -1,0 +1,600 @@
+{
+    "prodotti": [
+    
+    {
+      "id": 1,
+      "nome": "ASUS ROG Strix Z690-E Gaming WiFi",
+      "descrizione": "ASUS ROG Strix Z690-E Gaming WiFi Scheda Madre ATX, Intel Z690, LGA1700, DDR5, PCI 5.0, WiFi 6E (802.11ax), Intel 2.5Gb Ethernet, ROG SupremeFX 7.1, 4xM.2, 6xSATA 6GB/s, Aura Sync RGB, Nero",
+      "prezzo_base": "379.99€",
+      "immagini": [
+          "../immagini/motherboard/z690/1/1.png",
+          "../immagini/motherboard/z690/1/2.png",
+          "../immagini/motherboard/z690/1/3.png"
+      ],
+      "specifiche": {
+          "Processore supportato": "LGA 1700",
+          "Tecnologia di memoria": "DDR5",
+          "Memoria massima supportata": "128 GB",
+          "Clock di Memoria": "2133 MHz",
+          "Interfaccia scheda grafica": "PCI Express",
+          "Tipo wireless": "802.11a/b/g/n/ac, Bluetooth, 802.11ax",
+          "Numero di porte USB 2.0": "9",
+          "Numero di porte HDMI": "1",
+          "Numero di porte Ethernet": "1"
+      },
+      "colori": ["Nero", "Bianco"],
+            "varianti": {
+                "Nero": [
+                    "../immagini/motherboard/z690/1/1.png",
+                    "../immagini/motherboard/z690/1/2.png",
+                    "../immagini/motherboard/z690/1/3.png"
+                ],
+                "Bianco": [
+                    "../immagini/motherboard/z690/2/1.png",
+                    "../immagini/motherboard/z690/2/2.png",
+                    "../immagini/motherboard/z690/2/3.png"
+                ]
+            },
+      "specifiche_dettagliate": {
+          "Marca": "ASUS",
+          "Produttore": "ASUS EUROPE B.V.",
+          "Serie": "ROG Strix Z690-A Gaming WiFi",
+          "Colore": "Bianco",
+          "Dimensioni prodotto": "33,8 x 6,8 x 27,3 cm; 1,7 kg",
+          "Pile": "1 Ioni di litio (Tipo di pila necessaria)",
+          "Numero modello articolo": "90MB1AP0-M0EAY0",
+          "Wattaggio": "3600W",
+          "Le batterie sono incluse": "No",
+          "Capacità della batteria al litio": "2 Kilowattora",
+          "Confezione della batteria al litio": "Batterie imballate con l'apparecchiatura",
+          "Peso della batteria al litio": "2 Grammi",
+          "Numero delle celle agli ioni di litio": "5",
+          "Numero delle celle ai metalli di litio": "5",
+          "Peso articolo": "1,7 Kilograms",
+          "Aggiornamenti software garantiti fino a": "sconosciuto"
+      }
+  },
+  
+  {
+    "id": 2,
+    "nome": "ASUS ROG Strix Z690-E Gaming WiFi",
+    "descrizione": "ASUS ROG Strix Z690-E Gaming WiFi Scheda Madre ATX, Intel Z690, LGA1700, DDR5, PCI 5.0, WiFi 6E (802.11ax), Intel 2.5Gb Ethernet, ROG SupremeFX 7.1, 4xM.2, 6xSATA 6GB/s, Aura Sync RGB, Nero",
+    "prezzo_base": "379.99€",
+    "immagini": [
+        "../immagini/motherboard/z690/2/1.png",
+        "../immagini/motherboard/z690/2/2.png",
+        "../immagini/motherboard/z690/2/3.png"
+    ],
+    "specifiche": {
+        "Processore supportato": "LGA 1700",
+        "Tecnologia di memoria": "DDR5",
+        "Memoria massima supportata": "128 GB",
+        "Clock di Memoria": "2133 MHz",
+        "Interfaccia scheda grafica": "PCI Express",
+        "Tipo wireless": "802.11a/b/g/n/ac, Bluetooth, 802.11ax",
+        "Numero di porte USB 2.0": "9",
+        "Numero di porte HDMI": "1",
+        "Numero di porte Ethernet": "1"
+    },
+    "colori": ["Nero", "Bianco"],
+          "varianti": {
+              "Nero": [
+                  "../immagini/motherboard/z690/1/1.png",
+                  "../immagini/motherboard/z690/1/2.png",
+                  "../immagini/motherboard/z690/1/3.png"
+              ],
+              "Bianco": [
+                  "../immagini/motherboard/z690/2/1.png",
+                  "../immagini/motherboard/z690/2/2.png",
+                  "../immagini/motherboard/z690/2/3.png"
+              ]
+          },
+    "specifiche_dettagliate": {
+        "Marca": "ASUS",
+        "Produttore": "ASUS EUROPE B.V.",
+        "Serie": "ROG Strix Z690-A Gaming WiFi",
+        "Colore": "Bianco",
+        "Dimensioni prodotto": "33,8 x 6,8 x 27,3 cm; 1,7 kg",
+        "Pile": "1 Ioni di litio (Tipo di pila necessaria)",
+        "Numero modello articolo": "90MB1AP0-M0EAY0",
+        "Wattaggio": "3600W",
+        "Le batterie sono incluse": "No",
+        "Capacità della batteria al litio": "2 Kilowattora",
+        "Confezione della batteria al litio": "Batterie imballate con l'apparecchiatura",
+        "Peso della batteria al litio": "2 Grammi",
+        "Numero delle celle agli ioni di litio": "5",
+        "Numero delle celle ai metalli di litio": "5",
+        "Peso articolo": "1,7 Kilograms",
+        "Aggiornamenti software garantiti fino a": "sconosciuto"
+    }
+},
+{
+  "id": 3,
+  "nome": "GIGABYTE Z490 AORUS MASTER",
+  "descrizione": "GIGABYTE Z490 AORUS MASTER Intel LGA1200 ATX Motherboard (14+1 Phases, NanoCarbon Baseplate, Intel 2.5GbE LAN, AQUANTIA 10GbE LAN, HDMI, USB 3.2 Gen2, USB Type-C, RGB Fusion 2.0)",
+  "prezzo_base": "449.99€",
+  "immagini": [
+      "../immagini/motherboard/gigabyte/1/1.png",
+      "../immagini/motherboard/gigabyte/1/2.png",
+      "../immagini/motherboard/gigabyte/1/3.png"
+  ],
+  "specifiche": {
+      "Processore supportato": "LGA 1200",
+      "Tecnologia di memoria": "DDR4",
+      "Memoria massima supportata": "128 GB",
+      "Clock di Memoria": "5000 MHz",
+      "Interfaccia scheda grafica": "PCI Express"
+  },
+  "colori": ["Nero"],
+  "varianti": {
+      "Nero": [
+      "../immagini/motherboard/gigabyte/1/1.png",
+      "../immagini/motherboard/gigabyte/1/2.png",
+      "../immagini/motherboard/gigabyte/1/3.png"  
+      ]
+  },
+  "specifiche_dettagliate": {
+      "Marca": "Gigabyte",
+      "Produttore": "Gigabyte",
+      "Serie": "Z490 AORUS Master",
+      "Dimensioni prodotto": "8,6 x 30,1 x 36,9 cm; 1,83 kg",
+      "Numero modello articolo": "Z490 AORUS MASTER",
+      "Fattore di forma": "ATX",
+      "Tipo processore": "AMD Ryzen 7",
+      "Supporto processore": "LGA 1200",
+      "Tecnologia di memoria": "DDR4",
+      "Memoria massima supportata": "128 GB",
+      "Clock di Memoria": "5000 MHz",
+      "Interfaccia scheda grafica": "PCI Express",
+      "Tipo wireless": "Bluetooth",
+      "Numero di porte USB 2.0": "4",
+      "Numero di porte HDMI": "1",
+      "Numero di porte Ethernet": "2",
+      "Wattaggio": "3600",
+      "Le batterie sono incluse": "No",
+      "Peso articolo": "1,83 Kilograms",
+      "Aggiornamenti software garantiti fino a": "sconosciuto"
+  }
+},
+
+{
+  "id": 4,
+  "nome": "GIGABYTE Z490 AORUS Elite AC",
+  "descrizione": "GIGABYTE Z490 AORUS Elite AC Intel LGA 1200 ATX Motherboard (12+1 Phases, Intel 2.5GbE LAN, HDMI, USB 3.2 Gen2, USB Type-C, RGB Fusion 2.0)",
+  "prezzo_base": "229.99€",
+  "immagini": [
+      "../immagini/motherboard/gigabyte/2/1.png",
+      "../immagini/motherboard/gigabyte/2/2.png",
+      "../immagini/motherboard/gigabyte/2/3.png"
+  ],
+  "specifiche": {
+      "Processore supportato": "LGA 1200",
+      "Tecnologia di memoria": "DDR4",
+      "Clock di Memoria": "5000 MHz",
+      "Interfaccia scheda grafica": "PCI Express",
+      "Tipo di connettività": "Wi-Fi",
+      "Tipo wireless": "Bluetooth",
+      "Numero di porte USB 2.0": "4",
+      "Numero di porte HDMI": "1",
+      "Piattaforma Hardware": "Non specifico per macchina",
+      "Le batterie sono incluse": "No"
+  },
+  "colori": ["Nero"],
+  "varianti": {
+      "Nero": [
+          "../immagini/motherboard/gigabyte/2/1.png",
+          "../immagini/motherboard/gigabyte/2/2.png",
+          "../immagini/motherboard/gigabyte/2/3.png"
+      ]
+  },
+  "specifiche_dettagliate": {
+      "Marca": "Gigabyte",
+      "Produttore": "Gigabyte",
+      "Serie": "Z490 AORUS ELITE AC",
+      "Colore": "Nero",
+      "Dimensioni prodotto": "8 x 24 x 30 cm; 1,2 kg",
+      "Numero modello articolo": "Z490 AORUS ELITE AC",
+      "Fattore di forma": "ATX",
+      "Tipo processore": "AMD Ryzen 7",
+      "Supporto processore": "LGA 1200",
+      "Tecnologia di memoria": "DDR4",
+      "Clock di Memoria": "5000 MHz",
+      "Interfaccia scheda grafica": "PCI Express",
+      "Tipo di connettività": "Wi-Fi",
+      "Tipo wireless": "Bluetooth",
+      "Numero di porte USB 2.0": "4",
+      "Numero di porte HDMI": "1",
+      "Piattaforma Hardware": "Non specifico per macchina",
+      "Le batterie sono incluse": "No",
+      "Peso articolo": "1,2 Kilograms",
+      "Aggiornamenti software garantiti fino a": "sconosciuto"
+  }
+},
+
+{
+  "id": 5,
+  "nome": "MSI GeForce RTX 4080 16Go",
+  "descrizione": "MSI GeForce RTX 4080 16GB SUPRIM Scheda Video Gaming - NVIDIA RTX 4080, 16 GB GDDR6X",
+  "prezzo_base": "1599.99€",
+  "immagini": [
+      "../immagini/GPU/4080/1/1.png",
+      "../immagini/GPU/4080/1/2.png"
+  ],
+  "specifiche": {
+      "Risoluzione": "5120x2880 (5K) at 60Hz",
+      "Clock di Memoria": "1700 Modificatore sconosciuto",
+      "Coprocessore grafico": "NVIDIA GeForce RTX 4080",
+      "Grafica Chipset Brand": "NVIDIA",
+      "Descrizione scheda grafica": "Dedicato",
+      "Tipo memoria scheda grafica": "GDDR6X",
+      "Dimensioni memoria scheda grafica": "16 GB",
+      "Interfaccia scheda grafica": "PCI-Express x16",
+      "Le batterie sono incluse": "No"
+  },
+  "colori": ["Nero", "Argento"],
+  "varianti": {
+      "Nero": [
+          "../immagini/GPU/4080/1/1.png",
+          "../immagini/GPU/4080/1/2.png"
+      ],
+      "Argento": [
+          "../immagini/GPU/4080/2/1.png",
+          "../immagini/GPU/4080/2/2.png"
+      ]
+  },
+  "specifiche_dettagliate": {
+      "Marca": "MSI",
+      "Produttore": "MSI",
+      "Serie": "GeForce RTX 4080 16GB SUPRIM",
+      "Dimensioni prodotto": "50 x 50 x 28 cm; 3,5 kg",
+      "Numero modello articolo": "V511-015R",
+      "Risoluzione": "5120x2880 (5K) at 60Hz",
+      "Clock di Memoria": "1700 Modificatore sconosciuto",
+      "Coprocessore grafico": "NVIDIA GeForce RTX 4080",
+      "Grafica Chipset Brand": "NVIDIA",
+      "Descrizione scheda grafica": "Dedicato",
+      "Tipo memoria scheda grafica": "GDDR6X",
+      "Dimensioni memoria scheda grafica": "16 GB",
+      "Interfaccia scheda grafica": "PCI-Express x16",
+      "Le batterie sono incluse": "No",
+      "Peso articolo": "3,5 Kilograms",
+      "Aggiornamenti software garantiti fino a": "sconosciuto"
+  }
+},
+
+{
+  "id": 6,
+  "nome": "MSI GeForce RTX 4080 16Go Suprim",
+  "descrizione": "MSI GeForce RTX 4080 16GB SUPRIM Scheda Video Gaming - NVIDIA RTX 4080, 16 GB GDDR6X",
+  "prezzo_base": "1599.99€",
+  "immagini": [
+      "../immagini/GPU/4080/1/1.png",
+      "../immagini/GPU/4080/1/2.png"
+  ],
+  "specifiche": {
+      "Risoluzione": "5120x2880 (5K) at 60Hz",
+      "Clock di Memoria": "1700 Modificatore sconosciuto",
+      "Coprocessore grafico": "NVIDIA GeForce RTX 4080",
+      "Grafica Chipset Brand": "NVIDIA",
+      "Descrizione scheda grafica": "Dedicato",
+      "Tipo memoria scheda grafica": "GDDR6X",
+      "Dimensioni memoria scheda grafica": "16 GB",
+      "Interfaccia scheda grafica": "PCI-Express x16",
+      "Le batterie sono incluse": "No"
+  },
+  "colori": ["Nero", "Argento"],
+  "varianti": {
+      "Nero": [
+          "../immagini/GPU/4080/1/1.png",
+          "../immagini/GPU/4080/1/2.png"
+      ],
+      "Argento": [
+          "../immagini/GPU/4080/2/1.png",
+          "../immagini/GPU/4080/2/2.png"
+      ]
+  },
+  "specifiche_dettagliate": {
+      "Marca": "MSI",
+      "Produttore": "MSI",
+      "Serie": "GeForce RTX 4080 16GB SUPRIM",
+      "Dimensioni prodotto": "50 x 50 x 28 cm; 3,5 kg",
+      "Numero modello articolo": "V511-015R",
+      "Risoluzione": "5120x2880 (5K) at 60Hz",
+      "Clock di Memoria": "1700 Modificatore sconosciuto",
+      "Coprocessore grafico": "NVIDIA GeForce RTX 4080",
+      "Grafica Chipset Brand": "NVIDIA",
+      "Descrizione scheda grafica": "Dedicato",
+      "Tipo memoria scheda grafica": "GDDR6X",
+      "Dimensioni memoria scheda grafica": "16 GB",
+      "Interfaccia scheda grafica": "PCI-Express x16",
+      "Le batterie sono incluse": "No",
+      "Peso articolo": "3,5 Kilograms",
+      "Aggiornamenti software garantiti fino a": "sconosciuto"
+  }
+},
+{
+  "id": 7,
+  "nome": "Corsair RM850X 80 Plus Gold",
+  "descrizione": "Corsair RM750x 80 PLUS Gold Alimentatore 750 Watt ATX Completamente Modulare, Ventola Levitazione Magnetica 135 mm, Ampiamente Compatibili, Condensatori Giapponesi, EU, Nero",
+  "prezzo_base": 139.99,
+  "categoria": "PSU",
+  "marca": "Corsair",
+  "immagini": [
+    "../immagini/PSU/1/1/1.png",
+    "../immagini/PSU/1/2.png",
+    "../immagini/PSU/1/3.png"
+  ],
+  "specifiche": {
+    "Fattore di forma": "ATX",
+    "Tipologia di memoria computer": "DIMM",
+    "Voltaggio": "220 Volt",
+    "Wattaggio": "750 Watt"  
+  },
+  "varianti": {
+    "750W": [
+      "../immagini/PSU/1/3/1.png",
+      "../immagini/PSU/1/2.png",
+      "../immagini/PSU/1/3.png"
+    ],
+    "850W": [
+      "../immagini/PSU/1/1/1.png",
+      "../immagini/PSU/1/2.png",
+      "../immagini/PSU/1/3.png"
+    ],
+    "1000W": [
+      "../immagini/PSU/1/2/1.png",
+      "../immagini/PSU/1/2.png",
+      "../immagini/PSU/1/3.png"
+    ]
+  },
+  "specifiche_dettagliate": {
+    "Marca": "Corsair",
+    "Produttore": "CORSAIR Holdings (Hong Kong) Ltd",
+    "Serie": "RM750x",
+    "Colore": "Nero",
+    "Dimensioni prodotto": "50 x 50 x 28 cm; 1,7 kg",
+    "Pile": "1 A (Tipo di pila necessaria)",
+    "Numero modello articolo": "RM750x",
+    "Fattore di forma": "ATX",
+    "Tipologia di memoria computer": "DIMM",
+    "Voltaggio": "220 Volt",
+    "Wattaggio": "750 watt",
+    "Le batterie sono incluse": "No",
+    "Capacità della batteria al litio": "2,6 Unità termica britannica",
+    "Confezione della batteria al litio": "Batterie contenute nell'apparecchiatura",
+    "Numero delle celle agli ioni di litio": "7",
+    "Numero delle celle ai metalli di litio": "7",
+    "Peso articolo": "1,7 Kilograms",
+    "Aggiornamenti software garantiti fino a": "sconosciuto"
+  }
+},
+
+
+{
+  "id": 8,
+  "nome": "THERMALTAKE ALIM. TOUGHPOWER GF1 750W ARGB FULL MODULAR 80 PLUS GOLD",
+  "descrizione": "THERMALTAKE ALIM. TOUGHPOWER GF1 750W ARGB FULL MODULAR 80 PLUS GOLD",
+  "categoria": "PSU",
+  "prezzo_base": 119.99,
+  "marca": "THERMALTAKE",
+  "immagini": [
+      "../immagini/PSU/2/1.png",
+      "../immagini/PSU/2/2.png",
+      "../immagini/PSU/2/3.png"
+  ],
+  "specifiche": {
+    "Fattore di forma": "ATX",
+    "Voltaggio": "240 Volt",
+    "Wattaggio": "750 watt"
+  },
+  "varianti": {
+    "750W": [
+      "../immagini/PSU/2/1.png",
+      "../immagini/PSU/2/2.png",
+      "../immagini/PSU/2/3.png"
+    ]
+  },
+  "specifiche_dettagliate": {
+    "Marca": "Thermaltake",
+    "Produttore": "RAGATEX SL - PES Child - Consumer Electronics",
+    "Serie": "FUENTE DE ALIMENTACIÃ“N THERMALTAKE TOUGHPOWER GF1 750W ARGB MODULAR 80+GOL RETAIL",
+    "Colore": "Multicolor",
+    "Dimensioni prodotto": "29,8 x 21 x 13,8 cm; 2,9 kg",
+    "Pile": "1 Ioni di litio (Tipo di pila necessaria)",
+    "Numero modello articolo": "PS-TPD-0750F3FAGE-1",
+    "Fattore di forma": "ATX",
+    "Voltaggio": "240 Volt",
+    "Wattaggio": "750 watt",
+    "Le batterie sono incluse": "No",
+    "Capacità della batteria al litio": "2 Kilowattora",
+    "Confezione della batteria al litio": "Batterie imballate con l'apparecchiatura",
+    "Peso della batteria al litio": "2 Grammi",
+    "Numero delle celle agli ioni di litio": "5",
+    "Numero delle celle ai metalli di litio": "5",
+    "Peso articolo": "2,9 Kilograms",
+    "Aggiornamenti software garantiti fino a": "sconosciuto"
+  }
+},
+
+{
+  "id": 9,
+  "nome": "CORSAIR VENGEANCE RGB DDR5 RAM 32GB (2x16GB) 5200MHz",
+  "descrizione": "CORSAIR VENGEANCE RGB DDR5 RAM 32GB (2x16GB) 5200MHz CL40 Intel XMP Compatibile iCUE Memoria per Computer - Nero (CMH32GX5M2B5200C40)",
+  "categoria": "RAM",
+  "prezzo_base": 199.99,
+  "marca": "Corsair",
+  "immagini": [
+    "../immagini/RAM/2/bianco/1.png",
+    "../immagini/RAM/2/bianco/2.png",
+    "../immagini/RAM/2/bianco/3.png"
+  ],
+  "specifiche": {
+    "Fattore di forma": "DIMM",
+    "Dimensioni RAM": "32 GB",
+    "Tecnologia di memoria": "DDR5",
+    "Tipologia di memoria computer": "DDR5 SDRAM",
+    "Clock di Memoria": "5200 MHz",
+    "Voltaggio": "1,25 Volt"
+  },
+  "colori": ["Bianco", "Nero"],
+  "varianti": {
+    "Bianco": [
+      "../immagini/RAM/2/bianco/1.png",
+      "../immagini/RAM/2/bianco/2.png",
+      "../immagini/RAM/2/bianco/3.png"
+    ],
+    "Nero": [
+      "../immagini/RAM/2/nero/1.png",
+      "../immagini/RAM/2/nero/2.png",
+      "../immagini/RAM/2/nero/3.png"
+    ]
+  },
+  "taglie": {
+    "2x16": {
+      "nome": "2x16GB",
+      "prezzo": 199.99,
+      "descrizione": "2x16GB per un totale di 32GB"
+    },
+    "2x32": {
+      "nome": "2x32GB",
+      "prezzo": 399.99,
+      "descrizione": "2x32GB per un totale di 64GB"
+    }
+  },
+  "specifiche_dettagliate": {
+    "Marca": "Corsair",
+    "Produttore": "Corsair",
+    "Serie": "VENGEANCE RGB DDR5",
+    "Colore": "Nero",
+    "Dimensioni prodotto": "13,5 x 0,8 x 5,6 cm; 94,5 grammi",
+    "Numero modello articolo": "CMH32GX5M2B5200C40",
+    "Fattore di forma": "DIMM",
+    "Dimensioni RAM": "32 GB",
+    "Tecnologia di memoria": "DDR5",
+    "Tipologia di memoria computer": "DDR5 SDRAM",
+    "Clock di Memoria": "5200 MHz",
+    "Voltaggio": "1,25 Volt",
+    "Le batterie sono incluse": "No",
+    "Peso articolo": "94,5 g",
+    "Aggiornamenti software garantiti fino a": "sconosciuto"
+  }
+},
+
+{
+  "id": 10,
+  "nome": "Samsung 970 EVO Plus PCIe NVMe M.2",
+  "descrizione": "Samsung 970 EVO Plus 1 TB PCIe NVMe M.2 (2280) Internal Solid State Drive (SSD) (MMZ-V7S1T0BW ), Black",
+  "categoria": "Storage",
+  "prezzo_base": 129.99,
+  "marca": "Samsung",
+  "immagini": [
+    "../immagini/SSD/1/1.png",
+    "../immagini/SSD/1/2.png",
+    "../immagini/SSD/1/3.png"
+  ],
+  "specifiche": {
+    "Fattore di forma": "M.2 (2280)",
+    "Interfaccia Hard-Disk": "PCIE x 4",
+    "Piattaforma Hardware": "PC",
+    "Peso articolo": "8 g"
+  },
+  "capacita": ["250GB", "500GB", "1TB"],
+  "varianti": {
+    "250GB": {
+      "prezzo": 59.99,
+      "immagini": [
+        "../immagini/SSD/1/1.png",
+        "../immagini/SSD/1/2.png",
+        "../immagini/SSD/1/3.png"
+      ]
+    },
+    "500GB": {
+      "prezzo": 89.99,
+      "immagini": [
+        "../immagini/SSD/1/1.png",
+    "../immagini/SSD/1/2.png",
+    "../immagini/SSD/1/3.png"
+      ]
+    },
+    "1TB": {
+      "prezzo": 129.99,
+      "immagini": [
+       "../immagini/SSD/1/1.png",
+    "../immagini/SSD/1/2.png",
+    "../immagini/SSD/1/3.png"
+      ]
+    }
+  },
+  "specifiche_dettagliate": {
+    "Marca": "Samsung",
+    "Produttore": "Samsung",
+    "Serie": "SSD 970 EVO Plus",
+    "Colore": "Nero",
+    "Dimensioni prodotto": "0,24 x 8,02 x 2,21 cm; 8 grammi",
+    "Numero modello articolo": "MZ-V7S1T0BW",
+    "Capacità della batteria al litio": "4,9 Wattora",
+    "Le batterie sono incluse": "No",
+    "Aggiornamenti software garantiti fino a": "sconosciuto"
+  }
+},
+
+{
+  "id": 11,
+  "nome": "SK hynix Platinum P41 NVMe SSD",
+  "descrizione": "SK hynix Platinum P41 NVMe SSD 2TB PCIe 4.0 7000 MB/s in lettura 6500 MB/s in scrittura M.2 2280 Interno SSD per Gaming, compatibile con Notebook PC Desktop e giochi",
+  "categoria": "Storage",
+  "prezzo_base": 399.99,
+  "marca": "SK hynix",
+  "immagini": [
+    "../immagini/SSD/2/1.png",
+    "../immagini/SSD/2/2.png",
+    "../immagini/SSD/2/3.png"
+  ],
+  "specifiche": {
+    "Fattore di forma": "M.2",
+    "Interfaccia Hard-Disk": "PCIE x 4",
+    "Voltaggio": "3,3 Volt",
+    "Peso articolo": "7 g"
+  },
+  "capacita": ["500GB", "1TB", "2TB"],
+  "varianti": {
+    "500GB": {
+      "prezzo": 169.99,
+      "immagini": [
+        "../immagini/SSD/2/1.png",
+        "../immagini/SSD/2/2.png",
+        "../immagini/SSD/2/3.png"
+      ]
+    },
+    "1TB": {
+      "prezzo": 249.99,
+      "immagini": [
+        "../immagini/SSD/2/1.png",
+        "../immagini/SSD/2/2.png",
+        "../immagini/SSD/2/3.png"
+      ]
+    },
+    "2TB": {
+      "prezzo": 399.99,
+      "immagini": [
+        "../immagini/SSD/2/1.png",
+        "../immagini/SSD/2/2.png",
+        "../immagini/SSD/2/3.png"
+      ]
+    }
+  },
+  "specifiche_dettagliate": {
+    "Marca": "SK hynix",
+    "Produttore": "SK hynix",
+    "Serie": "SHPP41",
+    "Colore": "Multicolore",
+    "Dimensioni prodotto": "8 x 2,2 x 0,22 cm; 7 grammi",
+    "Numero modello articolo": "SHPP41-2000GM-2",
+    "Le batterie sono incluse": "No",
+    "Aggiornamenti software garantiti fino a": "sconosciuto"
+  }
+}
+
+  ]
+}
+

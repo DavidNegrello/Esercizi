@@ -1,0 +1,71 @@
+Dividere tutto a fasce
+Es componenti del sito: testo-foto, foto-testo, foto con sotto il testo.
+Le varianti delle caratteristiche: una maglietta = tessuto, colore, taglia
+I singoli prodotti se hanno varianti hanno il prodotto generale con al suo interno le varianti come taglia-colore
+Sito internet esempio: YOOX
+
+il carrello si può salvare nel browser o nel database, ma se siamo non loggati e prima di farlo abbiamo aggiunto gli oggetti, bisogna spostare la lista all'utente loggato
+
+Siti utili: Freep!k
+
+Requisiti:
+-tabella  con le varianti di prodotto (almeno 2), e cambia la foto in base alla selezione
+-carrello con gestione del BUNDLE = viene visualizzato il prezzo del BUNDLE dove vengono mostrati i prezzi a 0 (nel mio caso è applicabile nei preassemblati)
+-personalizzazione = quando i prodotti sono soggetti a visualizzazione, nel carrello non vengono sommati (nel mio caso metto una textbox nella pagina di un preassemblato)
+-codice sconto = tabella con: id,tipologia,codice, usato/non usato. Nel totale va a cambiare il prezzo di una sola cosa o tutto il prezzo generale
+
+Consegna:
+Preparare bozza di un sito html di un e-commerce con:
+1) pagina singolo prodotto;
+2) pagina di archivio prodotti;
+3) carrello.
+Ogni singola pagina dovrà essere gestita da un JSon e non dovrà essere presente, all'interno dell'HTML, 
+alcun riferimento testuale (solo struttura). 
+Il JSon conterrà tutti i contenuti testuali che verranno riversati all'interno  dell'HTML.
+
+
+
+Sito di componenti pc
+Home page:
+- la home page carica i prodotti con più richiesta
+- nelle singole pagine mettere un'immagine a sinistra con tutto il testo a destra (es amazon)
+- in base al prodotto ci saranno varie caratteristiche diverse
+- La navbar deve essere completa con liste, categorie.
+- Navbar: Saldi, Preassemblati, accessori,
+
+Catalogo:
+-barra di ricerca
+-filtri di ricerca (come il prezzo massimo)
+
+Carrello:
+-visualizzare tutti i prodotti
+-mettere un tasto come cestino per cancellare i prodotti
+
+Preassemblati:
+-metto i pc e quando si va nella pagina del prodotto sotto deve esserci una tabella con la personalizzazione per cambiare i pezzi
+
+
+Lista del catalogo:
+
+-Schede Madri (Motherboard):
+ASUS ROG Strix Z690-E Gaming WiFi
+Gigabyte Z590 AORUS MASTER
+
+-Schede Grafiche (GPU):
+
+MSI GeForce RTX 4080 SUPRIM X
+
+-Alimentatori (PSU):
+Corsair RM850x 850W 80+ Gold    //questo ha le taglie da mettere nella sua pagina
+
+Thermaltake Toughpower GF1 650W 80+ Gold
+
+-Memorie RAM:
+
+Corsair Vengeance DDR5 32GB (2x16GB) 5200MHz    ///questo ha il colore 
+
+
+-Dischi SSD/HDD:
+Samsung 970 EVO Plus 1TB NVMe M.2       //dimensioni (non cambiano le immagini)
+SK hynix Platinum P41 NVMe SSD 2TB      //dimensioni (non cambiano le immagini)
+
