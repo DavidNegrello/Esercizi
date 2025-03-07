@@ -1,7 +1,7 @@
 Nel carrello non si elimina nulla ma si disattiva
 C'è sia id.utente e id.sessione
 Quando non si sa l'id.utente si utilizza l'id.sessione e quando l'utente si logga allora si sostituisce l'id.sessione con id.utente
-
+Il file json verrà caricato da un file .php. Lo scopo è caricare i dati dinamicamente senza modificare la struttura del sito
 
 Passaggi:
 1. strutturare il database basandosi sui file json
