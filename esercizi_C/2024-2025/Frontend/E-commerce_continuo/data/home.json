@@ -11,17 +11,17 @@
   "prodotti_piu_acquistati": [
     {
       "id": 1,
-      "nome": "Intel Core i9-14900K",
-      "categoria": "CPU",
-      "prezzo": 649.99,
-      "immagine": "../immagini/CPU/i9_14.jpeg"
+      "nome": "MSI GeForce RTX 4080 16GB SUPRIM",
+      "categoria": "GPU",
+      "prezzo": 1799.99,
+      "immagine": "../immagini/GPU/4080/2/1.png"
     },
     {
       "id": 2,
-      "nome": "ASUS ROG RTX 4090",
-      "categoria": "GPU",
-      "prezzo": 1799.99,
-      "immagine": "../immagini/GPU/4090_asus.jpeg"
+      "nome": "CORSAIR VENGEANCE RGB DDR5 RAM 32GB (2x16GB) 5200MHz",
+      "categoria": "RAM",
+      "prezzo": 199.99,
+      "immagine": "../immagini/RAM/2/bianco/1.png"
     },
     {
       "id": 3,
@@ -47,7 +47,7 @@
         "prezzo_originale": 1799.99,
         "prezzo_scontato": 1499.99,
         "immagine": "../immagini/bundle/bundle1.png",
-        "scadenza": "2025-02-20T23:59:59"
+        "scadenza": "2025-03-25T23:59:59"
       },
       {
         "id": 2,
@@ -60,7 +60,7 @@
         "prezzo_originale": 2499.99,
         "prezzo_scontato": 2199.99,
         "immagine": "../immagini/bundle/bundle2.jpeg",
-        "scadenza": "2025-02-22T23:59:59"
+        "scadenza": "2025-03-22T23:59:59"
       }
     ]
   }

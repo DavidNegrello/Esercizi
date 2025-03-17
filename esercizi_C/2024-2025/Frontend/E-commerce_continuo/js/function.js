@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         <h5 class="card-title">${prodotto.nome}</h5>
                         <p class="card-text"><strong>Categoria:</strong> ${prodotto.categoria}</p>
                         <p class="card-text"><strong>Prezzo:</strong> €${prodotto.prezzo.toFixed(2)}</p>
-                        <a href="prodotti.html?categoria=${prodotto.categoria}" class="btn btn-primary">Vedi</a>
+                        <a href="pagine/catalogo.html?categoria=${prodotto.categoria}" class="btn btn-primary">Vedi</a>
                     </div>
                 </div>
             `;
@@ -83,16 +83,16 @@ document.addEventListener("DOMContentLoaded", function () {
     function caricaOfferteSpeciali(offerte) {
         let container = document.getElementById("offerte-speciali");
         let titoloOfferte = document.getElementById("titolo-offerte");
-
+    
         titoloOfferte.textContent = offerte.titolo;
         container.innerHTML = "";
-
-        offerte.bundle.forEach(bundle => {
-            let prodottiHTML = bundle.prodotti.map(p => `<li>${p.nome} (${p.categoria})</li>`).join("");
-
+    
+        offerte.bundle.forEach((bundle, index) => {
+            let prodottiHTML = bundle.prodotti.map(p => `<li>${p.nome} (${p.categoria}) - €0.00</li>`).join("");
+    
             let card = document.createElement("div");
             card.classList.add("col-md-6", "mb-4");
-
+    
             card.innerHTML = `
                 <div class="card shadow-lg border-0">
                     <img src="${bundle.immagine}" class="card-img-top" alt="${bundle.nome}">
@@ -103,27 +103,53 @@ document.addEventListener("DOMContentLoaded", function () {
                             <span class="text-muted text-decoration-line-through fs-6">€${bundle.prezzo_originale.toFixed(2)}</span>
                         </p>
                         <p class="text-warning fs-6">${offerte.timer_testo} <span class="timer" data-scadenza="${bundle.scadenza}"></span></p>
-                        <a href="../pagine/catalogo.html" class="btn btn-primary">${offerte.bottone}</a>
+                        <button class="btn btn-primary aggiungi-bundle" data-index="${index}">${offerte.bottone}</button>
                     </div>
                 </div>
             `;
-
+    
             container.appendChild(card);
         });
-
+    
+        // Aggiungi event listener ai pulsanti per evitare problemi con JSON
+        document.querySelectorAll(".aggiungi-bundle").forEach(button => {
+            button.addEventListener("click", function () {
+                let bundleIndex = this.getAttribute("data-index");
+                let selectedBundle = offerte.bundle[bundleIndex];
+                aggiungiAlCarrello(selectedBundle);
+            });
+        });
+    
         avviaTimer();
     }
-
+    
+    function aggiungiAlCarrello(bundle) {
+        let carrelloBundle = JSON.parse(localStorage.getItem("carrelloBundle")) || { prodotti: [] };
+    
+        let bundleCarrello = {
+            nome: bundle.nome,
+            prodotti: bundle.prodotti.map(p => ({ nome: p.nome, categoria: p.categoria, prezzo: 0 })), // Prezzo 0 per i singoli prodotti
+            prezzo_totale: bundle.prezzo_scontato
+        };
+    
+        carrelloBundle.prodotti.push(bundleCarrello);
+        localStorage.setItem("carrelloBundle", JSON.stringify(carrelloBundle));
+    
+        window.location.href = "../pagine/carrello.html";
+    }
+    
+    
     function avviaTimer() {
         let timerElements = document.querySelectorAll(".timer");
-
+        let timerInterval;
+    
         function aggiornaTimer() {
             let now = new Date().getTime();
-
+    
             timerElements.forEach(element => {
                 let scadenza = new Date(element.getAttribute("data-scadenza")).getTime();
                 let diff = scadenza - now;
-
+    
                 if (diff > 0) {
                     let giorni = Math.floor(diff / (1000 * 60 * 60 * 24));
                     let ore = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -135,10 +161,29 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             });
         }
-
+    
+        if (window.timerInterval) {
+            clearInterval(window.timerInterval);
+        }
+        
         aggiornaTimer();
-        setInterval(aggiornaTimer, 1000);
+        window.timerInterval = setInterval(aggiornaTimer, 1000);
     }
+    
+    function aggiungiAlCarrello(bundle) {
+        let carrello = JSON.parse(localStorage.getItem("carrello")) || [];
+        let bundleCarrello = {
+            nome: bundle.nome,
+            prodotti: bundle.prodotti.map(p => ({ nome: p.nome, categoria: p.categoria, prezzo: 0 })),
+            prezzo_totale: bundle.prezzo_scontato
+        };
+        
+        carrello.push(bundleCarrello);
+        localStorage.setItem("carrello", JSON.stringify(carrello));
+        
+        window.location.href = "../pagine/carrello.html";
+    }
+    
 });
 
 
