@@ -6,3 +6,9 @@ Il file json verrà caricato da un file .php. Lo scopo è caricare i dati dinami
 Passaggi:
 1. strutturare il database basandosi sui file json
 
+
+
+Cosa ho fatto:
+-fatto il database con i dati già inserito
+-mancano molte immagini
+-
