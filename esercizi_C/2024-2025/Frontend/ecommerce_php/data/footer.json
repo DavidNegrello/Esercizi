@@ -1,0 +1,11 @@
+{
+    "social": [
+      { "nome": "Facebook", "icon": "fab fa-facebook", "link": "#" },
+      { "nome": "Instagram", "icon": "fab fa-instagram", "link": "#" },
+      { "nome": "Twitter", "icon": "fab fa-twitter", "link": "#" },
+      { "nome": "YouTube", "icon": "fab fa-youtube", "link": "#" }
+    ],
+    "email": "info@pccomponenti.com",
+    "copyright": "&copy; 2025 PC Componenti - Tutti i diritti riservati."
+  }
+  

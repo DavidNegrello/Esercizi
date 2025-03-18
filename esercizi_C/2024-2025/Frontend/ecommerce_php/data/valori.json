@@ -1,0 +1,8 @@
+{
+  "filtri": {
+    "ricerca": "Cerca un prodotto...",
+    "categorie": ["CPU", "GPU", "RAM", "PSU", "Storage", "Case", "Scheda Madre", "Raffreddamento"],
+    "prezzo": { "min": 0, "max": 2000, "step": 10 },
+    "marche": ["Intel", "AMD", "NVIDIA", "Corsair", "MSI", "ASUS", "NZXT", "Gigabyte", "Thermaltake", "Samsung", "SK hynix"]
+  }
+}
