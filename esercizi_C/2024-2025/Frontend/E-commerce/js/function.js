@@ -28,7 +28,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
 //====================FOOTER======================
 document.addEventListener("DOMContentLoaded", function () {
-    fetch("../data/footer.json")
+    // Determina il percorso corretto per il file JSON in base alla pagina corrente
+    const isHomePage = window.location.pathname.endsWith('index.html') || window.location.pathname.endsWith('/');
+    const dataPath = isHomePage ? "data/footer.json" : "../data/footer.json";
+    
+    fetch(dataPath)
         .then(response => response.json())
         .then(data => {
             // Social media
@@ -39,8 +43,11 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("footer-social").innerHTML = socialHtml;
 
             // Email
-            document.getElementById("footer-email").textContent = data.email;
-            document.getElementById("footer-email").href = `mailto:${data.email}`;
+            const emailElements = document.querySelectorAll("#footer-email");
+            emailElements.forEach(element => {
+                element.textContent = data.email;
+                element.href = `mailto:${data.email}`;
+            });
 
             // Copyright
             document.getElementById("footer-copyright").innerHTML = data.copyright;
@@ -51,15 +58,24 @@ document.addEventListener("DOMContentLoaded", function () {
 //================ INDEX ==================
 
 document.addEventListener("DOMContentLoaded", function () {
-    fetch("../data/home.json")
+    // Determina il percorso corretto per il file JSON in base alla pagina corrente
+    const isHomePage = window.location.pathname.endsWith('index.html') || window.location.pathname.endsWith('/');
+    const dataPath = isHomePage ? "data/home.json" : "../data/home.json";
+    
+    fetch(dataPath)
         .then(response => response.json())
         .then(data => {
             // Carica l'hero section
-            document.getElementById("hero-title").textContent = data.hero.titolo;
-            document.getElementById("hero-desc").textContent = data.hero.descrizione;
-            let heroBtn = document.getElementById("hero-btn");
-            heroBtn.textContent = data.hero.bottone.testo;
-            heroBtn.href = data.hero.bottone.link;
+            const heroTitle = document.getElementById("hero-title");
+            const heroDesc = document.getElementById("hero-desc");
+            const heroBtn = document.getElementById("hero-btn");
+            
+            if (heroTitle && heroDesc && heroBtn) {
+                heroTitle.textContent = data.hero.titolo;
+                heroDesc.textContent = data.hero.descrizione;
+                heroBtn.textContent = data.hero.bottone.testo;
+                heroBtn.href = data.hero.bottone.link;
+            }
 
             // Carica i prodotti più acquistati
             caricaProdottiPopolari(data.prodotti_piu_acquistati);
@@ -84,7 +100,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     <div class="product-image-container">
                         <img src="${prodotto.immagine}" class="card-img-top product-image" alt="${prodotto.nome}">
                         <div class="product-overlay">
-                            <a href="pagine/catalogo.html?categoria=${prodotto.categoria}" class="btn btn-primary">Vedi dettagli</a>
+                            <a href="${isHomePage ? 'pagine/catalogo.html' : 'catalogo.html'}?categoria=${prodotto.categoria}" class="btn btn-primary">Vedi dettagli</a>
                         </div>
                     </div>
                     <div class="card-body d-flex flex-column">
@@ -92,7 +108,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         <p class="card-text text-muted"><i class="fas fa-tag me-2"></i>${prodotto.categoria}</p>
                         <div class="mt-auto">
                             <p class="card-text fw-bold text-primary fs-5">${prodotto.prezzo.toFixed(2)}€</p>
-                            <a href="pagine/catalogo.html?categoria=${prodotto.categoria}" class="btn btn-outline-primary w-100">
+                            <a href="${isHomePage ? 'pagine/catalogo.html' : 'catalogo.html'}?categoria=${prodotto.categoria}" class="btn btn-outline-primary w-100">
                                 <i class="fas fa-eye me-2"></i>Vedi
                             </a>
                         </div>
@@ -187,7 +203,7 @@ document.addEventListener("DOMContentLoaded", function () {
         
         // Opzionale: reindirizza al carrello
         setTimeout(() => {
-            window.location.href = "pagine/carrello.html";
+            window.location.href = isHomePage ? "pagine/carrello.html" : "carrello.html";
         }, 1000);
     }
     
