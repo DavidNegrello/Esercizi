@@ -69,58 +69,127 @@
         </div>
     </section>
 
-    <!-- Categorie in evidenza -->
+    <!-- Prodotti in evidenza -->
     <section class="py-5">
         <div class="container">
-            <h2 class="section-title mb-4">Categorie in evidenza</h2>
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="category-card">
-                        <div class="card h-100 border-0 shadow-sm">
-                            <div class="category-image-container">
-                                <img src="immagini/categorie/cpu.jpg" class="card-img-top category-image" alt="CPU">
-                                <div class="category-overlay">
-                                    <h3 class="category-name">CPU</h3>
-                                </div>
+            <h2 class="section-title mb-4">Prodotti in evidenza</h2>
+            <div class="row g-4" id="prodotti-evidenza">
+                <div class="col-md-3 mb-4">
+                    <div class="card h-100 shadow-sm product-card">
+                        <div class="product-image-container">
+                            <img src="immagini/prodotti/cpu_ryzen.jpg" class="card-img-top product-image" alt="AMD Ryzen 9">
+                            <div class="product-overlay">
+                                <a href="pagine/dettaglio_catalogo.html?id=1" class="btn btn-primary">Vedi dettagli</a>
                             </div>
-                            <div class="card-body text-center">
-                                <h5 class="card-title">Processori</h5>
-                                <p class="card-text">Scopri i processori più potenti per il tuo PC</p>
-                                <a href="pagine/catalogo.html?categoria=CPU" class="btn btn-outline-primary">Esplora</a>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge bg-primary">CPU</span>
+                                <span class="text-warning">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </span>
+                            </div>
+                            <h5 class="card-title">AMD Ryzen 9 5900X</h5>
+                            <p class="card-text text-muted small">Processore 12 core, 24 thread, fino a 4.8GHz</p>
+                            <div class="mt-auto">
+                                <p class="card-text fw-bold text-primary fs-5">499.99€</p>
+                                <a href="pagine/dettaglio_catalogo.html?id=1" class="btn btn-outline-primary w-100">
+                                    <i class="fas fa-eye me-2"></i>Vedi dettagli
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="category-card">
-                        <div class="card h-100 border-0 shadow-sm">
-                            <div class="category-image-container">
-                                <img src="immagini/categorie/gpu.jpg" class="card-img-top category-image" alt="GPU">
-                                <div class="category-overlay">
-                                    <h3 class="category-name">GPU</h3>
-                                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="card h-100 shadow-sm product-card">
+                        <div class="product-image-container">
+                            <img src="immagini/prodotti/gpu_rtx.jpg" class="card-img-top product-image" alt="NVIDIA RTX 3080">
+                            <div class="product-overlay">
+                                <a href="pagine/dettaglio_catalogo.html?id=2" class="btn btn-primary">Vedi dettagli</a>
                             </div>
-                            <div class="card-body text-center">
-                                <h5 class="card-title">Schede Video</h5>
-                                <p class="card-text">Le migliori schede grafiche per gaming e lavoro</p>
-                                <a href="pagine/catalogo.html?categoria=GPU" class="btn btn-outline-primary">Esplora</a>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge bg-success">GPU</span>
+                                <span class="text-warning">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                            </div>
+                            <h5 class="card-title">NVIDIA RTX 3080</h5>
+                            <p class="card-text text-muted small">Scheda grafica 10GB GDDR6X, Ray Tracing</p>
+                            <div class="mt-auto">
+                                <p class="card-text fw-bold text-primary fs-5">799.99€</p>
+                                <a href="pagine/dettaglio_catalogo.html?id=2" class="btn btn-outline-primary w-100">
+                                    <i class="fas fa-eye me-2"></i>Vedi dettagli
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="category-card">
-                        <div class="card h-100 border-0 shadow-sm">
-                            <div class="category-image-container">
-                                <img src="immagini/categorie/ram.jpg" class="card-img-top category-image" alt="RAM">
-                                <div class="category-overlay">
-                                    <h3 class="category-name">RAM</h3>
-                                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="card h-100 shadow-sm product-card">
+                        <div class="product-image-container">
+                            <img src="immagini/prodotti/ram_corsair.jpg" class="card-img-top product-image" alt="Corsair Vengeance RGB">
+                            <div class="product-overlay">
+                                <a href="pagine/dettaglio_catalogo.html?id=3" class="btn btn-primary">Vedi dettagli</a>
                             </div>
-                            <div class="card-body text-center">
-                                <h5 class="card-title">Memoria RAM</h5>
-                                <p class="card-text">Aumenta le prestazioni con le nostre RAM</p>
-                                <a href="pagine/catalogo.html?categoria=RAM" class="btn btn-outline-primary">Esplora</a>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge bg-danger">RAM</span>
+                                <span class="text-warning">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </span>
+                            </div>
+                            <h5 class="card-title">Corsair Vengeance RGB</h5>
+                            <p class="card-text text-muted small">32GB (2x16GB) DDR4 3600MHz, RGB</p>
+                            <div class="mt-auto">
+                                <p class="card-text fw-bold text-primary fs-5">189.99€</p>
+                                <a href="pagine/dettaglio_catalogo.html?id=3" class="btn btn-outline-primary w-100">
+                                    <i class="fas fa-eye me-2"></i>Vedi dettagli
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="card h-100 shadow-sm product-card">
+                        <div class="product-image-container">
+                            <img src="immagini/prodotti/ssd_samsung.jpg" class="card-img-top product-image" alt="Samsung 970 EVO Plus">
+                            <div class="product-overlay">
+                                <a href="pagine/dettaglio_catalogo.html?id=4" class="btn btn-primary">Vedi dettagli</a>
+                            </div>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge bg-info text-dark">Storage</span>
+                                <span class="text-warning">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </span>
+                            </div>
+                            <h5 class="card-title">Samsung 970 EVO Plus</h5>
+                            <p class="card-text text-muted small">SSD NVMe M.2 1TB, 3500MB/s</p>
+                            <div class="mt-auto">
+                                <p class="card-text fw-bold text-primary fs-5">149.99€</p>
+                                <a href="pagine/dettaglio_catalogo.html?id=4" class="btn btn-outline-primary w-100">
+                                    <i class="fas fa-eye me-2"></i>Vedi dettagli
+                                </a>
                             </div>
                         </div>
                     </div>

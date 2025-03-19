@@ -137,6 +137,18 @@ body {
     opacity: 1;
 }
 
+/* Badge stili */
+.badge {
+    padding: 0.5rem 0.8rem;
+    font-weight: 500;
+    font-size: 0.75rem;
+}
+
+/* Stelle di valutazione */
+.text-warning i {
+    font-size: 0.8rem;
+}
+
 /* Bundle cards */
 .bundle-card {
     position: relative;
@@ -208,57 +220,6 @@ body {
 
 .bundle-card.expired .ribbon {
     background-color: #6c757d;
-}
-
-/* Categorie in evidenza */
-.category-card {
-    transition: all 0.3s ease;
-}
-
-.category-card:hover {
-    transform: translateY(-10px);
-}
-
-.category-image-container {
-    position: relative;
-    overflow: hidden;
-    height: 200px;
-}
-
-.category-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-}
-
-.category-card:hover .category-image {
-    transform: scale(1.1);
-}
-
-.category-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.7));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.category-card:hover .category-overlay {
-    opacity: 1;
-}
-
-.category-name {
-    color: white;
-    font-size: 2rem;
-    font-weight: 700;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
 /* Feature cards */
@@ -375,7 +336,7 @@ footer a:hover {
         font-size: 1rem;
     }
     
-    .product-card, .bundle-card, .category-card {
+    .product-card, .bundle-card {
         margin-bottom: 2rem;
     }
     
