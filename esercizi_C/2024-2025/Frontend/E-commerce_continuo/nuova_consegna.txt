@@ -11,4 +11,10 @@ Passaggi:
 Cosa ho fatto:
 -fatto il database con i dati già inserito
 -mancano molte immagini
--
+
+
+
+Nuova consegna con i gruppi:
+-quando un prodotto non ha un record completo lo si inserisce con un default
+-l'utente deve compilare un questionario
+-in base al questionario verrà fuori il profilo del singolo utente e un su possibile abbonamento (lo deve acquistare) dove gli vengono spediti i prodotti (non gli stessi per più volte)
