@@ -2,7 +2,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     let prodottiOriginali = []; // Ora è globale
 
-    fetch("../data/catalogo.json")
+    fetch("../api/get_catalogo.php")
         .then(response => response.json())
         .then(data => {
             prodottiOriginali = data.prodotti; 
@@ -117,12 +117,10 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
-    fetch("../data/contenuti_catalogo.json")
+    fetch(`../api/get_prodotto.php?id=${prodottoId}`)
         .then(response => response.json())
-        .then(data => {
-            const prodotto = data.prodotti.find(p => p.id === parseInt(prodottoId)); // Assicurati che l'ID sia un intero
-
-            if (!prodotto) {
+        .then(prodotto => {
+            if (!prodotto || prodotto.error) {
                 document.getElementById("dettaglio-prodotto").innerHTML = "<p>Prodotto non trovato.</p>";
                 return;
             }
@@ -290,79 +288,73 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
             });
 
-// Gestione dell'aggiunta al carrello per i prodotti del catalogo
-document.querySelector(".btn-success").addEventListener("click", function () {
-    const prodottoNelCarrello = {
-        id: prodotto.id,
-        nome: prodotto.nome,
-        prezzo: prezzoCorrente,
-        immagine: prodotto.immagini[0], // Assumiamo che la prima immagine sia quella principale
-        varianti: {},
-        tipo: "catalogo" // Aggiungi il tipo di prodotto
-    };
-
-    // Aggiungi le varianti selezionate (potenza, colore, taglia, capacità)
-    
-    // Varianti per PSU (potenza)
-    if (prodotto.categoria === "PSU") {
-        const potenzaSelezionata = document.querySelector(".potenza-btn.active");
-        if (potenzaSelezionata) {
-            prodottoNelCarrello.varianti.potenza = potenzaSelezionata.getAttribute("data-potenza");
-        }
-    }
-
-    // Varianti per RAM (colore e taglia)
-    if (prodotto.categoria === "RAM") {
-        const coloreSelezionato = document.querySelector(".colore-btn.active");
-        if (coloreSelezionato) {
-            prodottoNelCarrello.varianti.colore = coloreSelezionato.getAttribute("data-colore");
-        }
-
-        const tagliaSelezionata = document.querySelector(".taglia-btn.active");
-        if (tagliaSelezionata) {
-            prodottoNelCarrello.varianti.taglia = tagliaSelezionata.getAttribute("data-taglia");
-        }
-    }
-
-    // Varianti per Storage (capacità)
-    if (prodotto.categoria === "Storage") {
-        const capacitaSelezionata = document.querySelector(".capacita-btn.active");
-        if (capacitaSelezionata) {
-            prodottoNelCarrello.varianti.capacita = capacitaSelezionata.getAttribute("data-capacita");
-        }
-    }
-
-    // Recupera il carrello del catalogo dal localStorage
-    let carrelloCatalogo = JSON.parse(localStorage.getItem("carrelloCatalogo")) || { prodotti: [] };
-
-    // Aggiungi il prodotto al carrello
-    carrelloCatalogo.prodotti.push(prodottoNelCarrello);
-
-    // Salva il carrello aggiornato nel localStorage
-    localStorage.setItem("carrelloCatalogo", JSON.stringify(carrelloCatalogo));
-
-    // Mostra un messaggio di conferma
-    alert("Prodotto del catalogo aggiunto al carrello!");
-});
-
-
+            // Gestione dell'aggiunta al carrello per i prodotti del catalogo
+            document.querySelector(".btn-success").addEventListener("click", function () {
+                const variantiSelezionate = {};
+                
+                // Raccogli le varianti selezionate
+                if (prodotto.categoria === "PSU") {
+                    const potenzaSelezionata = document.querySelector(".potenza-btn.active");
+                    if (potenzaSelezionata) {
+                        variantiSelezionate.potenza = potenzaSelezionata.getAttribute("data-potenza");
+                    }
+                }
+                
+                if (prodotto.categoria === "RAM") {
+                    const coloreSelezionato = document.querySelector(".colore-btn.active");
+                    if (coloreSelezionato) {
+                        variantiSelezionate.colore = coloreSelezionato.getAttribute("data-colore");
+                    }
+                    
+                    const tagliaSelezionata = document.querySelector(".taglia-btn.active");
+                    if (tagliaSelezionata) {
+                        variantiSelezionate.taglia = tagliaSelezionata.getAttribute("data-taglia");
+                    }
+                }
+                
+                if (prodotto.categoria === "Storage") {
+                    const capacitaSelezionata = document.querySelector(".capacita-btn.active");
+                    if (capacitaSelezionata) {
+                        variantiSelezionate.capacita = capacitaSelezionata.getAttribute("data-capacita");
+                    }
+                }
+                
+                // Invia i dati al server per aggiungere al carrello
+                const formData = new FormData();
+                formData.append('action', 'add');
+                formData.append('product_id', prodotto.id);
+                formData.append('price', prezzoCorrente);
+                formData.append('quantity', 1);
+                formData.append('variants', JSON.stringify(variantiSelezionate));
+                formData.append('type', 'catalogo');
+                
+                fetch('../api/cart_actions.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Aggiorna il contatore del carrello nella navbar
+                        const counterElement = document.getElementById("carrello-counter");
+                        if (counterElement) {
+                            counterElement.textContent = data.count;
+                        }
+                        
+                        // Mostra un messaggio di conferma
+                        alert("Prodotto aggiunto al carrello!");
+                    } else {
+                        alert("Errore nell'aggiunta del prodotto al carrello.");
+                    }
+                })
+                .catch(error => {
+                    console.error("Errore:", error);
+                    alert("Si è verificato un errore durante l'aggiunta al carrello.");
+                });
+            });
         })
         .catch(err => {
             console.error("Errore nel caricamento dei dati:", err);
             document.getElementById("dettaglio-prodotto").innerHTML = "<p>Errore nel caricamento del prodotto.</p>";
         });
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-

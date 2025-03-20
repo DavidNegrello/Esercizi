@@ -1,0 +1,77 @@
+/* Stili per la dashboard */
+.dashboard-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: rgba(13, 110, 253, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.card {
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+.list-group-item {
+    border-left: 3px solid transparent;
+    transition: all 0.2s;
+}
+
+.list-group-item:hover {
+    background-color: rgba(13, 110, 253, 0.05);
+    border-left-color: #0d6efd;
+}
+
+.list-group-item.active {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+    border-left-width: 3px;
+}
+
+.table th {
+    font-weight: 600;
+    color: #495057;
+}
+
+.table td {
+    vertical-align: middle;
+}
+
+/* Animazione per i badge */
+.badge {
+    transition: all 0.3s;
+}
+
+.badge:hover {
+    transform: scale(1.1);
+}
+
+/* Stili per il questionario */
+.progress {
+    border-radius: 50px;
+    overflow: hidden;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.progress-bar {
+    transition: width 1s ease;
+    font-weight: 600;
+}
+
+/* Stili per dispositivi mobili */
+@media (max-width: 767.98px) {
+    .card-title {
+        font-size: 1rem;
+    }
+    
+    .display-6 {
+        font-size: 1.5rem;
+    }
+}
