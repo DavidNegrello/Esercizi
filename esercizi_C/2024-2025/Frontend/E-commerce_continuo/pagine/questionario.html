@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Questionario - PC Componenti</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../stili/home.css">
+    <link rel="stylesheet" href="../stili/questionario.css">
+    <link rel="icon" type="image/png" href="../immagini/favicon_io/favicon.ico">
+    <!--Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">
+                <img src="../immagini/favicon_io/favicon.ico" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
+                PC Componenti
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="catalogo.html">Catalogo</a></li>
+                    <li class="nav-item"><a class="nav-link" href="preassemblati.html">Preassemblati</a></li>
+                    <!-- Icona Carrello -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="carrello.html">
+                            <i class="fas fa-shopping-cart"></i> Carrello
+                            <span id="carrello-counter" class="badge bg-danger"></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5 pt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h2 class="mb-0">Scopri il PC perfetto per te</h2>
+                    </div>
+                    <div class="card-body">
+                        <p class="lead">Rispondi a queste domande per aiutarci a consigliarti i prodotti più adatti alle tue esigenze.</p>
+                        
+                        <div class="progress mb-4">
+                            <div id="progress-bar" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                        </div>
+                        
+                        <form id="questionario-form">
+                            <div id="domande-container">
+                                <!-- Le domande verranno caricate dinamicamente qui -->
+                            </div>
+                            
+                            <div class="d-flex justify-content-between mt-4">
+                                <button type="button" id="prev-btn" class="btn btn-secondary" disabled>Indietro</button>
+                                <button type="button" id="next-btn" class="btn btn-primary">Avanti</button>
+                                <button type="submit" id="submit-btn" class="btn btn-success" style="display: none;">Completa</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-light pt-4 pb-2 mt-5">
+        <div class="container text-center">
+            <!-- Social -->
+            <h5>Seguici</h5>
+            <div id="footer-social" class="mb-3"></div>
+
+            <!-- Contatti -->
+            <p>Email: <a id="footer-email" class="text-light text-decoration-none"></a></p>
+
+            <!-- Copyright -->
+            <p id="footer-copyright" class="mt-3 mb-0"></p>
+        </div>
+    </footer>
+
+    <script src="../js/questionario.js"></script>
+    <script src="../js/function.js"></script>
+    <script src="../js/user-session.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Risultati Questionario - PC Componenti</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../stili/home.css">
+    <link rel="stylesheet" href="../stili/risultati.css">
+    <link rel="icon" type="image/png" href="../immagini/favicon_io/favicon.ico">
+    <!--Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">
+                <img src="../immagini/favicon_io/favicon.ico" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
+                PC Componenti
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="catalogo.html">Catalogo</a></li>
+                    <li class="nav-item"><a class="nav-link" href="preassemblati.html">Preassemblati</a></li>
+                    <!-- Icona Carrello -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="carrello.html">
+                            <i class="fas fa-shopping-cart"></i> Carrello
+                            <span id="carrello-counter" class="badge bg-danger"></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5 pt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="card shadow mb-4">
+                    <div class="card-header bg-success text-white">
+                        <h2 class="mb-0"><i class="fas fa-check-circle me-2"></i> Il tuo profilo è stato creato!</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="text-center mb-4">
+                            <div class="profile-icon">
+                                <i id="profile-icon" class="fas fa-user-circle fa-5x text-primary"></i>
+                            </div>
+                            <h3 id="profile-title" class="mt-3">Il tuo profilo</h3>
+                            <p id="profile-description" class="lead">Abbiamo analizzato le tue risposte e creato un profilo personalizzato.</p>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card mb-3">
+                                    <div class="card-header bg-primary text-white">
+                                        <h5 class="mb-0"><i class="fas fa-laptop me-2"></i> Configurazione consigliata</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <ul id="configurazione-consigliata" class="list-group list-group-flush">
+                                            <!-- Configurazione consigliata verrà caricata qui -->
+                                        </ul>
+                                        <div class="text-center mt-3">
+                                            <button id="aggiungi-configurazione" class="btn btn-primary">Aggiungi al carrello</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="card mb-3">
+                                    <div class="card-header bg-info text-white">
+                                        <h5 class="mb-0"><i class="fas fa-box me-2"></i> Abbonamento consigliato</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div id="abbonamento-consigliato">
+                                            <!-- Abbonamento consigliato verrà caricato qui -->
+                                        </div>
+                                        <div class="text-center mt-3">
+                                            <button id="scopri-abbonamento" class="btn btn-info">Scopri di più</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card mt-4">
+                            <div class="card-header bg-light">
+                                <h5 class="mb-0"><i class="fas fa-thumbs-up me-2"></i> Prodotti consigliati per te</h5>
+                            </div>
+                            <div class="card-body">
+                                <div id="prodotti-consigliati" class="row">
+                                    <!-- Prodotti consigliati verranno caricati qui -->
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center mt-4">
+                            <a href="catalogo.html" class="btn btn-outline-primary me-2">Esplora il catalogo</a>
+                            <a href="preassemblati.html" class="btn btn-outline-success">Vedi PC preassemblati</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-light pt-4 pb-2 mt-5">
+        <div class="container text-center">
+            <!-- Social -->
+            <h5>Seguici</h5>
+            <div id="footer-social" class="mb-3"></div>
+
+            <!-- Contatti -->
+            <p>Email: <a id="footer-email" class="text-light text-decoration-none"></a></p>
+
+            <!-- Copyright -->
+            <p id="footer-copyright" class="mt-3 mb-0"></p>
+        </div>
+    </footer>
+
+    <script src="../js/risultati_questionario.js"></script>
+    <script src="../js/function.js"></script>
+    <script src="../js/user-session.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
