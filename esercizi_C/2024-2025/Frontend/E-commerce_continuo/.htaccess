@@ -1,0 +1,55 @@
+# Abilita il motore di riscrittura
+RewriteEngine On
+
+# Reindirizza le richieste a file non esistenti alla directory api/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^api/(.*)$ api/$1.php [L]
+
+# Imposta l'header Content-Type per i file JSON
+<Files ~ "\.json$">
+    Header set Content-Type "application/json"
+</Files>
+
+# Imposta l'header Content-Type per i file PHP che restituiscono JSON
+<FilesMatch "\.php$">
+    <If "%{QUERY_STRING} =~ /format=json/ || %{HTTP_ACCEPT} =~ m#application/json#">
+        Header set Content-Type "application/json"
+    </If>
+</FilesMatch>
+
+# Abilita CORS per le richieste API
+<IfModule mod_headers.c>
+    <FilesMatch "^api/">
+        Header set Access-Control-Allow-Origin "*"
+        Header set Access-Control-Allow-Methods "GET, POST, OPTIONS"
+        Header set Access-Control-Allow-Headers "Content-Type, Authorization"
+    </FilesMatch>
+</IfModule>
+
+# Imposta la cache per i file statici
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType application/x-javascript "access plus 1 month"
+    ExpiresByType image/x-icon "access plus 1 year"
+</IfModule>
+
+# Compressione dei file
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+    AddOutputFilterByType DEFLATE application/json
+</IfModule>
