@@ -2,7 +2,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     let prodottiOriginali = []; // Ora è globale
 
-    fetch("../data/catalogo.json")
+    fetch("../api/catalogo.php")
         .then(response => response.json())
         .then(data => {
             prodottiOriginali = data.prodotti; 
@@ -59,11 +59,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 prodottiHtml += `
                     <div class="col-md-4 mb-4">
                         <div class="card h-100">
-                            <img src="${prodotto.immagine}" class="card-img-top" alt="${prodotto.nome}">
+                            <img src="${prodotto.immagine_principale}" class="card-img-top" alt="${prodotto.nome}">
                             <div class="card-body">
                                 <h5 class="card-title">${prodotto.nome}</h5>
                                 <p class="card-text">${prodotto.categoria} - ${prodotto.marca}</p>
-                                <p class="card-text fw-bold">${prodotto.prezzo}€</p>
+                                <p class="card-text fw-bold">${prodotto.prezzo_base}€</p>
                                 <a href="dettaglio_catalogo.html?id=${prodotto.id}" class="btn btn-primary">Visualizza</a>
                             </div>
                         </div>
@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         let prodottiFiltrati = prodottiOriginali.filter(prodotto => {
             let matchTesto = prodotto.nome.toLowerCase().includes(filtroTesto);
-            let matchPrezzo = isNaN(filtroPrezzo) || prodotto.prezzo <= filtroPrezzo;
+            let matchPrezzo = isNaN(filtroPrezzo) || prodotto.prezzo_base <= filtroPrezzo;
             let matchCategoria = categorieSelezionate.length === 0 || categorieSelezionate.includes(prodotto.categoria);
             let matchMarca = marcheSelezionate.length === 0 || marcheSelezionate.includes(prodotto.marca);
 
@@ -117,12 +117,10 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
-    fetch("../data/contenuti_catalogo.json")
+    fetch(`../api/prodotto.php?id=${prodottoId}`)
         .then(response => response.json())
-        .then(data => {
-            const prodotto = data.prodotti.find(p => p.id === parseInt(prodottoId)); // Assicurati che l'ID sia un intero
-
-            if (!prodotto) {
+        .then(prodotto => {
+            if (!prodotto || prodotto.error) {
                 document.getElementById("dettaglio-prodotto").innerHTML = "<p>Prodotto non trovato.</p>";
                 return;
             }
@@ -157,11 +155,11 @@ document.addEventListener("DOMContentLoaded", function () {
             // Gestione delle varianti per PSU (750W, 850W, 1000W)
             let variantiDisponibili = "";
             let prezzoBase = prodotto.prezzo_base;
-            if (prodotto.categoria === "PSU" && prodotto.varianti) {
+            if (prodotto.categoria === "PSU" && prodotto.varianti && prodotto.varianti.potenza) {
                 variantiDisponibili = ` 
                     <div class="mt-3">
                         <h5>Seleziona la potenza:</h5>
-                        ${Object.keys(prodotto.varianti).map(potenza => ` 
+                        ${Object.keys(prodotto.varianti.potenza).map(potenza => ` 
                             <button class="btn btn-outline-primary potenza-btn" data-potenza="${potenza}">${potenza}</button>
                         `).join('')}
                     </div>
@@ -170,11 +168,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Gestione delle varianti per SSD (capacità)
             let variantiSSD = "";
-            if (prodotto.categoria === "Storage" && prodotto.capacita) {
+            if (prodotto.categoria === "Storage" && prodotto.varianti && prodotto.varianti.capacita) {
                 variantiSSD = ` 
                     <div class="mt-3">
                         <h5>Seleziona la capacità:</h5>
-                        ${prodotto.capacita.map(capacita => ` 
+                        ${Object.keys(prodotto.varianti.capacita).map(capacita => ` 
                             <button class="btn btn-outline-primary capacita-btn" data-capacita="${capacita}">${capacita}</button>
                         `).join('')}
                     </div>
@@ -183,23 +181,28 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Gestione delle varianti per RAM (colore e taglia)
             let variantiRAM = "";
-            if (prodotto.categoria === "RAM") {
-                variantiRAM = ` 
-                    <div class="mt-3">
-                        ${prodotto.colori ? ` 
+            if (prodotto.categoria === "RAM" && prodotto.varianti) {
+                if (prodotto.varianti.colore) {
+                    variantiRAM += ` 
+                        <div class="mt-3">
                             <h5>Seleziona il colore:</h5>
-                            ${prodotto.colori.map(colore => ` 
+                            ${Object.keys(prodotto.varianti.colore).map(colore => ` 
                                 <button class="btn btn-outline-primary colore-btn" data-colore="${colore}">${colore}</button>
                             `).join('')}
-                        ` : ""}
-                        ${prodotto.taglie ? ` 
+                        </div>
+                    `;
+                }
+                
+                if (prodotto.varianti.taglia) {
+                    variantiRAM += ` 
+                        <div class="mt-3">
                             <h5>Seleziona la taglia:</h5>
-                            ${Object.keys(prodotto.taglie).map(taglia => ` 
-                                <button class="btn btn-outline-primary taglia-btn" data-taglia="${taglia}" data-prezzo="${prodotto.taglie[taglia].prezzo}">${taglia}</button>
+                            ${Object.keys(prodotto.varianti.taglia).map(taglia => ` 
+                                <button class="btn btn-outline-primary taglia-btn" data-taglia="${taglia}" data-prezzo="${prodotto.varianti.taglia[taglia].prezzo}">${taglia}</button>
                             `).join('')}
-                        ` : ""}
-                    </div>
-                `;
+                        </div>
+                    `;
+                }
             }
 
             // Composizione finale dell'HTML con tutte le varianti
@@ -254,7 +257,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     this.classList.add("active");
                     const potenzaSelezionata = this.getAttribute("data-potenza");
                     // Aggiorna il prezzo
-                    prezzoCorrente = prodotto.prezzo_base + (potenzaSelezionata === '850W' ? 20 : potenzaSelezionata === '1000W' ? 40 : 0);
+                    prezzoCorrente = prodotto.prezzo_base + (prodotto.varianti.potenza[potenzaSelezionata]?.prezzo_aggiuntivo || 0);
                     document.getElementById("prezzo").textContent = prezzoCorrente + "€";
                 });
             });
@@ -285,84 +288,82 @@ document.addEventListener("DOMContentLoaded", function () {
                     document.querySelectorAll(".capacita-btn").forEach(button => button.classList.remove("active"));
                     this.classList.add("active");
                     const capacitaSelezionata = this.getAttribute("data-capacita");
-                    prezzoCorrente = prodotto.varianti[capacitaSelezionata]?.prezzo || prodotto.prezzo_base;
+                    prezzoCorrente = prodotto.prezzo_base + (prodotto.varianti.capacita[capacitaSelezionata]?.prezzo_aggiuntivo || 0);
                     document.getElementById("prezzo").textContent = prezzoCorrente + "€";
                 });
             });
 
-// Gestione dell'aggiunta al carrello per i prodotti del catalogo
-document.querySelector(".btn-success").addEventListener("click", function () {
-    const prodottoNelCarrello = {
-        id: prodotto.id,
-        nome: prodotto.nome,
-        prezzo: prezzoCorrente,
-        immagine: prodotto.immagini[0], // Assumiamo che la prima immagine sia quella principale
-        varianti: {},
-        tipo: "catalogo" // Aggiungi il tipo di prodotto
-    };
+            // Gestione dell'aggiunta al carrello per i prodotti del catalogo
+            document.querySelector(".btn-success").addEventListener("click", function () {
+                const variantiSelezionate = {};
+                
+                // Raccogli le varianti selezionate
+                const potenzaSelezionata = document.querySelector(".potenza-btn.active");
+                if (potenzaSelezionata) {
+                    variantiSelezionate.potenza = potenzaSelezionata.getAttribute("data-potenza");
+                }
+                
+                const coloreSelezionato = document.querySelector(".colore-btn.active");
+                if (coloreSelezionato) {
+                    variantiSelezionate.colore = coloreSelezionato.getAttribute("data-colore");
+                }
+                
+                const tagliaSelezionata = document.querySelector(".taglia-btn.active");
+                if (tagliaSelezionata) {
+                    variantiSelezionate.taglia = tagliaSelezionata.getAttribute("data-taglia");
+                }
+                
+                const capacitaSelezionata = document.querySelector(".capacita-btn.active");
+                if (capacitaSelezionata) {
+                    variantiSelezionate.capacita = capacitaSelezionata.getAttribute("data-capacita");
+                }
+                
+                // Crea i dati da inviare
+                const formData = new FormData();
+                formData.append('action', 'add');
+                formData.append('product_id', prodotto.id);
+                formData.append('price', prezzoCorrente);
+                formData.append('quantity', 1);
+                formData.append('variants', JSON.stringify(variantiSelezionate));
+                formData.append('type', 'catalogo');
+                
+                // Invia la richiesta al server
+                fetch('../api/carrello.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert("Prodotto aggiunto al carrello!");
+                        // Aggiorna il contatore del carrello
+                        aggiornaContatoreCarrello();
+                    } else {
+                        alert("Errore nell'aggiunta del prodotto al carrello.");
+                    }
+                })
+                .catch(error => {
+                    console.error("Errore:", error);
+                    alert("Si è verificato un errore durante l'aggiunta al carrello.");
+                });
+            });
 
-    // Aggiungi le varianti selezionate (potenza, colore, taglia, capacità)
-    
-    // Varianti per PSU (potenza)
-    if (prodotto.categoria === "PSU") {
-        const potenzaSelezionata = document.querySelector(".potenza-btn.active");
-        if (potenzaSelezionata) {
-            prodottoNelCarrello.varianti.potenza = potenzaSelezionata.getAttribute("data-potenza");
-        }
-    }
-
-    // Varianti per RAM (colore e taglia)
-    if (prodotto.categoria === "RAM") {
-        const coloreSelezionato = document.querySelector(".colore-btn.active");
-        if (coloreSelezionato) {
-            prodottoNelCarrello.varianti.colore = coloreSelezionato.getAttribute("data-colore");
-        }
-
-        const tagliaSelezionata = document.querySelector(".taglia-btn.active");
-        if (tagliaSelezionata) {
-            prodottoNelCarrello.varianti.taglia = tagliaSelezionata.getAttribute("data-taglia");
-        }
-    }
-
-    // Varianti per Storage (capacità)
-    if (prodotto.categoria === "Storage") {
-        const capacitaSelezionata = document.querySelector(".capacita-btn.active");
-        if (capacitaSelezionata) {
-            prodottoNelCarrello.varianti.capacita = capacitaSelezionata.getAttribute("data-capacita");
-        }
-    }
-
-    // Recupera il carrello del catalogo dal localStorage
-    let carrelloCatalogo = JSON.parse(localStorage.getItem("carrelloCatalogo")) || { prodotti: [] };
-
-    // Aggiungi il prodotto al carrello
-    carrelloCatalogo.prodotti.push(prodottoNelCarrello);
-
-    // Salva il carrello aggiornato nel localStorage
-    localStorage.setItem("carrelloCatalogo", JSON.stringify(carrelloCatalogo));
-
-    // Mostra un messaggio di conferma
-    alert("Prodotto del catalogo aggiunto al carrello!");
-});
-
-
+            // Gestione delle miniature
+            document.querySelectorAll(".miniatura").forEach(miniatura => {
+                miniatura.addEventListener("click", function() {
+                    const index = parseInt(this.getAttribute("data-index"));
+                    document.querySelectorAll(".carousel-item").forEach((item, i) => {
+                        item.classList.toggle("active", i === index);
+                    });
+                    document.querySelectorAll(".miniatura").forEach(m => {
+                        m.classList.remove("active");
+                    });
+                    this.classList.add("active");
+                });
+            });
         })
         .catch(err => {
             console.error("Errore nel caricamento dei dati:", err);
             document.getElementById("dettaglio-prodotto").innerHTML = "<p>Errore nel caricamento del prodotto.</p>";
         });
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
