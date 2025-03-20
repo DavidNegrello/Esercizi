@@ -1,116 +1,42 @@
-/* Stili per il carrello */
-.prodotto-carrello {
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
+body {
+    padding-top: 70px;
+    background-color: #f8f9fa;
 }
 
-.prodotto-carrello:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
-}
-
-.product-image {
+.cart-item {
     position: relative;
 }
 
-.product-variants .badge {
-    font-size: 0.8rem;
-    padding: 0.3rem 0.5rem;
-    margin-right: 0.3rem;
-    background-color: #f8f9fa;
-    color: #495057;
-    border: 1px solid #e9ecef;
+.quantity-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.elimina-prodotto {
-    transition: all 0.2s ease;
-}
-
-.elimina-prodotto:hover {
-    background-color: #dc3545;
-    color: white;
-}
-
-.cart-summary {
-    background-color: #f8f9fa;
-    border-left: 4px solid #007bff;
-}
-
-.empty-cart {
-    padding: 3rem 0;
+.quantity {
+    min-width: 30px;
+    text-align: center;
 }
 
 .empty-cart i {
-    color: #e9ecef;
+    color: #dee2e6;
 }
 
-/* Animazioni */
-.fade-out {
-    opacity: 0;
-    transform: translateX(30px);
-    transition: all 0.3s ease;
+.bundle-products {
+    background-color: #f8f9fa;
+    padding: 8px;
+    border-radius: 4px;
+    border-left: 3px solid #0d6efd;
 }
 
-/* Notifica */
-.notifica {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 1050;
-    max-width: 350px;
-    transform: translateX(400px);
-    transition: transform 0.3s ease-in-out;
-}
-
-.notifica.show {
-    transform: translateX(0);
-}
-
-.notifica-content {
-    background-color: white;
-    border-radius: 5px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    padding: 15px;
-    display: flex;
-    align-items: center;
-}
-
-.notifica-success .notifica-content {
-    border-left: 4px solid #28a745;
-}
-
-.notifica-info .notifica-content {
-    border-left: 4px solid #17a2b8;
-}
-
-.notifica-content i {
-    font-size: 1.5rem;
-    margin-right: 10px;
-}
-
-.notifica-success .notifica-content i {
-    color: #28a745;
-}
-
-.notifica-info .notifica-content i {
-    color: #17a2b8;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .prodotto-carrello .card-body {
-        flex-direction: column;
-        align-items: flex-start;
+@media (max-width: 767.98px) {
+    .cart-item .col-4:nth-child(3),
+    .cart-item .col-4:nth-child(4),
+    .cart-item .col-4:nth-child(5) {
+        margin-top: 15px;
     }
     
-    .product-image {
-        margin-bottom: 15px;
-    }
-    
-    .elimina-prodotto {
-        position: absolute;
-        top: 10px;
-        right: 10px;
+    .quantity-control {
+        justify-content: flex-start;
     }
 }

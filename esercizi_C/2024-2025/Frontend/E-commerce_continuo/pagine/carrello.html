@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Carrello - PC Componenti</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../stili/home.css">
     <link rel="stylesheet" href="../stili/carrello.css">
     <link rel="icon" type="image/png" href="../immagini/favicon_io/favicon.ico">
     <!--Font Awesome -->
@@ -29,22 +28,21 @@
                     <li class="nav-item"><a class="nav-link" href="preassemblati.html">Preassemblati</a></li>
                     <!-- Icona Carrello -->
                     <li class="nav-item position-relative">
-                        <a class="nav-link active" href="#">
+                        <a class="nav-link active" href="carrello.html">
                             <i class="fas fa-shopping-cart"></i> Carrello
                             <span id="carrello-counter" class="badge bg-danger"></span>
                         </a>
-                    </li> 
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <div class="container mt-5 pb-5">
+    <div class="container mt-5 pt-3">
         <div class="row">
             <div class="col-12">
-                <h1 class="text-center mb-4">Il tuo Carrello</h1>
                 <div class="progress mb-4" style="height: 30px;">
-                    <div class="progress-bar bg-primary" role="progressbar" style="width: 33%;" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-bar bg-success" role="progressbar" style="width: 33%;" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100">
                         <i class="fas fa-shopping-cart me-2"></i> Carrello
                     </div>
                     <div class="progress-bar bg-secondary" role="progressbar" style="width: 33%;" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100">
@@ -58,55 +56,60 @@
         </div>
         
         <div class="row">
+            <div class="col-12">
+                <h1 class="mb-4">Il tuo carrello</h1>
+            </div>
+        </div>
+        
+        <div class="row">
             <div class="col-lg-8">
-                <div id="carrello-container" class="mb-4">
-                    <!-- I prodotti verranno caricati qui -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-body" id="carrello-prodotti">
+                        <!-- I prodotti nel carrello verranno caricati dinamicamente -->
+                        <div class="text-center py-5">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Caricamento...</span>
+                            </div>
+                            <p>Caricamento carrello...</p>
+                        </div>
+                    </div>
                 </div>
             </div>
             
             <div class="col-lg-4">
-                <div class="card shadow-sm">
-                    <div class="card-header bg-primary text-white">
-                        <h4 class="mb-0"><i class="fas fa-receipt me-2"></i> Riepilogo Ordine</h4>
-                    </div>
+                <div class="card shadow-sm mb-4">
                     <div class="card-body">
-                        <div class="d-flex justify-content-between mb-3">
-                            <h5>Totale:</h5>
-                            <h5 id="totale-prezzo">0.00€</h5>
+                        <h5 class="card-title">Riepilogo ordine</h5>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Subtotale:</span>
+                            <span id="subtotale">€0.00</span>
                         </div>
-                        <div class="d-flex justify-content-between mb-3">
-                            <p class="mb-0">Spedizione:</p>
-                            <p class="mb-0">Gratuita</p>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Spedizione:</span>
+                            <span>Gratuita</span>
                         </div>
                         <hr>
-                        <div class="d-grid gap-2">
-                            <button id="procedi-acquisto" class="btn btn-success btn-lg">
-                                <i class="fas fa-credit-card me-2"></i> Procedi al Checkout
-                            </button>
-                            <button id="svuota-carrello" class="btn btn-outline-danger">
-                                <i class="fas fa-trash me-2"></i> Svuota Carrello
-                            </button>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="fw-bold">Totale:</span>
+                            <span class="fw-bold" id="totale">€0.00</span>
                         </div>
+                        <a href="checkout.html" class="btn btn-primary w-100" id="procedi-checkout">
+                            Procedi al checkout
+                        </a>
                     </div>
                 </div>
                 
-                <div class="card mt-4 shadow-sm">
+                <div class="card shadow-sm">
                     <div class="card-body">
-                        <h5 class="card-title"><i class="fas fa-truck me-2"></i> Spedizione Gratuita</h5>
-                        <p class="card-text text-muted">Su tutti gli ordini in Italia</p>
-                        
-                        <h5 class="card-title mt-3"><i class="fas fa-shield-alt me-2"></i> Pagamento Sicuro</h5>
-                        <p class="card-text text-muted">Transazioni protette e sicure</p>
-                        
-                        <h5 class="card-title mt-3"><i class="fas fa-headset me-2"></i> Supporto 24/7</h5>
-                        <p class="card-text text-muted">Assistenza clienti sempre disponibile</p>
+                        <h5 class="card-title">Hai un codice promozionale?</h5>
+                        <p class="card-text">Potrai inserirlo nella pagina di checkout.</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <footer class="bg-dark text-light pt-4 pb-2">
+    <footer class="bg-dark text-light pt-4 pb-2 mt-5">
         <div class="container text-center">
             <!-- Social -->
             <h5>Seguici</h5>

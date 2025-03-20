@@ -1,0 +1,49 @@
+body {
+    padding-top: 70px;
+    background-color: #f8f9fa;
+}
+
+.carousel-item img {
+    height: 400px;
+    object-fit: contain;
+}
+
+.miniatura {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    cursor: pointer;
+    border: 2px solid transparent;
+    margin-right: 10px;
+    transition: all 0.2s;
+}
+
+.miniatura.active {
+    border-color: #0d6efd;
+}
+
+.specifiche-lista {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.specifica-item {
+    padding: 8px 0;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.specifica-titolo {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.btn-outline-primary.active {
+    background-color: #0d6efd;
+    color: white;
+}
+
+@media (max-width: 767.98px) {
+    .carousel-item img {
+        height: 300px;
+    }
+}

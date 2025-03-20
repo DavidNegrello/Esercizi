@@ -3,21 +3,21 @@ class Cart {
     private $pdo;
     private $sessionId;
     private $userId;
-    private $cartId;
     
     public function __construct($pdo, $sessionId, $userId = null) {
         $this->pdo = $pdo;
         $this->sessionId = $sessionId;
         $this->userId = $userId;
-        
-        // Ottieni o crea il carrello
-        $this->cartId = $this->getOrCreateCart();
     }
     
-    private function getOrCreateCart() {
-        // Cerca un carrello attivo per l'utente o la sessione
-        $params = [];
-        $sql = "SELECT id FROM carrello WHERE attivo = TRUE AND ";
+    public function addProduct($productId, $price, $quantity = 1, $variants = [], $type = 'catalogo') {
+        // Controlla se il prodotto è già nel carrello
+        $params = [
+            'product_id' => $productId,
+            'type' => $type
+        ];
+        
+        $sql = "SELECT id, quantita FROM carrello WHERE prodotto_id = :product_id AND tipo = :type AND attivo = TRUE AND ";
         
         if ($this->userId) {
             $sql .= "utente_id = :user_id";
@@ -29,41 +29,13 @@ class Cart {
         
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute($params);
-        $cart = $stmt->fetch();
-        
-        if ($cart) {
-            return $cart['id'];
-        }
-        
-        // Crea un nuovo carrello se non esiste
-        $sql = "INSERT INTO carrello (sessione_id, utente_id) VALUES (:session_id, :user_id)";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([
-            'session_id' => $this->sessionId,
-            'user_id' => $this->userId
-        ]);
-        
-        return $this->pdo->lastInsertId();
-    }
-    
-    public function addProduct($productId, $price, $quantity = 1, $variants = [], $type = 'catalogo') {
-        // Controlla se il prodotto è già nel carrello
-        $stmt = $this->pdo->prepare("
-            SELECT id, quantita FROM elementi_carrello 
-            WHERE carrello_id = :cart_id AND prodotto_id = :product_id AND tipo = :type
-        ");
-        $stmt->execute([
-            'cart_id' => $this->cartId,
-            'product_id' => $productId,
-            'type' => $type
-        ]);
         $item = $stmt->fetch();
         
         if ($item) {
             // Aggiorna la quantità se il prodotto è già nel carrello
             $newQuantity = $item['quantita'] + $quantity;
             $stmt = $this->pdo->prepare("
-                UPDATE elementi_carrello 
+                UPDATE carrello 
                 SET quantita = :quantity 
                 WHERE id = :id
             ");
@@ -74,11 +46,12 @@ class Cart {
         } else {
             // Aggiungi il nuovo prodotto al carrello
             $stmt = $this->pdo->prepare("
-                INSERT INTO elementi_carrello (carrello_id, prodotto_id, quantita, prezzo_unitario, varianti_json, tipo) 
-                VALUES (:cart_id, :product_id, :quantity, :price, :variants, :type)
+                INSERT INTO carrello (sessione_id, utente_id, prodotto_id, quantita, prezzo_unitario, varianti, tipo) 
+                VALUES (:session_id, :user_id, :product_id, :quantity, :price, :variants, :type)
             ");
             $stmt->execute([
-                'cart_id' => $this->cartId,
+                'session_id' => $this->sessionId,
+                'user_id' => $this->userId,
                 'product_id' => $productId,
                 'quantity' => $quantity,
                 'price' => $price,
@@ -90,96 +63,128 @@ class Cart {
         return true;
     }
     
-    public function updateProductQuantity($itemId, $quantity) {
-        if ($quantity <= 0) {
-            return $this->removeProduct($itemId);
+    public function getCartItems() {
+        $params = [];
+        $sql = "
+            SELECT c.*, p.nome, p.immagine_principale 
+            FROM carrello c
+            LEFT JOIN prodotti p ON c.prodotto_id = p.id
+            WHERE c.attivo = TRUE AND 
+        ";
+        
+        if ($this->userId) {
+            $sql .= "c.utente_id = :user_id";
+            $params['user_id'] = $this->userId;
+        } else {
+            $sql .= "c.sessione_id = :session_id AND c.utente_id IS NULL";
+            $params['session_id'] = $this->sessionId;
         }
         
-        $stmt = $this->pdo->prepare("
-            UPDATE elementi_carrello 
-            SET quantita = :quantity 
-            WHERE id = :id AND carrello_id = :cart_id
-        ");
-        $stmt->execute([
-            'quantity' => $quantity,
-            'id' => $itemId,
-            'cart_id' => $this->cartId
-        ]);
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute($params);
         
-        return $stmt->rowCount() > 0;
+        return $stmt->fetchAll();
     }
     
-    public function removeProduct($itemId) {
-        $stmt = $this->pdo->prepare("
-            DELETE FROM elementi_carrello 
-            WHERE id = :id AND carrello_id = :cart_id
-        ");
-        $stmt->execute([
+    public function updateQuantity($itemId, $quantity) {
+        $params = [
             'id' => $itemId,
-            'cart_id' => $this->cartId
-        ]);
+            'quantity' => $quantity
+        ];
         
-        return $stmt->rowCount() > 0;
-    }
-    
-    public function getCartContents() {
-        $stmt = $this->pdo->prepare("
-            SELECT ec.id, ec.prodotto_id, p.nome, ec.prezzo_unitario, ec.quantita, 
-                   ec.varianti_json, ec.tipo, p.immagine_principale as immagine
-            FROM elementi_carrello ec
-            LEFT JOIN prodotti p ON ec.prodotto_id = p.id
-            WHERE ec.carrello_id = :cart_id
-            ORDER BY ec.id DESC
-        ");
-        $stmt->execute(['cart_id' => $this->cartId]);
+        $sql = "UPDATE carrello SET quantita = :quantity WHERE id = :id AND attivo = TRUE AND ";
         
-        $items = $stmt->fetchAll();
-        
-        // Decodifica le varianti JSON
-        foreach ($items as &$item) {
-            $item['varianti'] = json_decode($item['varianti_json'], true);
-            unset($item['varianti_json']); // Rimuovi il campo JSON grezzo
+        if ($this->userId) {
+            $sql .= "utente_id = :user_id";
+            $params['user_id'] = $this->userId;
+        } else {
+            $sql .= "sessione_id = :session_id AND utente_id IS NULL";
+            $params['session_id'] = $this->sessionId;
         }
         
-        return $items;
+        $stmt = $this->pdo->prepare($sql);
+        return $stmt->execute($params);
+    }
+    
+    public function removeItem($itemId) {
+        $params = [
+            'id' => $itemId
+        ];
+        
+        $sql = "UPDATE carrello SET attivo = FALSE WHERE id = :id AND ";
+        
+        if ($this->userId) {
+            $sql .= "utente_id = :user_id";
+            $params['user_id'] = $this->userId;
+        } else {
+            $sql .= "sessione_id = :session_id AND utente_id IS NULL";
+            $params['session_id'] = $this->sessionId;
+        }
+        
+        $stmt = $this->pdo->prepare($sql);
+        return $stmt->execute($params);
     }
     
     public function getCartTotal() {
-        $stmt = $this->pdo->prepare("
-            SELECT SUM(prezzo_unitario * quantita) as total
-            FROM elementi_carrello
-            WHERE carrello_id = :cart_id
-        ");
-        $stmt->execute(['cart_id' => $this->cartId]);
+        $params = [];
+        $sql = "
+            SELECT SUM(quantita * prezzo_unitario) as totale
+            FROM carrello
+            WHERE attivo = TRUE AND 
+        ";
         
-        $result = $stmt->fetch();
-        return $result['total'] ?: 0;
-    }
-    
-    public function getCartCount() {
-        $stmt = $this->pdo->prepare("
-            SELECT COUNT(*) as count
-            FROM elementi_carrello
-            WHERE carrello_id = :cart_id
-        ");
-        $stmt->execute(['cart_id' => $this->cartId]);
+        if ($this->userId) {
+            $sql .= "utente_id = :user_id";
+            $params['user_id'] = $this->userId;
+        } else {
+            $sql .= "sessione_id = :session_id AND utente_id IS NULL";
+            $params['session_id'] = $this->sessionId;
+        }
         
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute($params);
         $result = $stmt->fetch();
-        return $result['count'] ?: 0;
+        
+        return $result['totale'] ?? 0;
     }
     
     public function clearCart() {
-        $stmt = $this->pdo->prepare("
-            DELETE FROM elementi_carrello
-            WHERE carrello_id = :cart_id
-        ");
-        $stmt->execute(['cart_id' => $this->cartId]);
+        $params = [];
+        $sql = "UPDATE carrello SET attivo = FALSE WHERE attivo = TRUE AND ";
         
-        return $stmt->rowCount() > 0;
+        if ($this->userId) {
+            $sql .= "utente_id = :user_id";
+            $params['user_id'] = $this->userId;
+        } else {
+            $sql .= "sessione_id = :session_id AND utente_id IS NULL";
+            $params['session_id'] = $this->sessionId;
+        }
+        
+        $stmt = $this->pdo->prepare($sql);
+        return $stmt->execute($params);
     }
     
-    public function getCartId() {
-        return $this->cartId;
+    public function getCartCount() {
+        $params = [];
+        $sql = "
+            SELECT COUNT(*) as count
+            FROM carrello
+            WHERE attivo = TRUE AND 
+        ";
+        
+        if ($this->userId) {
+            $sql .= "utente_id = :user_id";
+            $params['user_id'] = $this->userId;
+        } else {
+            $sql .= "sessione_id = :session_id AND utente_id IS NULL";
+            $params['session_id'] = $this->sessionId;
+        }
+        
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute($params);
+        $result = $stmt->fetch();
+        
+        return $result['count'] ?? 0;
     }
 }
 ?>
