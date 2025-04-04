@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Checkout - PC Componenti</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../stili/home.css">
+    <link rel="stylesheet" href="../stili/checkout.css">
+    <link rel="icon" type="image/png" href="../immagini/favicon_io/favicon.ico">
+    <!--Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">
+                <img src="../immagini/favicon_io/favicon.ico" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
+                PC Componenti
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="catalogo.html">Catalogo</a></li>
+                    <li class="nav-item"><a class="nav-link" href="preassemblati.html">Preassemblati</a></li>
+                    <!-- Icona Carrello -->
+                    <li class="nav-item position-relative">
+                        <a class="nav-link" href="carrello.html">
+                            <i class="fas fa-shopping-cart"></i> Carrello
+                            <span id="carrello-counter" class="badge bg-danger"></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5 pb-5">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="text-center mb-4">Checkout</h1>
+                <div class="progress mb-4" style="height: 30px;">
+                    <div class="progress-bar bg-success" role="progressbar" style="width: 33%;" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100">
+                        <i class="fas fa-shopping-cart me-2"></i> Carrello
+                    </div>
+                    <div class="progress-bar bg-primary" role="progressbar" style="width: 33%;" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100">
+                        <i class="fas fa-credit-card me-2"></i> Pagamento
+                    </div>
+                    <div class="progress-bar bg-secondary" role="progressbar" style="width: 34%;" aria-valuenow="34" aria-valuemin="0" aria-valuemax="100">
+                        <i class="fas fa-check-circle me-2"></i> Conferma
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row checkout-container">
+            <div class="col-lg-7 checkout-form">
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0"><i class="fas fa-user me-2"></i> Dati Personali</h4>
+                    </div>
+                    <div class="card-body">
+                        <form id="checkout-form">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="nome" required>
+                                <label for="nome">Nome Completo</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="indirizzo" required>
+                                <label for="indirizzo">Indirizzo di Spedizione</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-control" id="email" required>
+                                <label for="email">Email</label>
+                            </div>
+                            <div class="form-group">
+                                <select class="form-control" id="metodo-pagamento" required>
+                                    <option value="" disabled selected>Seleziona un metodo di pagamento</option>
+                                    <option value="carta">Carta di Credito</option>
+                                    <option value="paypal">PayPal</option>
+                                    <option value="bonifico">Bonifico Bancario</option>
+                                </select>
+                                <label for="metodo-pagamento">Metodo di Pagamento</label>
+                            </div>
+
+                            <!-- Sezione per inserire il coupon -->
+                            <div class="card mt-4 mb-4">
+                                <div class="card-body">
+                                    <h5 class="card-title"><i class="fas fa-tag me-2"></i> Hai un codice coupon?</h5>
+                                    <div class="input-group mt-3">
+                                        <input type="text" class="form-control" id="coupon" placeholder="Inserisci codice coupon">
+                                        <button type="button" class="btn btn-primary" id="applica-coupon">Applica</button>
+                                    </div>
+                                    <p id="messaggio-coupon" class="mt-2 small"></p>
+                                    <p class="text-muted small mt-2">Prova con i codici: Sconto10, Sconto20, Sconto30</p>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-success btn-lg w-100">
+                                <i class="fas fa-lock me-2"></i> Concludi l'Acquisto
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-5 checkout-cart">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0"><i class="fas fa-shopping-basket me-2"></i> Riepilogo Ordine</h4>
+                    </div>
+                    <div class="card-body">
+                        <div id="carrello-container">
+                            <!-- I prodotti del carrello verranno caricati qui -->
+                        </div>
+                        
+                        <!-- Totale con sconto applicato -->
+                        <div class="checkout-summary">
+                            <div class="d-flex justify-content-between mb-2">
+                                <p class="mb-0">Totale prodotti:</p>
+                                <p class="mb-0 fw-bold" id="totale-prezzo">0.00€</p>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <p class="mb-0">Spedizione:</p>
+                                <p class="mb-0">Gratuita</p>
+                            </div>
+                            <hr>
+                            <div class="d-flex justify-content-between">
+                                <h5>Totale da pagare:</h5>
+                                <h5 class="text-primary" id="totale-sconto">0.00€</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card mt-4 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-shield-alt me-2"></i> Pagamento Sicuro</h5>
+                        <p class="card-text text-muted small">Tutte le transazioni sono criptate e sicure.</p>
+                        
+                        <div class="payment-methods mt-3">
+                            <img src="https://via.placeholder.com/50x30" alt="Visa" class="me-2">
+                            <img src="https://via.placeholder.com/50x30" alt="Mastercard" class="me-2">
+                            <img src="https://via.placeholder.com/50x30" alt="PayPal" class="me-2">
+                            <img src="https://via.placeholder.com/50x30" alt="American Express">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-light pt-4 pb-2">
+        <div class="container text-center">
+            <!-- Social -->
+            <h5>Seguici</h5>
+            <div id="footer-social" class="mb-3"></div>
+
+            <!-- Contatti -->
+            <p>Email: <a id="footer-email" class="text-light text-decoration-none"></a></p>
+
+            <!-- Copyright -->
+            <p id="footer-copyright" class="mt-3 mb-0"></p>
+        </div>
+    </footer>
+
+    <script src="../js/checkout.js"></script>
+    <script src="../js/function.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

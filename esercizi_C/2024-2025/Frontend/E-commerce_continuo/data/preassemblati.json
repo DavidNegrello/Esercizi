@@ -1,0 +1,66 @@
+[
+    {
+        "id": 20,
+        "categoria": "PC Fissi",
+        "nome": "PC Gaming Entry Level",
+        "descrizione": "Intel Core i5-12400F / 32 GB / 1 TB SSD / RTX4060",
+        "prezzo": "899.99€",
+        "immagine": "../immagini/preassemblati/1/nero/1.jpeg"
+    },
+    {
+        "id": 21,
+        "categoria": "PC Fissi",
+        "nome": "PC Gaming Mid Range",
+        "descrizione": "Intel Core i5-14600KF/32GB/2TB SSD/RTX 4070 Super",
+        "prezzo": "1699.99€",
+        "immagine": "../immagini/preassemblati/2/1.jpeg"
+    },
+    {
+        "id": 22,
+        "categoria": "PC Fissi",
+        "nome": "PC Gaming High End",
+        "descrizione": "AMD Ryzen 7 7800X3D/32GB/2TB SSD/RTX 4070 Ti SUPER",
+        "prezzo": "2569.99€",
+        "immagine": "../immagini/preassemblati/3/1.jpeg"
+    },
+    {
+        "id": 23,
+        "categoria": "PC Fissi",
+        "nome": "PC Workstation",
+        "descrizione": "Intel Intel Core Ultra 9 285K / 64 GB RAM / 2 TB SSD / RTX 5080 + Windows 11 Pro",
+        "prezzo": "3599.99€",
+        "immagine": "../immagini/preassemblati/4/1.jpeg"
+    },
+    {
+        "id": 24,
+        "categoria": "Laptop",
+        "nome": "Laptop Gaming Entry Level",
+        "descrizione": "ASUS TUF Gaming A15 2023 FA507NV-LP041 AMD Ryzen 7 7735HS/16GB/1TB SSD/RTX 4060/15.6",
+        "prezzo": "1056.99€",
+        "immagine": "../immagini/preassemblati/5/1.jpeg"
+    },
+    {
+        "id": 25,
+        "categoria": "Laptop",
+        "nome": "Laptop Gaming Mid Range",
+        "descrizione": "Intel® Core™ i7 i7-13620H 32 GB DDR5-SDRAM 1 TB SSD NVIDIA GeForce RTX 4070",
+        "prezzo": "1699.99€",
+        "immagine": "../immagini/preassemblati/6/1.jpeg"
+    },
+    {
+        "id": 26,
+        "categoria": "Laptop",
+        "nome": "Laptop Gaming High End",
+        "descrizione": "Gigabyte AORUS 17H BXF-74ES554SH Intel Core i7-13700H/16GB/1TB SSD/RTX 4080/17.3",
+        "prezzo": "2269.00€",
+        "immagine": "../immagini/preassemblati/7/1.jpeg"
+    },
+    {
+        "id": 27,
+        "categoria": "Laptop",
+        "nome": "Laptop Workstation",
+        "descrizione": "ROG Zephyrus M16 GU604",
+        "prezzo": "2999.99€",
+        "immagine": "../immagini/preassemblati/8/1.jpeg"
+    }
+]

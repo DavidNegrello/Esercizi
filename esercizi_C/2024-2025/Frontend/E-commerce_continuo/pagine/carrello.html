@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Carrello - PC Componenti</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../stili/home.css">
+    <link rel="stylesheet" href="../stili/carrello.css">
+    <link rel="icon" type="image/png" href="../immagini/favicon_io/favicon.ico">
+    <!--Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">
+                <img src="../immagini/favicon_io/favicon.ico" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
+                PC Componenti
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="catalogo.html">Catalogo</a></li>
+                    <li class="nav-item"><a class="nav-link" href="preassemblati.html">Preassemblati</a></li>
+                    <!-- Icona Carrello -->
+                    <li class="nav-item position-relative">
+                        <a class="nav-link active" href="#">
+                            <i class="fas fa-shopping-cart"></i> Carrello
+                            <span id="carrello-counter" class="badge bg-danger"></span>
+                        </a>
+                    </li> 
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5 pb-5">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="text-center mb-4">Il tuo Carrello</h1>
+                <div class="progress mb-4" style="height: 30px;">
+                    <div class="progress-bar bg-primary" role="progressbar" style="width: 33%;" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100">
+                        <i class="fas fa-shopping-cart me-2"></i> Carrello
+                    </div>
+                    <div class="progress-bar bg-secondary" role="progressbar" style="width: 33%;" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100">
+                        <i class="fas fa-credit-card me-2"></i> Pagamento
+                    </div>
+                    <div class="progress-bar bg-secondary" role="progressbar" style="width: 34%;" aria-valuenow="34" aria-valuemin="0" aria-valuemax="100">
+                        <i class="fas fa-check-circle me-2"></i> Conferma
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-8">
+                <div id="carrello-container" class="mb-4">
+                    <!-- I prodotti verranno caricati qui -->
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0"><i class="fas fa-receipt me-2"></i> Riepilogo Ordine</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between mb-3">
+                            <h5>Totale:</h5>
+                            <h5 id="totale-prezzo">0.00€</h5>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <p class="mb-0">Spedizione:</p>
+                            <p class="mb-0">Gratuita</p>
+                        </div>
+                        <hr>
+                        <div class="d-grid gap-2">
+                            <button id="procedi-acquisto" class="btn btn-success btn-lg">
+                                <i class="fas fa-credit-card me-2"></i> Procedi al Checkout
+                            </button>
+                            <button id="svuota-carrello" class="btn btn-outline-danger">
+                                <i class="fas fa-trash me-2"></i> Svuota Carrello
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card mt-4 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-truck me-2"></i> Spedizione Gratuita</h5>
+                        <p class="card-text text-muted">Su tutti gli ordini in Italia</p>
+                        
+                        <h5 class="card-title mt-3"><i class="fas fa-shield-alt me-2"></i> Pagamento Sicuro</h5>
+                        <p class="card-text text-muted">Transazioni protette e sicure</p>
+                        
+                        <h5 class="card-title mt-3"><i class="fas fa-headset me-2"></i> Supporto 24/7</h5>
+                        <p class="card-text text-muted">Assistenza clienti sempre disponibile</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-light pt-4 pb-2">
+        <div class="container text-center">
+            <!-- Social -->
+            <h5>Seguici</h5>
+            <div id="footer-social" class="mb-3"></div>
+
+            <!-- Contatti -->
+            <p>Email: <a id="footer-email" class="text-light text-decoration-none"></a></p>
+
+            <!-- Copyright -->
+            <p id="footer-copyright" class="mt-3 mb-0"></p>
+        </div>
+    </footer>
+
+    <script src="../js/carrello.js"></script>
+    <script src="../js/function.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

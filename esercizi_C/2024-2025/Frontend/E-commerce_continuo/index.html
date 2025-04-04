@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PC Componenti - Home</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="stili/home.css">
+<link rel="icon" type="image/png" href="immagini/favicon_io/favicon.ico">
+<!--Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+<div class="container">
+<a class="navbar-brand" href="#">
+<img src="immagini/favicon_io/favicon.ico" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
+PC Componenti
+</a>
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarNav">
+<ul class="navbar-nav ms-auto">
+<li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+<li class="nav-item"><a class="nav-link" href="pagine/catalogo.html">Catalogo</a></li>
+<li class="nav-item"><a class="nav-link" href="pagine/preassemblati.html">Preassemblati</a></li>
+<!-- Icona Carrello -->
+<li class="nav-item position-relative">
+<a class="nav-link" href="pagine/carrello.html">
+<i class="fas fa-shopping-cart"></i> Carrello
+<span id="carrello-counter" class="badge bg-danger"></span>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero-section">
+<div class="container">
+<div class="hero-content">
+<h1 class="hero-title" id="hero-title">Benvenuto su PC Componenti</h1>
+<p class="hero-desc" id="hero-desc">Scopri i migliori componenti per il tuo PC</p>
+<a href="#" class="btn hero-btn" id="hero-btn">Esplora</a>
+</div>
+</div>
+</section>
+
+<!-- Prodotti più acquistati -->
+<section class="py-5">
+<div class="container">
+<h2 class="section-title mb-4">Prodotti più acquistati</h2>
+<div class="row" id="prodotti-popolari">
+<!-- I prodotti verranno caricati qui -->
+</div>
+</div>
+</section>
+
+<!-- Offerte speciali -->
+<section class="py-5 bg-light">
+<div class="container">
+<h2 class="section-title" id="titolo-offerte">Offerte Speciali</h2>
+<div class="row" id="offerte-speciali">
+<!-- Le offerte verranno caricate qui -->
+</div>
+</div>
+</section>
+
+<!-- Prodotti in evidenza -->
+<section class="py-5">
+<div class="container">
+<h2 class="section-title mb-4">Prodotti in evidenza</h2>
+<div class="row g-4" id="prodotti-evidenza">
+<div class="col-md-3 mb-4">
+<div class="card h-100 shadow-sm product-card">
+<div class="product-image-container">
+<img src="immagini/prodotti/cpu_ryzen.jpg" class="card-img-top product-image" alt="AMD Ryzen 9">
+<div class="product-overlay">
+<a href="pagine/dettaglio_catalogo.html?id=1" class="btn btn-primary">Vedi dettagli</a>
+</div>
+</div>
+<div class="card-body d-flex flex-column">
+<div class="d-flex justify-content-between align-items-center mb-2">
+<span class="badge bg-primary">CPU</span>
+<span class="text-warning">
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star-half-alt"></i>
+</span>
+</div>
+<h5 class="card-title">AMD Ryzen 9 5900X</h5>
+<p class="card-text text-muted small">Processore 12 core, 24 thread, fino a 4.8GHz</p>
+<div class="mt-auto">
+<p class="card-text fw-bold text-primary fs-5">499.99€</p>
+<a href="pagine/dettaglio_catalogo.html?id=1" class="btn btn-outline-primary w-100">
+<i class="fas fa-eye me-2"></i>Vedi dettagli
+</a>
+</div>
+</div>
+</div>
+</div>
+<div class="col-md-3 mb-4">
+<div class="card h-100 shadow-sm product-card">
+<div class="product-image-container">
+<img src="immagini/prodotti/gpu_rtx.jpg" class="card-img-top product-image" alt="NVIDIA RTX 3080">
+<div class="product-overlay">
+<a href="pagine/dettaglio_catalogo.html?id=2" class="btn btn-primary">Vedi dettagli</a>
+</div>
+</div>
+<div class="card-body d-flex flex-column">
+<div class="d-flex justify-content-between align-items-center mb-2">
+<span class="badge bg-success">GPU</span>
+<span class="text-warning">
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+</span>
+</div>
+<h5 class="card-title">NVIDIA RTX 3080</h5>
+<p class="card-text text-muted small">Scheda grafica 10GB GDDR6X, Ray Tracing</p>
+<div class="mt-auto">
+<p class="card-text fw-bold text-primary fs-5">799.99€</p>
+<a href="pagine/dettaglio_catalogo.html?id=2" class="btn btn-outline-primary w-100">
+<i class="fas fa-eye me-2"></i>Vedi dettagli
+</a>
+</div>
+</div>
+</div>
+</div>
+<div class="col-md-3 mb-4">
+<div class="card h-100 shadow-sm product-card">
+<div class="product-image-container">
+<img src="immagini/prodotti/ram_corsair.jpg" class="card-img-top product-image" alt="Corsair Vengeance RGB">
+<div class="product-overlay">
+<a href="pagine/dettaglio_catalogo.html?id=3" class="btn btn-primary">Vedi dettagli</a>
+</div>
+</div>
+<div class="card-body d-flex flex-column">
+<div class="d-flex justify-content-between align-items-center mb-2">
+<span class="badge bg-danger">RAM</span>
+<span class="text-warning">
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="far fa-star"></i>
+</span>
+</div>
+<h5 class="card-title">Corsair Vengeance RGB</h5>
+<p class="card-text text-muted small">32GB (2x16GB) DDR4 3600MHz, RGB</p>
+<div class="mt-auto">
+<p class="card-text fw-bold text-primary fs-5">189.99€</p>
+<a href="pagine/dettaglio_catalogo.html?id=3" class="btn btn-outline-primary w-100">
+<i class="fas fa-eye me-2"></i>Vedi dettagli
+</a>
+</div>
+</div>
+</div>
+</div>
+<div class="col-md-3 mb-4">
+<div class="card h-100 shadow-sm product-card">
+<div class="product-image-container">
+<img src="immagini/prodotti/ssd_samsung.jpg" class="card-img-top product-image" alt="Samsung 970 EVO Plus">
+<div class="product-overlay">
+<a href="pagine/dettaglio_catalogo.html?id=4" class="btn btn-primary">Vedi dettagli</a>
+</div>
+</div>
+<div class="card-body d-flex flex-column">
+<div class="d-flex justify-content-between align-items-center mb-2">
+<span class="badge bg-info text-dark">Storage</span>
+<span class="text-warning">
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star-half-alt"></i>
+</span>
+</div>
+<h5 class="card-title">Samsung 970 EVO Plus</h5>
+<p class="card-text text-muted small">SSD NVMe M.2 1TB, 3500MB/s</p>
+<div class="mt-auto">
+<p class="card-text fw-bold text-primary fs-5">149.99€</p>
+<a href="pagine/dettaglio_catalogo.html?id=4" class="btn btn-outline-primary w-100">
+<i class="fas fa-eye me-2"></i>Vedi dettagli
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Perché sceglierci -->
+<section class="py-5 bg-light">
+<div class="container">
+<h2 class="section-title mb-5">Perché scegliere PC Componenti</h2>
+<div class="row g-4">
+<div class="col-md-3">
+<div class="feature-card text-center">
+<div class="feature-icon">
+<i class="fas fa-truck-fast"></i>
+</div>
+<h4 class="mt-4">Spedizione Veloce</h4>
+<p class="text-muted">Consegna in 24/48 ore in tutta Italia</p>
+</div>
+</div>
+<div class="col-md-3">
+<div class="feature-card text-center">
+<div class="feature-icon">
+<i class="fas fa-shield-alt"></i>
+</div>
+<h4 class="mt-4">Garanzia Estesa</h4>
+<p class="text-muted">Tutti i prodotti con garanzia di 2 anni</p>
+</div>
+</div>
+<div class="col-md-3">
+<div class="feature-card text-center">
+<div class="feature-icon">
+<i class="fas fa-headset"></i>
+</div>
+<h4 class="mt-4">Supporto Tecnico</h4>
+<p class="text-muted">Assistenza tecnica 7 giorni su 7</p>
+</div>
+</div>
+<div class="col-md-3">
+<div class="feature-card text-center">
+<div class="feature-icon">
+<i class="fas fa-credit-card"></i>
+</div>
+<h4 class="mt-4">Pagamenti Sicuri</h4>
+<p class="text-muted">Transazioni protette e sicure</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Newsletter -->
+<section class="py-5 newsletter-section">
+<div class="container">
+<div class="row justify-content-center">
+<div class="col-md-8 text-center">
+<h2 class="mb-4">Iscriviti alla nostra Newsletter</h2>
+<p class="text-muted mb-4">Ricevi in anteprima offerte esclusive e novità sui prodotti</p>
+<div class="input-group mb-3">
+<input type="email" class="form-control" placeholder="La tua email" aria-label="Email">
+<button class="btn btn-primary" type="button">Iscriviti</button>
+</div>
+<p class="small text-muted">Ci impegniamo a rispettare la tua privacy. Non condivideremo mai i tuoi dati.</p>
+</div>
+</div>
+</div>
+</section>
+
+<footer class="bg-dark text-light pt-4 pb-2">
+<div class="container">
+<div class="row">
+<div class="col-md-4 mb-4">
+<h5>PC Componenti</h5>
+<p class="text-muted">Il tuo negozio di fiducia per componenti PC di alta qualità.</p>
+<div id="footer-social" class="mt-3"></div>
+</div>
+<div class="col-md-2 mb-4">
+<h5>Link Utili</h5>
+<ul class="list-unstyled">
+<li><a href="#" class="text-light text-decoration-none">Home</a></li>
+<li><a href="pagine/catalogo.html" class="text-light text-decoration-none">Catalogo</a></li>
+<li><a href="pagine/preassemblati.html" class="text-light text-decoration-none">Preassemblati</a></li>
+<li><a href="pagine/carrello.html" class="text-light text-decoration-none">Carrello</a></li>
+</ul>
+</div>
+<div class="col-md-3 mb-4">
+<h5>Categorie</h5>
+<ul class="list-unstyled">
+<li><a href="pagine/catalogo.html?categoria=CPU" class="text-light text-decoration-none">Processori</a></li>
+<li><a href="pagine/catalogo.html?categoria=GPU" class="text-light text-decoration-none">Schede Video</a></li>
+<li><a href="pagine/catalogo.html?categoria=RAM" class="text-light text-decoration-none">Memoria RAM</a></li>
+<li><a href="pagine/catalogo.html?categoria=Storage" class="text-light text-decoration-none">Storage</a></li>
+</ul>
+</div>
+<div class="col-md-3 mb-4">
+<h5>Contatti</h5>
+<ul class="list-unstyled">
+<li><i class="fas fa-envelope me-2"></i><a id="footer-email" class="text-light text-decoration-none"></a></li>
+<li><i class="fas fa-phone me-2"></i> +39 123 456 7890</li>
+<li><i class="fas fa-map-marker-alt me-2"></i> Via Roma 123, Milano</li>
+</ul>
+</div>
+</div>
+<hr class="mt-4 mb-3 bg-secondary">
+<p id="footer-copyright" class="text-center mb-0"></p>
+</div>
+</footer>
+
+<!-- Notifica -->
+<div id="notifica" class="notifica"></div>
+
+<script src="js/function.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

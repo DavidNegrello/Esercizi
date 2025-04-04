@@ -1,0 +1,57 @@
+.carousel-control-prev-icon, .carousel-control-next-icon {
+    filter: invert(1);
+}
+.miniature img {
+    width: 60px;
+    height: auto;
+    margin: 5px;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+.miniature img:hover, .miniature img.active {
+    border-color: black;
+}
+
+/* Centra il contenuto della sezione delle specifiche */
+.specifiche-dettagliate {
+    text-align: center;
+    padding: 20px;
+}
+
+/* Stilizza ogni elemento della lista delle specifiche dettagliate */
+.specifica-dettagliata {
+    border-bottom: 1px solid #ccc; /* Linea di separazione */
+    padding: 10px 0;
+    margin-bottom: 10px;
+}
+
+.specifica-dettagliata:last-child {
+    border-bottom: none; /* Rimuove la linea sotto l'ultima specifica */
+}
+
+/* Stilizza il titolo della sezione */
+.specifica-titolo {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #333;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.specifica-valore {
+    font-size: 1rem;
+    color: #555;
+}
+.informazioni-aggiuntive {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.informazioni-aggiuntive img {
+    width: 300px !important; /* Forza la larghezza fissa */
+    height: auto !important; /* Forza la proporzione */
+    object-fit: cover !important; /* Evita che l'immagine si deformi */
+}
+
+

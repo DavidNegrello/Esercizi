@@ -1,0 +1,101 @@
+{
+  "sidebar": {
+    "titolo": "Filtri",
+    "filtri": {
+      "ricerca": "Cerca un prodotto...",
+      "categorie": ["CPU", "GPU", "RAM", "PSU", "Storage", "Case", "Scheda Madre", "Raffreddamento"],
+      "prezzo": { "min": 0, "max": 2000, "step": 10 },
+      "marche": ["Intel", "AMD", "NVIDIA", "Corsair", "MSI", "ASUS", "NZXT", "Gigabyte", "Thermaltake", "Samsung", "SK hynix"]
+    }
+  },
+  "prodotti": [
+    {
+      "id": 1,
+      "nome": "ASUS ROG Strix Z690-E Gaming WiFi",
+      "categoria": "Scheda Madre",
+      "prezzo": 379.99,
+      "marca": "ASUS",
+      "immagine": "../immagini/motherboard/z690/1/1.png"
+    },
+    {
+      "id": 2,
+      "nome": "ASUS ROG Strix Z690-A Gaming WiFi",
+      "categoria": "Scheda Madre",
+      "prezzo": 349.99,
+      "marca": "ASUS",
+      "immagine": "../immagini/motherboard/z690/2/1.png"
+    },
+    {
+      "id": 3,
+      "nome": "GIGABYTE Z490 AORUS MASTER",
+      "categoria": "Scheda Madre",
+      "prezzo": 449.99,
+      "marca": "GIGABYTE",
+      "immagine": "../immagini/motherboard/gigabyte/1/1.png"
+    },
+    {
+      "id": 4,
+      "nome": "GIGABYTE Z490 AORUS Elite AC",
+      "categoria": "Scheda Madre",
+      "prezzo": 229.99,
+      "marca": "GIGABYTE",
+      "immagine": "../immagini/motherboard/gigabyte/2/1.png"
+    },
+    {
+      "id": 5,
+      "nome": "MSI GeForce RTX 4080 16Go",
+      "categoria": "GPU",
+      "prezzo": 1599.99,
+      "marca": "MSI",
+      "immagine": "../immagini/GPU/4080/1/1.png"
+    },
+    {
+      "id": 6,
+      "nome": "MSI GeForce RTX 4080 16GB SUPRIM",
+      "categoria": "GPU",
+      "prezzo": 1799.99,
+      "marca": "MSI",
+      "immagine": "../immagini/GPU/4080/2/1.png"
+    },
+    {
+      "id": 7,
+      "nome": "Corsair RM850X 80 Plus Gold",
+      "categoria": "PSU",
+      "prezzo": 139.99,
+      "marca": "Corsair",
+      "immagine": "../immagini/PSU/1/1/1.png"
+    },
+    {
+      "id": 8,
+      "nome": "THERMALTAKE ALIM. TOUGHPOWER GF1 750W ARGB FULL MODULAR 80 PLUS GOLD",
+      "categoria": "PSU",
+      "prezzo": 119.99,
+      "marca": "THERMALTAKE",
+      "immagine": "../immagini/PSU/2/1.png"
+    },
+    {
+      "id": 9,
+      "nome": "CORSAIR VENGEANCE RGB DDR5 RAM 32GB (2x16GB) 5200MHz",
+      "categoria": "RAM",
+      "prezzo": 199.99,
+      "marca": "Corsair",
+      "immagine": "../immagini/RAM/2/bianco/1.png"
+    },
+    {
+      "id": 10,
+      "nome": "Samsung 970 EVO Plus PCIe NVMe M.2",
+      "categoria": "Storage",
+      "prezzo": 129.99,
+      "marca": "Samsung",
+      "immagine": "../immagini/SSD/1/1.png"
+    },
+    {
+      "id": 11,
+      "nome": "SK hynix Platinum P41 NVMe SSD",
+      "categoria": "Storage",
+      "prezzo": 399.99,
+      "marca": "SK hynix",
+      "immagine": "../immagini/SSD/2/1.png"
+    }
+  ]
+}
