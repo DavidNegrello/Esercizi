@@ -196,8 +196,8 @@ $prodotti = fetchAll($sql_prodotti, $types, $params);
                                 </div>
                                 <div class="card-footer bg-transparent border-top-0">
                                     <div class="d-grid">
-                                        <a href="#" class="btn btn-primary">
-                                            <i class="fas fa-shopping-cart me-2"></i>Aggiungi al Carrello
+                                        <a href="dettaglio_catalogo.php?id=<?php echo $prodotto['id']; ?>" class="btn btn-primary">
+                                            <i class="fas fa-eye me-2"></i>Visualizza
                                         </a>
                                     </div>
                                 </div>
