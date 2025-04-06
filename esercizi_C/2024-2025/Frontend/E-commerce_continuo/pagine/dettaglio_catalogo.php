@@ -1,367 +1,609 @@
 <?php
-// Connessione al database
+// Gestione sessione utente
+session_start();
+$loggedIn = isset($_SESSION['user_id']);
+$username = $loggedIn ? $_SESSION['username'] : '';
+
+// Conteggio articoli nel carrello
+$cartCount = 0;
+if(isset($_SESSION['cart']) && is_array($_SESSION['cart'])) {
+    foreach($_SESSION['cart'] as $items) {
+        $cartCount += $items['quantity'];
+    }
+}
+
+// Determina pagina attiva
+$currentPage = basename($_SERVER['PHP_SELF']);
+
+/**
+ * Pagina di dettaglio prodotto
+ *
+ * Questa pagina mostra i dettagli completi di un prodotto dal catalogo,
+ * incluse descrizioni, specifiche, varianti (colori, taglie, capacità, wattaggio)
+ * e immagini multiple.
+ */
+
+// Inclusione della configurazione del database
 require_once '../conf/db_config.php';
 
-// Verifica che l'ID prodotto sia stato passato
-if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
-    header('Location: catalogo.php');
-    exit;
-}
+// Inizializzazione variabili
+$prodotto = null;
+$descrizione = null;
+$specifiche = [];
+$immagini = [];
+$colori = [];
+$varianti_colore = [];
+$capacita = [];
+$taglie = [];
+$varianti_wattaggio = [];
+$prodotti_correlati = [];
+$error = '';
+$id = 0;
 
-$prodotto_id = intval($_GET['id']);
+// Controllo se è stato passato un ID valido
+if (isset($_GET['id']) && is_numeric($_GET['id'])) {
+    $id = (int)$_GET['id'];
 
-// Query per recuperare le informazioni di base del prodotto
-// Update your main product query
-$prodotto = fetchOne("
-    SELECT p.id, p.nome, p.marca_id, p.prezzo_base, c.nome AS categoria_nome, pd.descrizione,
-           m.nome AS marca  /* Add this line to get the brand name */
-    FROM prodotti p
-    JOIN categorie c ON p.categoria_id = c.id
-    LEFT JOIN prodotti_descrizioni pd ON p.id = pd.prodotto_id
-    JOIN marche m ON p.marca_id = m.id  /* Add this join */
-    WHERE p.id = ?
-", "i", [$prodotto_id]);
+    // Query per ottenere i dettagli del prodotto con nome categoria e marca
+    $sql = "SELECT p.*, c.nome AS categoria_nome, m.nome AS marca_nome 
+            FROM prodotti p
+            JOIN categorie c ON p.categoria_id = c.id
+            JOIN marche m ON p.marca_id = m.id
+            WHERE p.id = ?";
 
-// Se il prodotto non esiste, redirect alla pagina del catalogo
-if (!$prodotto) {
-    header('Location: catalogo.php');
-    exit;
-}
+    // Utilizzo della funzione fetchOne con prepared statement per sicurezza
+    $prodotto = fetchOne($sql, 'i', [$id]);
 
-// Recupero le immagini del prodotto
-$immagini = fetchAll("
-    SELECT url, is_principale 
-    FROM prodotti_immagini 
-    WHERE prodotto_id = ?
-    ORDER BY is_principale DESC
-", "i", [$prodotto_id]);
+    if ($prodotto) {
+        // Ottieni descrizione
+        $sql_descrizione = "SELECT descrizione FROM prodotti_descrizioni WHERE prodotto_id = ?";
+        $descrizione_result = fetchOne($sql_descrizione, 'i', [$id]);
+        $descrizione = $descrizione_result ? $descrizione_result['descrizione'] : null;
 
-// Recupero le varianti di colore disponibili
-$varianti_colore = fetchAll("
-    SELECT vc.id, c.nome, c.id AS colore_id
-    FROM varianti_colore vc
-    JOIN colori c ON vc.colore_id = c.id
-    WHERE vc.prodotto_id = ?
-", "i", [$prodotto_id]);
+        // Ottieni specifiche
+        $sql_specifiche = "SELECT s.nome, ps.valore 
+                           FROM prodotti_specifiche ps
+                           JOIN specifiche s ON ps.specifica_id = s.id
+                           WHERE ps.prodotto_id = ?";
+        $specifiche = fetchAll($sql_specifiche, 'i', [$id]);
 
-// Recupero le varianti di wattaggio disponibili (per PSU)
-$varianti_wattaggio = fetchAll("
-    SELECT id, wattaggio
-    FROM varianti_wattaggio
-    WHERE prodotto_id = ?
-", "i", [$prodotto_id]);
+        // Ottieni immagini
+        $sql_immagini = "SELECT * FROM prodotti_immagini WHERE prodotto_id = ? ORDER BY is_principale DESC";
+        $immagini = fetchAll($sql_immagini, 'i', [$id]);
 
-// Recupero le capacità disponibili (per SSD)
-$varianti_capacita = fetchAll("
-    SELECT pc.capacita_id, c.nome, pc.prezzo
-    FROM prodotti_capacita pc
-    JOIN capacita c ON pc.capacita_id = c.id
-    WHERE pc.prodotto_id = ?
-", "i", [$prodotto_id]);
+        // Ottieni colori disponibili
+        $sql_colori = "SELECT c.* 
+                       FROM prodotti_colori pc
+                       JOIN colori c ON pc.colore_id = c.id
+                       WHERE pc.prodotto_id = ?";
+        $colori = fetchAll($sql_colori, 'i', [$id]);
 
-// Recupero le taglie disponibili (per RAM)
-$varianti_taglie = fetchAll("
-    SELECT pt.taglia_id, t.nome, t.descrizione, pt.prezzo
-    FROM prodotti_taglie pt
-    JOIN taglie t ON pt.taglia_id = t.id
-    WHERE pt.prodotto_id = ?
-", "i", [$prodotto_id]);
+        // Ottieni varianti di colore con immagini
+        $sql_varianti_colore = "SELECT vc.id, c.nome AS colore_nome, c.id AS colore_id
+                               FROM varianti_colore vc
+                               JOIN colori c ON vc.colore_id = c.id
+                               WHERE vc.prodotto_id = ?";
+        $varianti_colore_temp = fetchAll($sql_varianti_colore, 'i', [$id]);
 
-// Recupero le specifiche tecniche
-$specifiche = fetchAll("
-    SELECT s.nome, ps.valore
-    FROM prodotti_specifiche ps
-    JOIN specifiche s ON ps.specifica_id = s.id
-    WHERE ps.prodotto_id = ?
-", "i", [$prodotto_id]);
+        // Per ogni variante di colore, ottieni le relative immagini
+        foreach ($varianti_colore_temp as $variante) {
+            $sql_variante_immagini = "SELECT url FROM varianti_colore_immagini WHERE variante_id = ?";
+            $immagini_variante = fetchAll($sql_variante_immagini, 'i', [$variante['id']]);
 
-// Gestisci le selezioni dell'utente
-$colore_selezionato = isset($_GET['colore']) ? intval($_GET['colore']) : (count($varianti_colore) > 0 ? $varianti_colore[0]['colore_id'] : null);
-$wattaggio_selezionato = isset($_GET['wattaggio']) ? $_GET['wattaggio'] : (count($varianti_wattaggio) > 0 ? $varianti_wattaggio[0]['wattaggio'] : null);
-$capacita_selezionata = isset($_GET['capacita']) ? intval($_GET['capacita']) : (count($varianti_capacita) > 0 ? $varianti_capacita[0]['capacita_id'] : null);
-$taglia_selezionata = isset($_GET['taglia']) ? intval($_GET['taglia']) : (count($varianti_taglie) > 0 ? $varianti_taglie[0]['taglia_id'] : null);
-
-// Calcola il prezzo finale in base alle varianti selezionate
-$prezzo_finale = $prodotto['prezzo_base'];
-
-// Aggiorna il prezzo se c'è una variante di capacità
-if ($capacita_selezionata) {
-    foreach ($varianti_capacita as $variante) {
-        if ($variante['capacita_id'] == $capacita_selezionata) {
-            $prezzo_finale = $variante['prezzo'];
-            break;
+            $varianti_colore[] = [
+                'colore_id' => $variante['colore_id'],
+                'colore_nome' => $variante['colore_nome'],
+                'immagini' => $immagini_variante
+            ];
         }
-    }
-}
 
-// Aggiorna il prezzo se c'è una variante di taglia
-if ($taglia_selezionata) {
-    foreach ($varianti_taglie as $variante) {
-        if ($variante['taglia_id'] == $taglia_selezionata) {
-            $prezzo_finale = $variante['prezzo'];
-            break;
+        // Ottieni capacità disponibili (per SSD, HDD, ecc.)
+        $sql_capacita = "SELECT pc.prezzo, c.nome AS capacita_nome
+                         FROM prodotti_capacita pc
+                         JOIN capacita c ON pc.capacita_id = c.id
+                         WHERE pc.prodotto_id = ?";
+        $capacita = fetchAll($sql_capacita, 'i', [$id]);
+
+        // Ottieni taglie disponibili (per RAM, ecc.)
+        $sql_taglie = "SELECT pt.prezzo, t.nome AS taglia_nome, t.descrizione
+                       FROM prodotti_taglie pt
+                       JOIN taglie t ON pt.taglia_id = t.id
+                       WHERE pt.prodotto_id = ?";
+        $taglie = fetchAll($sql_taglie, 'i', [$id]);
+
+        // Ottieni varianti di wattaggio (per PSU)
+        $sql_wattaggio = "SELECT vw.id, vw.wattaggio
+                          FROM varianti_wattaggio vw
+                          WHERE vw.prodotto_id = ?";
+        $varianti_wattaggio_temp = fetchAll($sql_wattaggio, 'i', [$id]);
+
+        // Per ogni variante di wattaggio, ottieni le relative immagini
+        foreach ($varianti_wattaggio_temp as $variante) {
+            $sql_variante_immagini = "SELECT url FROM varianti_wattaggio_immagini WHERE variante_id = ?";
+            $immagini_variante = fetchAll($sql_variante_immagini, 'i', [$variante['id']]);
+
+            $varianti_wattaggio[] = [
+                'wattaggio' => $variante['wattaggio'],
+                'immagini' => $immagini_variante
+            ];
         }
-    }
-}
 
-// Recupera le immagini per la variante di colore selezionata
-$immagini_variante = [];
-if ($colore_selezionato) {
-    $immagini_variante = fetchAll("
-        SELECT vci.url
-        FROM varianti_colore_immagini vci
-        JOIN varianti_colore vc ON vci.variante_id = vc.id
-        WHERE vc.prodotto_id = ? AND vc.colore_id = ?
-    ", "ii", [$prodotto_id, $colore_selezionato]);
-}
+        // Ottieni specifiche dettagliate
+        $sql_spec_dettagliate = "SELECT sd.nome, psd.valore 
+                                 FROM prodotti_specifiche_dettagliate psd
+                                 JOIN specifiche_dettagliate sd ON psd.specifica_dettagliata_id = sd.id
+                                 WHERE psd.prodotto_id = ?";
+        $specifiche_dettagliate = fetchAll($sql_spec_dettagliate, 'i', [$id]);
 
-// Se ci sono immagini per la variante selezionata, usa quelle
-if (count($immagini_variante) > 0) {
-    $immagini = $immagini_variante;
-}
-
-// Recupera le immagini per la variante di wattaggio selezionata
-if ($wattaggio_selezionato) {
-    $immagini_wattaggio = fetchAll("
-        SELECT vwi.url
-        FROM varianti_wattaggio_immagini vwi
-        JOIN varianti_wattaggio vw ON vwi.variante_id = vw.id
-        WHERE vw.prodotto_id = ? AND vw.wattaggio = ?
-    ", "is", [$prodotto_id, $wattaggio_selezionato]);
-
-    // Se ci sono immagini per la variante di wattaggio, usa quelle
-    if (count($immagini_wattaggio) > 0) {
-        $immagini = $immagini_wattaggio;
-    }
-}
-
-// Funzione per ottenere l'immagine principale
-function getMainImage($images) {
-    foreach ($images as $img) {
-        if (isset($img['is_principale']) && $img['is_principale']) {
-            return $img['url'];
+        // Aggiungi le specifiche dettagliate all'array delle specifiche se ci sono
+        if (!empty($specifiche_dettagliate)) {
+            $specifiche = array_merge($specifiche, $specifiche_dettagliate);
         }
+
+        // Ottenere prodotti correlati (stessa categoria)
+        $sql_correlati = "SELECT p.*, m.nome AS marca_nome 
+                        FROM prodotti p
+                        JOIN marche m ON p.marca_id = m.id
+                        WHERE p.categoria_id = ? AND p.id != ?
+                        ORDER BY RAND()
+                        LIMIT 4";
+
+        $prodotti_correlati = fetchAll($sql_correlati, 'ii', [$prodotto['categoria_id'], $id]);
+    } else {
+        $error = 'Prodotto non trovato';
     }
-    return count($images) > 0 ? $images[0]['url'] : 'img/placeholder.png';
+} else {
+    $error = 'ID prodotto non valido';
 }
 
-$main_image = getMainImage($immagini);
+// Funzione per verificare se un'immagine esiste
+function imageExists($image_path) {
+    if (empty($image_path)) return false;
+
+    // Se il percorso inizia con http:// o https://, non controllare l'esistenza fisica
+    if (strpos($image_path, 'http://') === 0 || strpos($image_path, 'https://') === 0) {
+        return true;
+    }
+
+    // Rimuovi '../' dall'inizio del percorso se presente
+    if (strpos($image_path, '../') === 0) {
+        $image_path = substr($image_path, 3);
+    }
+
+    return file_exists($image_path);
+}
+
+// Funzione per generare breadcrumbs
+function generateBreadcrumbs($categoria, $nome_prodotto) {
+    return '
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="../index.php">Home</a></li>
+            <li class="breadcrumb-item"><a href="catalogo.php">Catalogo</a></li>
+            <li class="breadcrumb-item"><a href="catalogo.php?categoria=' . urlencode($categoria) . '">' . htmlspecialchars($categoria) . '</a></li>
+            <li class="breadcrumb-item active" aria-current="page">' . htmlspecialchars($nome_prodotto) . '</li>
+        </ol>
+    </nav>';
+}
+
+
+
 ?>
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo htmlspecialchars($prodotto['nome']); ?> - Dettaglio Prodotto</title>
-    <!-- Bootstrap 5 CSS -->
+    <title><?php echo $prodotto ? htmlspecialchars($prodotto['nome']) : 'Dettaglio Prodotto'; ?> - Catalogo PC Parts</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../stili/dettagli_catalogo.css">
+    <link rel="stylesheet" href="../stili/navbar_footer.css">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+        <!-- Logo e Brand -->
+        <a class="navbar-brand d-flex align-items-center" href="../index.html">
+            <img src="../immagini/favicon_io/favicon.ico" alt="Logo" width="30" height="30" class="me-2">
+            <span class="fw-bold">PC Componenti</span>
+        </a>
 
+        <!-- Hamburger per mobile -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-<div class="container mt-4">
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
-            <li class="breadcrumb-item"><a href="catalogo.php">Catalogo</a></li>
-            <li class="breadcrumb-item"><a href="catalogo.php?categoria=<?php echo $prodotto['categoria_nome']; ?>"><?php echo htmlspecialchars($prodotto['categoria_nome']); ?></a></li>
-            <li class="breadcrumb-item active" aria-current="page"><?php echo htmlspecialchars($prodotto['nome']); ?></li>
-        </ol>
-    </nav>
+        <!-- Menu navigazione -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link <?php echo $currentPage == '../index.html' ? 'active' : ''; ?>"
+                       href="../index.html" <?php echo $currentPage == '../index.html' ? 'aria-current="page"' : ''; ?>>Home</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle"
+                       href="catalogo.php" aria-expanded="false">
+                        Componenti
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <?php echo $currentPage == 'preassemblati.php' ? 'active' : ''; ?>"
+                       href="../pagine/preassemblati.php">PC Preassemblati</a>
+                </li>
+            </ul>
 
-    <div class="row">
-        <!-- Immagini prodotto -->
-        <div class="col-md-6">
-            <div class="product-images">
-                <div class="main-image mb-3">
-                    <img src="<?php echo htmlspecialchars($main_image); ?>" class="img-fluid" id="main-product-image" alt="<?php echo htmlspecialchars($prodotto['nome']); ?>">
-                </div>
-                <div class="thumbnail-images d-flex overflow-auto">
-                    <?php foreach ($immagini as $img): ?>
-                        <div class="thumbnail me-2" data-image="<?php echo htmlspecialchars($img['url']); ?>">
-                            <img src="<?php echo htmlspecialchars($img['url']); ?>" class="img-thumbnail" alt="Thumbnail">
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-            </div>
-        </div>
-
-        <!-- Dettagli prodotto -->
-        <div class="col-md-6">
-            <h1><?php echo htmlspecialchars($prodotto['nome']); ?></h1>
-            <p class="text-muted">Marca: <?php echo htmlspecialchars($prodotto['marca']); ?></p>
-
-            <div class="price-container mb-4">
-                <h2 class="price">€<?php echo number_format($prezzo_finale, 2, ',', '.'); ?></h2>
-            </div>
-
-            <form method="post" action="carrello.php">
-                <input type="hidden" name="prodotto_id" value="<?php echo $prodotto_id; ?>">
-
-                <!-- Selezione colore -->
-                <?php if (count($varianti_colore) > 0): ?>
-                    <div class="mb-3">
-                        <label class="form-label">Colore:</label>
-                        <div class="color-options">
-                            <?php foreach ($varianti_colore as $variante): ?>
-                                <a href="?id=<?php echo $prodotto_id; ?>&colore=<?php echo $variante['colore_id']; ?><?php echo $wattaggio_selezionato ? '&wattaggio=' . $wattaggio_selezionato : ''; ?><?php echo $capacita_selezionata ? '&capacita=' . $capacita_selezionata : ''; ?><?php echo $taglia_selezionata ? '&taglia=' . $taglia_selezionata : ''; ?>"
-                                   class="color-option <?php echo $colore_selezionato == $variante['colore_id'] ? 'selected' : ''; ?>">
-                                    <span class="color-box" style="background-color: <?php echo strtolower($variante['nome']); ?>"></span>
-                                    <span class="color-name"><?php echo htmlspecialchars($variante['nome']); ?></span>
-                                </a>
-                            <?php endforeach; ?>
-                        </div>
-                        <input type="hidden" name="colore_id" value="<?php echo $colore_selezionato; ?>">
-                    </div>
-                <?php endif; ?>
-
-                <!-- Selezione wattaggio -->
-                <?php if (count($varianti_wattaggio) > 0): ?>
-                    <div class="mb-3">
-                        <label class="form-label">Wattaggio:</label>
-                        <div class="btn-group" role="group">
-                            <?php foreach ($varianti_wattaggio as $variante): ?>
-                                <a href="?id=<?php echo $prodotto_id; ?><?php echo $colore_selezionato ? '&colore=' . $colore_selezionato : ''; ?>&wattaggio=<?php echo urlencode($variante['wattaggio']); ?><?php echo $capacita_selezionata ? '&capacita=' . $capacita_selezionata : ''; ?><?php echo $taglia_selezionata ? '&taglia=' . $taglia_selezionata : ''; ?>"
-                                   class="btn <?php echo $wattaggio_selezionato == $variante['wattaggio'] ? 'btn-primary' : 'btn-outline-primary'; ?>">
-                                    <?php echo htmlspecialchars($variante['wattaggio']); ?>
-                                </a>
-                            <?php endforeach; ?>
-                        </div>
-                        <input type="hidden" name="wattaggio" value="<?php echo htmlspecialchars($wattaggio_selezionato); ?>">
-                    </div>
-                <?php endif; ?>
-
-                <!-- Selezione capacità -->
-                <?php if (count($varianti_capacita) > 0): ?>
-                    <div class="mb-3">
-                        <label class="form-label">Capacità:</label>
-                        <div class="btn-group" role="group">
-                            <?php foreach ($varianti_capacita as $variante): ?>
-                                <a href="?id=<?php echo $prodotto_id; ?><?php echo $colore_selezionato ? '&colore=' . $colore_selezionato : ''; ?><?php echo $wattaggio_selezionato ? '&wattaggio=' . $wattaggio_selezionato : ''; ?>&capacita=<?php echo $variante['capacita_id']; ?><?php echo $taglia_selezionata ? '&taglia=' . $taglia_selezionata : ''; ?>"
-                                   class="btn <?php echo $capacita_selezionata == $variante['capacita_id'] ? 'btn-primary' : 'btn-outline-primary'; ?>">
-                                    <?php echo htmlspecialchars($variante['nome']); ?> - €<?php echo number_format($variante['prezzo'], 2, ',', '.'); ?>
-                                </a>
-                            <?php endforeach; ?>
-                        </div>
-                        <input type="hidden" name="capacita_id" value="<?php echo $capacita_selezionata; ?>">
-                    </div>
-                <?php endif; ?>
-
-                <!-- Selezione taglia -->
-                <?php if (count($varianti_taglie) > 0): ?>
-                    <div class="mb-3">
-                        <label class="form-label">Configurazione:</label>
-                        <div class="btn-group" role="group">
-                            <?php foreach ($varianti_taglie as $variante): ?>
-                                <a href="?id=<?php echo $prodotto_id; ?><?php echo $colore_selezionato ? '&colore=' . $colore_selezionato : ''; ?><?php echo $wattaggio_selezionato ? '&wattaggio=' . $wattaggio_selezionato : ''; ?><?php echo $capacita_selezionata ? '&capacita=' . $capacita_selezionata : ''; ?>&taglia=<?php echo $variante['taglia_id']; ?>"
-                                   class="btn <?php echo $taglia_selezionata == $variante['taglia_id'] ? 'btn-primary' : 'btn-outline-primary'; ?>">
-                                    <?php echo htmlspecialchars($variante['nome']); ?> - €<?php echo number_format($variante['prezzo'], 2, ',', '.'); ?>
-                                </a>
-                            <?php endforeach; ?>
-                        </div>
-                        <input type="hidden" name="taglia_id" value="<?php echo $taglia_selezionata; ?>">
-                    </div>
-                <?php endif; ?>
-
-                <div class="mb-3">
-                    <label for="quantity" class="form-label">Quantità:</label>
-                    <input type="number" id="quantity" name="quantita" class="form-control" value="1" min="1" style="width: 100px;">
+            <!-- Carrello e Login/Utente a destra -->
+            <div class="d-flex align-items-center">
+                <!-- Carrello con counter dinamico -->
+                <div class="position-relative me-3">
+                    <a class="btn btn-outline-light btn-sm position-relative" href="../pagine/carrello.php">
+                        <i class="fas fa-shopping-cart me-1"></i> Carrello
+                        <?php if($cartCount > 0): ?>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            <?php echo $cartCount; ?>
+                            <span class="visually-hidden">Articoli nel carrello</span>
+                        </span>
+                        <?php endif; ?>
+                    </a>
                 </div>
 
-                <button type="submit" name="aggiungi_carrello" class="btn btn-primary">
-                    <i class="fas fa-shopping-cart"></i> Aggiungi al carrello
-                </button>
-            </form>
-
-            <!-- Descrizione prodotto -->
-            <div class="product-description mt-4">
-                <h3>Descrizione</h3>
-                <p><?php echo nl2br(htmlspecialchars($prodotto['descrizione'])); ?></p>
+                <!-- Login o Menu Utente in base allo stato -->
+                <?php if($loggedIn): ?>
+                    <div class="dropdown">
+                        <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user-circle me-1"></i> <?php echo htmlspecialchars($username); ?>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                            <li><a class="dropdown-item" href="../pagine/profilo.php"><i class="fas fa-id-card me-2"></i>Il mio profilo</a></li>
+                            <li><a class="dropdown-item" href="../pagine/ordini.php"><i class="fas fa-box me-2"></i>I miei ordini</a></li>
+                            <li><a class="dropdown-item" href="../pagine/wishlist.php"><i class="fas fa-heart me-2"></i>Wishlist</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-danger" href="../actions/logout.php"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
+                        </ul>
+                    </div>
+                <?php else: ?>
+                    <a href="../pagine/login.php" class="btn btn-primary btn-sm">
+                        <i class="fas fa-sign-in-alt me-1"></i> Accedi
+                    </a>
+                <?php endif; ?>
             </div>
         </div>
     </div>
+</nav>
 
-    <!-- Specifiche tecniche -->
-    <div class="row mt-5">
-        <div class="col-12">
-            <h3>Specifiche tecniche</h3>
-            <div class="table-responsive">
-                <table class="table table-striped">
-                    <tbody>
-                    <?php foreach ($specifiche as $specifica): ?>
-                        <tr>
-                            <th width="30%"><?php echo htmlspecialchars($specifica['nome']); ?></th>
-                            <td><?php echo htmlspecialchars($specifica['valore']); ?></td>
-                        </tr>
-                    <?php endforeach; ?>
-                    </tbody>
-                </table>
+
+<div class="container mt-4 mb-5">
+    <?php if ($error): ?>
+        <div class="alert alert-danger">
+            <?php echo htmlspecialchars($error); ?>
+            <p class="mt-2">
+                <a href="catalogo.php" class="btn btn-primary">Torna al catalogo</a>
+            </p>
+        </div>
+    <?php elseif ($prodotto): ?>
+        <?php echo generateBreadcrumbs($prodotto['categoria_nome'], $prodotto['nome']); ?>
+
+        <div class="card mb-4">
+            <div class="row g-0">
+                <div class="col-md-5">
+                    <div class="position-relative">
+                        <?php if (!empty($immagini)): ?>
+                            <img id="main-product-image" src="<?php echo htmlspecialchars($immagini[0]['url']); ?>" class="img-fluid product-image p-3" alt="<?php echo htmlspecialchars($prodotto['nome']); ?>">
+                        <?php elseif ($prodotto['immagine'] && imageExists($prodotto['immagine'])): ?>
+                            <img id="main-product-image" src="<?php echo htmlspecialchars($prodotto['immagine']); ?>" class="img-fluid product-image p-3" alt="<?php echo htmlspecialchars($prodotto['nome']); ?>">
+                        <?php else: ?>
+                            <div class="text-center p-5">
+                                <i class="bi bi-image text-secondary" style="font-size: 8rem;"></i>
+                                <p class="text-muted">Immagine non disponibile</p>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+
+                    <?php if (!empty($immagini) && count($immagini) > 1): ?>
+                        <div class="d-flex flex-wrap justify-content-start p-3 gap-2">
+                            <?php foreach ($immagini as $index => $img): ?>
+                                <img src="<?php echo htmlspecialchars($img['url']); ?>"
+                                     class="thumbnail-image <?php echo $index === 0 ? 'active' : ''; ?>"
+                                     alt="Thumbnail <?php echo $index+1; ?>"
+                                     onclick="updateMainImage('<?php echo htmlspecialchars($img['url']); ?>', this)">
+                            <?php endforeach; ?>
+                        </div>
+                    <?php endif; ?>
+                </div>
+                <div class="col-md-7">
+                    <div class="card-body">
+                        <h1 class="card-title"><?php echo htmlspecialchars($prodotto['nome']); ?></h1>
+                        <p class="card-text">
+                            <span class="badge bg-primary"><?php echo htmlspecialchars($prodotto['categoria_nome']); ?></span>
+                            <span class="badge bg-secondary"><?php echo htmlspecialchars($prodotto['marca_nome']); ?></span>
+                        </p>
+
+                        <div class="mb-4">
+                            <h2 class="text-danger" id="product-price">€<?php echo number_format($prodotto['prezzo'], 2, ',', '.'); ?></h2>
+                        </div>
+
+                        <?php if (!empty($descrizione)): ?>
+                            <div class="mb-4">
+                                <p><?php echo nl2br(htmlspecialchars($descrizione)); ?></p>
+                            </div>
+                        <?php endif; ?>
+
+                        <?php if (!empty($colori)): ?>
+                            <div class="mb-4">
+                                <h5>Colore:</h5>
+                                <div class="d-flex align-items-center mb-3" id="color-options">
+                                    <?php foreach($colori as $index => $colore): ?>
+                                        <div class="color-option <?php echo $index === 0 ? 'active' : ''; ?>"
+                                             style="background-color: <?php echo htmlspecialchars($colore['nome']); ?>"
+                                             title="<?php echo htmlspecialchars($colore['nome']); ?>"
+                                             data-color-id="<?php echo $colore['id']; ?>"
+                                             onclick="selectColor(this)"></div>
+                                    <?php endforeach; ?>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+
+                        <?php if (!empty($taglie)): ?>
+                            <div class="mb-4">
+                                <h5>Dimensione:</h5>
+                                <div class="d-flex flex-wrap align-items-center mb-3" id="size-options">
+                                    <?php foreach($taglie as $index => $taglia): ?>
+                                        <div class="variant-option <?php echo $index === 0 ? 'active' : ''; ?>"
+                                             data-price="<?php echo $taglia['prezzo']; ?>"
+                                             data-size="<?php echo htmlspecialchars($taglia['taglia_nome']); ?>"
+                                             onclick="selectVariant(this, 'size')">
+                                            <?php echo htmlspecialchars($taglia['taglia_nome']); ?>
+                                            <?php if ($taglia['prezzo'] != $prodotto['prezzo']): ?>
+                                                (€<?php echo number_format($taglia['prezzo'], 2, ',', '.'); ?>)
+                                            <?php endif; ?>
+                                        </div>
+                                    <?php endforeach; ?>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+
+                        <?php if (!empty($capacita)): ?>
+                            <div class="mb-4">
+                                <h5>Capacità:</h5>
+                                <div class="d-flex flex-wrap align-items-center mb-3" id="capacity-options">
+                                    <?php foreach($capacita as $index => $cap): ?>
+                                        <div class="variant-option <?php echo $index === 0 ? 'active' : ''; ?>"
+                                             data-price="<?php echo $cap['prezzo']; ?>"
+                                             data-capacity="<?php echo htmlspecialchars($cap['capacita_nome']); ?>"
+                                             onclick="selectVariant(this, 'capacity')">
+                                            <?php echo htmlspecialchars($cap['capacita_nome']); ?>
+                                            <?php if ($cap['prezzo'] != $prodotto['prezzo']): ?>
+                                                (€<?php echo number_format($cap['prezzo'], 2, ',', '.'); ?>)
+                                            <?php endif; ?>
+                                        </div>
+                                    <?php endforeach; ?>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+
+                        <?php if (!empty($varianti_wattaggio)): ?>
+                            <div class="mb-4">
+                                <h5>Wattaggio:</h5>
+                                <div class="d-flex flex-wrap align-items-center mb-3" id="wattage-options">
+                                    <?php foreach($varianti_wattaggio as $index => $watt): ?>
+                                        <div class="variant-option <?php echo $index === 0 ? 'active' : ''; ?>"
+                                             data-wattage="<?php echo htmlspecialchars($watt['wattaggio']); ?>"
+                                             onclick="selectVariant(this, 'wattage')">
+                                            <?php echo htmlspecialchars($watt['wattaggio']); ?>W
+                                        </div>
+                                    <?php endforeach; ?>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+
+                        <div class="d-flex mb-4">
+                            <div class="input-group me-3" style="width: 130px;">
+                                <button class="btn btn-outline-secondary" type="button" onclick="updateQuantity(-1)">-</button>
+                                <input type="number" class="form-control text-center" id="quantity" value="1" min="1">
+                                <button class="btn btn-outline-secondary" type="button" onclick="updateQuantity(1)">+</button>
+                            </div>
+
+                            <button class="btn btn-success btn-lg" onclick="addToCart()">
+                                <i class="bi bi-cart-plus"></i> Aggiungi al carrello
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- Prodotti correlati -->
-    <div class="row mt-5">
-        <div class="col-12">
-            <h3>Prodotti correlati</h3>
-            <div class="row">
-                <?php
-                // Query per prodotti correlati (stessa categoria)
-                $prodotti_correlati = fetchAll("
-                     SELECT p.id, p.nome, m.nome AS marca, p.prezzo_base, pi.url AS immagine
-    FROM prodotti p
-    JOIN prodotti_immagini pi ON p.id = pi.prodotto_id
-    JOIN marche m ON p.marca_id = m.id  /* Add this join */
-    WHERE p.categoria_id = (SELECT categoria_id FROM prodotti WHERE id = ?)
-    AND p.id != ?
-    AND pi.is_principale = 1
-    LIMIT 4
-                ", "ii", [$prodotto_id, $prodotto_id]);
+        <!-- Specifiche tecniche -->
+        <?php if (!empty($specifiche)): ?>
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h3 class="mb-0">Specifiche Tecniche</h3>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped specs-table">
+                        <tbody>
+                        <?php foreach ($specifiche as $spec): ?>
+                            <tr>
+                                <td><?php echo htmlspecialchars($spec['nome']); ?></td>
+                                <td><?php echo htmlspecialchars($spec['valore']); ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        <?php endif; ?>
 
-                foreach ($prodotti_correlati as $related):
-                    ?>
-                    <div class="col-md-3 mb-4">
-                        <div class="card">
-                            <img src="<?php echo htmlspecialchars($related['immagine']); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($related['nome']); ?>">
-                            <div class="card-body">
-                                <h5 class="card-title"><?php echo htmlspecialchars($related['nome']); ?></h5>
-                                <p class="card-text">€<?php echo number_format($related['prezzo_base'], 2, ',', '.'); ?></p>
-                                <a href="dettaglio_catalogo.php?id=<?php echo $related['id']; ?>" class="btn btn-secondary">Visualizza</a>
+        <!-- Prodotti correlati -->
+        <?php if (!empty($prodotti_correlati)): ?>
+            <section class="mt-5">
+                <h3 class="mb-4">Prodotti correlati</h3>
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+                    <?php foreach ($prodotti_correlati as $correlato): ?>
+                        <div class="col">
+                            <div class="card related-product-card h-100">
+                                <?php if ($correlato['immagine'] && imageExists($correlato['immagine'])): ?>
+                                    <img src="<?php echo htmlspecialchars($correlato['immagine']); ?>" class="card-img-top related-product-img p-2" alt="<?php echo htmlspecialchars($correlato['nome']); ?>">
+                                <?php else: ?>
+                                    <div class="text-center p-3">
+                                        <i class="bi bi-image text-secondary" style="font-size: 3rem;"></i>
+                                    </div>
+                                <?php endif; ?>
+                                <div class="card-body">
+                                    <h5 class="card-title"><?php echo htmlspecialchars($correlato['nome']); ?></h5>
+                                    <p class="card-text">
+                                        <span class="badge bg-secondary"><?php echo htmlspecialchars($correlato['marca_nome']); ?></span>
+                                    </p>
+                                    <p class="card-text fw-bold">€<?php echo number_format($correlato['prezzo'], 2, ',', '.'); ?></p>
+                                </div>
+                                <div class="card-footer">
+                                    <a href="dettaglio_catalogo.php?id=<?php echo $correlato['id']; ?>" class="btn btn-primary btn-sm">Visualizza dettagli</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-        </div>
-    </div>
+                    <?php endforeach; ?>
+                </div>
+            </section>
+        <?php endif; ?>
+
+    <?php endif; ?>
 </div>
 
-
-
-<!-- Bootstrap 5 JS Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-    // Script per cambiare l'immagine principale quando si clicca su una thumbnail
-    document.addEventListener('DOMContentLoaded', function() {
-        const thumbnails = document.querySelectorAll('.thumbnail');
-        const mainImage = document.getElementById('main-product-image');
+    // Funzione per aggiornare l'immagine principale quando si clicca su una thumbnail
+    function updateMainImage(src, element) {
+        document.getElementById('main-product-image').src = src;
 
-        thumbnails.forEach(thumbnail => {
-            thumbnail.addEventListener('click', function() {
-                const imgSrc = this.dataset.image;
-                mainImage.src = imgSrc;
+        // Rimuovi la classe active da tutte le thumbnails
+        const thumbnails = document.querySelectorAll('.thumbnail-image');
+        thumbnails.forEach(thumb => thumb.classList.remove('active'));
 
-                // Toglie la classe active da tutte le thumbnails e la aggiunge a quella cliccata
-                thumbnails.forEach(t => t.classList.remove('active'));
-                this.classList.add('active');
-            });
+        // Aggiungi la classe active solo all'elemento cliccato
+        element.classList.add('active');
+    }
+
+    // Funzione per selezionare un colore
+    function selectColor(element) {
+        // Rimuovi la classe active da tutti i colori
+        const colorOptions = document.querySelectorAll('.color-option');
+        colorOptions.forEach(option => option.classList.remove('active'));
+
+        // Aggiungi la classe active solo all'elemento cliccato
+        element.classList.add('active');
+
+        // Qui potresti aggiungere codice per aggiornare l'immagine in base al colore
+        // se hai immagini specifiche per ciascun colore
+        const colorId = element.getAttribute('data-color-id');
+        console.log('Colore selezionato:', colorId);
+
+        // Esempio: se hai un array di immagini per colore, potresti aggiornare l'immagine principale
+        <?php if (!empty($varianti_colore)): ?>
+        const colorVariants = <?php echo json_encode($varianti_colore); ?>;
+        for (const variant of colorVariants) {
+            if (variant.colore_id === colorId && variant.immagini.length > 0) {
+                document.getElementById('main-product-image').src = variant.immagini[0].url;
+                break;
+            }
+        }
+        <?php endif; ?>
+    }
+
+    // Funzione per selezionare una variante (taglia, capacità, wattaggio)
+    function selectVariant(element, type) {
+        // Identifica il container delle opzioni in base al tipo
+        let containerId;
+        switch(type) {
+            case 'size': containerId = 'size-options'; break;
+            case 'capacity': containerId = 'capacity-options'; break;
+            case 'wattage': containerId = 'wattage-options'; break;
+            default: return;
+        }
+
+        // Rimuovi la classe active da tutte le opzioni dello stesso tipo
+        const options = document.querySelectorAll(`#${containerId} .variant-option`);
+        options.forEach(option => option.classList.remove('active'));
+
+        // Aggiungi la classe active solo all'elemento cliccato
+        element.classList.add('active');
+
+        // Se la variante ha un prezzo diverso, aggiorna il prezzo visualizzato
+        if (element.hasAttribute('data-price')) {
+            const price = parseFloat(element.getAttribute('data-price'));
+            document.getElementById('product-price').textContent =
+                '€' + price.toLocaleString('it-IT', {minimumFractionDigits: 2, maximumFractionDigits: 2}).replace('.', ',');
+        }
+
+        console.log(`${type} selezionato:`, element.textContent.trim());
+    }
+
+    // Funzioni per gestire la quantità
+    function updateQuantity(change) {
+        const quantityInput = document.getElementById('quantity');
+        let currentValue = parseInt(quantityInput.value);
+
+        currentValue += change;
+
+        // Non permettere valori inferiori a 1
+        if (currentValue < 1) currentValue = 1;
+
+        quantityInput.value = currentValue;
+    }
+
+    // Funzione per aggiungere al carrello
+    function addToCart() {
+        const quantity = document.getElementById('quantity').value;
+
+        // Raccogli tutte le varianti selezionate
+        let selectedVariants = {};
+
+        // Colore
+        const selectedColor = document.querySelector('.color-option.active');
+        if (selectedColor) {
+            selectedVariants.color = {
+                id: selectedColor.getAttribute('data-color-id'),
+                name: selectedColor.getAttribute('title')
+            };
+        }
+
+        // Taglia
+        const selectedSize = document.querySelector('#size-options .variant-option.active');
+        if (selectedSize) {
+            selectedVariants.size = {
+                name: selectedSize.getAttribute('data-size'),
+                price: selectedSize.getAttribute('data-price')
+            };
+        }
+
+        // Capacità
+        const selectedCapacity = document.querySelector('#capacity-options .variant-option.active');
+        if (selectedCapacity) {
+            selectedVariants.capacity = {
+                name: selectedCapacity.getAttribute('data-capacity'),
+                price: selectedCapacity.getAttribute('data-price')
+            };
+        }
+
+        // Wattaggio
+        const selectedWattage = document.querySelector('#wattage-options .variant-option.active');
+        if (selectedWattage) {
+            selectedVariants.wattage = {
+                value: selectedWattage.getAttribute('data-wattage')
+            };
+        }
+
+        // Qui dovresti aggiungere il codice per inviare i dati al carrello
+        // Per esempio con una richiesta AJAX o un form
+        console.log('Prodotto aggiunto al carrello:', {
+            productId: <?php echo $id; ?>,
+            quantity: quantity,
+            variants: selectedVariants
         });
-    });
+
+        alert('Prodotto aggiunto al carrello!');
+    }
 </script>
 </body>
 </html>
