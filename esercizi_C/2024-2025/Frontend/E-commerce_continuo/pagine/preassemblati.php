@@ -74,7 +74,7 @@ $categorie_list = array_column($categorie, 'categoria');
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <div class="container">
         <!-- Logo e Brand -->
-        <a class="navbar-brand d-flex align-items-center" href="../index.html">
+        <a class="navbar-brand d-flex align-items-center" href="../index.php">
             <img src="../immagini/favicon_io/favicon.ico" alt="Logo" width="30" height="30" class="me-2">
             <span class="fw-bold">PC Componenti</span>
         </a>
@@ -88,8 +88,8 @@ $categorie_list = array_column($categorie, 'categoria');
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link <?php echo $currentPage == '../index.html' ? 'active' : ''; ?>"
-                       href="../index.html" <?php echo $currentPage == '../index.html' ? 'aria-current="page"' : ''; ?>>Home</a>
+                    <a class="nav-link <?php echo $currentPage == '../index.php' ? 'active' : ''; ?>"
+                       href="../index.php" <?php echo $currentPage == '../index.php' ? 'aria-current="page"' : ''; ?>>Home</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle"
