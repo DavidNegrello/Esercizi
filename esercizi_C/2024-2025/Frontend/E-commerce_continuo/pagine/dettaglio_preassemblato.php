@@ -303,7 +303,13 @@ $titoloPagina = $preassemblato['nome'];
             </div>
 
             <!-- Form per aggiungere al carrello con personalizzazioni -->
-            <form method="post" action="?id=<?php echo $id; ?><?php echo $coloreSelezionato ? '&colore=' . urlencode($coloreSelezionato) : ''; ?>">
+            <!-- Solo la sezione del form di aggiunta al carrello modificata -->
+            <!-- Form per aggiungere al carrello con personalizzazioni -->
+            <form method="post" action="../pagine/aggiungi_al_carrello.php">
+                <input type="hidden" name="prodotto_id" value="<?php echo $id; ?>">
+                <input type="hidden" name="tipo" value="preassemblato">
+                <input type="hidden" name="colore" value="<?php echo $coloreSelezionato; ?>">
+
                 <?php if (!empty($personalizzazioni)): ?>
                     <div class="mb-4">
                         <h4>Personalizzazioni disponibili</h4>
@@ -326,8 +332,17 @@ $titoloPagina = $preassemblato['nome'];
                     <h4>Prezzo Totale: <span id="prezzo-totale">€<?php echo number_format($preassemblato['prezzo'], 2, ',', '.'); ?></span></h4>
                 </div>
 
+                <div class="d-flex align-items-center mb-3">
+                    <label for="quantity" class="me-3">Quantità:</label>
+                    <div class="input-group" style="width: 120px;">
+                        <button type="button" class="btn btn-outline-secondary" onclick="decreaseQty()">-</button>
+                        <input type="number" id="quantity" name="quantity" value="1" min="1" max="10" class="form-control text-center">
+                        <button type="button" class="btn btn-outline-secondary" onclick="increaseQty()">+</button>
+                    </div>
+                </div>
+
                 <div class="d-grid gap-2">
-                    <button type="submit" name="aggiungi_al_carrello" class="btn btn-primary btn-lg">
+                    <button type="submit" class="btn btn-primary btn-lg">
                         <i class="fas fa-shopping-cart me-2"></i>Aggiungi al carrello
                     </button>
                     <button type="button" class="btn btn-outline-secondary">
@@ -390,6 +405,24 @@ $titoloPagina = $preassemblato['nome'];
 </div>
 
 <script>
+    // Funzione per incrementare la quantità
+    function increaseQty() {
+        var input = document.getElementById('quantity');
+        var value = parseInt(input.value, 10);
+        if (value < 10) {
+            input.value = value + 1;
+        }
+    }
+
+    // Funzione per decrementare la quantità
+    function decreaseQty() {
+        var input = document.getElementById('quantity');
+        var value = parseInt(input.value, 10);
+        if (value > 1) {
+            input.value = value - 1;
+        }
+    }
+
     // Funzione per cambiare l'immagine principale
     function cambiaImmagine(url, elemento) {
         document.getElementById('main-image').src = url;

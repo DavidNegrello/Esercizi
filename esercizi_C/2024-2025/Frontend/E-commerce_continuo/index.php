@@ -67,7 +67,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
             <div class="d-flex align-items-center">
                 <!-- Carrello con counter dinamico -->
                 <div class="position-relative me-3">
-                    <a class="btn btn-outline-light btn-sm position-relative" href="../pagine/carrello.php">
+                    <a class="btn btn-outline-light btn-sm position-relative" href="pagine/carrello.php">
                         <i class="fas fa-shopping-cart me-1"></i> Carrello
                         <?php if($cartCount > 0): ?>
                             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
