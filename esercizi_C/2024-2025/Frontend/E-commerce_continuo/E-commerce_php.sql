@@ -788,6 +788,69 @@ INSERT INTO preassemblati_personalizzazioni (preassemblato_id, nome, prezzo) VAL
 (23, 'Aggiungi un secondo SSD 2TB', 250),
 (23, 'Upgrade al raffreddamento a liquido 480mm', 300)
 
+-- ================================CARRELLO============================
+-- Creazione della tabella utenti (per associare i carrelli)
+CREATE TABLE IF NOT EXISTS catalogo_pc_parts.utenti (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    nome VARCHAR(100),
+    cognome VARCHAR(100),
+    data_registrazione TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+ALTER TABLE catalogo_pc_parts.utenti ADD COLUMN password VARCHAR(255) NOT NULL;
+ALTER TABLE catalogo_pc_parts.utenti ADD COLUMN newsletter TINYINT(1) DEFAULT 0;
 
+
+-- Creazione della tabella carrello
+CREATE TABLE IF NOT EXISTS catalogo_pc_parts.carrello (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    utente_id INT,
+    session_id VARCHAR(255),
+    data_creazione TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    ultima_modifica TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    stato ENUM('attivo', 'acquistato', 'abbandonato') DEFAULT 'attivo',
+    FOREIGN KEY (utente_id) REFERENCES utenti(id),
+    -- Carrello può essere associato a un utente registrato o a una sessione anonima
+    CONSTRAINT check_associazione CHECK (utente_id IS NOT NULL OR session_id IS NOT NULL)
+);
+
+-- Creazione della tabella elementi carrello per i prodotti normali
+CREATE TABLE IF NOT EXISTS catalogo_pc_parts.carrello_prodotti (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    carrello_id INT NOT NULL,
+    prodotto_id INT NOT NULL,
+    quantita INT NOT NULL DEFAULT 1,
+    -- Campi opzionali per varianti
+    colore_id INT,
+    capacita_id INT,
+    taglia_id INT,
+    prezzo_unitario DECIMAL(10, 2) NOT NULL,
+    FOREIGN KEY (carrello_id) REFERENCES carrello(id) ON DELETE CASCADE,
+    FOREIGN KEY (prodotto_id) REFERENCES prodotti(id),
+    FOREIGN KEY (colore_id) REFERENCES colori(id),
+    FOREIGN KEY (capacita_id) REFERENCES capacita(id),
+    FOREIGN KEY (taglia_id) REFERENCES taglie(id)
+);
+
+-- Creazione della tabella elementi carrello per i PC preassemblati
+CREATE TABLE IF NOT EXISTS catalogo_pc_parts.carrello_preassemblati (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    carrello_id INT NOT NULL,
+    preassemblato_id INT NOT NULL,
+    quantita INT NOT NULL DEFAULT 1,
+    colore VARCHAR(50),
+    prezzo_unitario DECIMAL(10, 2) NOT NULL,
+    FOREIGN KEY (carrello_id) REFERENCES carrello(id) ON DELETE CASCADE,
+    FOREIGN KEY (preassemblato_id) REFERENCES preassemblati(id)
+);
+
+-- Tabella per le personalizzazioni selezionate per i PC preassemblati nel carrello
+CREATE TABLE IF NOT EXISTS catalogo_pc_parts.carrello_personalizzazioni (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    carrello_preassemblato_id INT NOT NULL,
+    personalizzazione_id INT NOT NULL,
+    FOREIGN KEY (carrello_preassemblato_id) REFERENCES carrello_preassemblati(id) ON DELETE CASCADE,
+    FOREIGN KEY (personalizzazione_id) REFERENCES preassemblati_personalizzazioni(id)
+);
 
 

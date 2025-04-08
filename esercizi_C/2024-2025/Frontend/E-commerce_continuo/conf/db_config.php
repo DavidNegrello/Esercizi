@@ -79,6 +79,7 @@ function fetchAll($sql, $types = '', $params = []) {
     return $result;
 }
 
+
 /**
  * Esegue una query e restituisce una singola riga come array associativo
  *

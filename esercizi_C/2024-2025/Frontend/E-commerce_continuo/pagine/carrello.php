@@ -16,7 +16,7 @@ if(isset($_SESSION['cart']) && is_array($_SESSION['cart'])) {
 $currentPage = basename($_SERVER['PHP_SELF']);
 
 /**
- * carrello.php
+ * Carrello.php
  *
  * Pagina che mostra gli articoli nel carrello dell'utente,
  * con opzioni per modificare quantità, rimuovere articoli e procedere all'acquisto.
@@ -379,6 +379,8 @@ $titoloPagina = "Il mio carrello";
         </form>
     <?php endif; ?>
 </div>
+
+<?php require_once '../pagine/footer.php'; ?>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>

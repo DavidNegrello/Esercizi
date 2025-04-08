@@ -97,19 +97,19 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
             ];
         }
 
-        // Ottieni capacità disponibili (per SSD, HDD, ecc.)
-        $sql_capacita = "SELECT pc.prezzo, c.nome AS capacita_nome
-                         FROM prodotti_capacita pc
-                         JOIN capacita c ON pc.capacita_id = c.id
-                         WHERE pc.prodotto_id = ?";
-        $capacita = fetchAll($sql_capacita, 'i', [$id]);
-
         // Ottieni taglie disponibili (per RAM, ecc.)
-        $sql_taglie = "SELECT pt.prezzo, t.nome AS taglia_nome, t.descrizione
-                       FROM prodotti_taglie pt
-                       JOIN taglie t ON pt.taglia_id = t.id
-                       WHERE pt.prodotto_id = ?";
+        $sql_taglie = "SELECT pt.prezzo, t.nome AS taglia_nome, t.descrizione, t.id as taglia_id
+               FROM prodotti_taglie pt
+               JOIN taglie t ON pt.taglia_id = t.id
+               WHERE pt.prodotto_id = ?";
         $taglie = fetchAll($sql_taglie, 'i', [$id]);
+
+// Ottieni capacità disponibili (per SSD, HDD, ecc.)
+        $sql_capacita = "SELECT pc.prezzo, c.nome AS capacita_nome, c.id as capacita_id
+                 FROM prodotti_capacita pc
+                 JOIN capacita c ON pc.capacita_id = c.id
+                 WHERE pc.prodotto_id = ?";
+        $capacita = fetchAll($sql_capacita, 'i', [$id]);
 
         // Ottieni varianti di wattaggio (per PSU)
         $sql_wattaggio = "SELECT vw.id, vw.wattaggio
@@ -200,7 +200,42 @@ function generateBreadcrumbs($categoria, $nome_prodotto) {
     <link rel="stylesheet" href="../stili/dettagli_catalogo.css">
     <link rel="stylesheet" href="../stili/navbar_footer.css">
 
+    <style>
+        .toast-notification {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            padding: 15px 25px;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            z-index: 1000;
+            animation: fadeIn 0.3s, fadeOut 0.3s 2.7s;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
 
+        .toast-notification.success {
+            background-color: #28a745;
+        }
+
+        .toast-notification.error {
+            background-color: #dc3545;
+        }
+
+        .toast-notification i {
+            margin-right: 8px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeOut {
+            from { opacity: 1; transform: translateY(0); }
+            to { opacity: 0; transform: translateY(-20px); }
+        }
+    </style>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
@@ -261,7 +296,7 @@ function generateBreadcrumbs($categoria, $nome_prodotto) {
                             <li><a class="dropdown-item" href="../pagine/ordini.php"><i class="fas fa-box me-2"></i>I miei ordini</a></li>
                             <li><a class="dropdown-item" href="../pagine/wishlist.php"><i class="fas fa-heart me-2"></i>Wishlist</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item text-danger" href="../actions/logout.php"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
+                            <li><a class="dropdown-item text-danger" href="../pagine/logout.php"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
                         </ul>
                     </div>
                 <?php else: ?>
@@ -354,6 +389,7 @@ function generateBreadcrumbs($categoria, $nome_prodotto) {
                                         <div class="variant-option <?php echo $index === 0 ? 'active' : ''; ?>"
                                              data-price="<?php echo $taglia['prezzo']; ?>"
                                              data-size="<?php echo htmlspecialchars($taglia['taglia_nome']); ?>"
+                                             data-size-id="<?php echo $taglia['taglia_id']; ?>"
                                              onclick="selectVariant(this, 'size')">
                                             <?php echo htmlspecialchars($taglia['taglia_nome']); ?>
                                             <?php if ($taglia['prezzo'] != $prodotto['prezzo']): ?>
@@ -373,6 +409,7 @@ function generateBreadcrumbs($categoria, $nome_prodotto) {
                                         <div class="variant-option <?php echo $index === 0 ? 'active' : ''; ?>"
                                              data-price="<?php echo $cap['prezzo']; ?>"
                                              data-capacity="<?php echo htmlspecialchars($cap['capacita_nome']); ?>"
+                                             data-capacity-id="<?php echo $cap['capacita_id']; ?>"
                                              onclick="selectVariant(this, 'capacity')">
                                             <?php echo htmlspecialchars($cap['capacita_nome']); ?>
                                             <?php if ($cap['prezzo'] != $prodotto['prezzo']): ?>
@@ -470,7 +507,7 @@ function generateBreadcrumbs($categoria, $nome_prodotto) {
 
     <?php endif; ?>
 </div>
-
+<?php require_once '../pagine/footer.php'; ?>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 <script>
     // Funzione per aggiornare l'immagine principale quando si clicca su una thumbnail
@@ -555,6 +592,7 @@ function generateBreadcrumbs($categoria, $nome_prodotto) {
     // Funzione per aggiungere al carrello
     function addToCart() {
         const quantity = document.getElementById('quantity').value;
+        const productId = <?php echo $id; ?>;
 
         // Raccogli tutte le varianti selezionate
         let selectedVariants = {};
@@ -562,48 +600,108 @@ function generateBreadcrumbs($categoria, $nome_prodotto) {
         // Colore
         const selectedColor = document.querySelector('.color-option.active');
         if (selectedColor) {
-            selectedVariants.color = {
-                id: selectedColor.getAttribute('data-color-id'),
-                name: selectedColor.getAttribute('title')
-            };
+            selectedVariants.colorId = selectedColor.getAttribute('data-color-id');
         }
 
         // Taglia
         const selectedSize = document.querySelector('#size-options .variant-option.active');
         if (selectedSize) {
-            selectedVariants.size = {
-                name: selectedSize.getAttribute('data-size'),
-                price: selectedSize.getAttribute('data-price')
-            };
+            selectedVariants.sizeId = selectedSize.getAttribute('data-size-id');
         }
 
         // Capacità
         const selectedCapacity = document.querySelector('#capacity-options .variant-option.active');
         if (selectedCapacity) {
-            selectedVariants.capacity = {
-                name: selectedCapacity.getAttribute('data-capacity'),
-                price: selectedCapacity.getAttribute('data-price')
-            };
+            selectedVariants.capacityId = selectedCapacity.getAttribute('data-capacity-id');
         }
 
-        // Wattaggio
-        const selectedWattage = document.querySelector('#wattage-options .variant-option.active');
-        if (selectedWattage) {
-            selectedVariants.wattage = {
-                value: selectedWattage.getAttribute('data-wattage')
-            };
+        // Ottieni il prezzo corrente (quello visualizzato)
+        const displayedPrice = document.getElementById('product-price').textContent
+            .replace('€', '')
+            .replace('.', '')
+            .replace(',', '.');
+
+        // Invia i dati al backend tramite AJAX
+        fetch('add_to_cart.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                productId: productId,
+                quantity: quantity,
+                colorId: selectedVariants.colorId || null,
+                sizeId: selectedVariants.sizeId || null,
+                capacityId: selectedVariants.capacityId || null,
+                price: displayedPrice
+            })
+        })
+            .then(response => response.json())
+            .then(response => {
+                console.log('Risposta dal server:', response);
+                return response.json();  // Proseguire con la decodifica del JSON
+            })
+            .then(data => {
+                console.log('Dati dal server:', data);  // Verifica cosa contiene il JSON
+                if (data.success) {
+                    // Procedi come previsto
+                } else {
+                    // Gestisci l'errore
+                    console.log('Errore:', data.message || 'Errore sconosciuto');
+                }
+            })
+
+            .then(data => {
+                if (data.success) {
+                    // Mostra notifica di successo
+                    const toast = document.createElement('div');
+                    toast.className = 'toast-notification success';
+                    toast.innerHTML = '<i class="bi bi-check-circle"></i> Prodotto aggiunto al carrello!';
+                    document.body.appendChild(toast);
+
+                    // Aggiorna il contatore del carrello
+                    updateCartCount(data.cartCount);
+
+                    // Rimuovi la notifica dopo 3 secondi
+                    setTimeout(() => {
+                        toast.remove();
+                    }, 3000);
+                } else {
+                    // Mostra notifica di errore
+                    const toast = document.createElement('div');
+                    toast.className = 'toast-notification error';
+                    toast.innerHTML = '<i class="bi bi-exclamation-circle"></i> ' + (data.message || 'Errore durante l\'aggiunta al carrello');
+                    document.body.appendChild(toast);
+
+                    // Rimuovi la notifica dopo 3 secondi
+                    setTimeout(() => {
+                        toast.remove();
+                    }, 3000);
+                }
+            })
+            .catch(error => {
+                console.error('Errore:', error);
+                alert('Si è verificato un errore durante l\'aggiunta al carrello.');
+            });
+    }
+
+    // Funzione per aggiornare il contatore del carrello
+    function updateCartCount(count) {
+        const cartBadge = document.querySelector('.badge.rounded-pill.bg-danger');
+        if (cartBadge) {
+            cartBadge.textContent = count;
+        } else {
+            // Se il badge non esiste, crealo
+            const cartLink = document.querySelector('a[href="../pagine/carrello.php"]');
+            if (cartLink) {
+                const newBadge = document.createElement('span');
+                newBadge.className = 'position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger';
+                newBadge.innerHTML = count + '<span class="visually-hidden">Articoli nel carrello</span>';
+                cartLink.appendChild(newBadge);
+            }
         }
-
-        // Qui dovresti aggiungere il codice per inviare i dati al carrello
-        // Per esempio con una richiesta AJAX o un form
-        console.log('Prodotto aggiunto al carrello:', {
-            productId: <?php echo $id; ?>,
-            quantity: quantity,
-            variants: selectedVariants
-        });
-
-        alert('Prodotto aggiunto al carrello!');
     }
 </script>
+<script src="../js/dettaglio_catalogo.js"></script>
 </body>
 </html>

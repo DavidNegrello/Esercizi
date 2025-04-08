@@ -89,7 +89,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                             <li><a class="dropdown-item" href="pagine/ordini.php"><i class="fas fa-box me-2"></i>I miei ordini</a></li>
                             <li><a class="dropdown-item" href="pagine/wishlist.php"><i class="fas fa-heart me-2"></i>Wishlist</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item text-danger" href="actions/logout.php"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
+                            <li><a class="dropdown-item text-danger" href="pagine/logout.php"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
                         </ul>
                     </div>
                 <?php else: ?>
@@ -324,7 +324,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 </section>
 
 
-
+<?php require_once 'pagine/footer.php'; ?>
 
 
 <script src="js/function.js"></script>

@@ -1,0 +1,35 @@
+.registration-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+.card-header {
+    background-color: #f8f9fa;
+}
+.form-label {
+    font-weight: 500;
+}
+.registration-icon {
+    color: #6c757d;
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+body {
+    background-color: #f8f9fa;
+    padding-top: 70px;
+}
+.password-strength {
+    height: 5px;
+    margin-top: 8px;
+    border-radius: 3px;
+}
+.social-login-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+.password-hint {
+    font-size: 0.8rem;
+    color: #6c757d;
+}
