@@ -1,0 +1,47 @@
+.product-card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out;
+}
+
+.product-card:hover {
+    transform: scale(1.05);
+}
+
+.product-card img {
+    width: 100%;
+    height: auto;
+}
+
+.filter-section {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-header {
+    background-color: #5c3d26;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.product-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+}
+
+.filter-btn {
+    background-color: #5c3d26;
+    color: white;
+}
+
+.filter-btn:hover {
+    background-color: #8e5d3b;
+}
+
+.navbar-brand {
+    font-family: 'Montserrat', sans-serif;
+}

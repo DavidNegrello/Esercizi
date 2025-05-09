@@ -1,0 +1,146 @@
+:root {
+    --primary: #42210b;
+    --secondary: #d4a35a;
+    --light-bg: #f9f5f0;
+    --dark-bg: #2a1608;
+    --accent-bg: #f0e6d8;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--light-bg);
+    color: #3a2618;
+}
+
+.playfair {
+    font-family: 'Playfair Display', serif;
+}
+
+.navbar {
+    background-color: var(--primary);
+}
+
+.navbar-brand {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 500;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: var(--secondary);
+}
+
+.hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/api/placeholder/1200/800') center/cover no-repeat;
+    padding: 8rem 0;
+}
+
+.btn-primary {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+}
+
+.btn-primary:hover, .btn-primary:active, .btn-primary:focus {
+    background-color: #ba8d49 !important;
+    border-color: #ba8d49 !important;
+}
+
+.btn-outline-primary {
+    color: var(--secondary);
+    border-color: var(--secondary);
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+}
+
+.card {
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    border: none;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.feature-icon {
+    font-size: 2.5rem;
+    color: var(--secondary);
+}
+
+.category-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.5rem;
+}
+
+.category-card img {
+    transition: all 0.5s ease;
+}
+
+.category-card:hover img {
+    transform: scale(1.1);
+}
+
+.category-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(66, 33, 11, 0.8);
+    color: #fff;
+    padding: 1rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.testimonials {
+    background-color: var(--primary);
+    color: #fff;
+}
+
+.testimonial-card {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+}
+
+.product-price {
+    color: var(--secondary);
+    font-weight: 700;
+    font-size: 1.25rem;
+}
+
+.newsletter {
+    background-color: var(--accent-bg);
+}
+
+footer {
+    background-color: var(--dark-bg);
+    color: #fff;
+}
+
+footer a {
+    color: #ccc;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: var(--secondary);
+    text-decoration: none;
+}
+
+.social-icons i {
+    font-size: 1.5rem;
+    margin-right: 1rem;
+}
+
+.footer-bottom {
+    background-color: #1a0f05;
+}

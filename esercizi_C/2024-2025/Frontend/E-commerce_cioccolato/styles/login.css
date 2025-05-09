@@ -1,0 +1,102 @@
+:root {
+    --chocolate-dark: #3c1414;
+    --chocolate-medium: #6b4226;
+    --chocolate-light: #a67c52;
+    --chocolate-milk: #d4a76a;
+    --chocolate-white: #f8ebd8;
+}
+
+body {
+    background-color: var(--chocolate-white);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)),
+    url("../img/culone.png");
+    background-size: cover;
+    background-position: center;
+}
+
+.login-container {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(107, 66, 38, 0.3);
+}
+
+.chocolate-sidebar {
+    background: linear-gradient(135deg, var(--chocolate-dark), var(--chocolate-medium));
+    color: var(--chocolate-white);
+    position: relative;
+}
+
+.chocolate-sidebar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("../img/culone.png");
+    background-size: cover;
+    opacity: 0.2;
+}
+
+.btn-chocolate {
+    background-color: var(--chocolate-medium);
+    border-color: var(--chocolate-medium);
+    color: white;
+}
+
+.btn-chocolate:hover {
+    background-color: var(--chocolate-dark);
+    border-color: var(--chocolate-dark);
+    color: white;
+}
+
+.btn-outline-chocolate {
+    color: var(--chocolate-medium);
+    border-color: var(--chocolate-medium);
+    background-color: transparent;
+}
+
+.btn-outline-chocolate:hover {
+    background-color: var(--chocolate-medium);
+    color: white;
+}
+
+.form-control:focus {
+    border-color: var(--chocolate-light);
+    box-shadow: 0 0 0 0.25rem rgba(107, 66, 38, 0.25);
+}
+
+.chocolate-link {
+    color: var(--chocolate-medium);
+    text-decoration: none;
+}
+
+.chocolate-link:hover {
+    color: var(--chocolate-dark);
+    text-decoration: underline;
+}
+
+.logo-text {
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.logo-text a {
+    color: var(--chocolate-white);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.logo-text a:hover {
+    color: var(--chocolate-milk);
+    text-decoration: none;
+}
+
+.home-button {
+    margin-top: 20px;
+}
