@@ -1,0 +1,10 @@
+Visita  (titolo,durata_media,luogo)
+Evento  (prezzo, ora_inizio, n_minimo, n_massimo)
+Turista (nome, nazionalità, lingua, email, telefono)
+Guida   (conoscenza, cognome, nome, data, luogo_nascita, titolo_studio)
+Lingua  (lingua, livello_competenza)
+
+Relazioni:
+- Un visitatore può prenotare uno o più eventi;
+- Un evento è legato a una visita e viene condotto da una guida;
+- Una guida può essere associata a più eventi, a seconda delle lingue che parla e della sua disponibilità.
